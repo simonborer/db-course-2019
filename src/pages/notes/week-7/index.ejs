@@ -1,0 +1,322 @@
+---
+title: The Seventh week
+layout: default
+hasSlides: true
+today:
+  assorted:
+    - Attendance
+    - All your reading assignments are due by Friday
+    - Good luck today (or tomorrow)!
+    - Bonus points
+    - Reviewing the readings
+  theory:
+    - Review
+    - Snaps is the name of the game
+  praxis:
+    - Usability assessment... of this course
+---
+<% const part = '../../../partials/'; %>
+<% const basePath = site.basePath %>
+
+<%- include(`${part}today`) %>
+
+<%- include(`${part}attendance`) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: 'Reading assignments',
+  body: [`Have all your reading assignments in to me by EOD Friday. I'm going to try to have all your final marks in by early next week.`],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: 'Final project - good luck!',
+  body: [`You're going to do great. Let's take a look at the rubric to remember our priorities going in to this...`],
+  list: false
+}) %>
+
+<%- include(`${part}final-rubric`) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: 'Bonus points',
+  body: [`I will be awarding up to 3 bonus points per person. These will be added to your final assignment mark. They will be awarded based on the questions you ask to your classmates about their assignments.`, `Ask these questions from a client's point of view.`, `Make sure they are <strong>questions</strong>. You won't get bonus points by being mean.`, `The point of these questions is to give your classmates the opportunity to address any potential weaknesses in their methodology or recommendations.`],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: false,
+  body: [`If you're being asked a question, don't get defensive - take it as an opportunity to explain why you made your choices, and to explain how any weaknesses could be addressed going forward, either with further testing, or by doing things differently next time.`],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: "Office culture",
+  body: [`Office culture is different from most other workplaces and it's definitely different from school.`, `Offices have their own dialect, customs, style of dress, form of humour, and expectations around behaviour and communication.`],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: false,
+  body: [`Every office is a little different. One question I like to ask when being interviewed is "What can you tell me about the culture here?`, `This is a question about how to dress, how to talk to your co-workers, how supported you'll be in your work, and how aggressively you'll be expected to self-manage.`],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: false,
+  body: [`Office culture in Canada is undergoing a generational shift.`, `Older customs tend to be more formal in language and dress, more strict about job definitions and parameters (including work hours), and with more deference to authority.`, `"Younger" offices tend to place more of an emphasis on 'likeability', blurring the lines between work and recreation, and have higher expectations about taking on responsibility.`, `Expect to find an older office culture in larger institutions like universities, banks, and government.`, `If the company you're working for has ever described itself as a 'startup', expect to have your work interrupted by grown men playing with children's toys.`],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: false,
+  body: [`Particular attention needs to be paid to language. Some offices have a culture where, in some contexts, swearing or using <span role="img" aria-label="beaming face with smiling eyes">😁</span> is the norm. What's important is that you communicate using the same norms as the rest of your team/office.`, "Despite the generational differences, offices everywhere tend to be much gentler when communicating differences of opinion than, say, a restaurant or a construction site.", "However, there is an expectation that you will communicate your needs. Otherwise people will keep being polite with you - until they politely fire you."],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: false,
+  body: ["Jessica's going to tell us a story about people being polite to her - in a bad way."],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: "Why am I telling you this?",
+  body: ["Modern office culture has certain expectations around 'respectfulness'. When addressing other people's ideas, <em>even when they're dumb ideas that make you angry</em>, you'll be expected to smile, say something positive, and then address your concerns by asking a gentle question.", "When you are asking questions today, your challenge is to ask questions that will get the answers you need, while still maintaining a good relationship with everyone in the room."],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Let's review!",
+  body: ["But first - something I was reminded of.", "I was reading some writings by people with disabilities, and a point that kept coming up was this - no one is disabled.", "Which is to say, there is nothing about any one person that creates disability. Disability is created when society makes an assumption, and then hardcodes that into design.", "It's in the way we design our buildings and our cities, our school system, our language, et al.", "I think this is important, because you need to understand that when you make something, you are at risk of manufacturing disability."],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Let's review - the readings!",
+  body: "You responded more than I thought you would to the reading assignments. More than one of you said you would've liked it if there was more in-class discussion.",
+  list: ["Get into small groups.", "Choose a reading you'd like to talk about.", "What do you remember about it?", "Is this a topic you'd thought about before?", "Did it change your mind about anything?", "Does it change how you think about web development?", "Choose someone to present your ideas to the class."]
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Accessibility review",
+  body: [`Accessibility is both a philosophy and a legal requirement.`, `<strong>Philosophy</strong>: removing barriers and creating equity.`, `<strong>Law</strong>: The Access for Ontarians with Disabilities Act, in accordance with the Canadian Charter of Rights and Freedoms, mandates a level of WCAG compliance.`],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: [`WCAG compliance mandates semantics, content, proper source order, text alternatives to visual information, accomodations for colour-blindness and low visual acuity, keyboard-only functionality, and the use of the WAI-ARIA specification.`],
+  list: false
+}) %>
+
+  <%- include(`${part}section`, {
+    id: false,
+    style: false,
+    headline: false,
+    body: [`<strong>Semantics</strong> in HTML refers to using native elements and attributes for their defined purpose.`, `A correct <strong>source order</strong> means that the visual flow of the document matches the source code.`, `<strong>Text alternatives</strong> are provided when information is presented visually - this includes images, graphs, charts and tables, but also cases where elements have implicit functions based on the visual design, i.e. buttons within a form.`],
+    list: false
+  }) %>
+
+
+  <%- include(`${part}section`, {
+    id: false,
+    style: false,
+    headline: false,
+    body: [`We can provide alternatives to this visual information with <code>alt</code> tags for graphic content, <code>scope</code> and <code>caption</code> for tables, and <code>label</code>s or screen reader-specific content for inputs, buttons and links.`, `We must also keep in mind that our elements are often used as navigational landmarks for people using non-visual clients, including headers for document structure.`],
+    list: false
+  }) %>
+
+<%- include(`${part}section`, {
+    id: false,
+    style: false,
+    headline: false,
+    body: `Accessible <strong>content</strong> means...`,
+    list:  [`Unique page titles (as it can be difficult to assess if the page has actually changed otherwise)`, `Concise link text (as screen readers read them in their entirety)`, `Accessible information about link behaviour`, `Skippable navigation`, `Captions and transcriptions that contain all relevant visual information`, `Verbose error messages (that capture focus), and`, `Using words rather than ASCII symbols`]
+  }) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: [`Because not all visually impairments require the use of a screenreader, we provide <strong>alternatives to colour cues</strong> for people with colour-blindness (i.e. focus outline, proper labelling), and for people with reduced visual abilities we check our <strong>colour contrast ratios</strong> and test our websites for up to <strong>200% zoom</strong>.`],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: [`For people with motor-impairment issues, we ensure that we do not disable the native functionality of our proper semantic HTML, and where native functionality is not available, we create <strong>keyboard events</strong> to supplement our click events.`, `We also maintain our tab order by having our source order properly represented.`, `On those rare occasions where our visual order and source order are in conflict, we can control focus with Javascript.`, `Where we want to make an element focusable that does not have native focusability, we can use the <code>tabindex='0'</code> attribute value.`],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: [`The <strong>WAI-ARIA</strong> specification allows us to supplement our HTML elements, widgets and document presentation by defining roles and properties for screenreader users.`, `This is especially important when updating content on the page without a location change or page refresh, which is a common practice when using modern front-end javascript frameworks, such as Angular, React, and Vue.`],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: [`Of course we keep in mind that all these standards apply whether on a desktop or mobile device, with a few special considerations for mobile, including...`],
+  list: [`Maintaining keyboard functionality`, `Supporting different orientations`, `Touch target size and spacing`, `Gesture alternatives, and `, `Appropriate virtual keyboard data types.`]
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: [`In order to enforce accessibility compliance and best practices, we need to help our team mates understand these techniques. We can encourage our team to use <strong>manual testing tools</strong> like the WAVE browser plugin, incorporate <strong>linting</strong> into our build process and <strong>auditing</strong> into our deployment or site monitoring`, `Additionally, because some accessibility techniques, especially ARIA, are context-dependent, automated enforcement can be a challenge. Manual <strong>code review</strong> is an essential part of making our whole team stronger and our product better.`],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Usability review",
+  body: ["Usability is not UAT, UX, UI, CX, HCI, IxD, or HCD (although they may overlap).", "Usability is <q>the extent to which specified users can find, understand and use information and services</q>.", "To start with a solid foundation of usability, we develop personas and scenarios.", "To assess usability, we test."],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: ["In testing, we use a variety of methods, designed to reduce our biases, to collect data on how real people perceive and interact with the design and function of the products we make.", "We do this iteratively throughout the design and production process (including after our product has launched), testing our ideas and improvements, and comparing solutions."],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: ["During the initial design phase, we develop <strong>personas</strong>, composite identities of our audience, in order to design our product <em>for people to use</em>.", "Based on those personas, since websites tend to be non-linear tools, we develop <strong>scenarios</strong>. Scenarios help us keep track of the different journeys that people in our audience may take in using our product.", "Personas and scenarios are tools for guiding design and implementation discussions, particularly with less technical team members."],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: ["Once we begin to test our design and development, we use tests to produce both <strong>qualitative</strong> and <strong>quantitative</strong> data.", "Depending on what kind of data we are generating, there are industry standard sample sizes for each test. Qualitative testing, being more exploratory, tends to have smaller sample sizes."],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: ["To facilitate discussion and decision-making, we can apply quantitative metrics to qualitative data. One example of this is the PURE rubric, for assigning values to the ease with which a task is accomplished.", "This should not overshadow the fact that the most valuable information gained in qualitative testing is usually individual, and best reported in the words of the participant or observer."],
+  list: false
+}) %>
+
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: [`Before we test, we plan. After we test, we report.`, `A good test plan can be a <strong>proposal</strong> (when seeking approval) that provides a clear picture of the time and costs, and makes a case for the efficacy of data that is being generated.`, `A good test plan might also be, assuming that approvals and funding are secured, <strong>simple documentation</strong> for your team, in order to keep sight of the scope, definitions, and goals.`],
+  list: false
+}) %>
+
+  <%- include(`${part}section`, {
+    id: false,
+    style: false,
+    headline: false,
+    body: "A good report is readable, credible, and makes clear recommendations for how to action the findings.",
+    list: false
+  }) %>
+
+  <%- include(`${part}section`, {
+    id: false,
+    style: false,
+    headline: false,
+    body: "A friend of mine who does usability testing says that their team has a library of possible tests. They get hired to choose the right test.",
+    list: false
+  }) %>
+
+  <%- include(`${part}section`, {
+    id: false,
+    style: false,
+    headline: false,
+    body: "Usability tests include, but are not limited to:",
+    list: [`problem discovery`, `heuristic evaluation`, `system usability surveys`, `moderated/unmoderated`, `in-person/remote`, `benchmarks`, `eye-tracking`]
+  }) %>
+
+  <%- include(`${part}section`, {
+    id: false,
+    style: false,
+    headline: false,
+    body: ["When performing a test, we try to capture data that is clean and unbiased. We can do this by using careful language, so as not to influence our test participants.", "We also do this by having strong sample sizes, and reducing the number of variables between our tests, i.e. maintaining a consistent hardware and software environment."],
+    list: false
+  }) %>
+
+  <%- include(`${part}section`, {
+    id: false,
+    style: false,
+    headline: false,
+    body: ["Once our test data is collected, we format it, and discuss it within our team.", "Collaborating on our recommendations reduces individual bias.", "We then weigh our recommendations based on issue severity and the resources required to implement.", "Whenever possible, we try to provide more than one option for each issue, so the client can decide what is best for them - without putting them in the position of rejecting our work."],
+    list: false
+  }) %>
+
+  <%- include(`${part}section`, {
+    id: false,
+    style: false,
+    headline: false,
+    body: ["A report should be easy to read and understand. Choosing the right format for presenting data is essential to interpreting it.", "If you have been rigourous in your testing, then your report can be presented in very plain language.", "Reporting these results is often done in-person. It's important that you understand everything that went into the test and the recommendations, and anticipate questions that the client may raise."],
+    list: false
+  }) %>
+
+  <%- include(`${part}section`, {
+    id: false,
+    style: "slide-only",
+    headline: "Snaps is the name of the game",
+    body: false,
+    list: false
+  }) %>
+
+  <%- include(`${part}section`, {
+    id: false,
+    style: "slide-only",
+    headline: "Mild, medium, or spicy?",
+    body: false,
+    list: false
+  }) %>
+
+  <%- include(`${part}section`, {
+    id: false,
+    style: "slide-only",
+    headline: "heuristic course evaluation",
+    body: [`<ol><li>Get into groups of 4</li><li>Pull up the Nielson Norman Group's <a href='https://www.nngroup.com/articles/ten-usability-heuristics/' target='_blank'>10 Usability Heuristics for User Interface Design</a></li><li>In your group evaluate this course, the content, the lessons, the labs, the lab, the assignments, schedule, syllabus, blackboard, et. al.</li><li>Take note of what worked well and what the pain points were.</li><li>Generate recommendations</li><li>Present your findings</li></ol>`],
+    list: false
+  }) %>

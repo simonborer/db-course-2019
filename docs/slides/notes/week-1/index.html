@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>The second week | Accessibility + Usability</title>
+<meta name="description" content="Posts and slides"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/a11y/assets/css/reveal.css">
+  <style>
+  	.slides > :not(section) {
+  		display: none;
+  	}
+  	.reveal li > ol {
+		  list-style-type: lower-alpha; 
+  	}
+    .post-only {
+      display: none;
+    }
+    .reveal blockquote {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  
+	<div class="reveal">
+		<div class="slides">
+	      	<section>
+	      		<h1>The second week</h1>
+	      	</section>
+			
+
+	<section class="slide-only">
+    <h2>Here's what we're going today</h2>
+	    <ol>
+	    	
+	        
+	        	<li>Review</li>
+	        
+	        	<li>Discuss reading</li>
+	        
+	        	<li>Reviewing a test plan template</li>
+	        
+	        
+			<li>Theory
+				<ol>
+					
+						<li>End user</li>
+					
+						<li>The open web</li>
+					
+						<li>Subjectivity</li>
+					
+						<li>Test script</li>
+					
+				</ol>
+			</li>
+	        
+	       	
+			<li>Praxis
+				<ol>
+					
+						<li>Reviewing Krug</li>
+					
+						<li>Auditing accessibility</li>
+					
+				</ol>
+			</li>
+	        
+	    </ol>
+	</section>
+
+<section id="lastWeek" class="slide-only">
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Last Week</h3>
+        	
+        	
+        		<ol>
+				
+					<li class="fragment">Accessibility is a good idea, and also it&#39;s the law.</li>
+				
+					<li class="fragment">Usability is not the same as a bunch of other stuff (but it&#39;s close)</li>
+				
+					<li class="fragment">&#39;Heuristic evaluation&#39; is just a fancy way of saying &#39;checklist of good ideas&#39;</li>
+				
+					<li class="fragment">Personas and Scenarios are tools for usability design and evaluation</li>
+				
+					<li class="fragment">Two kinds of data: quantitative and qualitative</li>
+				
+					<li class="fragment">Basic accessibility is basic</li>
+				
+				</ol>
+        	
+        </div>
+    </div>
+</section>
+<section  class="slide-only">
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>What did you think of the reading?</h3>
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>What goes into a test plan?</h3>
+        	
+				
+					
+						<p>A test plan what you submit to get approval for the plan and/or buy-in from your team. You can always make adjustments to go above and beyond! Remember, qualitative data is exploratory.</p>
+					
+						<p>A comprehensive template is available at <a href='https://www.usability.gov/how-to-and-tools/resources/templates/usability-test-plan-template.html' target='_blank'>https://www.usability.gov/how-to-and-tools/resources/templates/usability-test-plan-template.html</a></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Test plan template - the basics</h3>
+        	
+        	
+        		<ol>
+				
+					<li class="fragment">Objective/Scope/Questions: what are you going to accomplish? What are you NOT going to accomplish? What are you trying to find out in order to accomplish your objective?</li>
+				
+					<li class="fragment">Participants: who is going to take the test (and why have you selected them)?</li>
+				
+					<li class="fragment">Methods: how are you going to generate data to answer your questions?</li>
+				
+					<li class="fragment">Metrics: how are you going to measure your data?</li>
+				
+				</ol>
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Test plan template - not basic, but good to have</h3>
+        	
+        	
+        		<ol>
+				
+					<li class="fragment">Executive summary: the whole plan, but in a couple paragraphs.</li>
+				
+					<li class="fragment">Schedule and location</li>
+				
+					<li class="fragment">Equipment</li>
+				
+					<li class="fragment">Scenarios</li>
+				
+					<li class="fragment">Roles: who&#39;s doing what?</li>
+				
+				</ol>
+        	
+        </div>
+    </div>
+</section>
+<section  class="slide-only">
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Let`s break some of these down</h3>
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Objective/Scope</h3>
+        	
+				
+					
+						<p>You're probably not going to do a comprehensive usability test on a large website. You can test a set of features, or you can test for a set of issues. Define what these are and why you're addressing them.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Questions</h3>
+        	
+				
+					
+						<p>Can users find <em>X</em>? Does <em>A</em> work better than <em>B</em>? Do users learn the interface in under <em>Y</em> amount of time?</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h3>Participants: Some magic numbers</h3>
+      <p>Jakob Nielsen reports the ROI thresholds in different usability testing methods:</p>
+      <table>
+        <tr>
+          <td>Quantitative</td>
+          <td>>20</td>
+        </tr>
+        <tr>
+          <td>Card sorting</td>
+          <td>>15</td>
+        </tr>
+        <tr>
+          <td>Eyetracking</td>
+          <td>39</td>
+        </tr>
+        <tr>
+          <td>Heuristics</td>
+          <td>4 experts</td>
+        </tr>
+        <tr>
+          <td><strong>Qualitative</strong></td>
+          <td><strong>5</strong></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Methods</h3>
+        	
+				
+					
+						<p>Define your procedure, testing type, tools, and tasks.</p>
+					
+						<p>Testing type may be heuristics (don't forget to say <a href='http://www.wqusability.com/articles/getting-started.html' target='_blank'>which ones!</a>), eyetracking, discovery (finding problems), benchmark (evaluating solutions), moderated, remote, system usability scale (survey), 5-second, First-click, etc., etc., etc.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Metrics</h3>
+        	
+				
+					
+						<p>What is the data you'll be collecting? How should it be measured? How can you be sure it fully answers your questions?</p>
+					
+						<p>This is probably the <strong>most important part of your plan</strong>.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Metrics - examples</h3>
+        	
+				
+					
+						<p><ul><li><strong>Successful Task Completion</strong></li><li><strong>Critical Errors</strong></li><li><strong>Non-Critical Errors</strong></li><li><strong>Error-Free Rate</strong> Error-free rate is the percentage of test participants who complete the task without any errors (critical or non-critical errors).</li><li><strong>Time On Task</strong></li><li><strong>Subjective Measures</strong> These evaluations are self-reported participant ratings for satisfaction, ease of use, ease of finding information, etc where participants rate the measure on a 5 to 7-point <a href='https://en.wikipedia.org/wiki/Likert_scale' target='_blank'>Likert scale</a>.</li><li><strong>Likes, Dislikes and Recommendations</strong> Participants provide what they liked most about the site, what they liked least about the site, and recommendations for improving the site.</li></ul></p>
+					
+						<p>Source: <a href='https://www.usability.gov/how-to-and-tools/methods/planning-usability-testing.html' target='_blank'>https://www.usability.gov/how-to-and-tools/methods/planning-usability-testing.html</a></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h3>Examples</h3>
+      <ul>
+        <li class="fragment"><a href="http://danielleklein.ca/wp-content/uploads/2016/08/Usability-test-plan-CSI.pdf" target="_blank">Centre for Social Innovation website</a></li>
+        <li class="fragment"><a href="https://static1.squarespace.com/static/55c3cc6be4b0ae48388c8605/t/57706d692994cae381d96fb5/1466985833818/lmb_usability_test_plan.pdf" target="_blank">Mobile app test plan</a></li>
+        <li class="fragment"><a href="http://booksite.mkp.com/barnum/testingessentials/pdfs/BWB_test_plan.pdf" target="_blank">Better World Books website</a></li>
+        <li class="fragment">Bonus: <a href="https://medium.com/@userfocus/the-1-page-usability-test-plan-dbc8c3d7fb54" target="_blank">Cheat Sheet</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section  class="slide-only">
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>An activity!</h3>
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Who is the user?</h3>
+        	
+				
+					
+						<p>You are in the strange position of making things that strangers will use. Some of these strangers may take it apart and put it back together. Some of these strangers will be malicious, some will be children, some will be clueless. Some of these strangers won't be human.</p>
+					
+						<p>SEO is just usability for bots. Design patterns, OOP and code comments are usability for other programmers (or yourself, later).</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>The internet is open</h3>
+        	
+				
+					
+						<p>We work on an open platform. The beautiful thing about the internet is that it is a (nearly) global public space built on open access (e.g. Net Neutrality), standards and specifications. This comes with the responsibility, though, that you create services that are meant to be consumed by clients that haven't even been invented yet.</p>
+					
+						<p>You will work with (and by with, I mean for) people who do not understand the difference between accessing a pdf and opening a webpage.</p>
+					
+						<p>Having an open spec markup language is the backbone of the information age.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h3>Firefox gets most of their money from...</h3>
+      <p class="fragment">Google</p>
+      <h3 class="fragment">Wait, why?</h3>
+      <p class="fragment">Google's business model depends on the open web. It has made a multi-billion dollar bet that the best place to be is not in a "walled garden", but as the concierge to the innovations afforded by a democratized space.</p>
+    </div>
+  </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>You will need to advocate for answering hard questions</h3>
+        	
+				
+					
+						<p>For those people who do not understand HTML vs PDF, you will need to impress on them that the internet is a place with a multitude of users, and that's not changing anytime soon. You will need to advocate for creating a service rather than an interactive paper flyer.</p>
+					
+						<p>This distinction is important because it acknowledges your many types of end user - from the dev/content/QA team, to Google's web crawler, to hackers, to archive.org, to Pocket and Instapaper, to screen readers, to everybody.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h3>Users at cross-purposes</h3>
+      <blockquote>I’m dyslexic, and one of the recommendations for reducing visual stress that I’ve found tremendously helpful is low contrast between text and background color. This, though, often means failing to meet accessibility requirements for people who are visually impaired... Consider:
+        <ul>
+          <li>Designing for one-handed mobile use raises problems because right-handedness is the default—but 10 percent of the population is left handed.</li>
+          <li>Giving users a magnified detailed view on hover can create a mobile hover trap that obscures other content.</li>
+          <li>Links must use something other than color to denote their “linkyness.” Underlines are used most often and are easily understood, but they can interfere with descenders and make it harder for people to recognize word shapes.</li>
+        </ul>
+        <br>
+        <cite>Eleanor Ratliff, <a href="http://alistapart.com/article/accessibility-whack-a-mole" target="_blank">http://alistapart.com/article/accessibility-whack-a-mole</a></cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Your job is not to write code - it is to solve problems</h3>
+        	
+				
+					
+						<p>All the easy code has been written already. Don't worry, there are (for the time being), still plenty of jobs writing boring code. But that is less true than it was ten years ago, and will be less true in another ten. You need to think of yourself as someone who can solve the problem of 'How can we best make this work for everyone who needs it?'</p>
+					
+						<p>Last week we contrasted accessibility with usability by saying that usability is accessibility for a set audience, but accessibility legislation still limits that audience by defining it. You should always be open to expanding your definition of the end user.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Youtube stumbled on an audience</h3>
+        	
+				
+					
+						<p>A few years ago, the Youtube dev team gave themselves a page-weight budget of 800kb. They optimized every conceivable aspect of the site. They predicted that they could get the average load time below 1s. When they released their new, lightning fast code, their average load times tripled.</p>
+					
+						<p>There were millions of users in the global south who suddenly were able to watch videos without the page timing out. The team had stumbled onto a massive audience they didn't know they had simply by taking best practices seriously.</p>
+					
+						<p>Do what you can for those you're aware of, and keep looking for those you aren't.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>You are biased (don&#39;t worry, everybody is)</h3>
+        	
+				
+					
+						<p>You are not aware of everyone, and worse yet, you are not aware of yourself. You are not objective. That's ok.</p>
+					
+						<p><a href='https://vtechworks.lib.vt.edu/handle/10919/26477' target='_blank'>In “Usability Problem Description and the Evaluator Effect in Usability Testing”</a> a study by Miranda G. Capra at Virginia Tech, she found that 44 usability practitioners’ evaluations reported problems that overlapped by only 22 percent.</p>
+					
+						<p>Confirmation bias is likely going to be your biggest issue to watch out for, in yourself and other members of your team. It can occur in planning (how you phrase your questions), testing (how you interact with a subject), and analysis (how you interpret the data).</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>You are less biased when you work together</h3>
+        	
+				
+					
+						<p>Capra found that '[a]dding a second evaluator results in a 30-43% increase in problem detection'.</p>
+					
+						<p><span class='slide-only fragment'>Your assignments are not group work, but your results will be better if you trade responsibilities.</span></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>You are less biased when you stick to the script</h3>
+        	
+				
+					
+						<p>A key reason we write our test plan is for transparency. We need to make our work reviewable so that our unconscious biases can be recognized. The more we can script, the better.</p>
+					
+						<p>Steve Krug is one of the big names in usability, and he has given us a wonderful sample script to work from. Let`s take a look at it: <a href='https://www.sensible.com/downloads/test-script.pdf' target='_blank'>https://www.sensible.com/downloads/test-script.pdf</a>.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Auditing accessibility</h3>
+        	
+				
+					
+						<p>The W3 provide us with a wonderful list of different accessibility auditing tools, in a wide variety of languages: <a href='https://www.w3.org/WAI/ER/tools/?q=command-line-tool' target='_blank'>https://www.w3.org/WAI/ER/tools/?q=command-line-tool</a>.</p>
+					
+						<p>The most commonly used one is the <a href='http://wave.webaim.org/extension/' target='_blank'>WAVE Browser extension</a></p>
+					
+						<p>Chrome also has an accessibility audit built in. Go to the devtools > audits > Perform an audit and deselect everything except 'Accessibility'.</p>
+					
+						<p>Using either of these tools, run an audit and raise your hand when you find something you don't understand.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+
+	
+		</div>
+	</div>
+
+  <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+  <script>
+      Reveal.initialize({
+          dependencies: [
+                { src: '/a11y/assets/javascript/plugin/reveal-a11y.js', async: true, condition: function() { 
+                  return !!document.body.classList; 
+                } 
+            }]
+      });
+    </script>
+</body>
+</html>

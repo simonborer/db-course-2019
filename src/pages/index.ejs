@@ -1,0 +1,33 @@
+---
+isHome: true
+---
+<div class="grid-container">
+  <div class="grid-x">
+    <div class="cell small-10 small-offset-1">
+      <table class="stack weeks-table">
+        <% site.weeks.forEach((week, index) => { %>
+          <tr>
+            <th colspan="2">
+              <h2>Week <%- index %></h2>
+              <p><%- week.description %></p>
+              <% if (week.reading) { %>
+              <strong>Reading: </strong><a href="<%- week.reading.link %>" target="_blank"><%= week.reading.title %></a>
+              <% } else { %>
+              <em>Readings and notes will be posted on the week of class.</em>
+              <% } %>
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <div class="button-group">
+                <a class="button<% if (week.showSlides === true) { %><% } else { %> disabled<% } %>" href="./notes/week-<%- index %>"<% if (week.showSlides === true) { %><% } else { %> aria-disabled<% } %>>Notes <span class="show-for-sr">for week <%- index %></span></a>
+                <a class="button<% if (week.showSlides === true) { %><% } else { %> disabled<% } %>" href="./slides/notes/week-<%- index %>"<% if (week.showSlides === true) { %><% } else { %> aria-disabled<% } %>>Slides <span class="show-for-sr">for week <%- index %></span></a>
+              </div>
+            </td>
+          </tr>
+        <% }) %>
+      </table>
+    </div>
+  </div>
+</div>
+

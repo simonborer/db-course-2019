@@ -1,0 +1,37 @@
+{
+  "name": "",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./scripts/build",
+    "build:prod": "cross-env NODE_ENV=production node ./scripts/build",
+    "serve": "live-server",
+    "deploy": "npm run build:prod && sudo git push origin master",
+    "it": "gulp sass && npm run build && live-server --no-browser"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "foundation-sites": "^6.4.4-rc1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^8.4.1",
+    "cross-env": "^5.1.4",
+    "delete-empty": "^2.0.0",
+    "ejs": "^2.6.1",
+    "front-matter": "^2.3.0",
+    "fs-extra": "^5.0.0",
+    "glob": "^7.1.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-cli": "^2.0.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-sass": "^4.0.1",
+    "marked": "^0.3.19",
+    "node-sass": "^4.9.0",
+    "prettier": "^1.12.1",
+    "serve": "^6.5.6"
+  }
+}

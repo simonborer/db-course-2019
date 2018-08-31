@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	  <meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>The fourth week | Accessibility + Usability</title>
+<meta name="description" content="Posts and slides"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="/a11y/assets/css/styles.css">
+	</head>
+	<body class="post">
+		<section class="page">
+			
+			
+				<nav><a href="/a11y" class="button large button--home">Home</a></nav>
+			
+		  <h1 class="page__title">The fourth week</h1>
+		</section>
+		
+
+
+	<section class="slide-only">
+    <h2>Here's what we're going today</h2>
+	    <ol>
+	    	
+	        
+	        	<li>Another test?</li>
+	        
+	        	<li>Moving forward with OCAS</li>
+	        
+	        	<li>What would you like to go over from last week?</li>
+	        
+	        
+			<li>Theory
+				<ol>
+					
+						<li>Dark patterns</li>
+					
+				</ol>
+			</li>
+	        
+	       	
+			<li>Praxis
+				<ol>
+					
+						<li>Linting!</li>
+					
+						<li>An accessible accordion</li>
+					
+				</ol>
+			</li>
+	        
+	    </ol>
+	</section>
+
+<section  class="slide-only">
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Would you like to participate in a test?</h3>
+        	
+				
+					<p>We have been asked to use <a href='https://public.tableau.com/profile/humber.college#!/vizhome/HumberCollege-CareerOutlooks/CareerOutlooks'>this site</a> and fill out <a href='https://goo.gl/gn411u' target='_blank'>this survey</a>.</p>
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section  class="slide-only">
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>OCAS is a great case study in requirements</h3>
+        	
+        	
+        </div>
+    </div>
+</section>
+<section  class="slide-only">
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Let`s see what some people missed...</h3>
+        	
+				
+					<p><a href='/a11y/slides/notes/week-2/' target='_blank'>...last week</a></p>
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Dark Patterns</h3>
+        	
+				
+					
+						<p>Dark patterns are design patterns that are meant to manipulate the user.</p>
+					
+						<p>Dark patterns are not bad design - they are good design for bad reasons.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <table cellspacing="0" style="font-size:1.25rem">
+        <tbody>
+          <tr>
+            <td>Psychological Insight</td>
+            <td>Applied Honestly (benefits users)</td>
+            <td>Applied Deceptively (benefits business)</td>
+          </tr>
+          <tr>
+            <td>“We don’t read pages. We scan them” —Steve Krug</td>
+            <td><strong>Aid rapid comprehension:</strong> ensure key content is shown in headings, subheadings (etc), using a strong visual hierarchy.</td>
+            <td><strong>Hide key information:</strong>
+            Bury facts within paragraphs of text, so some users will proceed without fully understanding the transaction.</td>
+          </tr>
+          <tr>
+            <td>“People tend to stick to the defaults” —Jakob Nielsen</td>
+            <td><strong>Prevent mistakes:</strong>
+            Default to the option that’s safest for the user. In important contexts, don’t use defaults and require the user to make an explicit choice.</td>
+            <td><strong>Benefit from mistakes:</strong>
+            Ensure default options benefit the business, even if this means some users convert without meaning to.</td>
+          </tr>
+          <tr>
+            <td>“People will do things that they see other people are doing” —Robert Cialdini</td>
+            <td><strong>Show unedited feedback:</strong>
+            Allow real customers to share their experiences, so they can make accurate pre-purchase evaluations.</td>
+            <td><strong>Bury negative feedback:</strong>
+            Hand-pick positive feedback and display it prominently. Bury negative feedback so it is hard to find.</td>
+          </tr>
+        </tbody>
+      </table>
+      <blockquote><cite><a href="https://alistapart.com/article/dark-patterns-deception-vs.-honesty-in-ui-design">https://alistapart.com/article/dark-patterns-deception-vs.-honesty-in-ui-design</a></cite></blockquote>
+    </div>
+  </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Amorality</h3>
+        	
+				
+					
+						<p>Dark patterns test <em>really</em> well.</p>
+					
+						<p>Dark patterns could be in legacy code, they could be given to you to develop, or they could even come from you.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Hooray for linting!</h3>
+        	
+				
+					
+						<p>Clone <a href="https://github.com/simonborer/a11y-linting" target='_blank'>https://github.com/simonborer/a11y-linting</a></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	
+        	
+				
+					
+						<p>We will be looking at both an html linter (<code>htmllint</code>) and a command line auditing tool (<code>lighthouse</code>).</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>HTMLLint</h3>
+        	
+        	
+        		<ol>
+				
+					<li class="fragment">Open the project in your text editor</li>
+				
+					<li class="fragment">Look at package.json under &#34;dependencies&#34; and &#34;devDependencies&#34;</li>
+				
+					<li class="fragment">Open your command line client</li>
+				
+					<li class="fragment">Go to the project folder</li>
+				
+					<li class="fragment">Run &lt;code&gt;npm install&lt;/code&gt;</li>
+				
+				</ol>
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	
+        	
+        	
+        		<ol>
+				
+					<li class="fragment">Look at package.json under &#34;scripts&#34; - this is where we define the node scripts the will get called by &lt;code&gt;npm run&lt;/code&gt;</li>
+				
+					<li class="fragment">&lt;code&gt;npm run build&lt;/code&gt;</li>
+				
+					<li class="fragment">htmllint options are defined in .htmllintrc - try getting rid of one of the tag bans to clear an error</li>
+				
+					<li class="fragment">Now try fixing the html to clear the rest</li>
+				
+					<li class="fragment">Tell me why we put htmllint under the &#34;build&#34; script</li>
+				
+				</ol>
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Lighthouse CLI</h3>
+        	
+        	
+        		<ol>
+				
+					<li class="fragment">Look at package.json under &#34;scripts&#34;, at the &#34;audit&#34; script. Read me this script in non-technical terms.</li>
+				
+					<li class="fragment">Run &lt;code&gt;npm run audit&lt;/code&gt; and view the output file.</li>
+				
+				</ol>
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Exercise: an accessible accordion</h3>
+        	
+				
+					
+						<p>Build an accessible accordion and submit it as a pull request. Feel free to pair-program.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+	</body>
+</html>

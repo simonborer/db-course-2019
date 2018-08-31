@@ -1,0 +1,116 @@
+@import './foundation/scss/app';
+
+$grey: #333;
+$light-grey: #cacaca;
+
+body {
+    color: $grey;
+}
+
+.button {
+    font-weight: bold;
+    &-group {
+        display: flex;
+        justify-content: center;
+    }
+    &--home {
+        position: absolute;
+        @include breakpoint(medium up){
+            position: fixed;        
+        }
+        background: white;
+        color: $grey;
+        &:focus {
+            background: $light-grey;
+            color: $grey;
+        }
+        &:hover {
+            background: $light-grey;
+            color: $grey;
+        }
+    }
+    &.disabled{
+        pointer-events: none;
+    }
+}
+
+.page {
+    &__title {
+        color: white;
+        background: $grey;
+        font-weight: 900;
+        padding-top: 6.5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-bottom: 4rem;
+        font-size: 7vw;
+        text-align: center;
+        line-height: 7vw;
+        text-transform: uppercase;
+        .home & {
+            padding-top: 4rem;
+        }
+    }
+}
+
+.weeks-table {
+    margin-top: 2rem;
+    &>tbody {
+        border: 0 solid transparent;
+        & td {
+            padding-top: 1rem;
+            padding-bottom: 4rem;
+        }
+    }
+    & .button-group {
+        margin-bottom: 0;
+    }
+    & th[colspan='2'] {
+        padding: 2rem;
+        & p {
+            line-height: 1.4;
+            font-weight: 500;
+            text-align: left;
+            @include breakpoint(medium up){
+                margin: 2rem;
+            }
+        }
+    }
+    & tr:nth-of-type(odd) {
+        @include breakpoint(large up){
+            padding: 2rem;        
+        }
+    }
+}
+
+.post-only {
+    .slides & {
+        display: none;
+    }
+}
+
+.slide-only {
+    .post & {
+        display: none;
+    }
+}
+
+.post {
+    & > section:not(.page) {
+        margin: 1rem 0;
+        @include breakpoint(small down) {
+            padding: 0 1rem;
+        }
+    }
+    & > div {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        @include breakpoint(small down) {
+            padding: 0 1rem;
+        }
+    }
+}
+
+img {
+    margin: 1rem 0;
+}

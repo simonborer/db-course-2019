@@ -1,0 +1,71 @@
+[
+{
+    "description": "This week we cover broad term definitions for accessibility and usability, along with basic theory and practice.<br><br>For praxis, we do a heuristic evaluation, brainstorm task scenarios, and basic static HTML accessibility.",
+    "reading":
+    {
+        "title": "On Average by Avery Trufelman",
+        "link": "https://99percentinvisible.org/episode/on-average/"
+    },
+    "showSlides": true
+},
+{
+    "description": "In our second week, we begin our discussion by considering a variety of definitions for 'end user'. This leads us to consider usability as a concept in code re-use (including for programmers with disabilities) and SEO. We examine the origins of the open web, disability rights, and subjectivity in field practice. We will also expand on types of usability testing, including analytics, surveys, individual, focus groups, contextual, first click, eye-tracking, and SUS.<br><br>Praxis will focus on accessibility auditing, and breaking down Steve Krug's test script.",
+    "reading":
+    {
+        "title": "Stack Overflow: How can you program if you're blind",
+        "link": "https://stackoverflow.com/questions/118984/how-can-you-program-if-youre-blind"
+    },
+    "showSlides": true
+},
+{
+    "description": "For our third week, we will dive into digital accessibility techniques, including linting, semantics, accessible content, and controlling focus. Usability topics will include personas, and task analysis.<br><br>Our praxis will look at WAI-ARIA in action, and a working session for preparing scenarios.",
+    "reading":
+    {
+        "title": "Why Vim?",
+        "link": "http://www.terminally-incoherent.com/blog/2012/03/21/why-vim/"
+    },
+    "showSlides": true
+},
+{
+    "description": "Our fourth week review materials from the previous class, which not everyone was able to attend. If anyone has any roadblocks regarding their test plan, this will be a time to address them. We will also be performing basic linting via HTMLLint and writing an accessible accordion.",
+    "reading":
+    {
+        "title": "The Curb Cut Effect",
+        "link": "https://ssir.org/articles/entry/the_curb_cut_effect"
+    },
+    "showSlides": true
+},
+{
+    "description": "The fifth week will cover integrating techniques into client relationship/team workflow. This includes evangelism, automation, auditing, project requirements, securing buy-in, content strategy, and data evaluation.",
+    "reading":
+    {
+        "title": "To be read with a screenreader: WebAIM Screen Reader User Survey #7 Results",
+        "link": "https://webaim.org/projects/screenreadersurvey7/"
+    },
+    "showSlides": true
+},
+{
+    "description": "Our sixth week will cover mobile accessibility, content strategy, UAT vs usability, as well as being a time to review any theory that we determine requires revisiting. Your final assignments will be distributed this week. The assignment will be to summarize your test findings and present them to the class.",
+    "reading": {
+        "title": "Take a Gander - Snopes.com",
+        "link": "https://www.snopes.com/fact-check/take-a-gander/"
+    },
+    "showSlides": true
+},
+{
+    "description": "In our seventh week, we will cover accessibility and state management in Vue and React, and creating and presenting usability reports.",
+    "reading": {
+        "title": "The Juicy Details - Dan Harmon",
+        "link": "http://channel101.wikia.com/wiki/Story_Structure_104:_The_Juicy_Details"
+    },
+    "showSlides": true
+
+},
+{
+    "description": "In our eighth and final week, you will present your final assignment to the class.",
+    "showSlides": true,
+    "reading": {
+        "title": "Plant Friends - Dickson Chow",
+        "link": "http://dicksonchow.com/plant-friends"
+    }
+}]

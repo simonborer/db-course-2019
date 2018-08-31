@@ -1,0 +1,194 @@
+---
+title: The third week
+layout: default
+hasSlides: true
+today:
+  assorted:
+    - Your midterm
+    - OCAS is a go
+    - Things that have come up
+  theory:
+    - The DOM API
+    - WAI-ARIA
+    - Showing and hiding content
+    - Keyboard control
+    - Controlling focus
+    - Personas
+    - Task analysis
+  praxis:
+    - Write your own persona
+    - Write a commuter task analysis with a partner
+---
+<% const part = '../../../partials/'; %>
+<% const basePath = site.basePath %>
+<%- include(`${part}today`) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: 'Midterm Assignment',
+  body: `See: <a href='${basePath}/assignments/midterm.html' target='_blank'>your midterm</a>.`,
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: 'OCAS is go',
+  body: "We will be testing the application process at <a href='https://www.ontariocolleges.ca/en' target='_blank'>https://www.ontariocolleges.ca/en</a>. We will be doing this as part of our lab time. You can make it the subject of your midterm/final assignment <em>if you want</em>.",
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: 'Things that have come up',
+  body: [`<img src='${basePath}/assets/images/contrast-ratio.png' alt='Screenshot of the Chrome devtools contrast ratio report in the colour picker'>"`],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: false,
+  body: [`<code>*, *:before, *:after {outline: 1px solid red}</code>`],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: "Learning CSS layout",
+  body: ["<a href='https://flexboxfroggy.com/'>Flexbox Froggy</a>", "<a href='https://cssgridgarden.com/'>CSS Grid Garden</a>"],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: "The `name` attribute.",
+  body: ["The <code>name</code> attribute is for use when <code>POST</code>ing or <code>GET</code>ing a form.", "A surprising number of examples of the <code>label</code> element use the same <code>id</code> and <code>name</code> attributes, which is confusing.", "The <code>for</code> attribute of your <code>label</code> element refers to the <code>id</code> of the labelled element."],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: 'The DOM API',
+  body: ["Both 'DOM' and 'API' are acronyms that get thrown around a lot. Let's quickly make sure we all know what they mean.", "An <strong>Application Programming Interface</strong> is a user interface, where the user is a person writing a computer script. It provides you information and functionality from the document or application that you're interacting with.", "The <strong>Document Object Model</strong> is an API that represents an HTML (or XML) document as a traversable tree structure. The elements (and attributes, including text content) within that structure are referred to as 'nodes'."],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: ["There are different kinds of attributes we can assign to DOM nodes. There are native attributes, which are provided by the HTML spec, e.g. <code>class</code>, <code>alt</code>, <code>target</code>. There are data attributes (added in HTML5), which are user-customizable. And there are ARIA attributes.", "ARIA (Accessible Rich Internet Applications) provides contextual information about if and how DOM nodes can update, and what happens when they do."],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "When to use ARIA",
+  body: false,
+  list: ["There is a DOM node (including text) that can or does update without a page refresh being triggered, and", "There is no native semantics or attribute available."]
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Don't be redundant",
+  body: ["<code>div[role='button']</code> is not redundant, but <code>button[role='button']</code> <em>is</em> redundant."],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Want to be safe?",
+  body: ["TEST", "I can't emphasize enough how important it is to test. That's why there are QA departments. It is wonderful to follow best practices, but even when specification documentation is perfect (it's not), and even when you limit your scope to the latest versions of a few popular clients (don't), and even when your linters catch all the edge cases (they won't), you still makes mistakes."],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "What ARIA attributes?",
+  body: ["You can find a pretty comprehensive list at <a href='https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques'>https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques</a>", "There are a lot, but you should know about the <code>role</code> attribute, which labels interactive elements, including tabs, search, form, and grid; and state attributes including <code>aria-live</code>, <code>aria-expanded</code>, and <code>aria-hidden</code> (which differs from the native <code>hidden</code> attribute)."],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Showing & hiding",
+  body: ['<p data-height="463" data-theme-id="0" data-slug-hash="xjBoWv" data-default-tab="result" data-user="simonborer" data-embed-version="2" data-pen-title="Hiding Techniques" class="codepen">See the Pen <a href="https://codepen.io/simonborer/pen/xjBoWv/">Hiding Techniques</a> by Simon Borer (<a href="https://codepen.io/simonborer">@simonborer</a>) on <a href="https://codepen.io">CodePen</a>.</p><script async src="https://static.codepen.io/assets/embed/ei.js"></script>'],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Accessible tabs are <em>hard</em>",
+  body: ['<p data-height="265" data-theme-id="0" data-slug-hash="pVBoQx" data-default-tab="js,result" data-user="simonborer" data-embed-version="2" data-pen-title="pVBoQx" class="codepen">See the Pen <a href="https://codepen.io/simonborer/pen/pVBoQx/">pVBoQx</a> by Simon Borer (<a href="https://codepen.io/simonborer">@simonborer</a>) on <a href="https://codepen.io">CodePen</a>.</p><script async src="https://static.codepen.io/assets/embed/ei.js"></script>'],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Tabindex",
+  body: ['<code>tabindex</code> is an attribute that specifies <em>focusability</em>. Focus is usually stepped through with the <code>tab</code> key, hence the name.', '<code>tabindex="-1"</code> is focusable, but not sequentially. As in, you can`t tab to it.', '<code>tabindex="0"</code> means that the element is focusable in the normal tab sequence.', '<code>tabindex="1"</code>, or any other positive value, means that this element takes precedence over any other element without a declared tabindex. If you are using this, that`s a bad sign.'],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: ['Remember not to confuse the visual order with the DOM order :)', 'Declaring a tabindex value can affect scrolling behaviour on child elements. For examples, see <a href="https://jsfiddle.net/jainakshay/0b2q4Lgv/">https://jsfiddle.net/jainakshay/0b2q4Lgv/</a>'],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Persona creation process",
+  body: false,
+  list: ["Interview and/or observe an adequate number of people.", "Find patterns in the interviewees’ responses and actions, and use those to group similar people together.", "Create archetypical models of those groups, based on the patterns."]
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: "<img src='https://media.nngroup.com/media/editor/2018/01/05/personaexample.jpg' alt='Example of a persona document'>",
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: "Just like any other team tool, personas don't work if you don't have buy-in.",
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Aurora Harley",
+  body: false,
+  list: ["Name, age, gender, and an image of the persona", "A tag line", "The experience and relevant skills in the area of the product or service", "Some context to indicate how he/she would interact with your product or service (e.g., the voluntariness of use, frequency of use, and preferred device)", "Any goals, attitudes, and concerns he/she would have when using your product or service", "Quotes or a brief scenario, that indicate the persona’s attitude toward the product or service you’re designing."]
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Write your own Persona",
+  body: false,
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Task analysis",
+  body: ["Like many usability techniques, task analysis can happen as a precursor to design, or to test it.", "You should do a rudimentary version of this to break your test scenarios into tasks, but you should also consider doing this when generating results from your tests."],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Task analysis topics",
+  body: false,
+  list: ["Trigger: What prompts users to start their task?", "Desired Outcome: How users will know when the task is complete?", "Base Knowledge: What will the users be expected to know when starting the task?", "Required Knowledge: What the users actually need to know in order to complete the task?", "Artifacts: What tools or information do the users utilize during the course of the task?"] 
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Task analysis topics",
+  body: "With a partner, perform a task analysis of their journey to class today. Use your judgement in determining the level of detail that is appropriate to find efficiences in their journey. Was their journey optimal?",
+  list: false
+}) %>
+
+

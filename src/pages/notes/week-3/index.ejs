@@ -1,0 +1,131 @@
+---
+title: The fourth week
+layout: default
+hasSlides: true
+today:
+  assorted:
+    - Another test?
+    - Moving forward with OCAS
+    - What would you like to go over from last week?
+  theory:
+    - Dark patterns
+  praxis:
+    - Linting!
+    - An accessible accordion
+---
+<% const part = '../../../partials/'; %>
+<% const basePath = site.basePath %>
+<%- include(`${part}today`) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: 'Would you like to participate in a test?',
+  body: `We have been asked to use <a href='https://public.tableau.com/profile/humber.college#!/vizhome/HumberCollege-CareerOutlooks/CareerOutlooks'>this site</a> and fill out <a href='https://goo.gl/gn411u' target='_blank'>this survey</a>.`,
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: 'OCAS is a great case study in requirements',
+  body: false,
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: "slide-only",
+  headline: 'Let`s see what some people missed...',
+  body: `<a href='${basePath}/slides/notes/week-2/' target='_blank'>...last week</a>`,
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: 'Dark Patterns',
+  body: ["Dark patterns are design patterns that are meant to manipulate the user.", "Dark patterns are not bad design - they are good design for bad reasons."],
+  list: false
+}) %>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <table cellspacing="0" style="font-size:1.25rem">
+        <tbody>
+          <tr>
+            <td>Psychological Insight</td>
+            <td>Applied Honestly (benefits users)</td>
+            <td>Applied Deceptively (benefits business)</td>
+          </tr>
+          <tr>
+            <td>“We don’t read pages. We scan them” —Steve Krug</td>
+            <td><strong>Aid rapid comprehension:</strong> ensure key content is shown in headings, subheadings (etc), using a strong visual hierarchy.</td>
+            <td><strong>Hide key information:</strong>
+            Bury facts within paragraphs of text, so some users will proceed without fully understanding the transaction.</td>
+          </tr>
+          <tr>
+            <td>“People tend to stick to the defaults” —Jakob Nielsen</td>
+            <td><strong>Prevent mistakes:</strong>
+            Default to the option that’s safest for the user. In important contexts, don’t use defaults and require the user to make an explicit choice.</td>
+            <td><strong>Benefit from mistakes:</strong>
+            Ensure default options benefit the business, even if this means some users convert without meaning to.</td>
+          </tr>
+          <tr>
+            <td>“People will do things that they see other people are doing” —Robert Cialdini</td>
+            <td><strong>Show unedited feedback:</strong>
+            Allow real customers to share their experiences, so they can make accurate pre-purchase evaluations.</td>
+            <td><strong>Bury negative feedback:</strong>
+            Hand-pick positive feedback and display it prominently. Bury negative feedback so it is hard to find.</td>
+          </tr>
+        </tbody>
+      </table>
+      <blockquote><cite><a href="https://alistapart.com/article/dark-patterns-deception-vs.-honesty-in-ui-design">https://alistapart.com/article/dark-patterns-deception-vs.-honesty-in-ui-design</a></cite></blockquote>
+    </div>
+  </div>
+</section>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: 'Amorality',
+  body: [`Dark patterns test <em>really</em> well.`, `Dark patterns could be in legacy code, they could be given to you to develop, or they could even come from you.`],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: 'Hooray for linting!',
+  body: [`Clone <a href="https://github.com/simonborer/a11y-linting" target='_blank'>https://github.com/simonborer/a11y-linting</a>`],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: [`We will be looking at both an html linter (<code>htmllint</code>) and a command line auditing tool (<code>lighthouse</code>).`],
+  list: false
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "HTMLLint",
+  body: false,
+  list: ['Open the project in your text editor', 'Look at package.json under "dependencies" and "devDependencies"', 'Open your command line client', 'Go to the project folder', 'Run <code>npm install</code>']
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: false,
+  body: false,
+  list: ['Look at package.json under "scripts" - this is where we define the node scripts the will get called by <code>npm run</code>', '<code>npm run build</code>', 'htmllint options are defined in .htmllintrc - try getting rid of one of the tag bans to clear an error', 'Now try fixing the html to clear the rest', 'Tell me why we put htmllint under the "build" script']
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Lighthouse CLI",
+  body: false,
+  list: ['Look at package.json under "scripts", at the "audit" script. Read me this script in non-technical terms.', 'Run <code>npm run audit</code> and view the output file.']
+}) %>
+<%- include(`${part}section`, {
+  id: false,
+  style: false,
+  headline: "Exercise: an accessible accordion",
+  body: ['Build an accessible accordion and submit it as a pull request. Feel free to pair-program.'],
+  list: false
+}) %>

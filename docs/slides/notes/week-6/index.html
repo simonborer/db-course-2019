@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>The Seventh week | Accessibility + Usability</title>
+<meta name="description" content="Posts and slides"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/a11y/assets/css/reveal.css">
+  <style>
+  	.slides > :not(section) {
+  		display: none;
+  	}
+  	.reveal li > ol {
+		  list-style-type: lower-alpha; 
+  	}
+    .post-only {
+      display: none;
+    }
+    .reveal blockquote {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  
+	<div class="reveal">
+		<div class="slides">
+	      	<section>
+	      		<h1>The Seventh week</h1>
+	      	</section>
+			
+
+
+	<section class="slide-only">
+    <h2>Here's what we're going today</h2>
+	    <ol>
+	    	
+	        
+	        	<li>Attendance</li>
+	        
+	        	<li>OCAS is coming</li>
+	        
+	        
+			<li>Theory
+				<ol>
+					
+						<li>WAI-ARIA</li>
+					
+						<li>Accessibility in JS Frameworks</li>
+					
+						<li>Analyzing test results</li>
+					
+				</ol>
+			</li>
+	        
+	       	
+	    </ol>
+	</section>
+
+
+<section class="slide-only">
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+            <h3></h3>
+            <p>Please <a href="http://etc.ch/Kpep" target='_blank'>mark your attendance down</a>.</p>
+        </div>
+    </div>
+</section>
+
+<section  class="slide-only">
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>OCAS</h3>
+        	
+				
+					
+						<p>Tudor Whiteley will be coming in at noon today to meet you and address any questions you have in regards to the desktop+mouse testing.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>WAI-ARIA deep dive</h3>
+        	
+				
+					
+						<p>As we covered earlier, WAI-ARIA, a.k.a. ARIA, is a specification from the W3C that uses element attributes to supplement existing semantics <ol><li>to provide more information about your markup, and</li><li>provide information about content that updates without a page refresh.</li></p>
+					
+						<p>This is especially relevant when you are using a front-end javascript framework (Angular, React, Vue, et al.).</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	
+        	
+				
+					
+						<p>Remember that the spec tells us that we should use native semantics when they are available.</p>
+					
+						<p>If it's a button, use a < button >.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>ARIA roles</h3>
+        	
+				
+					
+						<p>The role attribute provides information about an element's purpose.</p>
+					
+						<p>The role attribute identifies the element to the screenreader, but it <em>does not</em> recreate the native functionality. That's on you.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>role=&#34;button&#34;</h3>
+        	
+				
+					
+						<p>Let's say, for whatever reason, you need to make a button out of something that's not < button >, < input type='button' />,  < input type='submit' />, < input type='reset' /> or < input type='image' />.</p>
+					
+						<p><code>role='button'</code> identifies any element as a button to a screenreader. Use this in conjunction with <code>tabindex='0'</code> - the role itself does not make the element focusable.</p>
+					
+						<p>Remember, too, that a native HTML button will fire an onclick event when space or enter are pressed - so you're also responsible for recreating that native functionality.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>More roles! - widgets</h3>
+        	
+				
+					
+						<p><code>checkbox</code></p>
+					
+						<p><code>dialog</code> (this can be a modal, or not)</p>
+					
+						<p><code>link</code></p>
+					
+						<p><code>log</code> (i.e. a chat log)</p>
+					
+						<p><code>marquee</code> (like a <code>log</code>, but not vital or linear, i.e. a carousel or stock ticker)</p>
+					
+						<p><code>progressbar</code></p>
+					
+						<p><code>radio</code></p>
+					
+						<p><code>scrollbar</code></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	
+        	
+				
+					
+						<p><code>slider</code> (i.e. a range slider or volume control)</p>
+					
+						<p><code>spinbutton</code> (a value selection input with up and down arrows)</p>
+					
+						<p><code>status</code> (a status update message, i.e. `your changes have been saved`</p>
+					
+						<p><code>tablist</code> > <code>tab</code> + <code>tabpanel</code></p>
+					
+						<p><code>grid</code> > <code>row</code> > <code>rowheader</code> + <code>cell</code> + <code>columnheader</code></p>
+					
+						<p><code>menubar</code> > <code>menu</code> > <code>menuitem</code> + <code>menuitemcheckbox</code></p>
+					
+						<p><code>textbox</code></p>
+					
+						<p><code>timer</code></p>
+					
+						<p><code>tooltip</code></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	
+        	
+				
+					
+						<p><code>tree</code>/<code>treegrid</code> > <code>treeitem</code></p>
+					
+						<p><code>switch</code> identical to <code>checkbox</code>, but strictly for values of on or off</p>
+					
+						<p><code>listbox</code> > <code>option</code></p>
+					
+						<p><code>radiogroup</code> > <code>radio</code></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Even more roles! - document structure</h3>
+        	
+				
+					
+						<p><code>article</code></p>
+					
+						<p><code>definition</code></p>
+					
+						<p><code>directory</code> (i.e. table of contents)</p>
+					
+						<p><code>document</code></p>
+					
+						<p><code>group</code> (of UI elements not in a perceivable page section)</p>
+					
+						<p><code>heading</code></p>
+					
+						<p><code>img</code> (useful in case of background images)</p>
+					
+						<p><code>list</code> > <code>listitem</code></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	
+        	
+				
+					
+						<p><code>math</code> (there is an entire markup language for mathy stuff! it's called <a href='https://www.w3.org/Math/whatIsMathML.html' target='_blank'>MathML</a> and can be called into other markup, like HTML)</p>
+					
+						<p><code>note</code></p>
+					
+						<p><code>presentation</code> - similar in function to aria-hidden; this tells the screenreader that the element is decorative, but <a href='http://john.foliot.ca/aria-hidden/' target='_blank'>support for it on natively focusable elements is interesting</a>.</p>
+					
+						<p><code>region</code></p>
+					
+						<p><code>separator</code></p>
+					
+						<p><code>toolbar</code></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>And finally... more roles! - landmarks</h3>
+        	
+				
+					
+						<p><code>application</code> - for when your HTML document behaves completely different from a standard html document; probably don't use this. It turns off all standard keyboard shortcuts in most screenreaders.</p>
+					
+						<p><code>banner</code> - analogous to < header ></p>
+					
+						<p><code>complementary</code> - like < aside ></p>
+					
+						<p><code>contentinfo</code> - like < footer ></p>
+					
+						<p><code>form</code></p>
+					
+						<p><code>main</code></p>
+					
+						<p><code>navigation</code></p>
+					
+						<p><code>search</code></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Widget attributes</h3>
+        	
+				
+					
+						<p><code>role="combobox|textbox" aria-autocomplete="none|inline|list|both"</code></p>
+					
+						<p><code>role="checkbox|switch|..." aria-checked="true|false|mixed"</code></p>
+					
+						<p><code>aria-current="page|step|date|location|time|true|false"</code></p>
+					
+						<p><code>aria-disabled="true|false"</code></p>
+					
+						<p>aria-expanded="true|false"</code></p>
+					
+						<p><code>aria-haspopup="true|false|menu|listbox|tree|grid|dialog"</code></p>
+					
+						<p><code>aria-hidden="true|false|undefined"</code></p>
+					
+						<p><code>aria-invalid="true|false|grammar|spelling"</code></p>
+					
+						<p><code>aria-label={string}</code> only for invisible text</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	
+        	
+				
+					
+						<p><code>role="grid|heading|listitem|row|tablist" aria-level={integer}</code></p>
+					
+						<p><code>role="textbox" aria-multiline="true|false"</code></p>
+					
+						<p><code>role="grid|listbox|tablist|tree" aria-multiselectable="true|false"</code></p>
+					
+						<p><code>role="scrollbar|select|separator|slider|tablist|toolbar" aria-orientation="horizontal|vertical|undefined"</code></p>
+					
+						<p><code>role="button" aria-pressed="true|false|mixed"</code></p>
+					
+						<p><code>role=checkbox|combobox|grid|gridcell|listbox|radiogroup|slider|spinbutton|textbox" aria-readonly="true|false"</code></p>
+					
+						<p><code>role="combobox|gridcell|listbox|radiogroup|spinbutton|textbox|tree" aria-required="true|false"</code></p>
+					
+						<p><code>role="gridcell|option|row|tab" aria-selected="true|false|undefined"</code></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	
+        	
+				
+					
+						<p><code>role="columnheader|rowheader" aria-sort="ascending|descending|none|other"</code></p>
+					
+						<p><code>role="range|scrollbar|separator|slider|spinbutton" aria-valuemax={number} aria-valuemin={number} aria-valuenow={number}</code></p>
+					
+						<p><code>role="range|separator" aria-valuetext={string}</code></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Live region attributes</h3>
+        	
+				
+					
+						<p><code>aria-live="polite|assertive|off"</code></p>
+					
+						<p><code>aria-live="polite" aria-atomic="true|false"</code></p>
+					
+						<p><code>aria-live="polite" aria-relevant="additions|text|removals|all"</code></p>
+					
+						<p><code>aria-live="assertive" aria-busy="true|false"</code></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Implicit live region attributes</h3>
+        	
+				
+					
+						<p>Several roles have implicit live region values:</p>
+					
+						<p><code>role="alert"</code> has an implicit <code>aria-live="assertive"</code></p>
+					
+						<p><code>role="status"</code> and <code>role="log"</code> have an implicit <code>aria-live="polite"</code></p>
+					
+						<p><code>role="timer"</code> and <code>role="marquee"</code> have an implicit <code>aria-live="off"</code></p>
+					
+						<p>These can be overridden by explicitly declaring <code>aria-live</code> values.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Relationship attributes</h3>
+        	
+				
+					
+						<p><code>role="application|composite|group|textbox" aria-activedescendant={id}</code></p>
+					
+						<p><code>aria-controls={id}</code></p>
+					
+						<p><code>aria-describedby={id}</code> similar to <code>aria-labelledby</code>, but verbose instead of concise</p>
+					
+						<p><code>aria-labelledby={id}</code></p>
+					
+						<p><code>aria-flowto={id}</code> gives the user the option to move to an element, overriding the source order</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	
+        	
+				
+					
+						<p><code>aria-owns={id}</code> Defines a parent-child relationship when one isn't semantically apparent. To understand how this is different from <code>aria-controls</code>, imagine a carousel. The arrows on the left and right would have <code>aria-controls</code> attributes. The dots at the bottom that correlate to individual slides would have <code>aria-owns</code> attributes.</p>
+					
+						<p><code>role="article|listitem|menuitem|option|radio|tab" aria-setsize={integer} aria-posinset={integer}</code> Only required when not all elements from the set are included in the DOM.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Accessibility in Front-end JS Frameworks</h3>
+        	
+				
+					
+						<p>Today we're going to look at <a href='https://stateofjs.com/2017/front-end/results' target='_blank'>the big three</a>.</p>
+					
+						<p>Let's keep in mind that >4% of users in the WebAIM survey were using IE 6, 7 or 8.</p>
+					
+						<p><table><caption>Browser support of javascript frameworks</caption><tbody><tr><td>Vue</td><td>ES5-compliant browsers - IE9+</td></tr><tr><td>React</td><td>ES5-compliant browsers - IE9 and IE10 require polyfills</td></tr><tr><td>Angular</td><td>Modern browsers. Safari 7 & 8, IE9, 10 & 11, Android 4.1+ require polyfills.</td></tr></tbody></table></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Progressive enhancement</h3>
+        	
+				
+					
+						<p>Within the last year, we've seen companies like Airbnb and Groupon tell Firefox and Safari users that they are 'optimized for Chrome' when their sites failed.</p>
+					
+						<p>What if your website, to borrow a phrase, just worked?</p>
+					
+						<p>Consider delivering your content in plain HTML, and then 'mustard-cutting' to deliver your CSS and Javascript.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Internet Explorer refuses to die.</h3>
+        	
+				
+					
+						<p><a href='https://netmarketshare.com/browser-market-share.aspx' target='_blank'>Internet Explorer market share is >12%.</a> That's more than Firefox. That's more than Edge, Safari and Opera combined.</p>
+					
+						<p>Internet Explorer fails to support <em>hundreds</em> of features that Chrome has implemented.</p>
+					
+						<p>Progressive enhancement is how we build for an internet that is increasingly fractured.</p>
+					
+						<p>Polyfills, autoprefixer, caniuse, modernizr; these are great things. Consider, though, simply delivering content that any client can access as a Minimum Viable Product.</p>
+					
+						<p>A List Apart has <a href='http://alistapart.com/article/the-slow-death-of-internet-explorer-and-future-of-progressive-enhancement' target='_blank'>a wonderful article</a> with some recommendations on how to mustard cut for both CSS and Javascript.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>What are you using your framework for?</h3>
+        	
+				
+					
+						<p>Is it as a static site generator? Cool. Render on the server. Serving static HTML is waaaay faster.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Let&#39;s assume...</h3>
+        	
+				
+					
+						<p>Let's assume you've got your fallbacks and polyfills in place. Let's assume SSR isn't an option. How do we make Vue, React and Angular accessible?</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Accessibility in Angular</h3>
+        	
+				
+					
+						<p>AngularJS 1.7 shipped with a module called ngAria which created hooks for some aria roles. Angular 2+ seems to not have anything similar. You're on your own!</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Accessibility in React</h3>
+        	
+				
+					
+						<p>React seems to be a lot more on top of accessibility. They even bother to mention it in <a href='https://reactjs.org/docs/accessibility.html' target='_blank'>their docs</a>!</p>
+					
+						<p>Aria attributes are supported in JSX (but note that they're lowercased instead of camelcased like most other attributes).</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>A few gotchas with React</h3>
+        	
+				
+					
+						<p>JSX has a tendency to break semantics though, especially with lists and tables, so get familiar with <Fragment>s and <></> syntax.</p>
+					
+						<p>The `for` attribute, used with labels, is written as `htmlFor` in JSX</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>React A11y</h3>
+        	
+				
+					
+						<p><a href='https://github.com/reactjs/react-a11y' target='_blank'>react-a11y</a> is a promising looking tool for warning about potential accessibility issues in your React components.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Accessibility in Vue</h3>
+        	
+				
+					
+						<p>Vue doesn't have any <a href='https://github.com/vuejs/vuejs.org/issues/974' target='_blank'>accessibility documentation... yet</a>.</p>
+					
+						<p>Emily Mears has written <a href='https://medium.com/@emilymears/getting-started-with-web-accessibility-in-vue-17e2c4ea0842' target='_blank'>a pretty great article</a> about accessibility in Vue. The main challenges are held in common with React - updating meta, handling focus and implementing aria.</p>
+					
+						<p>Vue is pretty great as a framework - it's easier to pick up and understand than other frameworks, it scales much more gracefully than React, and only updates the components that need re-rendering.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Controlling focus in client-side frameworks</h3>
+        	
+				
+					
+						<p>All three frameworks aggressively re-render the DOM - that's kind of the point.</p>
+					
+						<p>Be aware that changes to the URL, and rendering of the virtual DOM can wreak havoc on focus. Each framework has methods for mitigating this with programmatic focus control: <a href='https://simplyaccessible.com/article/react-a11y/' target='_blank'>refs in React</a>; <a href='https://www.npmjs.com/package/vue-focus' target='_blank'>vue-focus in Vue</a>; <a href='https://docs.angularjs.org/api/ng/directive/ngFocus' target='_blank'>ngFocus in Angular</a>. Make sure you're familiar with the appropriate technique.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Presentations - turning data into stories</h3>
+        	
+				
+					
+						<p>Right now you're generating data. Your work for your final assignment is <ol><li>understand the data</li><li>generate and compare solutions</li><li>tell a story</li></ol></p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Presentations - understanding the data</h3>
+        	
+				
+					
+						<p>First, think about what kind of data you're looking at. Is it quantitative? If so, compare it to a) industry standard benchmarks, and b) the needs of the client. Is the pageload time >2 seconds? Does your gazeplot completely miss the big sales banner?</p>
+					
+						<p>If it's qualitative, really listen to what people have told you (verbally or otherwise), and be careful not to project your own assumptions. Think about it individually and collectively - was something annoying, but only to one person? Was some UI element a little bit frustrating for every single user?</p>
+					
+						<p>Don't forget, 'what worked' can be as important as 'what didn't'.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Presentations - solutions</h3>
+        	
+				
+					
+						<p>Now that you've understood your data, it's time to generate some solutions.</p>
+					
+						<p>Keep solutions specific and positive - 'don't use hamburger menus' isn't an action, it's a non-action.</p>
+					
+						<p>The gold standard is 'elegance', which is just a fancy way of saying 'cheap, fast, easy and effective'.</p>
+					
+						<p>Most solutions won't be elegant though. It's up to you to be mindful of how resource-heavy your solutions are - and how certain you are of their efficacy.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	
+        	
+				
+					
+						<p>The more uncertain you are of a solution, the more you'll need to be prepared to present multiple options, and to speak to the pros and cons of each one.</p>
+					
+						<p>Consider laying out your solutions in a chart graded for issue severity and actionability.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	<h3>Presentations - telling a story</h3>
+        	
+				
+					
+						<p>The point of all this is to give people something they can use. Data is boring. If your report puts them to sleep, they won't use it. Anecdotes are fun, but lack credibility. People won't use your report if they don't feel they can trust it.</p>
+					
+						<p>Use enough data to build a credible story, but focus on appealing to the things that people really pay attention to.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>
+
+<section >
+    <div class="grid-x">
+        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+        	
+        	
+				
+					
+						<p>Be funny. Be informal. Think of your report as having <a href='http://channel101.wikia.com/wiki/Story_Structure_101:_Super_Basic_Shit' target='_blank'>a beginning, middle, and end</a>. Tell the story of the website, the testing, the results, and the solutions. And yes, even the data.</p>
+					
+						<p>The best way to do this is to focus on people. Talk about yourself, the participants, the website's audience, the client. That's the only real way to help us all figure out why the data matters.</p>
+					
+				
+        	
+        	
+        </div>
+    </div>
+</section>	
+		</div>
+	</div>
+
+  <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+  <script>
+      Reveal.initialize({
+          dependencies: [
+                { src: '/a11y/assets/javascript/plugin/reveal-a11y.js', async: true, condition: function() { 
+                  return !!document.body.classList; 
+                } 
+            }]
+      });
+    </script>
+</body>
+</html>
