@@ -17,7 +17,16 @@ const distPath = config.build.outputPath;
 fse.emptyDirSync(distPath);
 
 // copy assets folder
-fse.copy(`${srcPath}/assets`, `${distPath}/assets`);
+const filterFunc = (src, dest) => {
+  if (process.argv[2] !== 'prod') {
+    if (!src.match(/([a-zA-Z0-9\s_\\.\-\(\):])+(.scss)$/i)) {
+      return true;
+    }
+  } else if (!src.match(/([a-zA-Z0-9\s_\\.\-\(\):])+(.css|.scss)$/i)) {
+    return true;
+  }
+}
+fse.copy(`${srcPath}/assets`, `${distPath}/assets`, { filter: filterFunc });
 
 // read pages
 globP('**/*.@(md|ejs|html)', { cwd: `${srcPath}/pages` })

@@ -1,11 +1,14 @@
 const gulp = require('gulp');
-var $    = require('gulp-load-plugins')();
+const $    = require('gulp-load-plugins')();
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
-var sassPaths = [
+const sassPaths = [
   './foundation/node_modules/foundation-sites/scss',
   './foundation/node_modules/motion-ui/src'
 ];
+const postcss = require('gulp-postcss');
+const uncss = require('postcss-uncss');
+const cssnano = require('cssnano');
 
 gulp.task('sass', function() {
   return gulp.src('./src/assets/scss/*.scss')
@@ -18,6 +21,21 @@ gulp.task('sass', function() {
       browsers: ['last 2 versions', 'ie >= 9']
     }))
     .pipe(gulp.dest('./src/assets/css'));
+});
+
+gulp.task('prod', function () {
+    var plugins = [
+        uncss({
+            ignoreSheets : ['reveals.css'],
+            html: ['./docs/**/*.html']
+        }),
+        cssnano({
+            discardComments: {removeAll: true}
+        })
+    ];
+    return gulp.src('./src/assets/css/*.css')
+        .pipe(postcss(plugins))
+        .pipe(gulp.dest('./docs/assets/css'));
 });
 
 gulp.task('default', ['sass'], function() {

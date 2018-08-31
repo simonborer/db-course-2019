@@ -1,4 +1,4 @@
-// const weeks = require('./src/data/weeks');
+const weeks = require('./src/data/weeks');
 
 module.exports = {
   site: {
