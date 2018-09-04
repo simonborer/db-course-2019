@@ -1,3 +1,13 @@
 @import '_reveal-base';
 @import '_solarized';
 @import '_helper';
+
+.reveal .diagram {
+	box-shadow: none;
+	max-height: 65vh;
+	border: 0 solid transparent;
+}
+
+.show-for-sr {
+	font-size: 0;
+}

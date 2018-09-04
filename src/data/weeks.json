@@ -1,7 +1,8 @@
 [
 {
-    "description": "This week we're starting!'",
-    "showSlides": true
+    "description": "This week we're starting! We're going to start by reviewing the course outline. After that, we'll learn: <strong>what a database is</strong>, and how they're used in web development; <strong>what <abbr title='Structured Query Language'>SQL</abbr> is</strong>; how to set up <strong>SQL Developer</strong> so that we can use the <strong>Oracle <abbr title='Relational Database Management System'>RDBMS</abbr></strong>; basic SQL terms definitions; simple single-table queries.",
+    "showSlides": true,
+    "extraContent": [{"text": "Syllabus", "href": "./assets/documents/HTTP5105-syllabus.pdf"}]
 },
 {
     "description": "In our second week, we begin our discussion by considering a variety of definitions for 'end user'. This leads us to consider usability as a concept in code re-use (including for programmers with disabilities) and SEO. We examine the origins of the open web, disability rights, and subjectivity in field practice. We will also expand on types of usability testing, including analytics, surveys, individual, focus groups, contextual, first click, eye-tracking, and SUS.<br><br>Praxis will focus on accessibility auditing, and breaking down Steve Krug's test script.",
@@ -41,7 +42,8 @@
 },
 {
     "description": "Our sixth week will cover mobile accessibility, content strategy, UAT vs usability, as well as being a time to review any theory that we determine requires revisiting. Your final assignments will be distributed this week. The assignment will be to summarize your test findings and present them to the class.",
-    "reading": {
+    "reading":
+    {
         "title": "Take a Gander - Snopes.com",
         "link": "https://www.snopes.com/fact-check/take-a-gander/"
     },
@@ -49,7 +51,8 @@
 },
 {
     "description": "In our seventh week, we will cover accessibility and state management in Vue and React, and creating and presenting usability reports.",
-    "reading": {
+    "reading":
+    {
         "title": "The Juicy Details - Dan Harmon",
         "link": "http://channel101.wikia.com/wiki/Story_Structure_104:_The_Juicy_Details"
     },
@@ -59,7 +62,8 @@
 {
     "description": "In our eighth and final week, you will present your final assignment to the class.",
     "showSlides": true,
-    "reading": {
+    "reading":
+    {
         "title": "Plant Friends - Dickson Chow",
         "link": "http://dicksonchow.com/plant-friends"
     }

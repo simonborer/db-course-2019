@@ -11,9 +11,9 @@ isHome: true
               <h2>Week <%- index %></h2>
               <p><%- week.description %></p>
               <% if (week.reading) { %>
-              <strong>Reading: </strong><a href="<%- week.reading.link %>" target="_blank"><%= week.reading.title %></a>
+              <strong>Assignment: </strong><a href="<%- week.reading.link %>" target="_blank"><%= week.reading.title %></a>
               <% } else { %>
-              <em>Readings and notes will be posted on the week of class.</em>
+              <em>Notes and assignments will be posted on the week of class.</em>
               <% } %>
             </th>
           </tr>
@@ -22,6 +22,11 @@ isHome: true
               <div class="button-group">
                 <a class="button<% if (week.showSlides === true) { %><% } else { %> disabled<% } %>" href="./notes/week-<%- index %>"<% if (week.showSlides === true) { %><% } else { %> aria-disabled<% } %>>Notes <span class="show-for-sr">for week <%- index %></span></a>
                 <a class="button<% if (week.showSlides === true) { %><% } else { %> disabled<% } %>" href="./slides/notes/week-<%- index %>"<% if (week.showSlides === true) { %><% } else { %> aria-disabled<% } %>>Slides <span class="show-for-sr">for week <%- index %></span></a>
+                <% if (week.extraContent) {
+                  week.extraContent.forEach(content => { %>
+                    <a href="<%- content.href %>" class="button" target="_blank"><%- content.text %><span class="show-for-sr">Opens in a new tab</span></a>
+                  <% })
+                } %>
               </div>
             </td>
           </tr>
