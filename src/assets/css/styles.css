@@ -2640,6 +2640,14 @@ body { color: #3c4151; }
 
 @media screen and (min-width: 64em) { .weeks-table tr:nth-of-type(odd):first-child { margin-top: 1rem; } }
 
+.weeks-table .callout { margin-bottom: 0; }
+
+@media screen and (min-width: 40em) { .weeks-table .callout { margin-left: 2rem; margin-right: 2rem; } }
+
+.weeks-table h2 { font-weight: 500; }
+
+@media screen and (max-width: 39.9375em) { .weeks-table h2 { font-weight: 900; font-size: 1.5em; margin-bottom: 1rem; padding-bottom: .5rem; padding-top: .5rem; } }
+
 .slides .post-only { display: none; }
 
 .post .slide-only { display: none; }
@@ -2658,10 +2666,20 @@ img { margin: 1rem 0; }
 
 .toc { margin: 3rem 1rem; }
 
-@media screen and (min-width: 64em) { h2.h2 { border-bottom: 2px solid #3c4151; display: inline-block; padding-right: 0; margin-bottom: 2rem; padding-bottom: .5rem; margin-top: 1rem; } }
+h2.h2 { border-bottom: 2px solid #3c4151; display: inline-block; padding-bottom: .5rem; padding-right: 0; margin-bottom: 2rem; margin-top: 1rem; }
 
 @media screen and (min-width: 64em) { .image-3q { max-width: 75%; display: block; margin-left: auto; margin-right: auto; } }
 
 ol > li > ol { list-style-type: lower-alpha; }
 
 figcaption { margin-bottom: 1rem; }
+
+code.language-sql { border: 0 solid transparent; background-color: transparent; }
+
+@media screen and (max-width: 39.9375em) { code { word-break: break-all; display: inline; } }
+
+@media screen and (max-width: 39.9375em) { code[class*="language-"] { word-break: break-all; display: inline; } }
+
+@media screen and (max-width: 39.9375em) { a { word-break: break-all; display: inline; } }
+
+.lab-questions > li { padding: 2rem 0; }

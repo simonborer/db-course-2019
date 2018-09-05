@@ -3,6 +3,7 @@
 <head>
   <%- include('../partials/head') %>
   <link rel="stylesheet" href="<%= site.basePath %>/assets/css/reveal.css">
+  <!-- <link rel="stylesheet" href="<%= site.basePath %>/assets/css/prism.css"> -->
   <style>
   	.slides > :not(section) {
   		display: none;
@@ -35,12 +36,13 @@
   <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
   <script>
       Reveal.initialize({
-          dependencies: [
+          dependencies: [{ src: '<%= site.basePath %>/assets/javascript/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
                 { src: '<%= site.basePath %>/assets/javascript/plugin/reveal-a11y.js', async: true, condition: function() { 
                   return !!document.body.classList; 
                 } 
             }]
       });
-    </script>
+    </script><!-- 
+  <script src="<%= site.basePath %>/assets/javascript/prism.js"></script> -->
 </body>
 </html>

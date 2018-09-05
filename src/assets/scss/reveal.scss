@@ -1,13 +1,38 @@
 @import '_reveal-base';
-@import '_solarized';
+// @import '_solarized';
+// @import '_simple';
+// @import '_white';
+@import '_black';
+@import '_hljs';
 @import '_helper';
 
-.reveal .diagram {
-	box-shadow: none;
-	max-height: 65vh;
-	border: 0 solid transparent;
-}
+.reveal {
+	& .diagram {
+		box-shadow: none;
+		max-height: 50vh;
+		border: 0 solid transparent;
+		padding: 2rem;
+		background: #fefefe;
+	}
 
-.show-for-sr {
-	font-size: 0;
+	& .show-for-sr {
+		font-size: 0;
+		height: 1px;
+		width: 1px;
+		display: inline-block;
+	}
+
+	& .smaller-text{
+		font-size: .75em;
+	    line-height: 1.4em;
+	}
+
+	& pre {
+		box-shadow: none;
+		font-size: .85em;
+		margin: 1rem auto;
+	}
+	.post-only {
+		display: none !important;
+	}
 }

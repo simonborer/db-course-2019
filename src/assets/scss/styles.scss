@@ -94,6 +94,23 @@ body {
             }
         }
     }
+    & .callout {
+        margin-bottom: 0;
+        @include breakpoint(medium up) {
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+    }
+    & h2 {
+        font-weight: 500;
+        @include breakpoint(small down) {
+            font-weight: 900;
+            font-size: 1.5em;
+            margin-bottom: 1rem;
+            padding-bottom: .5rem;
+            padding-top: .5rem;
+        }
+    }
 }
 
 .post-only {
@@ -139,18 +156,16 @@ img {
 }
 
 h2.h2 {
-    @include breakpoint(large up) {
-        border-bottom: 2px solid $grey;
-        display: inline-block;
-        padding-right: 0;
-        margin-bottom: 2rem;
-        padding-bottom: .5rem;
-        margin-top: 1rem;
-    }
+    border-bottom: 2px solid $grey;
+    display: inline-block;
+    padding-bottom: .5rem;
+    padding-right: 0;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
 }
 
-.image-3q{
-    @include breakpoint(large up){
+.image-3q {
+    @include breakpoint(large up) {
         max-width: 75%;
         display: block;
         margin-left: auto;
@@ -158,10 +173,39 @@ h2.h2 {
     }
 }
 
-ol > li > ol {
+ol>li>ol {
     list-style-type: lower-alpha;
 }
 
 figcaption {
     margin-bottom: 1rem;
+}
+
+code.language-sql {
+    border: 0 solid transparent;
+    background-color: transparent;
+}
+
+code {
+    @include breakpoint(small down) {
+        word-break: break-all;
+        display: inline;
+    }
+    &[class*="language-"] {
+        @include breakpoint(small down) {
+            word-break: break-all;
+            display: inline;
+        }
+    }
+}
+
+a {
+    @include breakpoint(small down) {
+        word-break: break-all;
+        display: inline;
+    }
+}
+
+.lab-questions>li {
+    padding: 2rem 0;
 }
