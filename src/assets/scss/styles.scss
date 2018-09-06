@@ -1,6 +1,6 @@
 @import './foundation/scss/app';
 
-$grey: #333;
+$grey: #3c4151;
 $light-grey: #cacaca;
 
 body {
@@ -15,8 +15,8 @@ body {
     }
     &--home {
         position: absolute;
-        @include breakpoint(medium up){
-            position: fixed;        
+        @include breakpoint(medium up) {
+            position: fixed;
         }
         background: white;
         color: $grey;
@@ -29,7 +29,7 @@ body {
             color: $grey;
         }
     }
-    &.disabled{
+    &.disabled {
         pointer-events: none;
     }
 }
@@ -59,26 +59,56 @@ body {
         border: 0 solid transparent;
         & td {
             padding-top: 1rem;
-            padding-bottom: 4rem;
+            padding-bottom: 1rem;
+            margin-bottom: 3rem;
+            background: $light-gray;
+            border-top: 1px solid $medium-gray;
         }
     }
     & .button-group {
         margin-bottom: 0;
     }
     & th[colspan='2'] {
-        padding: 2rem;
+        padding: 1.5rem 2rem;
+        @include breakpoint(large up) {
+            display: block;
+        }
         & p {
             line-height: 1.4;
             font-weight: 500;
             text-align: left;
-            @include breakpoint(medium up){
-                margin: 2rem;
+            @include breakpoint(medium up) {
+                margin: 1rem 2rem 1.5rem;
             }
         }
     }
     & tr:nth-of-type(odd) {
-        @include breakpoint(large up){
-            padding: 2rem;        
+        @include breakpoint(large up) {
+            padding: 2rem;
+            display: block;
+            margin-top: 4rem;
+        }
+        &:first-child {
+            @include breakpoint(large up) {
+                margin-top: 1rem;
+            }
+        }
+    }
+    & .callout {
+        margin-bottom: 0;
+        @include breakpoint(medium up) {
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+    }
+    & h2 {
+        font-weight: 500;
+        @include breakpoint(small down) {
+            font-weight: 900;
+            font-size: 1.5em;
+            margin-bottom: 1rem;
+            padding-bottom: .5rem;
+            padding-top: .5rem;
         }
     }
 }
@@ -96,13 +126,13 @@ body {
 }
 
 .post {
-    & > section:not(.page) {
+    &>section:not(.page) {
         margin: 1rem 0;
         @include breakpoint(small down) {
             padding: 0 1rem;
         }
     }
-    & > div {
+    &>div {
         margin-top: 1rem;
         margin-bottom: 1rem;
         @include breakpoint(small down) {
@@ -113,4 +143,69 @@ body {
 
 img {
     margin: 1rem 0;
+}
+
+.post-section {
+    border-top: 3px solid $grey;
+    margin-top: 1rem;
+    padding-top: 3rem;
+}
+
+.toc {
+    margin: 3rem 1rem;
+}
+
+h2.h2 {
+    border-bottom: 2px solid $grey;
+    display: inline-block;
+    padding-bottom: .5rem;
+    padding-right: 0;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+.image-3q {
+    @include breakpoint(large up) {
+        max-width: 75%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+ol>li>ol {
+    list-style-type: lower-alpha;
+}
+
+figcaption {
+    margin-bottom: 1rem;
+}
+
+code.language-sql {
+    border: 0 solid transparent;
+    background-color: transparent;
+}
+
+code {
+    @include breakpoint(small down) {
+        word-break: break-all;
+        display: inline;
+    }
+    &[class*="language-"] {
+        @include breakpoint(small down) {
+            word-break: break-all;
+            display: inline;
+        }
+    }
+}
+
+a {
+    @include breakpoint(small down) {
+        word-break: break-all;
+        display: inline;
+    }
+}
+
+.lab-questions>li {
+    padding: 2rem 0;
 }

@@ -26,6 +26,7 @@ const filterFunc = (src, dest) => {
     return true;
   }
 }
+
 fse.copy(`${srcPath}/assets`, `${distPath}/assets`, { filter: filterFunc });
 
 // read pages

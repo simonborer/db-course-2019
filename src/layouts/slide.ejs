@@ -35,12 +35,12 @@
   <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
   <script>
       Reveal.initialize({
-          dependencies: [
+          dependencies: [{ src: '<%= site.basePath %>/assets/javascript/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
                 { src: '<%= site.basePath %>/assets/javascript/plugin/reveal-a11y.js', async: true, condition: function() { 
                   return !!document.body.classList; 
                 } 
             }]
       });
     </script>
-</body>
+  </body>
 </html>

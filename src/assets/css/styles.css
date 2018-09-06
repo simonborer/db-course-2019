@@ -2600,23 +2600,23 @@ a.thumbnail image { -webkit-box-shadow: none; box-shadow: none; }
 
 .long-delay { -webkit-animation-delay: 700ms !important; animation-delay: 700ms !important; }
 
-body { color: #333; }
+body { color: #3c4151; }
 
 .button { font-weight: bold; }
 
 .button-group { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; }
 
-.button--home { position: absolute; background: white; color: #333; }
+.button--home { position: absolute; background: white; color: #3c4151; }
 
 @media screen and (min-width: 40em) { .button--home { position: fixed; } }
 
-.button--home:focus { background: #cacaca; color: #333; }
+.button--home:focus { background: #cacaca; color: #3c4151; }
 
-.button--home:hover { background: #cacaca; color: #333; }
+.button--home:hover { background: #cacaca; color: #3c4151; }
 
 .button.disabled { pointer-events: none; }
 
-.page__title { color: white; background: #333; font-weight: 900; padding-top: 6.5rem; padding-left: 2rem; padding-right: 2rem; padding-bottom: 4rem; font-size: 7vw; text-align: center; line-height: 7vw; text-transform: uppercase; }
+.page__title { color: white; background: #3c4151; font-weight: 900; padding-top: 6.5rem; padding-left: 2rem; padding-right: 2rem; padding-bottom: 4rem; font-size: 7vw; text-align: center; line-height: 7vw; text-transform: uppercase; }
 
 .home .page__title { padding-top: 4rem; }
 
@@ -2624,17 +2624,29 @@ body { color: #333; }
 
 .weeks-table > tbody { border: 0 solid transparent; }
 
-.weeks-table > tbody td { padding-top: 1rem; padding-bottom: 4rem; }
+.weeks-table > tbody td { padding-top: 1rem; padding-bottom: 1rem; margin-bottom: 3rem; background: #e6e6e6; border-top: 1px solid #cacaca; }
 
 .weeks-table .button-group { margin-bottom: 0; }
 
-.weeks-table th[colspan='2'] { padding: 2rem; }
+.weeks-table th[colspan='2'] { padding: 1.5rem 2rem; }
+
+@media screen and (min-width: 64em) { .weeks-table th[colspan='2'] { display: block; } }
 
 .weeks-table th[colspan='2'] p { line-height: 1.4; font-weight: 500; text-align: left; }
 
-@media screen and (min-width: 40em) { .weeks-table th[colspan='2'] p { margin: 2rem; } }
+@media screen and (min-width: 40em) { .weeks-table th[colspan='2'] p { margin: 1rem 2rem 1.5rem; } }
 
-@media screen and (min-width: 64em) { .weeks-table tr:nth-of-type(odd) { padding: 2rem; } }
+@media screen and (min-width: 64em) { .weeks-table tr:nth-of-type(odd) { padding: 2rem; display: block; margin-top: 4rem; } }
+
+@media screen and (min-width: 64em) { .weeks-table tr:nth-of-type(odd):first-child { margin-top: 1rem; } }
+
+.weeks-table .callout { margin-bottom: 0; }
+
+@media screen and (min-width: 40em) { .weeks-table .callout { margin-left: 2rem; margin-right: 2rem; } }
+
+.weeks-table h2 { font-weight: 500; }
+
+@media screen and (max-width: 39.9375em) { .weeks-table h2 { font-weight: 900; font-size: 1.5em; margin-bottom: 1rem; padding-bottom: .5rem; padding-top: .5rem; } }
 
 .slides .post-only { display: none; }
 
@@ -2649,3 +2661,25 @@ body { color: #333; }
 @media screen and (max-width: 39.9375em) { .post > div { padding: 0 1rem; } }
 
 img { margin: 1rem 0; }
+
+.post-section { border-top: 3px solid #3c4151; margin-top: 1rem; padding-top: 3rem; }
+
+.toc { margin: 3rem 1rem; }
+
+h2.h2 { border-bottom: 2px solid #3c4151; display: inline-block; padding-bottom: .5rem; padding-right: 0; margin-bottom: 2rem; margin-top: 1rem; }
+
+@media screen and (min-width: 64em) { .image-3q { max-width: 75%; display: block; margin-left: auto; margin-right: auto; } }
+
+ol > li > ol { list-style-type: lower-alpha; }
+
+figcaption { margin-bottom: 1rem; }
+
+code.language-sql { border: 0 solid transparent; background-color: transparent; }
+
+@media screen and (max-width: 39.9375em) { code { word-break: break-all; display: inline; } }
+
+@media screen and (max-width: 39.9375em) { code[class*="language-"] { word-break: break-all; display: inline; } }
+
+@media screen and (max-width: 39.9375em) { a { word-break: break-all; display: inline; } }
+
+.lab-questions > li { padding: 2rem 0; }

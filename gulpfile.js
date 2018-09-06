@@ -25,10 +25,11 @@ gulp.task('sass', function() {
 
 gulp.task('prod', function () {
     var plugins = [
-        uncss({
-            ignoreSheets : ['reveals.css'],
-            html: ['./docs/**/*.html']
-        }),
+        // add back in once you can exclude hljs
+        // uncss({
+        //     ignoreSheets : ['reveals.css'],
+        //     html: ['./docs/**/*.html']
+        // }),
         cssnano({
             discardComments: {removeAll: true}
         })

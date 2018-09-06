@@ -1,66 +1,90 @@
 [
 {
-    "description": "This week we're starting!'",
-    "showSlides": true
-},
-{
-    "description": "In our second week, we begin our discussion by considering a variety of definitions for 'end user'. This leads us to consider usability as a concept in code re-use (including for programmers with disabilities) and SEO. We examine the origins of the open web, disability rights, and subjectivity in field practice. We will also expand on types of usability testing, including analytics, surveys, individual, focus groups, contextual, first click, eye-tracking, and SUS.<br><br>Praxis will focus on accessibility auditing, and breaking down Steve Krug's test script.",
-    "reading":
-    {
-        "title": "Stack Overflow: How can you program if you're blind",
-        "link": "https://stackoverflow.com/questions/118984/how-can-you-program-if-youre-blind"
-    },
-    "showSlides": true
-},
-{
-    "description": "For our third week, we will dive into digital accessibility techniques, including linting, semantics, accessible content, and controlling focus. Usability topics will include personas, and task analysis.<br><br>Our praxis will look at WAI-ARIA in action, and a working session for preparing scenarios.",
-    "reading":
-    {
-        "title": "Why Vim?",
-        "link": "http://www.terminally-incoherent.com/blog/2012/03/21/why-vim/"
-    },
-    "showSlides": true
-},
-{
-    "description": "Our fourth week review materials from the previous class, which not everyone was able to attend. If anyone has any roadblocks regarding their test plan, this will be a time to address them. We will also be performing basic linting via HTMLLint and writing an accessible accordion.",
-    "reading":
-    {
-        "title": "The Curb Cut Effect",
-        "link": "https://ssir.org/articles/entry/the_curb_cut_effect"
-    },
-    "showSlides": true
-},
-{
-    "description": "The fifth week will cover integrating techniques into client relationship/team workflow. This includes evangelism, automation, auditing, project requirements, securing buy-in, content strategy, and data evaluation.",
-    "reading":
-    {
-        "title": "To be read with a screenreader: WebAIM Screen Reader User Survey #7 Results",
-        "link": "https://webaim.org/projects/screenreadersurvey7/"
-    },
-    "showSlides": true
-},
-{
-    "description": "Our sixth week will cover mobile accessibility, content strategy, UAT vs usability, as well as being a time to review any theory that we determine requires revisiting. Your final assignments will be distributed this week. The assignment will be to summarize your test findings and present them to the class.",
-    "reading": {
-        "title": "Take a Gander - Snopes.com",
-        "link": "https://www.snopes.com/fact-check/take-a-gander/"
-    },
-    "showSlides": true
-},
-{
-    "description": "In our seventh week, we will cover accessibility and state management in Vue and React, and creating and presenting usability reports.",
-    "reading": {
-        "title": "The Juicy Details - Dan Harmon",
-        "link": "http://channel101.wikia.com/wiki/Story_Structure_104:_The_Juicy_Details"
-    },
-    "showSlides": true
-
-},
-{
-    "description": "In our eighth and final week, you will present your final assignment to the class.",
+    "mod": 1,
+    "description": "This week we're starting! We're going to start by reviewing the course outline. After that, we'll learn: <strong>what a database is</strong>, and how they're used in web development; <strong>what <abbr title='Structured Query Language'>SQL</abbr> is</strong>; how to set up <strong>SQL Developer</strong> so that we can use the <strong>Oracle <abbr title='Relational Database Management System'>RDBMS</abbr></strong>; basic SQL terms definitions; simple single-table queries.",
     "showSlides": true,
-    "reading": {
-        "title": "Plant Friends - Dickson Chow",
-        "link": "http://dicksonchow.com/plant-friends"
-    }
-}]
+    "extraContent": [{"text": "Syllabus", "href": "./assets/documents/HTTP5105-syllabus.pdf"}],
+    "reading": "Murach’s Oracle, Chapters 1 & 2"
+},
+{
+    "mod": 2,
+    "description": "This week we'll cover retrieving rows from a single table; implementing arithmetic statements; renaming columns in results; retrieving rows using comparison operators; using DISTINCT to eliminate duplicate rows; defining the logical operators AND, OR and NOT; retrieving rows using LIKE, BETWEEN, IN and IS NULL operators; sorting the result set using ORDER BY.",
+    "reading": "Murach’s Oracle, Chapter 3",
+    "extraContent": [{"text": "Assignment 1", "href": "./assignments/assignment-1.html"}],
+    "showSlides": false
+},
+{
+    "mod": 3,
+    "description": "This week we'll cover coding INNER JOINs to retrieve rows from multiple tables; the use of a self-join; table aliases; JOIN with implicit INNER JOIN syntax; OUTER JOINs to retrieve rows form multiple tables; the various set operators.",
+    "reading": "Murach’s Oracle, Chapter 4",
+    "extraContent": [{"text": "Assignment 2", "href": "./assignments/assignment-2.html"}],
+    "showSlides": false
+},
+{
+    "mod": 4,
+    "description": "This week we'll cover queries that use aggregate functions; queries with MAX, MIN, COUNT, AVG, and SUM group functions; the use of the GROUP BY and HAVING clauses; the differences between HAVING and WHERE clauses.",
+    "reading": "Murach’s Oracle, Chapter 5",
+    "extraContent": [{"text": "Assignment 3", "href": "./assignments/assignment-3.html"}],
+    "showSlides": false
+},
+{
+    "mod": 5,
+    "description": "This week we'll cover how to create a test table; insert new data to a table; update existing data; delete data from a table; work with date/time dat; the use of COMMIT and ROLLBACK for changes; various data types used in Oracle,; functions for working with numeric data; functions for working with null data values; nvl and nvl2; converting data from one type to another.",
+    "reading": "Murach’s Oracle, Chapters 7 & 8",
+    "extraContent": [{"text": "Assignment 4", "href": "./assignments/assignment-4.html"}],
+    "showSlides": false
+},
+{
+    "mod": 6,
+    "description": "This week we'll cover the basic steps to design a database; relationships between tables; normalization; how to define data elements; identify tables and assign columns; identify primary and foreign keys; primary key constraint; a foreign key constraint; a check constraint; creating tables, indices and sequences; altering the columns of a table; dropping tables; truncating tables.",
+    "reading": "Murach’s Oracle, Chapters 9 & 10",
+    "extraContent": [{"text": "Assignment 5", "href": "./assignments/assignment-5.html"}],
+    "showSlides": false
+},
+{
+    "title": "Midterm",
+    "description": "You'll do fine!",
+    "extraContent": [{"text": "Midterm", "href": "./assignments/midterm.html"}],
+    "showSlides": false,
+    "noSlides": true
+},
+{
+    "mod": 7,
+    "description": "This week we'll cover anonymous PL/SQL; how a cursor is used; how to handle exceptions; the use of bind variables; declaring variables in PL/SQL; IF statements; loops.",
+    "reading": "Murach’s Oracle, Chapter 13",
+    "extraContent": [{"text": "Assignment 6", "href": "./assignments/assignment-6.html"}],
+    "showSlides": false
+},
+{
+    "mod": 8,
+    "description": "This week we'll cover stored procedures; a stored procedure that inserts a row; a stored procedure drops a table; optional parameters, input and output parameters; how to raise errors",
+    "reading": "Murach’s Oracle, Chapter 15",
+    "extraContent": [{"text": "Assignment 7", "href": "./assignments/assignment-7.html"}],
+    "showSlides": false
+},
+{
+    "mod": 9,
+    "description": "This week we'll cover simple queries in MySQL; using column aliases in MySQL; retrieving rows using GROUP BY and HAVING clauses; limiting search results in MySQL with the LIMIT clause; using JOINs to retrieve rows from multiple tables in MySQL; retrieving rows using inner and outer joins.",
+    "reading": "Murach’s MySQL, Chapters 6 & 7",
+    "extraContent": [{"text": "Assignment 8", "href": "./assignments/assignment-8.html"}],
+    "showSlides": false
+},
+{
+    "mod": 10,
+    "description": "This week we'll cover INSERT, DELETE and UPDATE on rows with MySQL; using REPLACE and TRUNCATE statements; data types used in MySQL; creating tables, indices and databases in MySQL; deleting tables and indices; altering existing table structures in MySQL.",
+    "reading": "Murach’s MySQL, Chapters 4 & 5",
+    "extraContent": [{"text": "Assignment 9", "href": "./assignments/assignment-9.html"}],
+    "showSlides": false
+},
+{
+    "mod": 11,
+    "description": "This week we'll cover stored procedures in MySQL.",
+    "showSlides": false
+},
+{
+    "title": "Final exam",
+    "description": "You got this.",
+    "showSlides": false,
+    "noSlides": true
+}
+]
