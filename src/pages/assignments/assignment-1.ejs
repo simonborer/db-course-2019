@@ -6,40 +6,76 @@ hasSlides: false
 <div class="grid-container">
   <div class="grid-x grid-margin-x">
     <div class="cell small-10 small-offset-1 large-6 large-offset-3">
-    HTTP 5105 Database Design and Development
-Assignment 1
-Due Date: September 22, 2017 at the beginning of class How to retrieve data from a single table
-You are to use SQL Developer to write the SELECT statements to produce the required results. Some of the questions given have multiple pieces to them refer to each of the pieces as a) followed by b) etc. Each of the required commands or adjustments requested of the previous command should be their own screen captures. Use screen captures of your SQL Developer session to show the command and its output. I know some of the output may not be fully visible in your screen capture. Produce a document in Word with the screen captures you take.
-Make sure each screen capture shows your name in comments, with the assignment number and the question number. Hand writing on your assignment is not acceptable. Submit the assignment through Blackboard.
-You will find a script file on Blackboard that will produce the tables necessary for this assignment. Run this script against your account as you did before. These are the same tables you used in the lab exercise this week. So if you ran the script then you do not need to do this again.
-1. Write a SELECT statement that returns three columns from the Vendors table: vendor_name, vendor_contact_last_name, and vendor_contact_first_name. Then, run this statement.
-Next, add code to this statement so it sorts the result set by last name and then first name. Then, run this statement again. This is a good way to build and test a statement, one clause at a time.
-2. Write a SELECT statement that returns one column from the Vendors table named full_name. Create this column from the vendor_contact_first_name and vendor_contact_last_name columns, and format it like this: last name, comma, space, first name (for example, “Doe, John”). Next, sort the result set by last name and then first name. Then, filter the result set for contacts whose last name begins with the letter A, B, C, or E.
-3. Write a SELECT statement that returns four columns from the Invoices table named Due Date, Invoice Total, 10%, and Plus 10%. These columns should contain this data:
-Due Date The invoice_due_date column Invoice Total The invoice_total column
-10% 10% of the value of invoice_total Plus 10% The value of invoice_total plus 10%
-(For example, if invoice_total is 100, 10% is 10, and Plus 10% is 110.) Next, filter the result set so it returns only those rows with an invoice total that’s greater than or equal to 500 and less than or equal to 1000. Then, sort the result set in descending sequence by invoice_due_date.
-4. Write and run a SELECT statement that returns four columns from the Invoices table named Number, Total, Credits, and Balance Due. These columns should include this data:
-Number Total Credits Balance Due
-The invoice_number column
-The invoice_total column
-Sum of the payment_total and credit_total columns Invoice_total minus the sum of payment_total and credit_total
-1
-Next, filter for invoices with a balance due that’s greater than or equal to $500. Then, sort the result set by balance due in descending sequence. Last, use the ROWNUM pseudo column so the result set contains only the rows with the 10 largest balance dues.
-Work with nulls and use the Dual table
-5. Write a SELECT statement that returns the balance due and the payment date from the Invoices table, but only when the payment_date column contains a null value. Then, modify the WHERE clause so it returns any invalid rows (rows in which the balance due is zero and the payment date is null).
-6. Use the Dual table to create a row with these columns:
-Starting Principal New Principal Interest
-Principal + Interest
-Starting principle which should be equal to $51,000
-Starting principal plus a 10% increase
-6.5% of the new principal
-The new principal plus the interest (add the expression you used for the new principal calculation to the expression you used for the interest calculation)
-Now, add a column named “System Date” that uses the TO_CHAR function to show the results of the SYSDATE function when it’s displayed with this format:
-'dd-mon-yyyy hh24:mi:ss'
-This format will display the day, month, year, hours, minutes, and seconds of the system date, and this will show that the system date also includes a time. (You should be able to figure out how to use the TO_CHAR and SYSDATE functions by studying figure 3-7.)
-Submitting of assignments:
-You are to submit screen captures for each question. There is to be one screen capture per page. The screen capture is to show your name, Assignment number and the question number. See the example that follows. Where the name is given please place your own name here.
+      <h2 class="h2">Retrieving data from a single table</h2>
+      <div class="callout alert"><strong>Due Date</strong>: Before 11:59pm, Tuesday September 18th</div>
+      <p>Use SQL Developer to write SELECT statements to produce the required results.</p>
+      <p>Some of the questions are multi-part ("Then...", "Next...", etc.) Refer to each of the parts as a), b) etc.</p>
+      <p>Each command (or adjustment of the previous command) should be their own screen captures. Use screen captures of your SQL Developer session to show the command and its output.</p>
+      <div class="callout warning">Some statements will produce a lot of rows. It's not required that you screencap every single row, but you must show enough to demonstrate that the statement produces the intended results.</div>
+      <p>Your submitted assignment should be a PDF that includes all your screen caps.</p>
+      <p>Use comments to write your name, the assignment number, and the question number <em>in the SQL Developer input</em> above your query.</p>
+      <p>Submit the assignment through Blackboard.</p>
+      <div class="callout alert">These queries are run against the tables we created in the first class. If you did not run the .sql in the first class, <a href="<%= site.basePath %>/assets/documents/create_ap_tables.sql">it is still available</a>.</div>
+      <section class="post-section">
+        <ol>
+          <li>
+            <ol>
+              <li>Write a SELECT statement that returns three columns from the Vendors table: vendor_name, vendor_contact_last_name, and vendor_contact_first_name. Then, run this statement.</li>
+              <li>Next, add code to this statement so it sorts the result set by last name and then first name. Then, run this statement again.</li>
+            </ol>
+          </li>
+          <li>
+            <ol>
+              <li>Write a SELECT statement that returns one column from the Vendors table named full_name. Create this column from the vendor_contact_first_name and vendor_contact_last_name columns, and format it like this: last name, comma, space, first name (for example, “Doe, John”).</li>
+              <li>Next, sort the result set by last name and then first name.</li>
+              <li>Then, filter the result set for contacts whose last name begins with the letter A, B, C, or E.</li>
+            </ol>
+          </li>
+          <li>
+            <ol>
+              <li>Write a SELECT statement that returns four columns from the Invoices table named Due Date, Invoice Total, 10%, and Plus 10%. These columns should contain this data: 
+                <ul>
+                  <li><strong>Due Date</strong> The invoice_due_date column</li>
+                  <li><strong>Invoice Total</strong> The invoice_total column</li>
+                  <li><strong>10%</strong>10% of the value of invoice_total</li>
+                  <li><strong>Plus 10%</strong> The value of invoice_total plus 10%</li>
+                </ul>
+                (For example, if invoice_total is 100, 10% is 10, and Plus 10% is 110)
+              </li>
+              <li>Next, filter the result set so it returns only those rows with an invoice total that’s greater than or equal to 500 and less than or equal to 1000.</li>
+              <li>Then, sort the result set in descending sequence by invoice_due_date.</li>
+            </ol>
+          </li>
+          <li>
+            <ol>
+              <li>Write and run a SELECT statement that returns four columns from the Invoices table named Number, Total, Credits, and Balance Due. These columns should include this data:
+                <ul>
+                  <li><strong>Number</strong> The invoice_number column</li>
+                  <li><strong>Total</strong> The invoice_total column</li>
+                  <li><strong>Credits</strong> Sum of the payment_total and credit_total columns</li>
+                  <li><strong>Balance Due</strong> Invoice_total minus the sum of payment_total and credit_total</li>
+                </ul>
+              </li>
+              <li>Next, filter for invoices with a balance due that’s greater than or equal to $500. Then, sort the result set by balance due in descending sequence.</li>
+              <li>Last, use the ROWNUM pseudo column so the result set contains only the rows with the 10 largest balance dues.</li>
+            </ol>
+          </li>
+          <li>
+            <ol>
+              <li>Write a SELECT statement that returns the balance due and the payment date from the Invoices table, but only when the payment_date column contains a null value.</li>
+              <li>Then, modify the WHERE clause so it returns any invalid rows (rows in which the balance due is zero and the payment date is null).</li>
+            </ol>
+          </li>
+          <li>Use the Dual table to create a row with these columns:
+            <ul>
+              <li><strong>Starting Principal</strong> Starting principle which should be equal to $51,000</li>
+              <li><strong>New Principal</strong> Starting principal plus a 10% increase</li>
+              <li><strong>Interest</strong> 6.5% of the new principal</li>
+              <li><strong>Principal + Interest</strong> The new principal plus the interest (add the expression you used for the new principal calculation to the expression you used for the interest calculation)</li>
+            </ul>
+          </li>
+        </ol>
+      </section>
     </div>
   </div>
 </div>

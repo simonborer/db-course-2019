@@ -141,7 +141,7 @@
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">WHERE basics</h2>
-      <p>We can use comparison operators (<code>=</code>, <code><></code>, <code>>=</code>, etc.</p>
+      <p>We can use comparison operators (<code>=</code>, <code><></code>, <code>>=</code>, etc.)</p>
       <p>We can use arithmetic operators (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>).</p>
       <p>We can use logical operators <code>AND</code>, <code>OR</code>, <code>NOT</code>.</p>
       <p><code>IN</code> lets us check against a list.</p>  
@@ -183,7 +183,7 @@
           <li>the <code>ROWNUM</code> pseudocolumn</li>
           <li>the <code>OFFSET</code> clause</li>
           <li>the <code>IS NULL</code> condition</li>
-          <li>the <code>LIKE</code> clause (and its operators <code>%</code> and <code>_</code></li>
+          <li>the <code>LIKE</code> clause (and its operators <code>%</code> and <code>_</code>)</li>
           <li>a few quirks of the <code>ORDER BY</code> operator</li>
           <li>scalar functions: <code>SUBSTR()</code>, <code>SYSDATE</code>, <code>ROUND()</code>, <code>TOCHAR()</code>, <code>MOD()</code>, and more!</li>
         </ul>  
@@ -199,6 +199,18 @@
       <p>Try running this statement:</p>
       <pre><code class="language-sql">SELECT 10 * 4 / 2 + 30 - 8 AS result 
 FROM dual</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>The dual table is a great place to futz around!</p>
+      <p>We can create columns and values, and execute functions:</p>
+      <pre><code class="sql">SELECT 'test' AS test_string,
+    10-7 AS test_calculation,
+    SYSDATE AS test_date
+FROM dual</code></pre>  
     </div>
   </div>
 </section>
