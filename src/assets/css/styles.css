@@ -2610,7 +2610,11 @@ body { color: #3c4151; }
 
 @media screen and (min-width: 40em) { .button--home { position: fixed; } }
 
+@media screen and (max-width: 56.25em) { .button--home { -webkit-box-shadow: 1px 1px 4px rgba(60, 65, 81, 0.15); box-shadow: 1px 1px 4px rgba(60, 65, 81, 0.15); } }
+
 .button--home:focus { background: #cacaca; color: #3c4151; }
+
+@media screen and (max-width: 56.25em) { .button--home:focus { -webkit-box-shadow: 1px 1px 3px rgba(60, 65, 81, 0.25); box-shadow: 1px 1px 3px rgba(60, 65, 81, 0.25); } }
 
 .button--home:hover { background: #cacaca; color: #3c4151; }
 

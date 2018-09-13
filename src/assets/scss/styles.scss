@@ -18,11 +18,17 @@ body {
         @include breakpoint(medium up) {
             position: fixed;
         }
+        @include breakpoint(900px down) {
+            box-shadow: 1px 1px 4px rgba(60,65,81, .15);
+        }
         background: white;
         color: $grey;
         &:focus {
             background: $light-grey;
             color: $grey;
+            @include breakpoint(900px down) {
+                box-shadow: 1px 1px 3px rgba(60,65,81, .25);
+            }
         }
         &:hover {
             background: $light-grey;

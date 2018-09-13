@@ -11,7 +11,7 @@
     "description": "This week we'll cover retrieving rows from a single table; implementing arithmetic statements; renaming columns in results; retrieving rows using comparison operators; using DISTINCT to eliminate duplicate rows; defining the logical operators AND, OR and NOT; retrieving rows using LIKE, BETWEEN, IN and IS NULL operators; sorting the result set using ORDER BY.",
     "reading": "Murach’s Oracle, Chapter 3",
     "extraContent": [{"text": "Assignment 1", "href": "./assignments/assignment-1.html"}],
-    "showSlides": false
+    "showSlides": true
 },
 {
     "mod": 3,
