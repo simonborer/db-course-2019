@@ -1,0 +1,168 @@
+---
+title: Assignment 2
+layout: default
+hasSlides: false
+---
+<div class="grid-container">
+  <div class="grid-x grid-margin-x">
+    <div class="cell small-10 small-offset-1 large-6 large-offset-3">
+      <h2 class="h2">Retrieving data from multiple</h2>
+      <div class="callout alert"><strong>Due Date</strong>: Before 11:59pm, Tuesday September 26th</div>
+      <p>Use SQL Developer to write SELECT statements to produce the required results.</p>
+      <p>Some of the questions are multi-part ("Then...", "Next...", etc.) Refer to each of the parts as a), b) etc.</p>
+      <p>Each command (or adjustment of the previous command) should be their own screen captures. Use screen captures of your SQL Developer session to show the command and its output.</p>
+      <div class="callout warning">Some statements will produce a lot of rows. It's not required that you screencap every single row, but you must show enough to demonstrate that the statement produces the intended results.</div>
+      <p>Your submitted assignment should be a PDF that includes all your screen caps.</p>
+      <p>Use comments to write your name, the assignment number, and the question number <em>in the SQL Developer input</em> above your query.</p>
+      <p>Submit the assignment through Blackboard.</p>
+      <div class="callout alert">These queries are run against the tables we created in the first class. If you did not run the .sql in the first class, <a href="<%= site.basePath %>/assets/documents/create_ap_tables.sql">it is still available</a>.</div>
+      <section class="post-section">
+        <h2>Questions</h2>
+        <ol>
+          <li>Write a SELECT statement that returns all columns from the Vendors table inner-joined with all columns from the Invoices table.</li>
+          <li>
+            <ol>
+              <li>Write a SELECT statement that returns four columns:
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Heading</th>
+                      <th>Source</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>vendor_name</td>
+                      <td>vendor_name from the Vendors table</td>
+                    </tr>
+                    <tr>
+                      <td>invoice_number</td>
+                      <td>invoice_number from the Invoices table</td>
+                    </tr>
+                    <tr>
+                      <td>invoice_date</td>
+                      <td>invoice_date from the Invoices table</td>
+                    </tr>
+                    <tr>
+                      <td>balance_due</td>
+                      <td>invoice_total minus payment_total minus credit_total from the Invoices table</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+              <li>The result set should have one row for each invoice with a non-zero balance.</li>
+              <li>Sort the result set by vendor_name in ascending order.</li>
+            </ol>
+          </li>
+          <li>
+            <ol>
+              <li>Write a SELECT statement that returns three columns:
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Heading</th>
+                      <th>Source</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>vendor_name</td>
+                      <td>vendor_name from the Vendors table</td>
+                    </tr>
+                    <tr>
+                      <td>default_account</td>
+                      <td>default_account_number from the Vendors table</td>
+                    </tr>
+                    <tr>
+                      <td>description</td>
+                      <td>account_description from the General_Ledger_Accounts table</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+              <li>The result set should have one row for each vendor, and it should be sorted by account_description and then by vendor_name.</li>
+            </ol>
+          </li>
+          <li>
+            <ol>
+              <li>Write a SELECT statement that returns five columns:
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Heading</th>
+                      <th>Source</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>vendor_name</td>
+                      <td>vendor_name from the Vendors table</td>
+                    </tr>
+                    <tr>
+                      <td>invoice_date</td>
+                      <td>invoice_date from the Invoices table</td>
+                    </tr>
+                    <tr>
+                      <td>invoice_number</td>
+                      <td>invoice_number from the Invoices table</td>
+                    </tr>
+                    <tr>
+                      <td>li_sequence</td>
+                      <td>invoice_sequence from the Invoice_Line_Items table</td>
+                    </tr>
+                    <tr>
+                      <td>li_amount</td>
+                      <td>line_item_amt from the Invoice_Line_Items table</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+              <li>Use these aliases for the tables: V for the Vendors table, I for the Invoices table, and LI for the Invoice_Line_Items table.</li>
+              <li>Sort the final result set by vendor_name, invoice_date, invoice_number, and invoice_sequence.</li>
+            </ol>
+          </li>
+          <li>
+            <ol>
+              <li>Write a SELECT statement that returns three columns:
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Heading</th>
+                      <th>Source</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>vendor_id</td>
+                      <td>vendor_id from the Vendors table</td>
+                    </tr>
+                    <tr>
+                      <td>vendor_name</td>
+                      <td>vendor_name from the Vendors table</td>
+                    </tr>
+                    <tr>
+                      <td>contact_name</td>
+                      <td>A concatenation of vendor_contact_first_name and vendor_contact_last_name with a space in between</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </li>
+              <li>The result set should have one row for each vendor whose contact has the same last name as another vendor’s contact.</li>
+              <li>The result set should be sorted by vendor_contact_last_name.</li>
+              <li><em>Hint: what did we do in the lesson to find shared attributes in a table?</em></li>
+            </ol>
+          </li>
+          <li>
+            <ol>
+              <li>Write a SELECT statement that returns two columns from the General_Ledger_Accounts table: account_number and account_description. </li>
+              <li>The result set should have one row for each account number that has never been used or each value in the line_iems table that has a NULL value.</li>
+              <li>Sort the final result set by account_number.</li>
+              <li><em>Hint: what other table might help you accomplish this?</em></li>
+            </ol>
+          </li>
+        </ol>
+      </section>
+    </div>
+  </div>
+</div>
+
