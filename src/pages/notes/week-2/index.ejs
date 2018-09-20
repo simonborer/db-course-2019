@@ -712,7 +712,7 @@ FROM vendors v1 JOIN vendors v2
     ON (v1.vendor_city = v2.vendor_city) AND
     (v1.vendor_id <> v2.vendor_id)
 ORDER BY v1.vendor_city</code></pre>
-      <p>Okay, this is a bit weird, but let's think it through. This query joins two tables (one just happens to be a duplicate of the other. We're used to joining things on a key, like an id, that is unique for at least one of the tables, but in this case we're joining on the city. So this query produces a list of all rows from one table that have the same city as the rows in the other table (<code>v1.vendor_city = v2.vendor_city</code>).</p>
+      <p>Okay, this is a bit weird, but let's think it through. This query joins two tables (one just happens to be a duplicate of the other). We're used to joining things on a key, like an id, that is unique for at least one of the tables, but in this case we're joining on the city. So this query produces a list of all rows from one table that have the same city as the rows in the other table (<code>v1.vendor_city = v2.vendor_city</code>).</p>
     </div>
   </div>
 </section>
