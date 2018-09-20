@@ -18,7 +18,7 @@
     "description": "This week we'll cover coding INNER JOINs to retrieve rows from multiple tables; the use of a self-join; table aliases; JOIN with implicit INNER JOIN syntax; OUTER JOINs to retrieve rows form multiple tables; the various set operators.",
     "reading": "Murach’s Oracle, Chapter 4",
     "extraContent": [{"text": "Assignment 2", "href": "./assignments/assignment-2.html"}],
-    "showSlides": false
+    "showSlides": true
 },
 {
     "mod": 4,

@@ -2687,3 +2687,9 @@ code.language-sql { border: 0 solid transparent; background-color: transparent; 
 @media screen and (max-width: 39.9375em) { a { word-break: break-all; display: inline; } }
 
 .lab-questions > li { padding: 2rem 0; }
+
+.assignment ol > li { margin-bottom: 1.5rem; }
+
+.assignment ol > li ol > li { margin-bottom: .75rem; }
+
+.assignment ol > li table { margin-top: 1rem; }

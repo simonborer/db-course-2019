@@ -215,3 +215,13 @@ a {
 .lab-questions>li {
     padding: 2rem 0;
 }
+
+.assignment ol > li {
+    margin-bottom: 1.5rem;
+    & ol > li {
+        margin-bottom: .75rem;
+    }
+    & table {
+        margin-top: 1rem;
+    }
+}

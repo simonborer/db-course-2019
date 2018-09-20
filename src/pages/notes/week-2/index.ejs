@@ -1,5 +1,5 @@
 ---
-title: The second week
+title: The third week
 layout: default
 hasSlides: true
 ---
@@ -8,11 +8,19 @@ hasSlides: true
     <div class="grid-x">
       <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
         <ol class="toc">
-            <li><a href="#lab">Lessons from the lab</a></li>
+            <li><a href="#labLessons">Lessons from the lab</a></li>
             <li><a href="#whatsYourFunction">How do we use functions?</a></li>
-<!--             <li><a href="#basics">Query basics review</a></li>
-            <li><a href="#single">More single table query techniques</a></li>
-            <li><a href="#scalar">Scalar functions</a></li> -->
+            <li><a href="#joins">Selecting data from multiple tables</a></li>
+            <li><a href="#onClause">The <code>ON</code> clause</a></li>
+            <li><a href="#tableAliases">Table aliases</a></li>
+            <li><a href="#outerJoins">Outer joins</a></li>
+            <li><a href="#crossJoin">Cross joins</a></li>
+            <li><a href="#schema">Schema & ER diagrams</a></li>
+            <li><a href="#joiningMultiple">Joining multiple tables</a></li>
+            <li><a href="#selfJoin">Self joins</a></li>
+            <li><a href="#syntaxVariations">Syntax variations</a></li>
+            <li><a href="#other">Other table merges</a></li>
+            <li><a href="#lab">Lab</a></li>
         </ol>
       </div>
     </div>
@@ -24,7 +32,7 @@ hasSlides: true
     </div>
   </div>
 </section>
-<section id="lab">
+<section id="labLessons">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Lessons from the lab</h2>
@@ -57,19 +65,21 @@ ORDER BY vendor_state, vendor_city
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1 callout">
-      <h2 class="h2">Choosing between syntax options</h2>
-      <p>There are times when you have more than one option for how to phrase a query.</p>
-      <pre><code class="language-sql">SUBSTR(VENDOR_CITY,1,1) IN ('C','A')</code></pre>
-      <pre><code class="language-sql">(vendor_city LIKE 'C%'
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <div class="callout primary">
+        <h2 class="h2">Choosing between syntax options</h2>
+        <p>There are times when you have more than one option for how to phrase a query.</p>
+        <pre><code class="language-sql">SUBSTR(VENDOR_CITY,1,1) IN ('C','A')</code></pre>
+        <pre><code class="language-sql">(vendor_city LIKE 'C%'
 OR vendor_city LIKE 'A%')</code></pre>
-      <p>Things to consider:</p>
-      <ul>
-          <li>Brevity</li>
-          <li>Readability</li>
-          <li>Complexity</li>
-          <li>Performance</li>
-        </ul>  
+        <p>Things to consider:</p>
+        <ul>
+            <li>Brevity</li>
+            <li>Readability</li>
+            <li>Complexity</li>
+            <li>Performance</li>
+          </ul>  
+      </div>
     </div>
   </div>
 </section>
@@ -77,13 +87,16 @@ OR vendor_city LIKE 'A%')</code></pre>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Two common mistakes</h2>
-      <p>SELECT vendor_id, vendor_name, vendor_city, vendor_state 
+      <pre><code class="language-sql">SELECT vendor_id, vendor_name, vendor_city, vendor_state 
 FROM vendors
-WHERE (vendor_state = 'MI' OR vendor_state= 'PA' OR vendor_state= 'OH' OR 
-vendor_state= 'NV' OR vendor_state= 'TN')
+WHERE (vendor_state = 'MI' 
+  OR vendor_state= 'PA' 
+  OR vendor_state= 'OH' 
+  OR vendor_state= 'NV' 
+  OR vendor_state= 'TN')
 AND vendor_city LIKE 'C%'
 OR vendor_city LIKE 'A%'
-ORDER BY vendor_state, vendor_city</p>  
+ORDER BY vendor_state, vendor_city</code></pre> 
     </div>
   </div>
 </section>
@@ -92,8 +105,11 @@ ORDER BY vendor_state, vendor_city</p>
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Subqueries</h2>
       <p>We're not going to learn about subqueries for awhile, but let's talk about them because I saw someone using them.</p>
-      <pre><code class="language-sql">SELECT vendor_id, invoice_total FROM invoices
-WHERE invoice_total <= (SELECT payment_total FROM invoices WHERE ROWNUM = 1)</code></pre>
+      <pre><code class="language-sql">SELECT vendor_id, invoice_total 
+FROM invoices
+WHERE invoice_total <= (SELECT payment_total 
+  FROM invoices 
+  WHERE ROWNUM = 1)</code></pre>
       <small>This query is for demonstration purposes - it's nonsensical from a business perspective.</small>
     </div>
   </div>
@@ -191,11 +207,18 @@ ORDER BY invoice_total</code></pre>
           <li>Display the results in ascending sequence on Balance Due (or the calculation of that column).</li>
         </ul>      
       </blockquote>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <pre><code class="language-sql">SELECT 
     invoice_number,
     vendor_id, 
     invoice_date,
-    invoice_total - (payment_total + credit_total) AS "Balance Due"
+    invoice_total - (payment_total + credit_total) 
+  AS "Balance Due"
 FROM invoices
 WHERE invoice_total - (payment_total + credit_total) <> 0 
   AND invoice_date BETWEEN '2014-04-01' AND '2014-05-31'
@@ -216,8 +239,10 @@ ORDER BY "Balance Due"</code></pre>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1 post-section">
-      <h2>Some other stuff from last class</h2>
-      <p>Let's keep going with the auto theft data. Run <code class="language-sql">SELECT * FROM autotheft</code>. If your data didn't persist, you can run <a href="<%= site.basePath %>/assets/documents/autotheft.sql">autotheft.sql</a> again.</p>
+      <h2>Something else from last class</h2>
+      <p>Let's keep going with the auto theft data.</p>
+      <p>Run <code class="language-sql">SELECT * FROM autotheft</code> so we can see the base table, then we'll look at what kind of return table we get when we run some functions.</p>
+      <p><em>If your data didn't persist, you can run <a href="<%= site.basePath %>/assets/documents/autotheft.sql">autotheft.sql</a> again.</em></p>
     </div>
   </div>
 </section>
@@ -256,7 +281,7 @@ ORDER BY LOWER(occurrencedayofweek)</code></pre>
     </div>
   </div>
 </section>
-<section>
+<section id="joins">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">JOINS! <span role="image" aria-label="backhand index pointing right">👉</span><span role="image" aria-label="backhand index pointing left">👈</span></h2>
@@ -269,9 +294,18 @@ ORDER BY LOWER(occurrencedayofweek)</code></pre>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <img class="diagram" src="<%= site.basePath %>/assets/images/join-example.png" alt="Simple demonstration of the results of different joins.">
+    </div>
+  </div>
+</section>
+<section id="onClause">
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <p>We define a relationship between two tables by using the clause <code class="language-sql">ON</code></p>
       <p>Let's see a table of invoices with the vendor name and the date they paid.</p>
-      <pre><code class="language-sql">SELECT invoice_due_date AS "Due on", vendor_name AS "Due from", payment_date AS "Paid on" 
+      <pre><code class="language-sql">SELECT invoice_due_date AS "Due on", 
+  vendor_name AS "Due from", 
+  payment_date AS "Paid on" 
 FROM invoices
 JOIN vendors ON invoices.vendor_id = vendors.vendor_id</code></pre>
       <p>The invoice due date and the paid date come from the <code>invoices</code> table, but the vendor name comes from the vendors table. We can retrieve information about a vendor by looking up the vendor's id. This way the <code>invoices</code> table doesn't have to repeat information about every vendor - we just have to store it once in the <code>vendors</code> table.</p>
@@ -279,7 +313,7 @@ JOIN vendors ON invoices.vendor_id = vendors.vendor_id</code></pre>
     </div>
   </div>
 </section>
-<section>
+<section id="tableAliases">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <p>Let's run that code again, with a slight modification to produce an error! <span role="image" aria-label="fire">🔥</span><span role="image" aria-label="Person gesturing no">🙅</span><span role="image" aria-label="fire">🔥</span></p> 
@@ -297,16 +331,20 @@ JOIN vendors ON invoices.vendor_id = vendors.vendor_id</code></pre>
       <p>To make this easier, we can alias our tables, similar to how we alias our columns, but without the need for the <code>AS</code> operator. We can simply add the alias with a space after the table name in the join syntax.</p>
       <pre><code class="language-sql">SELECT invoice_due_date, v.vendor_id, payment_date
 FROM invoices i
-JOIN vendors v ON i.vendor_id = v.vendor_id</code></pre>  
+JOIN vendors v 
+ON i.vendor_id = v.vendor_id</code></pre>  
     </div>
   </div>
 </section>
-<section>
+<section id="outerJoins">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <p>We've seen a list of all the invoices and their associated vendors. What if we wanted to include vendors that <em>didn't</em> have an invoice? That's where we'd use an outer join - in this case, a <code class="language-sql">RIGHT JOIN</code> because we want to include data that only appears on the <strong>right</strong> side of the <code>JOIN</code> clause.</p>
-      <pre><code class="language-sql">SELECT invoice_due_date AS "Due on", vendor_name AS "Due from", payment_date AS "Paid on" 
-FROM invoices /* left side */ RIGHT JOIN vendors /* right side */ 
+      <pre><code class="language-sql">SELECT invoice_due_date AS "Due on", 
+  vendor_name AS "Due from", 
+  payment_date AS "Paid on" 
+FROM invoices /* left side */ 
+RIGHT JOIN vendors /* right side */ 
 ON invoices.vendor_id = vendors.vendor_id
 ORDER BY "Due on" DESC</code></pre>
     </div>
@@ -317,7 +355,7 @@ ORDER BY "Due on" DESC</code></pre>
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <p>Let's look at a few more examples!</p>
       <p>Run this sql script: <a href="<%= site.basePath %>/assets/documents/create_om_tables.sql">create_om_tables.sql</a></p>
-      <p>A 'right' outer join, as you'd expect, works the same way as a left join, only it includes records that are only from the left side of the join.</p>
+      <p>A 'left' outer join, as you'd expect, works the same way as a right join, only it includes records that are only from the left side of the join.</p>
       <pre><code class="language-sql">SELECT department_name, d.department_number, last_name
 FROM departments d
 LEFT JOIN employees e
@@ -331,12 +369,18 @@ ON d.department_number = e.department_number</code></pre>
       <p>A join creates a row by <strong>merging</strong> rows from different tables.</p>
       <p>An inner join will <strong>only</strong> created a row <em>if</em> there are two rows to merge - only if a match can be found based on the <code>ON</code> clause.</p>
       <p>A left join will create a row for <em>every</em> row in the first table, even if there is no match for a row from <strong>the second</strong> table. A right join will do the opposite - create a row in the results table for every row in the <em>second</em> table, even if there is no match from <strong>the first table.</strong></p>
-      <p>A full join creates a row for every row in <em>both</em> tables - whether or not they can be merged.</p>
-      <p><img class="diagram" src="<%= site.basePath %>/assets/images/basic-joins.png" alt="Four diagrams illustrating four types of JOIN"></p>
+      <p>A full join creates a row for every row in <em>both</em> tables - whether or not they can be merged.</p> 
     </div>
   </div>
 </section>
 <section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p><img class="diagram" src="<%= site.basePath %>/assets/images/basic-joins.png" alt="Four diagrams illustrating four types of JOIN"></p>  
+    </div>
+  </div>
+</section>
+<section id="crossJoin">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Cross joins - don't let them throw you off.</h2>
@@ -351,15 +395,16 @@ FROM departments, employees</code></pre>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Very simply...</h2>
+      <h2 class="h2">Let's review our types of joins</h2>
+      <h3 class="h3">Say we have two tables: one for assignments, one for students.</h3>
     </div>
   </div>
   <div class="grid-x">
-    <div class="cell large-6 medium-10 medium-offset-1 text-center">
-      <table>
+    <div class="cell large-offset-3 large-6 medium-10 medium-offset-1 text-center slide-half-col">
+      <table class="base-table">
         <thead>
           <tr>
-            <td colspan="2" class="text-center">Assignments</td>
+            <td colspan="2" class="text-center"><strong>Assignments</strong></td>
           </tr>
           <tr>
             <td>Class</td>
@@ -382,11 +427,11 @@ FROM departments, employees</code></pre>
         </tbody>
       </table>
     </div>
-    <div class="cell large-6 medium-10 medium-offset-1 text-center">
-      <table>
+    <div class="cell large-offset-3 large-6 medium-10 medium-offset-1 text-center slide-half-col">
+      <table class="base-table">
         <thead>
           <tr>
-            <td colspan="2" class="text-center">Students</td>
+            <td colspan="2" class="text-center"><strong>Students</strong></td>
           </tr>
           <tr>
             <td>Class</td>
@@ -446,6 +491,8 @@ INSERT INTO students VALUES (4, 'Ryan');
 COMMIT;</code></pre>
     </div>
   </div>
+</section>
+<section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h3>Inner join</h3>
@@ -465,6 +512,12 @@ ON assignments.class = students.class</code></pre>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h3>Left (outer) join</h3>
       <pre><code class="language-sql">SELECT student, assignment
 FROM assignments
@@ -486,6 +539,12 @@ ON assignments.class = students.class</code></pre>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h3>Right (outer) join</h3>
       <pre><code class="language-sql">SELECT student, assignment
 FROM assignments
@@ -507,6 +566,12 @@ ON assignments.class = students.class</code></pre>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h3>Full (outer) join</h3>
       <pre><code class="language-sql">SELECT student, assignment
 FROM assignments
@@ -532,6 +597,12 @@ ON assignments.class = students.class</code></pre>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h3>Cross join</h3>
       <pre><code class="language-sql">SELECT student, assignment
 FROM assignments, students</code></pre>
@@ -580,13 +651,15 @@ FROM assignments, students</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1 callout alert">
-      <p>Why would we <code>RIGHT JOIN</code> table A with table B when we could <code>LEFT JOIN</code> table B with table A?</p>  
-      <p>The answer is, normally, we wouldn't. Right joins only really come in handy when we're joining more than one table and things start to get awkward syntactically.</p>
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <div class="callout alert">
+        <p>Why would we <code>RIGHT JOIN</code> table A with table B when we could <code>LEFT JOIN</code> table B with table A?</p>  
+        <p>The answer is, normally, we wouldn't. Right joins only really come in handy when we're joining more than one table and things start to get awkward syntactically.</p>
+      </div>
     </div>
   </div>
 </section>
-<section>
+<section id="schema">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Schema</h2>
@@ -606,7 +679,7 @@ FROM assignments, students</code></pre>
     </div>
   </div>
 </section>
-<section>
+<section id="joiningMultiple">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Joining multiple tables</h2>
@@ -630,7 +703,7 @@ ORDER BY vendor_name, line_item_amt DESC</code></pre>
     </div>
   </div>
 </section>
-<section>
+<section id="selfJoin">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Joining a single table (to itself)</h2>
@@ -640,16 +713,28 @@ FROM vendors v1 JOIN vendors v2
     (v1.vendor_id <> v2.vendor_id)
 ORDER BY v1.vendor_city</code></pre>
       <p>Okay, this is a bit weird, but let's think it through. This query joins two tables (one just happens to be a duplicate of the other. We're used to joining things on a key, like an id, that is unique for at least one of the tables, but in this case we're joining on the city. So this query produces a list of all rows from one table that have the same city as the rows in the other table (<code>v1.vendor_city = v2.vendor_city</code>).</p>
-      <p>Then, on top of that, we say we're only going to join the rows <em>if</em> the id in the first table <em>doesn't</em> match the id in the second table. So we're asking the question, "<strong>where are the rows with the same city but different vendors?</strong>" Or, another way to put that is, "<strong>what cities have multiple vendors?</strong>" Using <code>DISTINCT</code> (otherwise we would find a row in each of the two columns that met the conditions), what we end up with is a list of vendors that share a city.</p> 
-      <div class="callout primary">Don't worry - self joins are very rare!</div>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Then, on top of that, we say we're only going to join the rows <em>if</em> the id in the first table <em>doesn't</em> match the id in the second table. So we're asking the question, "<strong>where are the rows with the same city but different vendors?</strong>" Or, another way to put that is, "<strong>what cities have multiple vendors?</strong>" Using <code>DISTINCT</code> (otherwise we would find a row in each of the two columns that met the conditions), what we end up with is a list of vendors that share a city.</p> 
+      <div class="callout primary">Don't worry - self joins are very rare!</div>
+    </div>
+  </div>
+</section>
+<section id="syntaxVariations">
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Syntax variations</h2>
-      <p>The syntax we've gone over today is chosen to make it clear what we're doing, but, as usual with SQL, there are other ways to write things. Shorter or implicit syntax is risky with joins, as it's easy to write something you don't mean. Still, you'll need to recognize it if you come across it.</p>  
+      <p>The syntax we've gone over today is chosen to make it clear what we're doing, but, as usual with SQL, there are other ways to write things. Shorter or implicit syntax is risky with joins, as it's easy to write something you don't mean. Still, you'll need to recognize it if you come across it.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h3>Inner join - implicit (a.k.a. non-ANSI) syntax</h3>
       <p>The implicit syntax for an inner join puts both tables in the <code>FROM</code> conditions, and uses <code>WHERE</code> in place of <code>ON</code></p>
       <pre><code class="language-sql">SELECT invoice_number, vendor_name
@@ -660,6 +745,12 @@ WHERE v.vendor_id = i.vendor_id</code></pre>
       <pre><code class="language-sql">SELECT invoice_number, vendor_name
 FROM invoices i, vendors v
 WHERE i.vendor_id (+) = v.vendor_id</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h3><code>USING</code></h3>
       <p>Using <code>USING</code> isn't necessarily bad practice - it's quite concise. But it doesn't have the flexibility of the <code>ON</code> clause, hence why we didn't cover it today. It is a shorthand for <code class="language-sql">ON table1.id = table2.id</code>.</p>
       <pre><code class="language-sql">SELECT invoice_number, vendor_name
@@ -673,20 +764,94 @@ FROM invoices NATURAL JOIN vendors</code></pre>
     </div>
   </div>
 </section>
+<section class="post-only">
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Run this script to follow along with the next section:</p>
+      <pre><code class="language-sql">SET DEFINE OFF;
+
+BEGIN
+  EXECUTE IMMEDIATE 'DROP TABLE current_students';
+  EXECUTE IMMEDIATE 'DROP TABLE past_students';
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('');
+END;
+/
+
+CREATE TABLE current_students
+(
+    name_first          VARCHAR(50)   NOT NULL,
+    name_last     VARCHAR(50)   NOT NULL,
+    grade_point_average   NUMBER(2,1),
+    first_time_student    VARCHAR(10)   NOT NULL
+
+);
+
+CREATE TABLE past_students
+(
+    first_name           VARCHAR(50)   NOT NULL,
+    last_name      VARCHAR(50)   NOT NULL,
+    final_grade_point_average   NUMBER(2,1),
+    graduated   VARCHAR(10)   NOT NULL
+);
+
+INSERT INTO current_students VALUES ('Tobe', 'Hooper', 3.1, 'true');
+INSERT INTO current_students VALUES ('Wes', 'Craven', 3.2, 'true');
+INSERT INTO current_students VALUES ('John', 'Carpenter', 3.3, 'true');
+INSERT INTO current_students VALUES ('William', 'Castle', 1.9, 'false');
+INSERT INTO past_students VALUES ('William', 'Friedkin', 3.4, 'true');
+INSERT INTO past_students VALUES ('Ti', 'West', 3.5, 'true');
+INSERT INTO past_students VALUES ('Adam', 'Wingard', 3.6, 'true');
+INSERT INTO past_students VALUES ('William', 'Castle', 1.9, 'false');
+
+COMMIT;</code></pre>  
+    </div>
+  </div>
+</section>
+<section id="other">
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Other ways to 'join' table data <span class="post-only">(that aren't JOINs)</span></h2>
+      <p>We're not going to dive into these today, but I want you to know about these things:</p>
+      <h3 class="post-only">UNION</h3>
+      <p>There is an operator called <code>UNION</code>. It's similar to a join, but it doesn't merge any rows. Instead it lets you add rows from multiple tables to a single results table. So, if you've got a table of current students, and a table of past students, you could do something like this:</p>
+      <pre><code class="language-sql">SELECT 'current' AS status, 
+name_first, name_last, grade_point_average
+FROM current_students
+UNION
+SELECT 'graduated' as status, 
+first_name, last_name, final_grade_point_average
+FROM past_students
+WHERE graduated = 'true'</code></pre>
+    </div>
+  </div>
+</section>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Other ways to 'join' table data (that aren't JOINs)</h2>
-      <p>We're not going to dive into these today, but I want you to know about these things:</p>
-      <p>There is an operator called <code>UNION</code>. It's similar to a join, but it doesn't merge any rows. Instead it lets you add rows from multiple tables to a single results table. So, if you've got a table of current students, and a table of past students, you could do something like this:</p>
-      <pre><code class="language-sql">SELECT 'current' AS status, first_name, last_name, grade_point_average
-FROM current_students
-UNION
-SELECT 'graduated' as status, first_name, last_name, grade_point_average
-WHERE graduated = true
-FROM past_students</code></pre>  
       <div class="callout alert">Note that the columns from the two tables are treated as single columns in the results table, and need the same data type.</div>
       <p>There are operators that work very similarly - <code>MINUS</code> and <code>INTERSECT</code>. They are basically types of 'union', but <code>MINUS</code> eliminates any rows that occur twice (not just the duplicate, but the original as well), and <code>INTERSECT</code> is the opposite - only showing rows where the data appears in each table.</p>
+      <div class="post-only">
+        <h3>MINUS</h3>
+        <pre><code class="language-sql">SELECT 
+name_first, 
+name_last, 
+grade_point_average
+FROM current_students
+MINUS
+SELECT first_name, last_name, final_grade_point_average
+FROM past_students</code></pre>
+        <h3>INTERSECT</h3>
+        <pre><code class="language-sql">SELECT 
+name_first, 
+name_last, 
+grade_point_average
+FROM current_students
+INTERSECT
+SELECT first_name, last_name, final_grade_point_average
+FROM past_students</code></pre>
+      </div>
     </div>
   </div>
 </section>
@@ -712,10 +877,10 @@ FROM past_students</code></pre>
       <h2>Lab Questions:</h2>
       <ol class="lab-questions">
         <li>Write a query that returns invoice_number, line_item_amt and line_item_description by joining invoice_line_items and invoices, where the credit total is non-zero. Use table aliases, but only where you need them.</li>
-        <li>Write a query that returns the first names of anyone sharing a zip code with another customer from the customers table.</li>
+        <li>Write a query that returns the first name and zip code of anyone sharing a zip code with another customer from the customers table.</li>
         <li>Fully join order_details and orders. Sort the results so that any orders that haven't been recorded as shipped are at the top.</li>
         <li>Screenshot an ER diagram of 3 (only 3!) tables that are connected by defined relationships.</li>
-        
+
       </ol>
     </div>
   </div>

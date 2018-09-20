@@ -32,7 +32,18 @@
 		font-size: .85em;
 		margin: 1rem auto;
 	}
-	.post-only {
+	& .post-only {
 		display: none !important;
+	}
+
+	& .slide-half-col {
+		display: inline-block;
+		width: 49%;
+	}
+	& table.base-table {
+		& thead {
+			background: #fefefe;
+			color: #3c4151; 
+		}
 	}
 }
