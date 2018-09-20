@@ -89,11 +89,11 @@ OR vendor_city LIKE 'A%')</code></pre>
       <h2 class="h2">Two common mistakes</h2>
       <pre><code class="language-sql">SELECT vendor_id, vendor_name, vendor_city, vendor_state 
 FROM vendors
-WHERE (vendor_state = 'MI' 
+WHERE vendor_state = 'MI' 
   OR vendor_state= 'PA' 
   OR vendor_state= 'OH' 
   OR vendor_state= 'NV' 
-  OR vendor_state= 'TN')
+  OR vendor_state= 'TN'
 AND vendor_city LIKE 'C%'
 OR vendor_city LIKE 'A%'
 ORDER BY vendor_state, vendor_city</code></pre> 
