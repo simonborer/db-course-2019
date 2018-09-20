@@ -6,7 +6,7 @@
 <title>The third week | Intro to Databases</title>
 <meta name="description" content="Posts and slides"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/docs/assets/css/reveal.css">
+  <link rel="stylesheet" href="/db-course/assets/css/reveal.css">
   <style>
   	.slides > :not(section) {
   		display: none;
@@ -270,7 +270,7 @@ ORDER BY "Balance Due"</code></pre>
       <h2>Something else from last class</h2>
       <p>Let's keep going with the auto theft data.</p>
       <p>Run <code class="language-sql">SELECT * FROM autotheft</code> so we can see the base table, then we'll look at what kind of return table we get when we run some functions.</p>
-      <p><em>If your data didn't persist, you can run <a href="/docs/assets/documents/autotheft.sql">autotheft.sql</a> again.</em></p>
+      <p><em>If your data didn't persist, you can run <a href="/db-course/assets/documents/autotheft.sql">autotheft.sql</a> again.</em></p>
     </div>
   </div>
 </section>
@@ -322,7 +322,7 @@ ORDER BY LOWER(occurrencedayofweek)</code></pre>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <img class="diagram" src="/docs/assets/images/join-example.png" alt="Simple demonstration of the results of different joins.">
+      <img class="diagram" src="/db-course/assets/images/join-example.png" alt="Simple demonstration of the results of different joins.">
     </div>
   </div>
 </section>
@@ -382,7 +382,7 @@ ORDER BY "Due on" DESC</code></pre>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <p>Let's look at a few more examples!</p>
-      <p>Run this sql script: <a href="/docs/assets/documents/create_om_tables.sql">create_om_tables.sql</a></p>
+      <p>Run this sql script: <a href="/db-course/assets/documents/create_om_tables.sql">create_om_tables.sql</a></p>
       <p>A 'left' outer join, as you'd expect, works the same way as a right join, only it includes records that are only from the left side of the join.</p>
       <pre><code class="language-sql">SELECT department_name, d.department_number, last_name
 FROM departments d
@@ -404,7 +404,7 @@ ON d.department_number = e.department_number</code></pre>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p><img class="diagram" src="/docs/assets/images/basic-joins.png" alt="Four diagrams illustrating four types of JOIN"></p>  
+      <p><img class="diagram" src="/db-course/assets/images/basic-joins.png" alt="Four diagrams illustrating four types of JOIN"></p>  
     </div>
   </div>
 </section>
@@ -699,7 +699,7 @@ FROM assignments, students</code></pre>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Entity relationship diagrams</h2>
-      <p><img src="/docs/assets/images/er.png" alt="An entity relationship diagram"></p>  
+      <p><img src="/db-course/assets/images/er.png" alt="An entity relationship diagram"></p>  
       <p>You can make your own!</p>
       <p>In SQLDeveloper, go to <code>File > Data Modeler > Import > Data Dictionary</code>, highlight your connection, click <code>Next</code>, find your username (student number), click <code>Next</code> again, choose the tables that you'd like to diagram, and click <code>Finish</code></p>
       <p>Your diagram comes with a good amount of information, including all columns, their data types, keys, and, particularly helpful, the arrows and crow's feet. This signify a one-to-many relationship.</p>
@@ -887,7 +887,7 @@ FROM past_students</code></pre>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Lab time!</h2>
-      <p>If you're done your lab before the end of class, you're welcome to start on your <a href="/docs/assignments/assignment-2.html">second assignment</a>.</p>
+      <p>If you're done your lab before the end of class, you're welcome to start on your <a href="/db-course/assignments/assignment-2.html">second assignment</a>.</p>
     </div>
   </div>
 </section>
@@ -895,7 +895,7 @@ FROM past_students</code></pre>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Lab Questions</h2>
-      <p>See <a href="/docs/notes/week-2/index.html#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p> 
+      <p>See <a href="/db-course/notes/week-2/index.html#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p> 
     </div>
   </div>
 </section>
@@ -920,8 +920,8 @@ FROM past_students</code></pre>
   <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
   <script>
       Reveal.initialize({
-          dependencies: [{ src: '/docs/assets/javascript/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                { src: '/docs/assets/javascript/plugin/reveal-a11y.js', async: true, condition: function() { 
+          dependencies: [{ src: '/db-course/assets/javascript/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: '/db-course/assets/javascript/plugin/reveal-a11y.js', async: true, condition: function() { 
                   return !!document.body.classList; 
                 } 
             }]
