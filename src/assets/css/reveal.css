@@ -740,3 +740,7 @@ based on dark.css by Ivan Sagalaev
 .reveal pre { -webkit-box-shadow: none; box-shadow: none; font-size: .85em; margin: 1rem auto; }
 
 .reveal .post-only { display: none !important; }
+
+.reveal .slide-half-col { display: inline-block; width: 49%; }
+
+.reveal table.base-table thead { background: #fefefe; color: #3c4151; }
