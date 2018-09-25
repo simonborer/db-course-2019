@@ -2676,6 +2676,8 @@ h2.h2 { border-bottom: 2px solid #3c4151; display: inline-block; padding-bottom:
 
 ol > li > ol { list-style-type: lower-alpha; }
 
+ol > li > ol .list-style-none { list-style: none; }
+
 figcaption { margin-bottom: 1rem; }
 
 code.language-sql { border: 0 solid transparent; background-color: transparent; }
@@ -2693,3 +2695,5 @@ code.language-sql { border: 0 solid transparent; background-color: transparent; 
 .assignment ol > li ol > li { margin-bottom: .75rem; }
 
 .assignment ol > li table { margin-top: 1rem; }
+
+.list-style-none { list-style: none; }
