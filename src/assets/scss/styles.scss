@@ -181,6 +181,9 @@ h2.h2 {
 
 ol>li>ol {
     list-style-type: lower-alpha;
+    & .list-style-none {
+        list-style: none;
+    }
 }
 
 figcaption {
