@@ -416,7 +416,7 @@ WHERE wisdom > (
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Wait, I changed my mind</h2>
+      <h3 class="h3">Wait, I changed my mind</h3>
       <p>Let's get everbody. Is there a way to select all the non-wizards and update the table with those records?</p>
       <p>Probably, but who's got the time?</p>
       <pre><code class="language-sql">DROP TABLE characters_wizards</code></pre>
@@ -428,7 +428,7 @@ AS SELECT * FROM characters</code></pre>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Wait, that's terrifying!</h2>
+      <h3 class="h3">Wait, that's terrifying!</h3>
       <p>What if you've got thousands of rows of data, and no backup. You drop the table. What do you do - change your name and move to another city?</p>  
     </div>
   </div>
@@ -456,7 +456,7 @@ RENAME TO just_wizards</code></pre>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Ok, let's create a row.</h2>
+      <h3 class="h3">Ok, let's create a row.</h3>
       <pre><code class="language-sql">INSERT INTO characters_copy (character_id, primary_class) 
 VALUES ('12345', 'Wizard')</code></pre>  
     </div>
@@ -516,7 +516,7 @@ WHERE UPPER(alignment) LIKE ('%EVIL%')</code></pre>
 <section class="post-only">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2>Lab Questions:</h2>
+      <h3>Lab Questions:</h3>
       <ol class="lab-questions">
         <li>Write a statement to return the average time, rounded off to two decimal places, of vehicle thefts for each month. Only include occurrences between 2014 and 2017. Order the results from the latest time of day to the earliest.</li>
         <li>Write a statement that shows a list of premises types with more than 500 total thefts.</li>
