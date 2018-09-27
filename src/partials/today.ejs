@@ -1,29 +1,14 @@
-<% if (page.today) { %>
-	<section class="slide-only">
-    <h2>Here's what we're going today</h2>
-	    <ol>
-	    	<% const today = page.today %>
-	        <% today.assorted.forEach(item => { %>
-	        	<li><%= item %></li>
-	        <% }) %>
-	        <% if (today.theory) { %>
-			<li>Theory
-				<ol>
-					<% today.theory.forEach(item => { %>
-						<li><%= item %></li>
-					<% }) %>
-				</ol>
-			</li>
-	        <% } %>
-	       	<% if (today.praxis) { %>
-			<li>Praxis
-				<ol>
-					<% today.praxis.forEach(item => { %>
-						<li><%= item %></li>
-					<% }) %>
-				</ol>
-			</li>
-	        <% } %>
-	    </ol>
-	</section>
-<% } %>
+<% const today = page.today %>
+
+<section>
+  <h2 class="slide-only">Here's what we're going today</h2>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <ol class="toc">
+      <% today.forEach(item => { %>
+      	<li><a href="#<%= item.id %>"><%= item.title %></a></li>
+      <% }) %>
+      </ol>
+    </div>
+  </div>
+</section>

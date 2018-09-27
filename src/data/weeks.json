@@ -22,10 +22,10 @@
 },
 {
     "mod": 4,
-    "description": "This week we'll cover queries that use aggregate functions; queries with MAX, MIN, COUNT, AVG, and SUM group functions; the use of the GROUP BY and HAVING clauses; the differences between HAVING and WHERE clauses.",
+    "description": "This week we'll cover queries that use aggregate functions; queries with MAX, MIN, COUNT, AVG, and SUM group functions; the use of the GROUP BY and HAVING clauses; the differences between HAVING and WHERE clauses. We'll cover subqueries & have a brief introduction to CRUD.",
     "reading": "Murach’s Oracle, Chapter 5",
     "extraContent": [{"text": "Assignment 3", "href": "./assignments/assignment-3.html"}],
-    "showSlides": false
+    "showSlides": true
 },
 {
     "mod": 5,

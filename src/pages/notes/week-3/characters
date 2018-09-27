@@ -1,0 +1,36 @@
+SET DEFINE OFF;
+
+BEGIN
+  EXECUTE IMMEDIATE 'DROP TABLE characters';
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('');
+END;
+/
+
+CREATE TABLE characters
+(
+    character_id    VARCHAR2(12)   NOT NULL,
+    race     		VARCHAR2(50),
+    background		VARCHAR2(50),
+    primary_class	VARCHAR2(50),
+    subclass		VARCHAR2(100),
+    char_level 		NUMBER,
+    feats			VARCHAR2(100),
+    hitpoints 		NUMBER,
+    armour_class 	NUMBER,
+    stength 		NUMBER,
+    dexterity 		NUMBER,
+    constitution 	NUMBER,
+    intelligence 	NUMBER,
+    wisdom 			NUMBER,
+    charisma 		NUMBER,
+    alignment		VARCHAR2(50),
+    skills			VARCHAR2(200),
+    weapons			VARCHAR2(200),
+    spells			VARCHAR2(1000),
+    CONSTRAINT id_pk
+    	PRIMARY KEY (character_id)
+);
+
+COMMIT;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>The fourth week | Intro to Databases</title>
+<title>The third week | Intro to Databases</title>
 <meta name="description" content="Posts and slides"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/db-course/assets/css/reveal.css">
@@ -29,259 +29,527 @@
 	<div class="reveal">
 		<div class="slides">
 	      	<section>
-	      		<h1>The fourth week</h1>
+	      		<h1>The third week</h1>
 	      	</section>
 			
 
 
-	<section class="slide-only">
-    <h2>Here's what we're going today</h2>
-	    <ol>
-	    	
-	        
-	        	<li>Another test?</li>
-	        
-	        	<li>Moving forward with OCAS</li>
-	        
-	        	<li>What would you like to go over from last week?</li>
-	        
-	        
-			<li>Theory
-				<ol>
-					
-						<li>Dark patterns</li>
-					
-				</ol>
-			</li>
-	        
-	       	
-			<li>Praxis
-				<ol>
-					
-						<li>Linting!</li>
-					
-						<li>An accessible accordion</li>
-					
-				</ol>
-			</li>
-	        
-	    </ol>
-	</section>
 
-<section  class="slide-only">
-    <div class="grid-x">
-        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-        	<h3>Would you like to participate in a test?</h3>
-        	
-				
-					<p>We have been asked to use <a href='https://public.tableau.com/profile/humber.college#!/vizhome/HumberCollege-CareerOutlooks/CareerOutlooks'>this site</a> and fill out <a href='https://goo.gl/gn411u' target='_blank'>this survey</a>.</p>
-				
-        	
-        	
-        </div>
+
+<section>
+  <h2 class="slide-only">Here's what we're going today</h2>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <ol class="toc">
+      
+      	<li><a href="#labLessons">Lessons from the lab</a></li>
+      
+      	<li><a href="#aggregateFunctions">Aggregate functions</a></li>
+      
+      	<li><a href="#groupBy">GROUP BY</a></li>
+      
+      </ol>
     </div>
+  </div>
 </section>
-<section  class="slide-only">
-    <div class="grid-x">
-        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-        	<h3>OCAS is a great case study in requirements</h3>
-        	
-        	
-        </div>
+
+<section class="slide-only">
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Happy Thursday!</h2>
     </div>
+  </div>
 </section>
-<section  class="slide-only">
-    <div class="grid-x">
-        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-        	<h3>Let`s see what some people missed...</h3>
-        	
-				
-					<p><a href='/db-course/slides/notes/week-2/' target='_blank'>...last week</a></p>
-				
-        	
-        	
-        </div>
+<section id="labLessons">
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Lessons from the lab</h2>
+      <p>You're all doing very well on the labs and assignments.</p>
+      <p>A little <strong>too</strong> well.</p>
     </div>
-</section>
-<section >
-    <div class="grid-x">
-        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-        	<h3>Dark Patterns</h3>
-        	
-				
-					
-						<p>Dark patterns are design patterns that are meant to manipulate the user.</p>
-					
-						<p>Dark patterns are not bad design - they are good design for bad reasons.</p>
-					
-				
-        	
-        	
-        </div>
-    </div>
+  </div>
 </section>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <table cellspacing="0" style="font-size:1.25rem">
-        <tbody>
-          <tr>
-            <td>Psychological Insight</td>
-            <td>Applied Honestly (benefits users)</td>
-            <td>Applied Deceptively (benefits business)</td>
-          </tr>
-          <tr>
-            <td>“We don’t read pages. We scan them” —Steve Krug</td>
-            <td><strong>Aid rapid comprehension:</strong> ensure key content is shown in headings, subheadings (etc), using a strong visual hierarchy.</td>
-            <td><strong>Hide key information:</strong>
-            Bury facts within paragraphs of text, so some users will proceed without fully understanding the transaction.</td>
-          </tr>
-          <tr>
-            <td>“People tend to stick to the defaults” —Jakob Nielsen</td>
-            <td><strong>Prevent mistakes:</strong>
-            Default to the option that’s safest for the user. In important contexts, don’t use defaults and require the user to make an explicit choice.</td>
-            <td><strong>Benefit from mistakes:</strong>
-            Ensure default options benefit the business, even if this means some users convert without meaning to.</td>
-          </tr>
-          <tr>
-            <td>“People will do things that they see other people are doing” —Robert Cialdini</td>
-            <td><strong>Show unedited feedback:</strong>
-            Allow real customers to share their experiences, so they can make accurate pre-purchase evaluations.</td>
-            <td><strong>Bury negative feedback:</strong>
-            Hand-pick positive feedback and display it prominently. Bury negative feedback so it is hard to find.</td>
-          </tr>
-        </tbody>
-      </table>
-      <blockquote><cite><a href="https://alistapart.com/article/dark-patterns-deception-vs.-honesty-in-ui-design">https://alistapart.com/article/dark-patterns-deception-vs.-honesty-in-ui-design</a></cite></blockquote>
+      <p>From now on, where it applies, I'll be giving you half a mark for a (technically) correct answer, and another half mark if your answer is <strong>good</strong>.</p>
+      <p>What makes a good answer?</p>  
     </div>
   </div>
 </section>
-<section >
-    <div class="grid-x">
-        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-        	<h3>Amorality</h3>
-        	
-				
-					
-						<p>Dark patterns test <em>really</em> well.</p>
-					
-						<p>Dark patterns could be in legacy code, they could be given to you to develop, or they could even come from you.</p>
-					
-				
-        	
-        	
-        </div>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h3 class="h3">Good answers</h3>
+      <ul>
+        <li>Proper formatting</li>
+        <li>Using the order of operations</li>
+        <li>Good semantics</li>
+      </ul> 
     </div>
+  </div>
 </section>
-<section >
-    <div class="grid-x">
-        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-        	<h3>Hooray for linting!</h3>
-        	
-				
-					
-						<p>Clone <a href="https://github.com/simonborer/a11y-linting" target='_blank'>https://github.com/simonborer/a11y-linting</a></p>
-					
-				
-        	
-        	
-        </div>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h3 class="h3">Formatting</h3>
+      <p>Our recommended formatting is lowercase for <strong>identifiers</strong> (column names, table names, etc.), and uppercase for <strong>statements</strong> and <strong>clauses</strong>.</p>
+      <p>We also use line breaks for readability.</p>
+      <p>Good formatting:</p>
+      <pre><code class="language-sql">SELECT vendor_id, vendor_name, vendor_city, vendor_state 
+FROM vendors
+WHERE vendor_state IN ('MI','OH','PA','NV','TN')
+AND SUBSTR(VENDOR_CITY,1,1) IN ('C','A')
+/* or (vendor_city LIKE 'C%'
+OR vendor_city LIKE 'A%') */
+ORDER BY vendor_state, vendor_city</code></pre>
+      <p>Bad formatting:</p>
+      <pre><code class="language-sql">select vendor_id, vendor_name, vendor_city, VENDOR_STATE from vendors where vendor_state in ('MI','OH',  'PA','NV', 'TN')</code></pre>  
     </div>
+  </div>
 </section>
-<section >
-    <div class="grid-x">
-        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-        	
-        	
-				
-					
-						<p>We will be looking at both an html linter (<code>htmllint</code>) and a command line auditing tool (<code>lighthouse</code>).</p>
-					
-				
-        	
-        	
-        </div>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h3 class="h3">Order of operations</h3>
+      <p>If you don't use the order of operations as it's intended, things can get real weird.</p>
+      <p>I saw a lot of </p>
+      <pre><code class="language-sql">SELECT (invoice_total * (10/100)),
+(invoice_total + (invoice_total * (10/100)))
+FROM invoices</code></pre>
+      <p>When this would've done just fine:</p>
+      <pre><code class="language-sql">SELECT invoice_total * .1
+invoice_total + invoice_total * .1
+FROM invoices</code></pre>
     </div>
+  </div>
 </section>
-<section >
-    <div class="grid-x">
-        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-        	<h3>HTMLLint</h3>
-        	
-        	
-        		<ol>
-				
-					<li class="fragment">Open the project in your text editor</li>
-				
-					<li class="fragment">Look at package.json under &#34;dependencies&#34; and &#34;devDependencies&#34;</li>
-				
-					<li class="fragment">Open your command line client</li>
-				
-					<li class="fragment">Go to the project folder</li>
-				
-					<li class="fragment">Run &lt;code&gt;npm install&lt;/code&gt;</li>
-				
-				</ol>
-        	
-        </div>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h3 class="h3">Semantics</h3>
+      <p>Where possible, write SQL <em>descriptively</em>.</p>
+      <p>If you want a number that's between 500 and 1000, write</p>
+      <pre><code class="language-sql">BETWEEN 500 AND 1000</code></pre>  
     </div>
+  </div>
 </section>
-<section >
-    <div class="grid-x">
-        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-        	
-        	
-        	
-        		<ol>
-				
-					<li class="fragment">Look at package.json under &#34;scripts&#34; - this is where we define the node scripts the will get called by &lt;code&gt;npm run&lt;/code&gt;</li>
-				
-					<li class="fragment">&lt;code&gt;npm run build&lt;/code&gt;</li>
-				
-					<li class="fragment">htmllint options are defined in .htmllintrc - try getting rid of one of the tag bans to clear an error</li>
-				
-					<li class="fragment">Now try fixing the html to clear the rest</li>
-				
-					<li class="fragment">Tell me why we put htmllint under the &#34;build&#34; script</li>
-				
-				</ol>
-        	
-        </div>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Another dataset</h2>
+      <p class="slide-only">Run the script in the notes to create a table for Dungeons & Dragons characters. <img src="/db-course/assets/images/dungeons-and-dragons.jpg" alt="Dungeons and Dragons characters"></p>
+      <p>We'll use this to work on <strong>aggregate functions</strong> today.</p>
+      <pre class="post-only"><code class="language-sql">SET DEFINE OFF;
+
+BEGIN
+  EXECUTE IMMEDIATE 'DROP TABLE characters';
+EXCEPTION
+  WHEN OTHERS THEN
+    DBMS_OUTPUT.PUT_LINE('');
+END;
+/
+
+CREATE TABLE characters
+(
+    character_id    VARCHAR2(12)   NOT NULL,
+    race        VARCHAR2(50),
+    background    VARCHAR2(50),
+    primary_class VARCHAR2(50),
+    subclass    VARCHAR2(100),
+    char_level    NUMBER,
+    feats     VARCHAR2(100),
+    hitpoints     NUMBER,
+    armour_class  NUMBER,
+    strength     NUMBER,
+    dexterity     NUMBER,
+    constitution  NUMBER,
+    intelligence  NUMBER,
+    wisdom      NUMBER,
+    charisma    NUMBER,
+    alignment   VARCHAR2(50),
+    skills      VARCHAR2(200),
+    weapons     VARCHAR2(200),
+    spells      VARCHAR2(1000),
+    CONSTRAINT id_pk
+      PRIMARY KEY (character_id)
+);
+
+COMMIT;</code></pre>  
     </div>
+  </div>
 </section>
-<section >
-    <div class="grid-x">
-        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-        	<h3>Lighthouse CLI</h3>
-        	
-        	
-        		<ol>
-				
-					<li class="fragment">Look at package.json under &#34;scripts&#34;, at the &#34;audit&#34; script. Read me this script in non-technical terms.</li>
-				
-					<li class="fragment">Run &lt;code&gt;npm run audit&lt;/code&gt; and view the output file.</li>
-				
-				</ol>
-        	
-        </div>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>The script has created a table with columns, but we still need to populate the table (as I couldn't be bothered to translate 800+ lines of csv into SQL <span role="image" aria-label="grinning face with smiling eyes">😁</span></p>  
+      <p>In SQLDeveloper, right click on the <code>characters</code> table we just created, and select <code>import data</code>. Download <a href="/db-course/assets/documents/char.csv" target="_blank">char.csv</a>, and in the SQLDeveloper dialog, use <code>Browse...</code> to select char.csv as the file to import from.</p>
+      <p>Click <code>Next</code>, and in the <code>Choose Columns</code> screen, click <code>Next</code> again.</p>
+      <p>On the <code>Column Definitions</code> screen, click <code>Next</code>, and then <code>Finish</code> to import the csv.</p>
     </div>
+  </div>
 </section>
-<section >
-    <div class="grid-x">
-        <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-        	<h3>Exercise: an accessible accordion</h3>
-        	
-				
-					
-						<p>Build an accessible accordion and submit it as a pull request. Feel free to pair-program.</p>
-					
-				
-        	
-        	
-        </div>
+<section id="aggregateFunctions">
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1 post-section">
+      <h2 class="h2">Aggregate functions</h2>
+      <p>So far, we've looked at <strong>scalar functions</strong> - functions that take one value and return one value.</p>
+      <p>Today, we look at <strong>aggregate functions</strong>. Aggregate functions take in multiple values and return one value.</p>
     </div>
+  </div>
 </section>
-	
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Let's see how many rows we have in our <code>characters</code> table.</p>
+      <pre><code class="language-sql">SELECT COUNT(*) FROM characters</code></pre> 
+      <p class="callout primary">This is referred to as a <strong>summary query</strong>, because its return table is a summary rather than a collection of rows.</p> 
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">5 common aggregate functions</h2>
+      <p><code>AVG()</code> returns the average.</p>
+      <p><code>SUM()</code> returns the sum.</p>
+      <p><code>MIN()</code> returns the lowest value, while <code>MAX()</code> returns the highest.</p>
+      <p><code>COUNT()</code> returns the number of values.</p>
+      <p class="callout alert">All of these functions - except <code>COUNT(*)</code> <em>used with an asterisk</em> - only work on non-null values. If you want to count <code>(null)</code> as being equal to zero, you will have to convert null values with <code>NVL()</code>.</p>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Let's see what the average strength is for a character in this set.</p>
+      <pre><code class="language-sql">SELECT AVG(strength) FROM characters</code></pre>
+      <p>Okay, so <code>12.9107344632768361581920903954802259887</code> is correct, but probably more information than we need to display. If I was passing this value to another function, I'd probably leave it as is. But since I'm using this information to <em>display</em>, I'll clean it up by nesting my AVG() function inside a scalar function - ROUND().</p>
+      <pre><code class="language-sql">SELECT ROUND(AVG(strength), 2) AS avg_strength FROM characters</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Now, you probably won't have to use <code>DISTINCT</code> with <code>AVG()</code> or any of the other aggregate functions, but it does come in handy with <code>COUNT()</code>.</p>
+      <p>Let's see how many unique classes (<code>primary_class</code>) there are in our table:</p>
+      <pre><code class="language-sql">SELECT COUNT(DISTINCT primary_class) AS total_classes
+FROM characters</code></pre>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <div class="callout primary">
+        <h2 class="h2">Help me out</h2>
+        <p>I want to see how many unique primary classes there are, but only for characters whose race is a kind of elf. How do I do that?</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="groupBy">
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2"><code>GROUP BY</code></h2>
+      <p>What if we want to run aggregate functions on more than one thing? The <code>GROUP BY</code> clause lets us run a function on each distinct value in the column that we group by.</p>
+      <pre><code class="language-sql">SELECT primary_class, ROUND(AVG(intelligence), 3) as smarts
+FROM characters
+GROUP BY primary_class
+ORDER BY smarts DESC</code></pre>
+      <div class="callout alert">We can only select columns outside of an aggregate function <em>if</em> they're referenced in <code>GROUP BY</code>.</div>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>We can group by a <em>combination</em> of columns. You might want to do this if you've got columns for city and state (where there might be two cities with the same name in different states.</p>
+      <p>So, if we want to see what <em>combination</em> of <code>race</code> and <code>background</code> gives the average character the greatest dexterity:</p>
+      <pre><code class="language-sql">SELECT race, background, ROUND(AVG(dexterity)) AS dex
+FROM characters
+GROUP BY race, background
+ORDER BY dex DESC</code></pre>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2"><code>HAVING</code></h2>
+      <p><code>HAVING</code> is like <code>WHERE</code> for <em>groups</em>.</p>
+      <pre><code class="language-sql">
+-- SELECT Primary Class and the average Character Level...
+SELECT primary_class, 
+  ROUND(AVG(char_level), 3) AS "Character level" 
+FROM characters
+-- ... for each Primary Class ...
+GROUP BY primary_class
+-- ... if, on average, the Armour of that Primary Class 
+-- is greater than 10
+HAVING AVG(armour_class) > 10
+ORDER BY "Character level" DESC</code></pre>
+      <p><code>HAVING</code> filters for groups (not individual rows) that meet the condition.</p>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Our 3 clauses go in this order:</p>
+      <ol>
+        <li>WHERE</li>
+        <li>GROUP BY</li>
+        <li>HAVING</li>
+      </ol>
+      <p><code>WHERE</code> filters rows before they are grouped, and <code>HAVING</code> filters groups after grouping.</p>
+      <pre><code class="language-sql">SELECT primary_class, 
+  ROUND(AVG(char_level), 3) AS "Character level" 
+FROM characters
+WHERE UPPER(primary_class) LIKE ('%BARD%')
+GROUP BY primary_class
+HAVING AVG(armour_class) > 10
+ORDER BY "Character level" DESC</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Can we have more than one <code>HAVING</code> condition?</h2>
+      <p>Of course!</p>
+      <pre><code class="language-sql">-- select the background and average wisdom
+SELECT background, ROUND(AVG(wisdom), 4) AS wisdom 
+FROM characters
+-- for each background
+GROUP BY background
+-- where there are more than 25 instances of that background
+HAVING COUNT(*) > 25 
+-- and the average charisma is between ten and twenty
+AND AVG(charisma) BETWEEN 10 AND 20</code></pre>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2"><code>ROLLUP</code></h2>
+      <p>Want a summary row at the bottom? Oracle gives us a function for that!</p>
+      <pre><code class="language-sql">SELECT primary_class, MAX(hitpoints) FROM characters
+GROUP BY ROLLUP(primary_class)
+HAVING COUNT(*) > 10
+ORDER BY primary_class</code></pre>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2"><code>CUBE</code></h2>
+      <p>Want a summary row for each thing? In a table that's barely readable because the summary rows use <code>(null)</code> when it means "any"?</p>
+      <pre><code class="language-sql">SELECT primary_class, subclass, MAX(hitpoints) FROM characters
+WHERE subclass IS NOT NULL
+GROUP BY CUBE(primary_class, subclass)
+HAVING COUNT(*) > 10
+ORDER BY primary_class, subclass</code></pre>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Subqueries</h2>
+      <p>Some of you have already been using subqueries, but you've been using them for the wrong reasons.</p>
+      <p>Don't use a subquery because you're not sure of the <code>WHERE</code> syntax, the order of operations, or how to code a self-join.</p>
+      <p><strong>DO NOT</strong> use subqueries unless <em>you don't have a choice</em> or unless <em>it reduces, rather than adds, complexity</em>.</p>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">A use-case for subqueries</h2>
+      <p>Using an aggregate function value inside a standard query.</p>  
+      <p>Here is a query that selects all the Primary Classes that have above-average wisdom:</p>
+      <pre><code class="language-sql">SELECT DISTINCT primary_class FROM characters
+WHERE wisdom > (
+    SELECT AVG(wisdom) FROM characters
+)</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Other than that, subqueries rarely have a use-case outside of deep complexity, and will usually introduce more complexity than they resolve.</p>
+      <p>We can learn more about them later in the year, if we have time. At that point you'll be comfortable with <code>JOIN</code>s, clauses and the order of operations, and you'll be better able to judge when a subquery might be justified. Until then, avoid them unless you're using the value of an aggregate function within a non-aggregate query.</p>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">CRUD</h2>
+      <p>"CRUD" is not a sql term - it is an acronym that is used to refer to operations in any persistent data storage.</p>
+      <p>This is what's known as the 'data lifecycle'. Think of any online shopping cart, or social media. These are things your users can do, and how our sql code will allow them to do it.</p>
+      <dl class="no-bullet">
+        <dd><strong>C</strong>reate</dd>
+        <dd><strong>R</strong>ead</dd>
+        <dd><strong>U</strong>pdate</dd>
+        <dd><strong>D</strong>elete</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">CRUD in SQL</h2>
+      <p>Let's map those operations onto existing SQL commands.</p>
+      <table>
+        <tbody>
+          <tr><td>Create</td><td><code>INSERT</code></td></tr>
+          <tr><td>Read</td><td><code>SELECT</code></td></tr>
+          <tr><td>Update</td><td><code>UPDATE</code></td></tr>
+          <tr><td>Delete</td><td><code>DELETE</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Creating a copy of a table</h2>
+      <p>Let's create a copy of the <code>characters</code> table so that we can manipulate it without worrying about the original.</p>
+      <p>Just to make things a little bit more manageable, let's have a table that's just wizards.</p>
+      <p class="callout warning">Don't get the 'Create' in CRUD mixed up with the <code>CREATE</code> command.</p>
+      <pre><code class="language-sql">CREATE TABLE characters_wizards
+    AS SELECT * FROM characters
+    WHERE UPPER(primary_class) LIKE ('%WIZARD%')
+</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Wait, I changed my mind</h2>
+      <p>Let's get everbody. Is there a way to select all the non-wizards and update the table with those records?</p>
+      <p>Probably, but who's got the time?</p>
+      <pre><code class="language-sql">DROP TABLE characters_wizards</code></pre>
+      <pre><code class="language-sql">CREATE TABLE characters_copy
+AS SELECT * FROM characters</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Wait, that's terrifying!</h2>
+      <p>What if you've got thousands of rows of data, and no backup. You drop the table. What do you do - change your name and move to another city?</p>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Maybe, but there's one thing you can try before you do that.</p>
+      <p>Oracle comes with a 'recycle bin'. Let's take a look at it:</p>
+      <pre><code class="language-sql">SELECT * FROM RECYCLEBIN
+ORDER BY droptime DESC</code></pre>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Here's what you can do to 'undrop' a table:</p>
+      <pre><code class="language-sql">FLASHBACK TABLE characters_wizards TO BEFORE DROP
+RENAME TO just_wizards</code></pre>
+      <p>But, just in case - don't go dropping tables unless you're pretty sure you can recover the data elsewhere!</p>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Ok, let's create a row.</h2>
+      <pre><code class="language-sql">INSERT INTO characters_copy (character_id, primary_class) 
+VALUES ('12345', 'Wizard')</code></pre>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Okay, so we've created - that's the 'C' in CRUD.</p>
+      <p>Now, let's READ - the 'R'.</p>
+      <pre><code class="language-sql">SELECT * FROM characters_copy 
+WHERE character_id = '12345'</code></pre>
+      <p>Hm, ok, I guess you already knew how to do that! What's next?</p>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">UPDATE</h2>
+      <p>That's a lot of null information about our character - let's flesh them out a little bit.</p>
+      <pre><code class="language-sql">UPDATE characters_copy
+SET race =' Stout Halfling', feats = 'Resilient'
+WHERE character_id = '12345'
+</code></pre>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">DELETE</h2>
+      <p>The final letter in CRUD!</p>
+      <p>Let's rid the world of evil.</p>
+      <pre><code class="language-sql">DELETE FROM characters_copy
+WHERE UPPER(alignment) LIKE ('%EVIL%')</code></pre>  
+    </div>
+  </div>
+</section>
+<section id="lab">
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Lab time!</h2>
+      <p>If you're done your lab before the end of class, you're welcome to start on your <a href="/db-course/assignments/assignment-3.html">third assignment</a>.</p>
+    </div>
+  </div>
+</section>
+<section class="slide-only">
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Lab Questions</h2>
+      <p>This week, I've made an effort to write the lab questions as just that - questions that need answers. Pay special attention to your formatting. Use aliases where aliases help readability. Show the columns that someone would need in order to make sense of the return table.</p>
+      <p>See <a href="/db-course/notes/week-1/index.html#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p> 
+    </div>
+  </div>
+</section>
+<section class="post-only">
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2>Lab Questions:</h2>
+      <ol class="lab-questions">
+        <li>Write a statement to return the average time, rounded off to two decimal places, of vehicle thefts for each month. Only include occurrences between 2014 and 2017. Order the results from the latest time of day to the earliest.</li>
+        <li>Write a statement that shows a list of premises types with more than 500 total thefts.</li>
+        <li>Write a statement that returns the oldest incident from this dataset.</li>
+        <li>Write a statement that returns the top 10 neighbourhoods that had the most reported thefts in 2017.</li>
+        <li>Write a statement that returns the top 5 neighbourhoods in terms of thefts (in any year), and a column that shows how many incidents they had above the average neighbourhood. <em>This may be a good case for a subquery.</em></li>
+        <li>Write a statement to insert your own character in the <code>characters_copy</code> table, with no null values. Give yourself the most hitpoints of any character (but only by one).</li>
+        <li>Wait, that looks suspicious. Write a statement to update your character so that you've got the fourth highest hitpoints.</li>
+        <li>Get a list of all the subclasses that are schools and are associated with a character whose constitution stat is an even number.</li>
+        <li>Write a statement that returns the earliest invoice for each line item description, provided that the line item description begins with a letter in the first half of the alphabet, and the vendor's last name ends with a letter in the second half of the alphabet. At which point, I'll admit, we're getting a little silly.</li>
+      </ol> 
+    </div>
+  </div>
+</section>	
 		</div>
 	</div>
 

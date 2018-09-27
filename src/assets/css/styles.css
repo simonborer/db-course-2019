@@ -2696,4 +2696,4 @@ code.language-sql { border: 0 solid transparent; background-color: transparent; 
 
 .assignment ol > li table { margin-top: 1rem; }
 
-.list-style-none { list-style: none; }
+.list-style-none, dl.no-bullet { list-style: none; }
