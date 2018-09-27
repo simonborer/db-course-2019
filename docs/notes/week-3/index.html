@@ -36,6 +36,18 @@
       
       	<li><a href="#groupBy">GROUP BY</a></li>
       
+      	<li><a href="#having">HAVING</a></li>
+      
+      	<li><a href="#rollup">ROLLUP</a></li>
+      
+      	<li><a href="#cube">CUBE</a></li>
+      
+      	<li><a href="#subqueries">Subqueries</a></li>
+      
+      	<li><a href="#crud">CRUD</a></li>
+      
+      	<li><a href="#lab">Lab</a></li>
+      
       </ol>
     </div>
   </div>
@@ -87,9 +99,7 @@
       <pre><code class="language-sql">SELECT vendor_id, vendor_name, vendor_city, vendor_state 
 FROM vendors
 WHERE vendor_state IN ('MI','OH','PA','NV','TN')
-AND SUBSTR(VENDOR_CITY,1,1) IN ('C','A')
-/* or (vendor_city LIKE 'C%'
-OR vendor_city LIKE 'A%') */
+  AND SUBSTR(vendor_city,1,1) IN ('C','A')
 ORDER BY vendor_state, vendor_city</code></pre>
       <p>Bad formatting:</p>
       <pre><code class="language-sql">select vendor_id, vendor_name, vendor_city, VENDOR_STATE from vendors where vendor_state in ('MI','OH',  'PA','NV', 'TN')</code></pre>  
@@ -170,7 +180,7 @@ COMMIT;</code></pre>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>The script has created a table with columns, but we still need to populate the table (as I couldn't be bothered to translate 800+ lines of csv into SQL <span role="image" aria-label="grinning face with smiling eyes">😁</span></p>  
+      <p>The script has created a table with columns, but we still need to populate the table (as I couldn't be bothered to translate 800+ lines of csv into SQL <span role="image" aria-label="grinning face with smiling eyes">😁</span>).</p>  
       <p>In SQLDeveloper, right click on the <code>characters</code> table we just created, and select <code>import data</code>. Download <a href="/db-course/assets/documents/char.csv" target="_blank">char.csv</a>, and in the SQLDeveloper dialog, use <code>Browse...</code> to select char.csv as the file to import from.</p>
       <p>Click <code>Next</code>, and in the <code>Choose Columns</code> screen, click <code>Next</code> again.</p>
       <p>On the <code>Column Definitions</code> screen, click <code>Next</code>, and then <code>Finish</code> to import the csv.</p>
@@ -262,7 +272,7 @@ ORDER BY dex DESC</code></pre>
     </div>
   </div>
 </section>
-<section>
+<section id="having">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2"><code>HAVING</code></h2>
@@ -319,10 +329,10 @@ AND AVG(charisma) BETWEEN 10 AND 20</code></pre>
     </div>
   </div>
 </section>
-<section>
+<section id="">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2"><code>ROLLUP</code></h2>
+      <h2 class="h2"><code></code></h2>
       <p>Want a summary row at the bottom? Oracle gives us a function for that!</p>
       <pre><code class="language-sql">SELECT primary_class, MAX(hitpoints) FROM characters
 GROUP BY ROLLUP(primary_class)
@@ -331,10 +341,10 @@ ORDER BY primary_class</code></pre>
     </div>
   </div>
 </section>
-<section>
+<section id="">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2"><code>CUBE</code></h2>
+      <h2 class="h2"><code></code></h2>
       <p>Want a summary row for each thing? In a table that's barely readable because the summary rows use <code>(null)</code> when it means "any"?</p>
       <pre><code class="language-sql">SELECT primary_class, subclass, MAX(hitpoints) FROM characters
 WHERE subclass IS NOT NULL
@@ -344,10 +354,10 @@ ORDER BY primary_class, subclass</code></pre>
     </div>
   </div>
 </section>
-<section>
+<section id="">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Subqueries</h2>
+      <h2 class="h2"></h2>
       <p>Some of you have already been using subqueries, but you've been using them for the wrong reasons.</p>
       <p>Don't use a subquery because you're not sure of the <code>WHERE</code> syntax, the order of operations, or how to code a self-join.</p>
       <p><strong>DO NOT</strong> use subqueries unless <em>you don't have a choice</em> or unless <em>it reduces, rather than adds, complexity</em>.</p>  
@@ -375,10 +385,10 @@ WHERE wisdom > (
     </div>
   </div>
 </section>
-<section>
+<section id="">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">CRUD</h2>
+      <h2 class="h2"></h2>
       <p>"CRUD" is not a sql term - it is an acronym that is used to refer to operations in any persistent data storage.</p>
       <p>This is what's known as the 'data lifecycle'. Think of any online shopping cart, or social media. These are things your users can do, and how our sql code will allow them to do it.</p>
       <dl class="no-bullet">
@@ -503,7 +513,7 @@ WHERE UPPER(alignment) LIKE ('%EVIL%')</code></pre>
     </div>
   </div>
 </section>
-<section id="lab">
+<section id="">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Lab time!</h2>
