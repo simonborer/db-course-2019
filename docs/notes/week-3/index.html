@@ -116,8 +116,8 @@ ORDER BY vendor_state, vendor_city</code></pre>
 (invoice_total + (invoice_total * (10/100)))
 FROM invoices</code></pre>
       <p>When this would've done just fine:</p>
-      <pre><code class="language-sql">SELECT invoice_total * .1
-invoice_total + invoice_total * .1
+      <pre><code class="language-sql">SELECT invoice_total * .1,
+  invoice_total + invoice_total * .1
 FROM invoices</code></pre>
     </div>
   </div>
@@ -329,10 +329,10 @@ AND AVG(charisma) BETWEEN 10 AND 20</code></pre>
     </div>
   </div>
 </section>
-<section id="">
+<section id="rollup">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2"><code></code></h2>
+      <h2 class="h2"><code>ROLLUP</code></h2>
       <p>Want a summary row at the bottom? Oracle gives us a function for that!</p>
       <pre><code class="language-sql">SELECT primary_class, MAX(hitpoints) FROM characters
 GROUP BY ROLLUP(primary_class)
@@ -341,10 +341,10 @@ ORDER BY primary_class</code></pre>
     </div>
   </div>
 </section>
-<section id="">
+<section id="cube">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2"><code></code></h2>
+      <h2 class="h2"><code>CUBE</code></h2>
       <p>Want a summary row for each thing? In a table that's barely readable because the summary rows use <code>(null)</code> when it means "any"?</p>
       <pre><code class="language-sql">SELECT primary_class, subclass, MAX(hitpoints) FROM characters
 WHERE subclass IS NOT NULL
@@ -354,10 +354,10 @@ ORDER BY primary_class, subclass</code></pre>
     </div>
   </div>
 </section>
-<section id="">
+<section id="subqueries">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2"></h2>
+      <h2 class="h2">Subqueries</h2>
       <p>Some of you have already been using subqueries, but you've been using them for the wrong reasons.</p>
       <p>Don't use a subquery because you're not sure of the <code>WHERE</code> syntax, the order of operations, or how to code a self-join.</p>
       <p><strong>DO NOT</strong> use subqueries unless <em>you don't have a choice</em> or unless <em>it reduces, rather than adds, complexity</em>.</p>  
@@ -385,10 +385,10 @@ WHERE wisdom > (
     </div>
   </div>
 </section>
-<section id="">
+<section id="crud">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2"></h2>
+      <h2 class="h2">CRUD</h2>
       <p>"CRUD" is not a sql term - it is an acronym that is used to refer to operations in any persistent data storage.</p>
       <p>This is what's known as the 'data lifecycle'. Think of any online shopping cart, or social media. These are things your users can do, and how our sql code will allow them to do it.</p>
       <dl class="no-bullet">
@@ -513,7 +513,7 @@ WHERE UPPER(alignment) LIKE ('%EVIL%')</code></pre>
     </div>
   </div>
 </section>
-<section id="">
+<section id="lab">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Lab time!</h2>
