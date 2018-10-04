@@ -19,7 +19,7 @@ CREATE TABLE characters
     feats			VARCHAR2(100),
     hitpoints 		NUMBER,
     armour_class 	NUMBER,
-    stength 		NUMBER,
+    strength 		NUMBER,
     dexterity 		NUMBER,
     constitution 	NUMBER,
     intelligence 	NUMBER,

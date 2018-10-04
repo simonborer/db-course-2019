@@ -31,14 +31,13 @@
     "mod": 5,
     "description": "This week we'll cover how to create a test table; insert new data to a table; update existing data; delete data from a table; work with date/time dat; the use of COMMIT and ROLLBACK for changes; various data types used in Oracle,; functions for working with numeric data; functions for working with null data values; nvl and nvl2; converting data from one type to another.",
     "reading": "Murach’s Oracle, Chapters 7 & 8",
-    "extraContent": [{"text": "Assignment 4", "href": "./assignments/assignment-4.html"}],
-    "showSlides": false
+    "showSlides": true
 },
 {
     "mod": 6,
     "description": "This week we'll cover the basic steps to design a database; relationships between tables; normalization; how to define data elements; identify tables and assign columns; identify primary and foreign keys; primary key constraint; a foreign key constraint; a check constraint; creating tables, indices and sequences; altering the columns of a table; dropping tables; truncating tables.",
     "reading": "Murach’s Oracle, Chapters 9 & 10",
-    "extraContent": [{"text": "Assignment 5", "href": "./assignments/assignment-5.html"}],
+    "extraContent": [{"text": "Assignment 5", "href": "./assignments/assignment-4.html"}],
     "showSlides": false
 },
 {
