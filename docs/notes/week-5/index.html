@@ -6,16 +6,16 @@
 <title>The sixth week | Intro to Databases</title>
 <meta name="description" content="Posts and slides"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-	  	<link rel="stylesheet" href="/docs/assets/css/styles.css">
+	  	<link rel="stylesheet" href="/db-course/assets/css/styles.css">
 		
-			<link rel="stylesheet" href="/docs/assets/css/prism.css">
+			<link rel="stylesheet" href="/db-course/assets/css/prism.css">
 		
 	</head>
 	<body class="post">
 		<section class="page">
 			
 			
-				<nav><a href="/docs" class="button large button--home">Home</a></nav>
+				<nav><a href="/db-course" class="button large button--home">Home</a></nav>
 			
 		  <h1 class="page__title">The sixth week</h1>
 		</section>
@@ -30,9 +30,17 @@
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <ol class="toc">
       
-      	<li><a href="#design">Designing a database</a></li>
+      	<li><a href="#design">Steps to designing a database</a></li>
       
-      	<li><a href="#lab">Lab</a></li>
+      	<li><a href="#sequence">Creating a sequence</a></li>
+      
+      	<li><a href="#commitRollback">COMMIT and ROLLBACK</a></li>
+      
+      	<li><a href="#plsql">PL/SQL</a></li>
+      
+      	<li><a href="#midterm">Midterm prep</a></li>
+      
+      	<li><a href="#lab">Assignment</a></li>
       
       </ol>
     </div>
@@ -49,7 +57,7 @@
 <section id="design">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Designing a database</h2>
+      <h2 class="h2">Steps to designing a database</h2>
       <p>It's time for us to take the next step beyond creating a database. It's time to <em>design</em> a database.</p>
     </div>
   </div>
@@ -73,7 +81,7 @@
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Identifying data</h2>
-      <p>So far we've gotten datasets where the data has been selected for us. However, when designing a database, you'll often have to make descisions about what types of data are needed.</p>
+      <p>So far we've gotten datasets where the data has been selected for us. However, when designing a database, you'll often have to make descisions about what kinds of data are needed.</p>
       <p>Can you identify what the data that we might need to store when setting up a typical e-commerce site?</p>
       <div class="callout primary"><p>Try thinking first about the data <em>entities</em> (people, events, objects, etc.) that are important.</p></div>
     </div>
@@ -186,7 +194,7 @@
     </div>
   </div>
 </section>
-<section>
+<section id="sequence">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2"><code>SEQUENCE</code></h2>
@@ -220,7 +228,7 @@ FROM dual</code></pre>
     </div>
   </div>
 </section>
-<section>
+<section id="commitRollback">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2"><code>COMMIT</code> & <code>ROLLBACK</code></h2>
@@ -231,17 +239,17 @@ FROM dual</code></pre>
     </div>
   </div>
 </section>
-<section>
+<section id="plsql">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">First look at PL/SQL</h2>
       <p>After the midterm, we'll look at scripting in Oracle, using the PL/SQL language. This way we can create scripts to work on the database instead of running individual statements ourselves!</p>
       <p>At the beginning of the year we ran some scripts, which at this point, we should be able to read.</p>
-      <p>Take a look at <a href="/docs/assets/documents/create_ap_tables.sql" target="_blank">create_ap_tables.sql</a></p>
+      <p>Take a look at <a href="/db-course/assets/documents/create_ap_tables.sql" target="_blank">create_ap_tables.sql</a></p>
     </div>
   </div>
 </section>
-<section>
+<section id="midterm">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Midterm prep</h2>
@@ -326,8 +334,30 @@ ORDER BY "Invoices" DESC</code></pre>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Sans Forgetica</h2>
+      <p><a href="https://sansforgetica.rmit/" target="_blank">Sans Forgetica</a> is a font developed by a multidisciplinary team of designers and behavioural scientists from Australia's RMIT university.</p>
+      <p>It is designed to act as a study aid, improving recall.</p>
+      <!-- <p class="post-only"><button class="button" id="sansF"></button></p> -->
+      <script type="text/javascript">
+        document.addEventListener('click', function (event) {
+        if (!event.target.matches('#sansF')) return;
+        event.preventDefault();
+        const cList = document.body.classList;
+        if (cList.contains("forgetica")) {
+          cList.remove("forgetica")
+        } else {
+          cList.add("forgetica")
+        }
+      }, false);
+      </script>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Assignment time!</h2>
-      <p class="slide-only">See <a href="/docs/notes/week-5/index.html#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p>
+      <p class="slide-only">See <a href="/db-course/notes/week-5/index.html#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p>
     </div>
   </div>
 </section>
@@ -359,7 +389,7 @@ ORDER BY "Invoices" DESC</code></pre>
   </div>
 </section>
 		
-			<script src="/docs/assets/javascript/prism.js"></script>
+			<script src="/db-course/assets/javascript/prism.js"></script>
 		
 	</body>
 </html>

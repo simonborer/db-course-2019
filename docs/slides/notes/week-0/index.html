@@ -6,7 +6,7 @@
 <title>The first week | Intro to Databases</title>
 <meta name="description" content="Posts and slides"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/docs/assets/css/reveal.css">
+  <link rel="stylesheet" href="/db-course/assets/css/reveal.css">
   <style>
   	.slides > :not(section) {
   		display: none;
@@ -186,7 +186,7 @@
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 		<h2 class="h2">The Syllabus</h2>
 		<p>
-			<a class="button" target="_blank" href="/docs/assets/documents/HTTP5105-syllabus.pdf">Download the syllabus<span class="show-for-sr">Opens in a new window.</span></a>		
+			<a class="button" target="_blank" href="/db-course/assets/documents/HTTP5105-syllabus.pdf">Download the syllabus<span class="show-for-sr">Opens in a new window.</span></a>		
 		</p>
 		</div>
 	</div>
@@ -196,8 +196,8 @@
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<h2 class="h2">What a database does</h2>
 			<h3 class="post-only">Components of a client-server system</h3>
-			<a href="/docs/assets/images/server-diagram.png" target='_blank'>
-				<img class="diagram" src="/docs/assets/images/diagram.png" alt="A diagram of a web client making a request from a web server, which in turn either returns static files, or a dynamic request populated by data from a database.">
+			<a href="/db-course/assets/images/server-diagram.png" target='_blank'>
+				<img class="diagram" src="/db-course/assets/images/diagram.png" alt="A diagram of a web client making a request from a web server, which in turn either returns static files, or a dynamic request populated by data from a database.">
 				<span class="show-for-sr">Open image in a new window</span>
 			</a>
 		</div>
@@ -214,8 +214,8 @@
 <section>
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-			<a href="/docs/assets/images/diagram-server_db.png" target='_blank'>
-				<img class="diagram image-3q" src="/docs/assets/images/diagram-server-db.png" alt="A diagram of a web client making a request from a web server, which in turn either returns static files, or a dynamic request populated by data from a database.">
+			<a href="/db-course/assets/images/diagram-server_db.png" target='_blank'>
+				<img class="diagram image-3q" src="/db-course/assets/images/diagram-server-db.png" alt="A diagram of a web client making a request from a web server, which in turn either returns static files, or a dynamic request populated by data from a database.">
 				<span class="show-for-sr">Open image in a new window</span>
 			</a>
 		</div>
@@ -254,7 +254,7 @@
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<h2 class="h2">Let's see if it works!</h2>
 			<figure>
-				<img src="/docs/assets/images/new-connection.jpg" alt="Green plus symbol">
+				<img src="/db-course/assets/images/new-connection.jpg" alt="Green plus symbol">
 				<figcaption>To create a connection to a database, click on the green plus symbol in the top right of SQL Developer</figcaption>
 			</figure>
 		</div>
@@ -264,7 +264,7 @@
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 				<figure>
-					<img src="/docs/assets/images/new-connection--fields.jpg" alt="Fields to be filled out to create a new connection to the humber database.">
+					<img src="/db-course/assets/images/new-connection--fields.jpg" alt="Fields to be filled out to create a new connection to the humber database.">
 					<figcaption>Fill out the appropriate fields as indicated. <code>Connection name</code> is whatever you'll remember. <code>Username</code> is your student number. The rest of the values are required as indicated in the screenshot.</figcaption>
 				</figure>
 		</div>
@@ -274,10 +274,10 @@
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1 smaller-text">
 			<h2 class="h2">Populating your database</h2>
-			<p>Download <a href="/docs/assets/documents/create_ap_tables.sql">this .sql file</a>.</p>
+			<p>Download <a href="/db-course/assets/documents/create_ap_tables.sql">this .sql file</a>.</p>
 			<p>Open this file with SQL Developer (<code>File > Open</code>) and then...</p>
 				<figure>
-					<img src="/docs/assets/images/run-script.jpg" alt="Image indicating placement of 'run script' icon in SQL developer">
+					<img src="/db-course/assets/images/run-script.jpg" alt="Image indicating placement of 'run script' icon in SQL developer">
 					<figcaption>...click the 'Run Script' icon (or press F5)</figcaption>
 				</figure>
 			<p>When prompted, choose to run this on the connection you've already created and opened.</p>
@@ -289,7 +289,7 @@
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<h2 class="h2">Your first query</h2>
 			<figure>
-				<img src="/docs/assets/images/worksheet.jpg" alt="How to open a new worksheet">
+				<img src="/db-course/assets/images/worksheet.jpg" alt="How to open a new worksheet">
 				<figcaption>You should already have a worksheet open, but if you don't, click on the worksheet icon to open one up.</figcaption>
 			</figure>
 		</div>
@@ -306,7 +306,7 @@
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<p>You should see all kinds of wonderful data!</p>
-			<img src="/docs/assets/images/output.jpg" alt="Database output">
+			<img src="/db-course/assets/images/output.jpg" alt="Database output">
 		</div>
 	</div>
 </section>
@@ -361,7 +361,7 @@
 			<h2 class="h2">Terminology</h2>
 			<p>Let's start learning some words!</p>
 			<figure>
-				<img src="/docs/assets/images/output--rows-columns.jpg" alt="Demonstration of rows and columns">
+				<img src="/db-course/assets/images/output--rows-columns.jpg" alt="Demonstration of rows and columns">
 				<figcaption>These are easy - rows are horizontal sets of data, and columns are vertical categories of data.</figcaption>
 			</figure>
 		</div>
@@ -373,7 +373,7 @@
 			<h2 class="h2">Primary key</h2>
 			<p>Another important element that every table should have is a <strong>primary key</strong>.</p>
 			<figure>
-				<img src="/docs/assets/images/output--primary-key.jpg" alt="Demonstration of a primary key">
+				<img src="/db-course/assets/images/output--primary-key.jpg" alt="Demonstration of a primary key">
 				<figcaption>Primary keys are something you define when you create a table. They <em>must</em> be unique for each row! No two rows can have the same primary key.</figcaption>
 			</figure>
 		</div>
@@ -392,7 +392,7 @@
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<figure>
-				<img src="/docs/assets/images/output--foreign-key.jpg" alt="Demonstration of a foreign key.">
+				<img src="/db-course/assets/images/output--foreign-key.jpg" alt="Demonstration of a foreign key.">
 				<figcaption>If we look at our <code class="language-sql">INVOICES</code> table, you'll see that if references <code class="language-sql">VENDOR_ID</code>, which is the primary key for the <code class="language-sql">VENDOR</code> table. This means we can easily reference the information about the vendor that this invoice belongs to from the <code class="language-sql">VENDOR</code> table.</figcaption>
 			</figure>	
 		</div>
@@ -435,7 +435,7 @@
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<figure>
-				<img src="/docs/assets/images/column-info.jpg" alt="Demonstration of clicking on a table to see information about it's columns.">
+				<img src="/db-course/assets/images/column-info.jpg" alt="Demonstration of clicking on a table to see information about it's columns.">
 				<figcaption>In SQL Developer, if we click on a table in our table tree, it will show us information about the columns in that table, including what type of data is allowed.</figcaption>
 			</figure>	
 		</div>
@@ -699,7 +699,7 @@ ORDER BY vendor_name DESC</code></pre></td>
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<h2 class="h2">Lab Questions</h2>
-			<p>See <a href="/docs/notes/week-0/index.html#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p>	
+			<p>See <a href="/db-course/notes/week-0/index.html#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p>	
 		</div>
 	</div>
 </section>
@@ -753,8 +753,8 @@ ORDER BY invoice_number</code></pre>
   <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
   <script>
       Reveal.initialize({
-          dependencies: [{ src: '/docs/assets/javascript/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                { src: '/docs/assets/javascript/plugin/reveal-a11y.js', async: true, condition: function() { 
+          dependencies: [{ src: '/db-course/assets/javascript/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: '/db-course/assets/javascript/plugin/reveal-a11y.js', async: true, condition: function() { 
                   return !!document.body.classList; 
                 } 
             }]

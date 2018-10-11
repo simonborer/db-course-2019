@@ -1,5 +1,10 @@
 @import './foundation/scss/app';
 
+@font-face {
+  font-family: "Sans Forgetica";
+  src: url("../sans-forgetica.otf") format("otf");
+}
+
 $grey: #3c4151;
 $light-grey: #cacaca;
 
@@ -231,4 +236,8 @@ a {
 
 .list-style-none, dl.no-bullet {
     list-style: none;
+}
+
+.forgetica {
+    font-family: "Sans Forgetica", sans-serif;
 }

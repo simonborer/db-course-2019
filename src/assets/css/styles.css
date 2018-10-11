@@ -2600,6 +2600,8 @@ a.thumbnail image { -webkit-box-shadow: none; box-shadow: none; }
 
 .long-delay { -webkit-animation-delay: 700ms !important; animation-delay: 700ms !important; }
 
+@font-face { font-family: "Sans Forgetica"; src: url("../sans-forgetica.otf") format("otf"); }
+
 body { color: #3c4151; }
 
 .button { font-weight: bold; }
@@ -2697,3 +2699,5 @@ code.language-sql { border: 0 solid transparent; background-color: transparent; 
 .assignment ol > li table { margin-top: 1rem; }
 
 .list-style-none, dl.no-bullet { list-style: none; }
+
+.forgetica { font-family: "Sans Forgetica", sans-serif; }

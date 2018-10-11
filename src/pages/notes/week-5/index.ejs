@@ -4,10 +4,22 @@ layout: default
 hasSlides: true
 today:
   -
-    title: Designing a database
+    title: Steps to designing a database
     id: design
   -
-    title: Lab
+    title: Creating a sequence
+    id: sequence
+  -
+    title: COMMIT and ROLLBACK
+    id: commitRollback
+  -
+    title: PL/SQL
+    id: plsql
+  -
+    title: Midterm prep
+    id: midterm
+  -
+    title: Assignment
     id: lab
 
 ---
@@ -50,7 +62,7 @@ today:
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Identifying data</h2>
-      <p>So far we've gotten datasets where the data has been selected for us. However, when designing a database, you'll often have to make descisions about what types of data are needed.</p>
+      <p>So far we've gotten datasets where the data has been selected for us. However, when designing a database, you'll often have to make descisions about what kinds of data are needed.</p>
       <p>Can you identify what the data that we might need to store when setting up a typical e-commerce site?</p>
       <div class="callout primary"><p>Try thinking first about the data <em>entities</em> (people, events, objects, etc.) that are important.</p></div>
     </div>
@@ -163,7 +175,7 @@ today:
     </div>
   </div>
 </section>
-<section>
+<section id="<%- page.today[1].id %>">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2"><code>SEQUENCE</code></h2>
@@ -197,7 +209,7 @@ FROM dual</code></pre>
     </div>
   </div>
 </section>
-<section>
+<section id="<%- page.today[2].id %>">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2"><code>COMMIT</code> & <code>ROLLBACK</code></h2>
@@ -208,7 +220,7 @@ FROM dual</code></pre>
     </div>
   </div>
 </section>
-<section>
+<section id="<%- page.today[3].id %>">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">First look at PL/SQL</h2>
@@ -218,7 +230,7 @@ FROM dual</code></pre>
     </div>
   </div>
 </section>
-<section>
+<section id="<%- page.today[4].id %>">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Midterm prep</h2>
@@ -297,6 +309,28 @@ ORDER BY "Invoices" DESC</code></pre>
         <li>Without looking at your notes, write down an explanation of the concept you want to study. Write it as though you're teaching it, using plain language. The purpose of this is identify what you know and what you don't know.</li>
         <li>Whatever you don't know, look up. Repeat step 1.</li>
       </ol>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Sans Forgetica</h2>
+      <p><a href="https://sansforgetica.rmit/" target="_blank">Sans Forgetica</a> is a font developed by a multidisciplinary team of designers and behavioural scientists from Australia's RMIT university.</p>
+      <p>It is designed to act as a study aid, improving recall.</p>
+      <!-- <p class="post-only"><button class="button" id="sansF"></button></p> -->
+      <script type="text/javascript">
+        document.addEventListener('click', function (event) {
+        if (!event.target.matches('#sansF')) return;
+        event.preventDefault();
+        const cList = document.body.classList;
+        if (cList.contains("forgetica")) {
+          cList.remove("forgetica")
+        } else {
+          cList.add("forgetica")
+        }
+      }, false);
+      </script>
     </div>
   </div>
 </section>
