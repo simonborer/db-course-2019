@@ -41,18 +41,18 @@
     "showSlides": true
 },
 {
-    "title": "Midterm",
-    "description": "You'll do fine!",
-    "extraContent": [{"text": "Midterm", "href": "./assignments/midterm.html"}],
-    "showSlides": false,
-    "noSlides": true
-},
-{
     "mod": 7,
     "description": "This week we'll cover anonymous PL/SQL; how a cursor is used; how to handle exceptions; the use of bind variables; declaring variables in PL/SQL; IF statements; loops.",
     "reading": "Murach’s Oracle, Chapter 13",
-    "extraContent": [{"text": "Assignment 6", "href": "./assignments/assignment-6.html"}],
+    "extraContent": [{"text": "Assignment 5", "href": "./assignments/assignment-5.html"}],
     "showSlides": false
+},
+{
+    "title": "Midterm",
+    "description": "You'll do fine!",
+    "extraContent": [{"text": "Midterm", "href": "./"}],
+    "showSlides": false,
+    "noSlides": true
 },
 {
     "mod": 8,
