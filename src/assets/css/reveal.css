@@ -746,3 +746,5 @@ based on dark.css by Ivan Sagalaev
 .reveal .slide-half-col { display: inline-block; width: 49%; }
 
 .reveal table.base-table thead { background: #fefefe; color: #3c4151; }
+
+.reveal pre code.no-max { max-height: 100%; }
