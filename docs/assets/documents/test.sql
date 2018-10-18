@@ -3,7 +3,6 @@ SET SERVEROUTPUT ON;
 
 -- Declaring bind variables
 VARIABLE bound_var  VARCHAR2(20);
-VARIABLE sub_var    VARCHAR2(20);
 
 -- Declaring variables
 DECLARE
@@ -37,9 +36,9 @@ DECLARE
     TYPE character_array        IS TABLE OF VARCHAR2(300)
                                 INDEX BY BINARY_INTEGER;
     feats_arr                   character_array;
-    
-    name_check              VARCHAR(500);
-    vendor_name_to_check    VARCHAR(20);
+
+    -- variable for substitution
+    sub_var    VARCHAR2(20);
 
 -- The code that gets run. Since this block
 -- doesn't have a name, it is "anonymous", unlike
@@ -155,9 +154,9 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Collected ' || feats_arr(i));
     END LOOP;
     
-    :sub_var := '&sub_var';
+    sub_var := '&sub_var';
     
-    DBMS_OUTPUT.PUT_LINE('You could do Madlibs in PL/SQL, but that would be ' || :sub_var || CHR(10));
+    DBMS_OUTPUT.PUT_LINE(CHR(10) || 'You could do Madlibs in PL/SQL, but that would be ' || sub_var || CHR(10));
     
     :bound_var := 'bind variables';
     
@@ -166,5 +165,25 @@ END;
 /
 
 BEGIN
+	DBMS_OUTPUT.PUT_LINE(CHR(10) || 'New block!' || CHR(10));
     DBMS_OUTPUT.PUT_LINE('Look at me using ' || :bound_var || ' in different blocks!');
 END;
+/
+
+DECLARE
+    -- variable for selecting into
+    err_var 	VARCHAR2(100);
+
+BEGIN
+	SELECT background 
+	INTO err_var
+	FROM characters 
+	WHERE character_id = '123456';
+EXCEPTION
+	WHEN NO_DATA_FOUND THEN
+		DBMS_OUTPUT.PUT_LINE('Query returned no data');
+	WHEN OTHERS THEN
+		DBMS_OUTPUT.PUT_LINE('Something went wrong');
+		DBMS_OUTPUT.PUT_LINE(SQLERRM);
+END;
+/
