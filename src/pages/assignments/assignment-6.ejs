@@ -1,0 +1,20 @@
+---
+title: Assignment 3
+layout: default
+hasSlides: false
+---
+<div class="grid-container assignment">
+  <div class="grid-x grid-margin-x">
+    <div class="cell small-10 small-offset-1 large-6 large-offset-3">
+      <h2 class="h2">Stored Procedures and Functions</h2>
+      <div class="callout primary">Submit as a .sql file or files.</div>
+      <div class="callout alert"><strong>Due Date</strong>: Before 11:59pm, Wednesday, Nov 7th.</div>
+      <ol>
+        <li>Create a stored procedure named insert_glaccount that lets a user add a new row to the general_ledger_accounts table. This procedure should have two parameters, one for each of the two columns in this table. Then, code a CALL statement that tests the procedure. (Note that this table doesn’t allow duplicate account descriptions.)</li>
+        <li>Code a script that calls the procedure that you created in exercise 1 and passes the parameters by name. This procedure should provide exception handling that displays this message if the INSERT statement fails because the account number or account description is already in the table (a DUP_VAL_ON_INDEX error): <code>A DUP_VAL_ON_INDEX error occurred.</code> It should provide this message if any other type of error occurs: <code>An unknown exception occurred.</code></li>
+        <li>Code a function named test_glaccounts_description that accepts one parameter that tests whether an account description is already in the General_Ledger_Accounts table. This function should return a value of 1 if the account description is in the table or zero if it isn’t. (Note: If a SELECT statement doesn’t return any data, it throws a NO_DATA_FOUND exception that your function can handle.)</li>
+        <li>Code a script that calls the function that you created in exercise 3. This script should display this message if the account description is in the table: <code>Account description is already in use.</code> It should provide this message if any other type of error occurs: <code>Account description is available.</code></li>
+      </ol>
+    </div>
+  </div>
+</div>

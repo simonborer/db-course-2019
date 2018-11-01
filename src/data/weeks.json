@@ -56,10 +56,10 @@
 },
 {
     "mod": 8,
-    "description": "This week we'll cover stored procedures; a stored procedure that inserts a row; a stored procedure drops a table; optional parameters, input and output parameters; how to raise errors",
+    "description": "This week review the midterm, and cover stored procedures and user-defined functions; optional parameters, input and output parameters; how to raise errors",
     "reading": "Murach’s Oracle, Chapter 15",
-    "extraContent": [{"text": "Assignment 7", "href": "./assignments/assignment-7.html"}],
-    "showSlides": false
+    "extraContent": [{"text": "Assignment 6", "href": "./assignments/assignment-6.html"}],
+    "showSlides": true
 },
 {
     "mod": 9,
