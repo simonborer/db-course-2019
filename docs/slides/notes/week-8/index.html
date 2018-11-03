@@ -1,27 +1,39 @@
----
-title: The ninth week
-layout: default
-hasSlides: true
-today:
-  -
-    title: Reviewing the midterm
-    id: midterm
-  -
-    title: Procedures vs Functions
-    id: vs
-  -
-    title: Stored Procedures
-    id: procedures
-  -
-    title: User-defined Functions
-    id: functions
-  -
-    title: Assignment
-    id: lab
----
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>The ninth week | Intro to Databases</title>
+<meta name="description" content="Posts and slides"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/db-course/assets/css/reveal.css">
+  <style>
+  	.slides > :not(section) {
+  		display: none;
+  	}
+  	.reveal li > ol {
+		  list-style-type: lower-alpha; 
+  	}
+    .post-only {
+      display: none;
+    }
+    .reveal blockquote {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  
+	<div class="reveal">
+		<div class="slides">
+	      	<section>
+	      		<h1>The ninth week</h1>
+	      	</section>
+			
 
-<% const part = '../../../partials/'; %>
-<% const basePath = site.basePath %>
+
 
 <section class="slide-only">
   <div class="grid-x">
@@ -31,13 +43,34 @@ today:
     </div>
   </div>
 </section>
-<%- include(`${part}today`) %>
+
+
+<section>
+  <h2 class="slide-only">Here's what we're going today</h2>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <ol class="toc">
+      
+      	<li><a href="#midterm">Reviewing the midterm</a></li>
+      
+      	<li><a href="#vs">Procedures vs Functions</a></li>
+      
+      	<li><a href="#procedures">Stored Procedures</a></li>
+      
+      	<li><a href="#functions">User-defined Functions</a></li>
+      
+      	<li><a href="#lab">Assignment</a></li>
+      
+      </ol>
+    </div>
+  </div>
+</section>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <p>I was pretty pleased with the grade distribution - lots of 80's and 90's.</p>
       <p>The average was 74%, with a nice smooth bell curve.</p>
-      <img src="<%- basePath %>/assets/images/curve.png" alt="Smooth distribution of grades along a bell curve." />
+      <img src="/db-course/assets/images/curve.png" alt="Smooth distribution of grades along a bell curve." />
     </div>
   </div>
 </section>
@@ -50,7 +83,7 @@ today:
   </div>
 </section>
 <section>
-  <div class="grid-x" id="<%- page.today[0].id %>">
+  <div class="grid-x" id="midterm">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Lettered questions</h2>
       <p>Nearly everyone was able to get all of these. For those of you who struggled, please refer back to Module 3 where we discussed Entity Relationship diagrams, and Module 6 where we did a deep dive on primary and foreign keys.</p>
@@ -337,18 +370,18 @@ AND classid = 8</code></pre>
   </div>
 </section>
 <section>
-  <div class="grid-x" id="<%- page.today[1].id %>">
+  <div class="grid-x" id="vs">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2"><%- page.today[1].title %></h2>
+      <h2 class="h2">Procedures vs Functions</h2>
       <p><strong>Procedures</strong> are a set of tasks, i.e. CRUD functions. They <em>can</em> return a value, but that's not what they're for. They <em>can't</em> be used in queries and statements. Simply put, they're for changing things.</p>
       <p><strong>Functions</strong> are for returning values. They don't change stuff.</p>
     </div>
   </div>
 </section>
 <section>
-  <div class="grid-x" id="<%- page.today[2].id %>">
+  <div class="grid-x" id="procedures">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2"><%- page.today[2].title %></h2>
+      <h2 class="h2">Stored Procedures</h2>
       <pre><code class="no-max language-sql">CREATE OR REPLACE PROCEDURE update_invoices_credit_total /* Give it a name */
 (
     /*  our parameters - the options we'll pass in when 
@@ -484,9 +517,9 @@ END;
   </div>
 </section>
 <section>
-  <div class="grid-x" id="<%- page.today[3].id %>">
+  <div class="grid-x" id="functions">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2"><%= page.today[3].title %></h2>
+      <h2 class="h2">User-defined Functions</h2>
       <p>Creating a function:</p>
       <pre><code class="no-max language-sql">CREATE OR REPLACE FUNCTION get_vendor_id
 (
@@ -509,7 +542,7 @@ END;
   </div>
 </section>
 <section>
-  <div class="grid-x" id="<%- page.today[3].id %>">
+  <div class="grid-x" id="functions">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 
       <p>Calling the function:</p>
@@ -522,7 +555,7 @@ WHERE vendor_id = get_vendor_id('IBM')</code></pre>
   </div>
 </section>
 <section>
-  <div class="grid-x" id="<%- page.today[1].id %>">
+  <div class="grid-x" id="vs">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Lab time!</h2>
       <ol>
@@ -533,3 +566,20 @@ WHERE vendor_id = get_vendor_id('IBM')</code></pre>
     </div>
   </div>
 </section>
+	
+		</div>
+	</div>
+
+  <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+  <script>
+      Reveal.initialize({
+          dependencies: [{ src: '/db-course/assets/javascript/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: '/db-course/assets/javascript/plugin/reveal-a11y.js', async: true, condition: function() { 
+                  return !!document.body.classList; 
+                } 
+            }]
+      });
+    </script>
+  </body>
+</html>
