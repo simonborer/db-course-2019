@@ -1,38 +1,56 @@
----
-title: The tenth week
-layout: default
-hasSlides: true
-today:
-  -
-    title: Databases in 2018
-    id: 2018
-  - 
-    title: MySQL
-    id: MySQL
-  - 
-    title: Acid Compliance
-    id: acid
-  -
-    title: PostreSQL
-    id: postgres
-  -
-    title: MongoDB
-    id: mongo
-  -
-    title: Redis
-    id: redis
-  -
-    title: Discussion
-    id: discussion
-  -
-    title: Assignment
-    id: lab
----
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	  	<meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>The tenth week | Intro to Databases</title>
+<meta name="description" content="Posts and slides"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	  	<link rel="stylesheet" href="/db-course/assets/css/styles.css">
+		
+			<link rel="stylesheet" href="/db-course/assets/css/prism.css">
+		
+	</head>
+	<body class="post">
+		<section class="page">
+			
+			
+				<nav><a href="/db-course" class="button large button--home">Home</a></nav>
+			
+		  <h1 class="page__title">The tenth week</h1>
+		</section>
+		
 
-<% const part = '../../../partials/'; %>
-<% const basePath = site.basePath %>
 
-<%- include(`${part}today`) %>
+
+
+
+<section>
+  <h2 class="slide-only">Here's what we're going today</h2>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <ol class="toc">
+      
+      	<li><a href="#2018">Databases in 2018</a></li>
+      
+      	<li><a href="#MySQL">MySQL</a></li>
+      
+      	<li><a href="#acid">Acid Compliance</a></li>
+      
+      	<li><a href="#postgres">PostreSQL</a></li>
+      
+      	<li><a href="#mongo">MongoDB</a></li>
+      
+      	<li><a href="#redis">Redis</a></li>
+      
+      	<li><a href="#discussion">Discussion</a></li>
+      
+      	<li><a href="#lab">Assignment</a></li>
+      
+      </ol>
+    </div>
+  </div>
+</section>
 
 <!-- 
   MySQL 
@@ -579,7 +597,7 @@ select * from my_table;</code></pre>
   </div>
 </section>
 <section>
-  <div class="grid-x" id="<%- page.today[1].id %>">
+  <div class="grid-x" id="MySQL">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Assignment time!</h2>
       <p>This week you will be doing some database architecture. Create tables based on the following. Don't feel the need to actually <em>solve</em> any problems listed below, but think about how you might, and design your tables to facilitate that.</p>
@@ -647,3 +665,8 @@ select * from my_table;</code></pre>
     </div>
   </div>
 </section>
+		
+			<script src="/db-course/assets/javascript/prism.js"></script>
+		
+	</body>
+</html>
