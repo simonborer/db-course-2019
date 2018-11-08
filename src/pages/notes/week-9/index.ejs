@@ -4,17 +4,7 @@ layout: default
 hasSlides: true
 today:
   -
-    title: Reviewing the midterm
-    id: midterm
-  -
-    title: Procedures vs Functions
-    id: vs
-  -
-    title: Stored Procedures
-    id: procedures
-  -
-    title: The Coming Weeks
-    id: poll
+    title: MySQL
   -
     title: Assignment
     id: lab
@@ -23,501 +13,469 @@ today:
 <% const part = '../../../partials/'; %>
 <% const basePath = site.basePath %>
 
-<section class="slide-only">
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Happy Cheap Candy Day!</h2>
-      <p class="h1">🍬🍭🍬</p>
-    </div>
-  </div>
-</section>
 <%- include(`${part}today`) %>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>I was pretty pleased with the grade distribution - lots of 80's and 90's.</p>
-      <p>The average was 74%, with a nice smooth bell curve.</p>
-      <img src="<%- basePath %>/assets/images/curve.png" alt="Smooth distribution of grades along a bell curve." />
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>If the exam was a wake-up call - don't worry, we're going to go over everything today.</p>
-      <p>Also, I suspect a number of you are not using the textbook. It is a really good resource. If you read the assigned chapters for each week, you <em>will</em> understand that week's content. I've even designed some of our data sets to align with the examples in the book.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x" id="<%- page.today[0].id %>">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Lettered questions</h2>
-      <p>Nearly everyone was able to get all of these. For those of you who struggled, please refer back to Module 3 where we discussed Entity Relationship diagrams, and Module 6 where we did a deep dive on primary and foreign keys.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 1</h2>
-      <blockquote>Return a column called “Teacher Full Name” that combines their last and first names, separated by a comma.</blockquote>
-      <pre><code class="language-sql">SELECT teacherlname || ', ' || teacherfname AS "Teacher Full Name"
-FROM teachers</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 2</h2>
-      <blockquote>Return a column called “Seniority” that shows how long it has been since a teacher was hired, and order it starting with the most seniority.</blockquote>
-      <pre><code class="language-sql">SELECT teacherid, ROUND(SYSDATE - hiredate) AS "Seniority"
-FROM teachers
-ORDER BY "Seniority" DESC</code></pre>
-      <p>This one gave a few people trouble. Maybe it was how the question was worded, but the answer was meant to be not just the date of hiring, but the difference between <code>hiredate</code> and the current date. I gave out a lot of half marks for this.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 3</h2>
-      <blockquote>Find all the students with a last name starting with the letters A through E.</blockquote>
-      <pre><code class="language-sql">SELECT * FROM students
-WHERE UPPER(SUBSTR(studentlname, 1, 1)) BETWEEN 'A' and 'E'</code></pre>
-      <p>A few of you still want to use a range instead of an array, which, <em>technically</em>, works. I may have given you this one.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 4</h2>
-      <blockquote>Return a list of the top 5 highest paid teachers and their salary to the nearest dollar.</blockquote>
-      <pre><code class="language-sql">SELECT teacherid, ROUND(salary) AS Salary 
-FROM teachers
-ORDER BY salary DESC
-FETCH FIRST 5 ROWS ONLY</code></pre>
-      <p>Remember, <code>FETCH</code> gets executed after <code>ORDER BY</code>, but <code>ROWNUM</code> doesn't.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 5</h2>
-      <blockquote>Vanessa Cox (studentid = 43, studentnumber = N1712) Is asking about their registered courses. Print out a list of classes this student is enrolled in.</blockquote>
-      <pre><code class="language-sql">SELECT classname FROM studentsxclasses
-JOIN classes USING(classid)
-WHERE studentid = 43</code></pre>
-      <p>Remember, <code>FETCH</code> gets executed after <code>ORDER BY</code>, but <code>ROWNUM</code> doesn't.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 6</h2>
-      <blockquote>Print a list of every class which has a teacher assigned to it. Include the teacher’s name.</blockquote>
-      <pre><code class="language-sql">SELECT classname, teacherfname || ' ' || teacherlname AS teacher 
-FROM classes
-JOIN teachers USING(teacherid)</code></pre>
-      <p>Okay, a lot of you were <em>all over the place</em> with your joins. I suggest reviewing which joins do what, because problems like this take a little bit of thinking.</p>
-      <p>In this case, an inner join selects all classes with an assigned teacher because if there's no teacher, the join omits the class row.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 7</h2>
-      <blockquote>Print out a list of classes in the fall 2018 semester. The fall semester starts in September 2018 and ends in December 2018.</blockquote>
-      <pre><code class="language-sql">SELECT classname AS "Fall Classes" FROM classes
-WHERE TO_CHAR(startdate, 'YY-MM') = '18-09'
-    AND TO_CHAR(finishdate, 'YY-MM') = '18-12'
-</code></pre>
-      <p>Okay, we need to start treating dates <strong>as dates</strong>, not strings. This came up in a bunch of questions. Respect the data type.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 8</h2>
-      <blockquote>Find classes not in the web program. Note: the web program classes are all prefixed with ‘http’.</blockquote>
-      <pre><code class="language-sql">SELECT * FROM classes
-WHERE LOWER(classcode) NOT LIKE ('http%')</code></pre>
-      <p>You did really well on this one. A few of you might want to brush up on how the wildcards (<code>%</code>, which means any number of any characters, and <code>_</code>, which means one of any character) work.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 9</h2>
-      <blockquote>Find students who enrolled in August. Order by their last name, then by their first name.</blockquote>
-      <pre><code class="language-sql">SELECT * FROM students
-WHERE TO_CHAR(enrolmentdate, 'MM') = '08'
-ORDER BY studentlname, studentfname</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 10</h2>
-      <blockquote>Find the average teacher’s salary.</blockquote>
-      <pre><code class="language-sql">SELECT AVG(salary) FROM teachers</code></pre>
-      <p>You all did pretty great on this one and the next. You know aggregate functions!</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 11</h2>
-      <blockquote>Find when the first teacher was hired.</blockquote>
-      <pre><code class="language-sql">SELECT MIN(hiredate) FROM teachers</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 12</h2>
-      <blockquote>Linda Chan (teacherid = 3) teaches Web Application Development 2 (classid = 7) in the winter semester. She needs an attendance sheet organized by students’ last name, then by the students’ first name. Print out a list of students who are registered in this class, including their student number.</blockquote>
-      <pre><code class="language-sql">SELECT studentid, studentlname, studentfname FROM studentsxclasses
-JOIN students USING(studentid)
-WHERE classid = 7
-ORDER BY studentlname, studentfname</code></pre>
-      <p>I didn't dock any points for this, but be careful not to add unnecessary filters.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 13</h2>
-      <blockquote>Find teachers with no classes. Hint: Counting classes per teacher.</blockquote>
-      <pre><code class="language-sql">SELECT t.teacherid, teacherfname, teacherlname FROM teachers t
-LEFT JOIN classes c
-ON t.teacherid = c.teacherid
-WHERE c.teacherid IS NULL</code></pre>
-      <p>Ugh, ok, this one's on me. I meant to remove the 'hints' on this and the next question. They were <em>not</em> helpful. A few of you got these questions correct, but most people got a half mark for trying to kludge something together with the <code>COUNT()</code> function.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 14</h2>
-      <blockquote>Find classes with no students. Hint: Counting students per classroom. </blockquote>
-      <pre><code class="language-sql">SELECT * FROM classes c
-LEFT JOIN studentsxclasses sxc
-ON c.classid = sxc.classid
-WHERE sxc.classid IS NULL</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 15</h2>
-      <blockquote>Find students with less than 5 classes.</blockquote>
-      <pre><code class="language-sql">SELECT studentid, COUNT(*) FROM studentsxclasses
-GROUP BY studentid
-HAVING COUNT(*) < 5</code></pre>
-      <p><code>GROUP BY</code> and <code>HAVING</code> add a bit of complexity to aggregate functions, but a lot of you got this. Great work!</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 16</h2>
-      <blockquote>Print out a list that reads “x teaches y classes”, where x is the teacher’s name, and y is the number of classes they teach. Include the teachers that teach 0 classes.</blockquote>
-      <pre><code class="language-sql">SELECT 
-    teacherfname || 
-    ' ' || teacherlname || 
-    ' teaches ' || COUNT(classid) || 
-    ' class(es).'
-FROM teachers LEFT JOIN classes USING(teacherid)
-GROUP BY teacherid, teacherfname, teacherlname</code></pre>
-      <p>A lot of folks forgot that, if you're going to select a column while using an aggregate function, you need to reference it in the <code>GROUP BY</code> clause.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 17</h2>
-      <blockquote>Modify the above query so that the printed string include “this semester” and only select classes which are this semester. This semester begins in September and ends in December.</blockquote>
-      <pre><code class="language-sql">SELECT 
-    teacherfname || 
-    ' ' || teacherlname || 
-    ' teaches ' || COUNT(classid) || 
-    ' class(es) this semester.' AS "Who teaches what"
-FROM teachers LEFT JOIN (
-    SELECT * FROM classes
-    WHERE TO_CHAR(startdate, 'YY-MM') = '18-09'
-    AND TO_CHAR(finishdate, 'YY-MM') = '18-12'
-)
-USING(teacherid)
-GROUP BY teacherid, teacherfname, teacherlname</code></pre>
-      <p class="smaller-text">Ok, nobody <em>fully</em> got this one. It's tricky. To include teachers that teach zero classes (like in the previous question), we have to get <em>all</em> the teachers (via a left join), and then use a subquery to select only those classes that are in the fall semester.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 18</h2>
-      <blockquote>Add yourself to the students table. Use your student number and name. Assume the highest student id in the table is 99.</blockquote>
-      <pre><code class="language-sql">INSERT INTO students (
-  studentid, studentfname, 
-  studentlname, studentnumber, 
-  enrolmentdate
-)
-VALUES (
-  100, 'Simon', 
-  'Borer', 1234567, 
-  TO_DATE('18-06-18', 'YY-MM-DD')
-)</code></pre>
-      <p>Pretty much everybody got the CRUD questions.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 19</h2>
-      <blockquote>Put yourself into 3 classes that are offered next semester.</blockquote>
-      <pre><code class="language-sql">INSERT INTO studentsxclasses (studentxclassid, studentid, classid)
-VALUES ((SELECT MAX(studentxclassid) + 1 FROM studentsxclasses), 100, 6)
 
-INSERT INTO studentsxclasses (studentxclassid, studentid, classid)
-VALUES ((SELECT MAX(studentxclassid) + 1 FROM studentsxclasses), 100, 7)
+<!-- 
+  MySQL 
+  Postgres
+  CLI
+  NoSQL (mongo)
+  How to choose a database
+-->
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">The state of the <code>UNION</code></h2>
+      <h3 class="h3">Databases in 2018</h3>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>In 2018, the #1<sup><a href="https://db-engines.com/en/ranking">1</a></sup> most common database management system is Oracle.</p>
+      <p>MySQL is the DBMS used by most developers<sup><a href="https://insights.stackoverflow.com/survey/2018#technology-databases">2</a></sup>.</p>
+      <p>Postgres gained the most market share since last year<sup><a href="https://insights.stackoverflow.com/survey/2017#technology-databases">3</a></sup>, and is now the #3 DBMS overall.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>NoSQL ("Not only SQL") databases tried to offer an alternative to relational database architecture by using key/value stores, documents (i.e. JSON) or other "flat" architectures instead of tables. While this was a strong industry trend for a few years, in 2017 and 2018 adoption flattened or fell slightly.</p>
+      <p>The consensus seems to be that NoSQL is a good supplemental tool for vertical scalability and rapid iteration, rather than a replacement for relational databases.</p>
+      <p>That is to say, if you think your data structures will change while you're working on a project, and you're not sure <em>how</em> they will change, NoSQL might be a good choice.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">MySQL</h2>
+      <p>If you haven't already, install <a target="_blank" href="https://www.mamp.info/en/downloads/">MAMP</a>.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Once you have MAMP installed, run the application and go to <a href="http://localhost:8888/phpMyAdmin/server_sql.php">phpMyAdmin</a>.</p>
+      <p>You now have a local development server!</p>
+      <p>Try running a command like you would in SQLDeveloper:</p>
+      <pre><code class="language-sql">CREATE TABLE locations (
+    location_id    NUMBER(4)    PRIMARY KEY,
+    address        VARCHAR2(40)
+);</code></pre>
+      <p><span role="image" aria-label="collision">💥</span>This is going to produce errors<span role="image" aria-label="collision">💥</span></p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>If you run the <code>CREATE TABLE</code> command, you should see <code>No database selected</code> and <code>Unrecognized data type</code> errors.</p>
+      <p>We can resolve the former with</p>
+      <pre><code class="language-sql">CREATE DATABASE my_database</code></pre>
+      <p>... and then prefixing the table name with the db name, as</p>
+      <pre><code class="language-sql">CREATE TABLE my_database.locations ();</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>To resolve the <code>Unrecognized data type</code> errors, we'll need to learn about MySQL data types, which are similar to Oracle data types, but with different names.</p>
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2">Data type analogues</th>
+          </tr>
+          <tr>
+            <th>Oracle</th>
+            <th>MySQL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>VARCHAR2</code></td>
+            <td><code>VARCHAR</code></td>
+          </tr>
+          <tr>
+            <td><code>NUMBER</code></td>
+            <td><code>INT</code> or <code>DECIMAL</code></td>
+          </tr>
+          <tr>
+            <td><code>DATE</code></td>
+            <td><code>DATETIME</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <tfoot>MySQL, like Oracle, has a lot of data types that provide more granularity within these general data types. Check out more <a href="https://dev.mysql.com/doc/refman/8.0/en/data-types.html">in their docs</a>.</tfoot>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Run the following:</p>
+      <pre><code class="language-sql">CREATE TABLE my_database.locations (
+    location_id    INT(4)    PRIMARY KEY,
+    address        VARCHAR(40)
+);
+INSERT INTO my_database.locations VALUES (1, '123 Fake St.');</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Now try...</p>
+      <pre><code class="language-sql">SELECT * FROM my_db.locations</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Queries in MySQL are virtually the same as they are in Oracle, aside from a few of the data types.</p>
+      <p>We will notice some differences in our blocks of code, but these tend to be minor. For example: <code>ELSIF</code> in Oracle would be written as <code>ELSEIF</code> in MySQL.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>In MySQL, stored procedures and functions are called 'routines'.</p>
+      <p>They are kinda clunky.</p>
+      <pre><code class="language-sql">CREATE FUNCTION hello (s CHAR(20))
+    RETURNS CHAR(50) DETERMINISTIC
+    RETURN CONCAT('Hello, ',s,'!');
 
-INSERT INTO studentsxclasses (studentxclassid, studentid, classid)
-VALUES ((SELECT MAX(studentxclassid) + 1 FROM studentsxclasses), 100, 8)</code></pre>
-      <p>Note that you need separate <code>INSERT</code>s for each row.</p>
+  SELECT hello('world');</code></pre>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 20</h2>
-      <blockquote>Change your record. Make your student number the first five characters of your original student number.</blockquote>
-      <pre><code class="language-sql">UPDATE students SET studentid = 12345
-WHERE studentid = 100</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 21</h2>
-      <blockquote>Drop one of the three courses you put yourself into.</blockquote>
-      <pre><code class="language-sql">DELETE FROM studentsxclasses 
-WHERE studentid = 100
-AND classid = 8</code></pre>
-      <p>Less people got this one, maybe because the word 'drop' threw you off. Also note that you had to filter for your student id <strong>and</strong> the course you wanted to drop.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 22</h2>
-      <blockquote>Save your changes to the database.</blockquote>
-      <pre><code class="language-sql">COMMIT</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x" id="<%- page.today[1].id %>">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2"><%- page.today[1].title %></h2>
-      <p><strong>Procedures</strong> are a set of tasks, i.e. CRUD functions. They <em>can</em> return a value, but that's not what they're for. They <em>can't</em> be used in queries and statements. Simply put, they're for changing things.</p>
-      <p><strong>Functions</strong> are for returning values. They don't change stuff.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x" id="<%- page.today[2].id %>">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2"><%- page.today[2].title %></h2>
-      <pre><code class="no-max language-sql">CREATE OR REPLACE PROCEDURE update_invoices_credit_total /* Give it a name */
-(
-    /*  our parameters - the options we'll pass in when 
-        we call the procedure */
-    invoice_number_param     VARCHAR2,
-    credit_total_param      NUMBER
-)
-AS
-/* Define the procedure as PL/SQL code */
+      <p>But if I showed you this:</p>
+      <pre><code class="language-sql">CREATE PROCEDURE get_customer_level(
+    IN  customer_number_param INT(11), 
+    OUT customer_level_param  VARCHAR(10))
 BEGIN
-    UPDATE invoices
-    SET credit_total = credit_total_param
-    WHERE invoice_number = invoice_number_param;
-    
-    COMMIT;
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-END;
-/</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>After we run this as a script, it's stored in the database. We can call it like this:</p>
-      <pre><code class="language-sql">CALL update_invoices_credit_total('367447', 400);</code></pre>
-      <p>Note that it won't give us any feedback beyond <code>Call completed.</code></p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>If we're calling the function in a script, we can write it simply as...</p>
-      <pre><code class="language-sql">BEGIN
-  update_invoices_credit_total('367447', 400);
-END;
-/</code></pre>
-      <p>We can also reference our parameters if we want to do them out of order, or omit optional parameters, like so:</p>
-      <pre><code class="language-sql">BEGIN
-  update_invoices_credit_total(
-    credit_total_param=>500, 
-    invoice_number_param=>'367447'
-  );
-END;
-/</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>We can also define our parameters as input or output parameters. Parameters are input (as in, they get passed into the procedure) by default. Output parameters <strong>can't</strong> be returned to a statement, but can be output to the script output (<code>DMBS_OUTPUT.PUT_LINE</code>).</p>
-      <p>Parameters can also be made optional by supplying a default.</p>
-      <pre class="post-only"><code class="language-sql">CREATE OR REPLACE PROCEDURE update_invoices_credit_total
-(
-    /* declare in/out here */
-    invoice_number_param        IN      VARCHAR2,
-    credit_total_param          IN      NUMBER,
-    update_count                OUT     INTEGER,
-    /* declare defaults last */
-    totally_optional            IN      NUMBER  DEFAULT   100
-)
-AS
-BEGIN
-    UPDATE invoices
-    SET credit_total = credit_total_param
-    WHERE invoice_number = invoice_number_param;
-
-    SELECT COUNT(*) + totally_optional
-    INTO update_count
-    FROM invoices
-    WHERE invoice_number = invoice_number_param;
-
-    COMMIT;
-
-EXCEPTION
-    WHEN OTHERS THEN
-        SELECT 0 INTO update_count FROM dual;
-        ROLLBACK;
-END;</code></pre>
-      <pre class="post-only"><code class="language-sql">SET SERVEROUTPUT ON;
-DECLARE
-    row_count INTEGER;
-BEGIN
-    /* output parameter named here */
-    update_invoices_credit_total('367477', 200, row_count);
-    /* outpute parameter referenced here */
-    DBMS_OUTPUT.PUT_LINE('row_count: ' || row_count);
-END;
-/</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Raising errors</h2>
-      <p>Because stored procedures are an abstraction - we're removing some of the logic from the working space - it's important to validate data and raise informative errors.</p>
-      <p class="callout">You can refer to the Oracle docs for their full list of <a href="https://docs.oracle.com/cd/E11882_01/timesten.112/e21639/exceptions.htm#CIHFIGFE" target="_blank">error types</a>.</p>
-      <pre class="post-only"><code class="language-sql">CREATE OR REPLACE PROCEDURE update_invoices_credit_total
-(
-    invoice_number_param    VARCHAR2,
-    credit_total_param  NUMBER
-)
-AS
-BEGIN
-    IF credit_total_param < 0 THEN
-        RAISE VALUE_ERROR;
+    DECLARE credit_limit_var DOUBLE;
+ 
+    SELECT credit_limit INTO credit_limit_var
+    FROM customers
+    WHERE customer_number = customer_number_param;
+ 
+    IF credit_limit_var > 50000 THEN
+ SET customer_level_param = 'PLATINUM';
+    ELSEIF (credit_limit_var <= 50000 AND credit_limit_var >= 10000) THEN
+        SET customer_level_param = 'GOLD';
+    ELSEIF credit_limit_var < 10000 THEN
+        SET customer_level_param = 'SILVER';
     END IF;
-    
-    UPDATE invoices
-    SET credit_total = credit_total_param
-    WHERE invoice_number = invoice_number_param;
-
-    COMMIT;
-END;</code></pre>
-    <pre class="post-only"><code class="language-sql">/* using the error category for output */
-SET SERVEROUTPUT ON;
-
-BEGIN 
-    update_invoices_credit_total('367477', -25);
-EXCEPTION
-    WHEN VALUE_ERROR THEN
-        DBMS_OUTPUT.PUT_LINE('A value error occurred');
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('An unknown error occurred');
-END;
-/</code></pre>
+ 
+END</code></pre>
+    <p>...I think you could figure it out pretty quickly.</p>
     </div>
   </div>
 </section>
 <section>
-  <div class="grid-x" id="<%- page.today[3].id %>">
+  <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2"><%= page.today[3].title %></h2>
-      <p>Creating a function:</p>
-      <pre><code class="no-max language-sql">CREATE OR REPLACE FUNCTION get_vendor_id
-(
-  /* reference the data type of the appropriate column */
-  vendor_name_param vendors.vendor_name%TYPE 
-)
-RETURN NUMBER
-AS
-  vendor_id_var NUMBER;
-BEGIN 
-  SELECT vendor_id
-  INTO vendor_id_var
-  FROM vendors
-  WHERE vendor_name = vendor_name_param;
-
-  RETURN vendor_id_var;
-END;
-/</code></pre>
+      <h2 class="h2">ACID compliance</h2>
+      <p>One thing to note about MySQL is that it is <em>not</em> ACID compliant by default. What does that mean, and why should we care?</p>
+      <p>ACID is an acronym for what database nerds, as far back as <a href="https://dl.acm.org/citation.cfm?doid=289.291" target="_blank">1983</a>, have agreed are important standards for a database management system.</p>
+      <p><strong>A</strong> stands for Atomicity, which means that if one statement in a transaction fails, the whole transaction fails. If you try to insert a hundred rows, and one of your inserts is missing a closing bracket, the whole script fails.</p>
+      <p><strong>C</strong> stands for Consistency, meaning that any data that breaks a rule (think data types and other constraints) is not allowed.</p>
+      <p><strong>I</strong> stands for Isolation. That means that even if transactions run at the same time, you get the same result as if you'd run them in order.</p>
+      <p><strong>D</strong> stands for Durability, meaning that after you've committed to the db, the power can out and no data will be lost. That means writing to 'non-volatile' memory (i.e. something besides RAM).</p>
+      <p>MySQL falls short particularly with <strong>D</strong>. But does that matter for most web projects? Simply put: no.</p>
     </div>
   </div>
 </section>
 <section>
-  <div class="grid-x" id="<%- page.today[3].id %>">
+  <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Postgres</h2>
+      <p>ACID compliance bragging rights <em>do</em> go to Postgres, however. Postgres is the somewhat more mature, dependable older sibling to MySQL, and its robust feature set and dependability have made it the fastest growing DBMS the past two years in a row.</p>
+      <p>It's got great support for JSON, impressive features like table partitioning, and cool data types like Money, Geometry, IP addresses, JSON, and data ranges.</p>
+      <p>Let's try it out!</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>If you're on a Windows machine, I have no idea if this will work. Postgres is the default DBMS on Mac OS Servers, and is build with Mac OS in mind. That said, try running the <a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads">Windows installer</a>.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>If you're on Mac, and you <em>don't</em> have homebrew installed already, you're going to want it. It's a handy package manager that's going to crop up a lot during your work.</p>
+      <p>That said, if these installation instructions don't work out for your, you can always <a href="https://postgresapp.com/">install the app</a>. But where's the fun in that?</p>
+      <p>You can install homebrew on Mac by copying and pasting this command in your terminal: <pre><code>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</code></pre></p>
+      <p>Once that's done, it's as easy as <code>brew install postgresql</code>.</p>
+      <p>When the command has finished running, you can start the service with <code>pg_ctl -D /usr/local/var/postgres start && brew services start postgresql</code>.</p>
+      <p>Check to see what your user name is: <code>psql postgres</code>, then <code>\du</code></p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>At this point, we've got the DBMS running on our local machine, but unlike when we installed MAMP, we don't have a default server and web interface.</p>
+      <p>My understanding is that the stock GUI for postgres, pgAdmin 4, is not good.</p>
+      <p>Luckily, there's a pretty great free DB GUI that handles postgres (as well as a number of other DBMSs) called <a href="https://dbeaver.io/" target="_blank">DBeaver</a>. Homebrew users can run <code>brew cask install dbeaver-community.</code></p>
+      <p>You can connect to your Postgres DB by clicking the "plug" icon in the top left.</p>
+      <p>Select postgreSQL, and then fill out your info: Host/localhost, Port/5432, Database/postgres, User/${user}, and leave the password blank. Test your connection, and if it works, click 'Finish'.</p>
+      <p>Select your connection from the left-hand menu, and run the following:</p>
+      <pre><code class="language-sql">create database my_db;
+create table my_table (
+  my_id INT   primary key,
+  my_name VARCHAR,
+  my_money  MONEY
+);
+insert into my_table values (1, 'Simon', 14.50);
+select * from my_table;</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">MongoDB</h2>
+      <p>MongoDB installation can be tedious, so in the interests of time, let's look at how data is stored in Mongo:</p>
+      <pre class="slide-only"><code class="language-json">{
+    "_id" : 1,
+    "name" : {
+        "first" : "John",
+        "last" : "Backus"
+    },
+    "birth" : ISODate("1924-12-03T05:00:00Z"),
+    "death" : ISODate("2007-03-17T04:00:00Z"),
+    "contribs" : [
+        "Fortran",
+        "ALGOL",
+        "Backus-Naur Form",
+        "FP"
+    ]
+}
 
-      <p>Calling the function:</p>
-      <pre><code class="language-sql">SELECT 
-  invoice_number, 
-  invoice_total
-FROM invoices
-WHERE vendor_id = get_vendor_id('IBM')</code></pre>
+{
+    "_id" : ObjectId("51df07b094c6acd67e492f41"),
+    "name" : {
+        "first" : "John",
+        "last" : "McCarthy"
+    },
+    "birth" : ISODate("1927-09-04T04:00:00Z"),
+    "death" : ISODate("2011-12-24T05:00:00Z"),
+    "contribs" : [
+        "Lisp",
+        "Artificial Intelligence",
+        "ALGOL"
+    ]
+}</code></pre>
+      <pre class="post-only"><code class="language-json">{
+    "_id" : 1,
+    "name" : {
+        "first" : "John",
+        "last" : "Backus"
+    },
+    "birth" : ISODate("1924-12-03T05:00:00Z"),
+    "death" : ISODate("2007-03-17T04:00:00Z"),
+    "contribs" : [
+        "Fortran",
+        "ALGOL",
+        "Backus-Naur Form",
+        "FP"
+    ],
+    "awards" : [
+        {
+            "award" : "W.W. McDowell Award",
+            "year" : 1967,
+            "by" : "IEEE Computer Society"
+        },
+        {
+            "award" : "National Medal of Science",
+            "year" : 1975,
+            "by" : "National Science Foundation"
+        },
+        {
+            "award" : "Turing Award",
+            "year" : 1977,
+            "by" : "ACM"
+        },
+        {
+            "award" : "Draper Prize",
+            "year" : 1993,
+            "by" : "National Academy of Engineering"
+        }
+    ]
+}
+
+{
+    "_id" : ObjectId("51df07b094c6acd67e492f41"),
+    "name" : {
+        "first" : "John",
+        "last" : "McCarthy"
+    },
+    "birth" : ISODate("1927-09-04T04:00:00Z"),
+    "death" : ISODate("2011-12-24T05:00:00Z"),
+    "contribs" : [
+        "Lisp",
+        "Artificial Intelligence",
+        "ALGOL"
+    ],
+    "awards" : [
+        {
+            "award" : "Turing Award",
+            "year" : 1971,
+            "by" : "ACM"
+        },
+        {
+            "award" : "Kyoto Prize",
+            "year" : 1988,
+            "by" : "Inamori Foundation"
+        },
+        {
+            "award" : "National Medal of Science",
+            "year" : 1990,
+            "by" : "National Science Foundation"
+        }
+    ]
+}
+
+{
+    "_id" : 3,
+    "name" : {
+        "first" : "Grace",
+        "last" : "Hopper"
+    },
+    "title" : "Rear Admiral",
+    "birth" : ISODate("1906-12-09T05:00:00Z"),
+    "death" : ISODate("1992-01-01T05:00:00Z"),
+    "contribs" : [
+        "UNIVAC",
+        "compiler",
+        "FLOW-MATIC",
+        "COBOL"
+    ],
+    "awards" : [
+        {
+            "award" : "Computer Sciences Man of the Year",
+            "year" : 1969,
+            "by" : "Data Processing Management Association"
+        },
+        {
+            "award" : "Distinguished Fellow",
+            "year" : 1973,
+            "by" : " British Computer Society"
+        },
+        {
+            "award" : "W. W. McDowell Award",
+            "year" : 1976,
+            "by" : "IEEE Computer Society"
+        },
+        {
+            "award" : "National Medal of Technology",
+            "year" : 1991,
+            "by" : "United States"
+        }
+    ]
+}
+
+{
+    "_id" : 4,
+    "name" : {
+        "first" : "Kristen",
+        "last" : "Nygaard"
+    },
+    "birth" : ISODate("1926-08-27T04:00:00Z"),
+    "death" : ISODate("2002-08-10T04:00:00Z"),
+    "contribs" : [
+        "OOP",
+        "Simula"
+    ],
+    "awards" : [
+        {
+            "award" : "Rosing Prize",
+            "year" : 1999,
+            "by" : "Norwegian Data Association"
+        },
+        {
+            "award" : "Turing Award",
+            "year" : 2001,
+            "by" : "ACM"
+        },
+        {
+            "award" : "IEEE John von Neumann Medal",
+            "year" : 2001,
+            "by" : "IEEE"
+        }
+    ]
+}
+
+{
+    "_id" : 5,
+    "name" : {
+        "first" : "Ole-Johan",
+        "last" : "Dahl"
+    },
+    "birth" : ISODate("1931-10-12T04:00:00Z"),
+    "death" : ISODate("2002-06-29T04:00:00Z"),
+    "contribs" : [
+        "OOP",
+        "Simula"
+    ],
+    "awards" : [
+        {
+            "award" : "Rosing Prize",
+            "year" : 1999,
+            "by" : "Norwegian Data Association"
+        },
+        {
+            "award" : "Turing Award",
+            "year" : 2001,
+            "by" : "ACM"
+        },
+        {
+            "award" : "IEEE John von Neumann Medal",
+            "year" : 2001,
+            "by" : "IEEE"
+        }
+    ]
+}</code></pre>
+      <p>Look familiar? It's not SQL, it's JSON.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>While concepts like table joins don't transfer to NoSQL, basic databased CRUD operations remain. So instead of writing <code class="language-sql">DROP TABLE people</code>, we write <code class="language-javascript">db.people.drop()</code></p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Redis</h2>
+      <p>Redis is a pretty fascinating "in-memory data structure store", meant to be used for really impressive caching. It definitely challenges the notions of what a database is - in some ways it's the <em>opposite</em> of ACID.</p>
+      <p>I'll try and give us a sample of Redis soon - I want to run it as a Docker image, but I haven't had time to set that up for us yet.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Discussion</h2>
+      <p>What technology you decide to use can be a factor in whether a project succeeds or fails. Even as a junior developer, you should be able to take part in those discussions, and push back when someone (*ahem* management) starts taking you down the wrong path. It's not about having all the answers, but asking good questions.</p>
+      <p>Get in small groups. Talk about what questions might be important when deciding on a database solution.</p>
     </div>
   </div>
 </section>
@@ -525,11 +483,42 @@ WHERE vendor_id = get_vendor_id('IBM')</code></pre>
   <div class="grid-x" id="<%- page.today[1].id %>">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Lab time!</h2>
-      <ol>
-        <li>Create a stored procedure or function for anything from the previous weeks, the syntax of which you find difficult to remember.</li>
-        <li>Create 2 tables, one called my_books, one called my_movies. In each, create a primary key, a column called 'title', a column called 'genre', and a column called 'rank'. Then create a stored procedure that can insert a row into either of those tables, with the values passed as parameters. Insert at least 3 each of your favourite books and movies into the tables using your procedure.</li>
-        <li>Create a stored function that can return the title based on your ranking.</li>
-      </ol>
+      <p>This week you will be doing some database architecture. Create tables based on the following. Don't feel the need to actually <em>solve</em> any problems listed below, but think about how you might, and design your tables to facilitate that.</p>
+      <hr>
+      <p>You run a bakery.</p>
+      <p>Your bakery has three locations in the west end of Toronto.</p>
+      <p>Your bakery has 2 types of employee - bakers and cashiers.</p>
+      <p>Your bakery initially produces 6 types of pasteries, and 4 types of bread. You also serve coffee. You might add more items later on.</p>
+      <p>Working with your data, you might need to:</p>
+      <ul>
+        <li>create a schedule for your employees, keeping in mind that 
+          <ul>
+            <li>no employee can work more than 44 hours/week</li>
+            <li>no employee can work less than 25 hours/week</li>
+            <li>shifts are a minimum of 4 hours, and a maximum of 8</li>
+            <li>employees can be scheduled to work at different locations</li>
+            <li>cashiers cannot bake, and bakers cannot do cashier duties</li>
+          </ul>
+        </li>
+        <li>create a menu, factoring in that 
+          <ul>
+            <li>each week the price of a different item is reduced by 20%</li>
+            <li>each week the price of two items are reduced by 10%</li>
+          </ul>
+        </li>
+        <li>evaluate the cost of items including materials and labour, and try to find efficiencies; each type of food or beverage should list the total cost of ingredients; the food should list the baking time, and the bakers' prep time, along with the required baking temperature and the required oven space</li>
+        <li>track transactions at the bakery</li>
+      </ul>
+      <p>How do you design your database tables?</p>
+      <p>Will you be able to...</p>
+      <ul>
+        <li>write a stored procedure to add a new type of bread?</li>
+        <li>write a function to return the menu?</li>
+        <li>validate the data so that you can create a new schedule?</li>
+        <li>create a baking schedule (keeping in mind that there is limited oven space, varied by location, and that foods with the same baking temperature can share an oven)?</li>
+        <li>calculate the cost per unit of different foods (factoring in the labour involved)?</li>
+      </ul>
+      <p>Also, try thinking about what other metrics could you track/calculate to help the business?</p>
     </div>
   </div>
 </section>

@@ -11,7 +11,7 @@
 - Maybe poll
 
 # Week 10
-- MySQL
+- MySQL, PostgreSQL 
 
 # Week 11
 - PostgreSQL
@@ -26,9 +26,9 @@
 - Final Exam
 
 # Other
-- Using SQL in other languages (Python, PHP, etc.)
-- Using via cli
-- Dockerized DBs
+xx Using SQL in other languages (Python, PHP, etc.)
+xx Using via cli
+? Dockerized DBs
 - How to choose a db
 - Normalization
-- ORM
+xx ORM
