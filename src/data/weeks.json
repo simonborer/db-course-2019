@@ -64,6 +64,7 @@
 {
     "mod": 9,
     "description": "This week we'll cover the state of databases in 2018.",
+    "extraContent": [{"text": "Assignment 7", "href": "./notes/week-9/index.html#lab"}],
     "showSlides": true
 },
 {
