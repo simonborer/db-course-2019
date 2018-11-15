@@ -1,0 +1,600 @@
+---
+title: The tenth week
+layout: default
+hasSlides: true
+---
+
+<% const part = '../../../partials/'; %>
+<% const basePath = site.basePath %>
+
+<%- include(`${part}today`) %>
+
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">SQL Server</h2>
+      <p>Last week we talked about a variety of database management systems aside from Oracle: MySQL, Postgres, Mongdo, Redis...</p>
+      <p>We didn't talk about Microsoft's SQL Server because, frankly, it's not that exciting.</p>
+      <p>But! I just found out you'll be using it in your ASP.NET class, so... here we go!</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>SQL Server is a relational database management system (like Oracle, MySQL and Postgres), and is a proprietary Microsoft product. It's been around since 1989.</p>
+      <p>It's implementation of the SQL syntax is fairly standard, and is probably closest to Postgres'.</p>
+      <p>We'll go over the nuances in a moment, but rest assured - almost everything you'll need to write in SQL Server <strong>you already know</strong>.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>We will <em>not</em> be working with SQL Server in this class, because it is a bit of a beast to try to run locally if you're not on Windows (which I'm not), and your machine is too old to run Docker (which mine is), and you don't want to spend half the class trying to install Ubuntu in a virtual machine (which I don't).</p>
+      <p>I believe Christine will have a SQL Server running on a server for you, so I don't think we need to worry about a local install.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Probably the biggest difference between SQL Server and Oracle is that SQL Server does not include PL/SQL.</p>
+      <p>SQL Server <em>does</em> have a programming language, but it is not really the same thing.</p>
+      <p>Instead of PL/SQL, SQL Server uses T-SQL (Transactional-SQL).</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>T-SQL is a set of extensions for SQL. You can write stored procedures, but its main purpose is to add functionality to existing SQL - for example, you can use joins with <code>UPDATE</code> and <code>DELETE</code>.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">SQL data type differences</h2>
+      <table><thead>
+        <tr>
+          <th>Oracle</th>
+          <th>SQL Server</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>DATE</code></td>
+          <td><code>DATETIME</code></td>
+        </tr>
+        <tr>
+          <td><code>VARCHAR2</code></td>
+          <td><code>VARCHAR</code></td>
+        </tr>
+        <tr>
+          <td><code>NUMBER</code></td>
+          <td><code>INT</code> or <code>FLOAT</code></td>
+        </tr>
+      </tbody></table>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">SQL syntax differences</h2>
+      <table><thead>
+        <tr>
+          <th>Oracle</th>
+          <th>SQL Server</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>||</code> (concatenate)</td>
+          <td><code>+</code></td>
+        </tr>
+        <tr>
+          <td><code>NVL()</code></td>
+          <td><code>ISNULL()</code></td>
+        </tr>
+        <tr>
+          <td><code>SUBSTR()</code></td>
+          <td><code>SUBSTRING()</code></td>
+        </tr>
+        <tr>
+        <tr>
+          <td><code>SYSDATE FROM dual</code></td>
+          <td><code>GETDATE()</code></td>
+        </tr>
+        <tr>
+          <td><code>TO_CHAR([date], [format])</code></td>
+          <td><code>CONVERT(varchar, [date], [# style reference])</code></td>
+        </tr>
+      </tbody></table>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>I hope you're getting the sense that you're going to be googling stuff.</p>
+      <p>That's good! When in doubt, double-check with the wonderful community of other confused developers from all around the world.</p>
+      <p>Do remember, though, <em>especially</em> with Oracle and SQL Server, to check the date. Proprietary languages have a greater tendency to make big, non-backwards-compatible changes between versions.</p>
+      <p>If you're reading a stackoverflow answer from 2005, it's much more likely that a javascript example will work than something for Oracle or SQL Server.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>The official docs for both Oracle and SQL Server are fairly good, but pretty dense. Nothing so easy to read as the MDN documentation for front-end code.</p>
+      <p>I hear that W3Schools isn't as bad as it used to be (cf. <a href="https://www.w3fools.com/">W3Fools</a>). Just don't admit that you use it in a job interview, as it's got a pretty bad reputation.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Common Errors</h2>
+      <pre><code class="language-sql">ORA-00001: unique constraint (constraint_name) violated</code></pre>
+      <h3 class="h3">Example:</h3>
+      <pre><code class="language-sql">INSERT INTO invoices (invoice_id, vendor_id, invoice_number,
+invoice_date, invoice_total, payment_total, credit_total, terms_id,
+invoice_due_date, payment_date)
+VALUES(1,2,3,TO_DATE('11/22/63', 'MM/DD/YY'),
+1,2,3,4,TO_DATE('11/22/63', 'MM/DD/YY'),
+TO_DATE('11/22/63', 'MM/DD/YY'));</code></pre>
+      <p>returns</p>
+      <p><code>ORA-00001: unique constraint (SIMONB.INVOICES_PK) violated</code></p>
+      <pre><code class="language-sql">ORA-00900: invalid SQL statement</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <pre><code class="language-sql">ORA-00904: invalid identifier</code></pre>
+      <h3 class="h3">Example:</h3>
+      <pre><code class="language-sql">INSERT INTO invoices (invoice_id, vendor_id, invoice_number,
+invoice_date, invoice_total, paymnet_total, credit_total, terms_id,
+invoice_due_date, payment_date)
+VALUES(1,2,3,TO_DATE('11/22/63', 'MM/DD/YY'),
+1,2,3,4,TO_DATE('11/22/63', 'MM/DD/YY'),
+TO_DATE('11/22/63', 'MM/DD/YY'));</code></pre>
+      <p>returns</p>
+      <p><code>ORA-00904: "PAYMNET_TOTAL": invalid identifier</code></p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <pre><code class="language-sql">ORA-00917: missing comma</code></pre>
+      <h3 class="h3">Example:</h3>
+      <pre><code class="language-sql">INSERT INTO invoices (invoice_id, vendor_id, invoice_number,
+invoice_date, invoice_total, payment_total, credit_total, terms_id,
+invoice_due_date, payment_date
+VALUES (999,2,3,TO_DATE('11/22/63', 'MM/DD/YY'),
+1,2,3,4,TO_DATE('11/22/63', 'MM/DD/YY'),
+TO_DATE('11/22/63', 'MM/DD/YY'));</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <pre><code class="language-sql">ORA-00925: missing INTO keyword</code></pre>
+      <h3 class="h3">Example:</h3>
+      <pre><code class="language-sql">INSERT INNO invoices (invoice_id, vendor_id, invoice_number,
+invoice_date, invoice_total, payment_total, credit_total, terms_id,
+invoice_due_date, payment_date)
+VALUES(1,2,3,TO_DATE('11/22/63', 'MM/DD/YY'),
+1,2,3,4,TO_DATE('11/22/63', 'MM/DD/YY'),
+TO_DATE('11/22/63', 'MM/DD/YY'));</code></pre>
+      <p>returns</p>
+      <p><code>ORA-00925: missing INTO keyword</code></p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <pre><code class="language-sql">ORA-00926: missing VALUES keyword</code></pre>
+      <h3 class="h3">Example:</h3>
+      <pre><code class="language-sql">INSERT INTO invoices invoice_id, vendor_id, invoice_number,
+invoice_date, invoice_total, payment_total, credit_total, terms_id,
+invoice_due_date, payment_date)
+VALUES (999,2,3,TO_DATE('11/22/63', 'MM/DD/YY'),
+1,2,3,4,TO_DATE('11/22/63', 'MM/DD/YY'),
+TO_DATE('11/22/63', 'MM/DD/YY'));</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <pre><code class="language-sql">ORA-00932: inconsistent datatypes</code></pre>
+      <h3 class="h3">Example:</h3>
+      <pre><code class="language-sql">INSERT INTO invoices (invoice_id, vendor_id, invoice_number,
+invoice_date, invoice_total, payment_total, credit_total, terms_id,
+invoice_due_date, payment_date)
+VALUES(1,2,3,TO_DATE('11/22/63', 'MM/DD/YY'),
+1,2,3,4,5,
+TO_DATE('11/22/63', 'MM/DD/YY'));</code></pre>
+      <p>returns</p>
+      <p><code>ORA-00932: inconsistent datatypes: expected DATE got NUMBER
+00932. 00000 -  "inconsistent datatypes: expected %s got %s"</code></p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <pre><code class="language-sql">ORA-00942: table or view does not exist</code></pre>
+      <h3 class="h3">Example:</h3>
+      <pre><code class="language-sql">INSERT INTO invoice (invoice_id, vendor_id, invoice_number,
+invoice_date, invoice_total, payment_total, credit_total, terms_id,
+invoice_due_date, payment_date)
+VALUES(1,2,3,TO_DATE('11/22/63', 'MM/DD/YY'),
+1,2,3,4,TO_DATE('11/22/63', 'MM/DD/YY'),
+TO_DATE('11/22/63', 'MM/DD/YY'));</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <pre><code class="language-sql">ORA-01843: not a valid month</code></pre>
+      <h3 class="h3">Example:</h3>
+      <pre><code class="language-sql">INSERT INTO invoices (invoice_id, vendor_id, invoice_number,
+invoice_date, invoice_total, payment_total, credit_total, terms_id,
+invoice_due_date, payment_date)
+VALUES (999,2,3,TO_DATE('11/22/63', 'MM/DD/YY'),
+1,2,3,4,TO_DATE('14/22/63', 'MM/DD/YY'),
+TO_DATE('11/22/63', 'MM/DD/YY'));</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>As we can see, there are <em>a lot</em> of different kinds of errors.</p>
+      <p>Sometimes the error messages are helpful, and sometimes they're not.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Debugging</h2>
+      <p>Here are the steps I go through when trying to diagnose an error.</p>
+      <ol>
+        <li>Read the error message.</li>
+        <li>Refer to the line and column numbers (i.e. <code>Error at Command Line : 5 Column : 9).</code></li>
+        <li>Use a <a href="https://packagecontrol.io/packages/SublimeLinter-contrib-sqlint" target="_blank">code linter</a>.</li>
+        <li>Copy and paste the code into an empty file as a backup, and then start taking away suspicious parts of the code, until I can get the code to run, then re-add the code back, piece by piece, until I have pinpointed the source of the error.</li>
+        <li>If I'm using any kind of abstraction, like a variable, output the code to a console (e.g. <code>console.log</code>, or <code>DBMS_OUTPUT</code>) to confirm the expected values.</li>
+        <li>Google the error message.</li>
+        <li>Explain the problem to a colleague (preferably someone smarter than me).</li>
+        <li>Go for a nice long walk.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Let's trying fixing something!</h2>
+      <p>Your final result should return 4 rows for account numbers 120, 540, 536 and 536 again.</p>
+      <pre><code class="language-sql">SELECT account_number, SUM(payment_total) 
+FROM invoices i JOIN invoice-line-items
+ON i.invoice_id = ili.invoice_id
+GROUP BY vendor_id
+WHERE credit_total > AVG(credit_total)</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Reviewing PL/SQL</h2>
+      <p>Let's take a look back at stored procedures and functions.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <pre><code class="no-max language-sql">CREATE OR REPLACE PROCEDURE update_invoices_credit_total
+(
+    invoice_number_param     VARCHAR2,
+    credit_total_param      NUMBER
+)
+AS
+BEGIN
+    UPDATE invoices
+    SET credit_total = credit_total_param
+    WHERE invoice_number = invoice_number_param;
+    
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END;
+/</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Line 1: we create our stored procedure.</p>
+      <p>This is a block of code that is stored (saved) in the database, that we can call whenever we need it.</p>
+      <p>Or, if there's already something named that, we replace it.</p>
+      <p>We give it a name - <code>update_invoices_credit_total</code>. The name is what we use later when we want to invoke this block of code.</p>
+      <pre><code class="no-max language-sql">CREATE OR REPLACE PROCEDURE update_invoices_credit_total</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Lines 2-5:</p>
+      <p>Our parameters and their data types. These are values that, when we reference this procedure, we pass in. They are the variables we use in the block.</p>
+      <pre><code class="language-sql">(
+    invoice_number_param     VARCHAR2,
+    credit_total_param      NUMBER
+)</code></pre>
+      <p>Does it makes sense to talk about Javascript?</p>
+      <pre><code class="language-javascript">var myFunction = function(parameter) {
+  var parameterMultiplied = parameter * 7;
+  return parameterMultiplied;
+};
+
+myFunction(3); // returns 21;</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Line 6: the <code>AS</code> keyword.</p>
+      <p>The name is the code.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Lines 7-16: the code block.</p>
+      <pre><code class="language-sql">BEGIN
+    -- DOING STUFF HERE   
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        ROLLBACK;
+END;</code></pre>
+        <p>First we Begin running our code, then we code whatever DML, then we commit to the database.</p>
+        <p>Finally we do our exception handling, and then we end the block.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Lines 8-11: The stuff we're doing.</p>
+      <pre><code class="language-sql">UPDATE invoices
+SET credit_total = credit_total_param
+WHERE invoice_number = invoice_number_param;</code></pre>
+      <p>This is an update statement - should look pretty familiar.</p>
+      <p>What's different of course is that instead of using hard-coded values for our comparisons, we use the parameters.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Your bakeries</h2>
+      <p>Tell me about your tables!</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <pre><code class="language-sql">CREATE TABLE bakery_locations (
+    location_id    NUMBER(4)    PRIMARY KEY,
+    address        VARCHAR2(40)
+);
+
+CREATE TABLE bakery_employees (
+    employee_id     NUMBER(4)   PRIMARY KEY,
+    default_loc     NUMBER(4)   REFERENCES bakery_locations(location_id),
+    first_name      VARCHAR(20),
+    last_name       VARCHAR(20),
+    employee_type   VARCHAR(10)
+);</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <pre><code class="language-sql">CREATE TABLE bakery_shifts (
+    shift_id        NUMBER(6)   PRIMARY KEY,
+    employee_id     NUMBER(4)   REFERENCES bakery_employees(employee_id),
+    location_id     NUMBER(4)   REFERENCES bakery_locations(location_id),
+    start_time      DATE,
+    end_time        DATE
+);
+
+CREATE TABLE bakery_items (
+    item_id             NUMBER(4)    PRIMARY KEY,
+    item_name           VARCHAR(20),
+    price               NUMBER(4,2),
+    cost_of_ingredients NUMBER(4,2),
+    baking_time         NUMBER(2),
+    prep_time           NUMBER(2),
+    oven_space          NUMBER(2),
+    temp                NUMBER(3)
+);</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <pre><code class="language-sql">CREATE TABLE bakery_transactions (
+    transaction_id NUMBER(6)    PRIMARY KEY,
+    item_id        NUMBER(4)    REFERENCES bakery_items(item_id),
+    quantity       NUMBER(4)    DEFAULT 1
+);
+
+CREATE TABLE bakery_discounts (
+    discount_id     NUMBER  PRIMARY KEY,
+    week_starting   DATE,
+    major_discount  NUMBER REFERENCES bakery_items(item_id),
+    minor_discounts DISCOUNT
+);</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">Your assignment</h2>
+      <hr>
+      <h3 class="h3">Question 1</h3>
+      <p>Create a stored procedure to add new items to the menu.</p>
+      <p><strong>Make sure to handle invalid data types with proper error messages.</strong></p>
+      <hr>
+      <h3 class="h3">Question 2</h3>
+      <p>Create an anonymous SQL block (in an .sql file).</p>
+      <p>The file should output to the script output pane of SQL Developer.</p>
+      <p>It should say...</p>
+      <p>"This week's special: [item] is only [price discounted 20%]!</p>
+      <p>"Take 10% off [item] ([price discounted 10%]) and [item] ([price discounted 10%])."</p>
+      <p>"Check out our everyday low prices:"</p>
+      <p>[One line for each other item, showing the item name and price]</p>
+      <p><strong>The discounts should be based off of the current date. If you were to run the script a week from now, different items would be discounted.</strong></p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>If you want to <em>quietly</em> start on your assignment, go ahead.</p>
+      <p>If you want to brush up on JOINs, let's do that!</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <h2 class="h2">JOINs!</h2>
+      <p>A join is when you combine the data from two or more tables.</p>
+      <p><img src="<%= basePath%>/assets/images/joins.jpg" alt="Diagram of SQL joins"></p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>We create a new results table by combining existing tables.</p>
+      <p>We combine them by matching one column (usually comparing a primary key to a foreign key).</p>
+      <p>Wherever the value in table 1's column matches the value in table 2's column, the matched rows get combined.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>If table 1 is a table of books and table 2 is a table of authors, we could say</p>
+      <pre><code class="language-sql">SELECT books.title, authors.first_name || authors.last_name 
+FROM books 
+JOIN authors 
+ON books.author_id = authors.author_id</code></pre>
+      <p>This would produce a table of books with the author's name, but <strong>only</strong> books that have an author associated with them.</p>
+      <p>This is an <strong>inner join</strong>, which means that it only includes rows where it could make a match.</p>
+      <p>The results won't include authors who haven't written a book, or books without an author.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>A <code>LEFT JOIN</code> includes rows from the <strong>first</strong> table (the one on the left of the join statement) even if they can't be matched to the other table.</p>
+      <pre><code class="language-sql">SELECT books.title, authors.first_name || authors.last_name 
+FROM books 
+LEFT JOIN authors 
+ON books.author_id = authors.author_id</code></pre>
+      <p>This would produce a table of books with the author's name, <strong>plus</strong> any books that don't have an author (and so the column from the authors table would be <em>null</em> in those cases.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>A <code>RIGHT JOIN</code> includes rows from the <strong>second</strong> table (the one on the right of the join statement) even if they can't be matched to the other table.</p>
+      <pre><code class="language-sql">SELECT books.title, authors.first_name || authors.last_name 
+FROM books 
+RIGHT JOIN authors 
+ON books.author_id = authors.author_id</code></pre>
+      <p>This would produce a table of books with the author's name, <strong>plus</strong> any authors that don't have an attributed book (and so the column from the books table would be <em>null</em> in those cases.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>A <code>FULL JOIN</code> includes rows from <strong>both</strong> tables, whether or not there is a match.</p>
+      <pre><code class="language-sql">SELECT books.title, authors.first_name || authors.last_name 
+FROM books 
+FULL JOIN authors 
+ON books.author_id = authors.author_id</code></pre>
+      <p>This would produce a table of books with the author's name, <strong>plus</strong> any authors that don't have an attributed book <em>and</em> books that don't have an associated author.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>Additionally, with outer joins (LEFT, RIGHT and FULL), we can <strong>exclude</strong> matches between the two tables.</p>
+      <p>We do this by using a <code>WHERE</code> clause to see if the key we're trying to match with is NULL.</p>
+      <pre><code class="language-sql">SELECT books.title, authors.first_name || authors.last_name 
+FROM books 
+LEFT JOIN authors 
+ON books.author_id = authors.author_id
+WHERE authors.author_id IS NULL</code></pre>
+      <p>This would produce a table of only any books that don't have a matching author.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <pre><code class="language-sql">SELECT books.title, authors.first_name || authors.last_name 
+FROM books 
+FULL JOIN authors 
+ON books.author_id = authors.author_id
+WHERE authors.author_id IS NULL
+  OR books.author_id IS NULL</code></pre>
+      <p>This would produce a table of only books that don't have a matching author <strong>AND</strong> authors that don't have a matching book.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <p>A self-join can be used to test different rows in the same table for common values.</p>
+      <p>This is done by comparing a table to a virtual copy of itself.</p>
+      <pre><code class="language-sql">SELECT books.title
+FROM books b1
+JOIN books b2
+ON b1.author_id = b2.author_id
+  AND b1.book_id <> b2.book_id</code></pre>
+      <p>This would produce a table of only books that don't have the same id (i.e. are not the same book in the duplicate table), but that <em>do</em> have the author in common.</p>
+    </div>
+  </div>
+</section>
