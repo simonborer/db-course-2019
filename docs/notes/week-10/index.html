@@ -1,35 +1,54 @@
----
-title: The tenth week
-layout: default
-hasSlides: true
-today:
-  -
-    title: MS SQL Server Syntax
-    id: mssql
-  -
-    title: Common SQL Errors
-    id: commonerrors
-  -
-    title: Debugging
-    id: debugging
-  -
-    title: Stored Procedure Review
-    id: storedProcedures
-  -
-    title: Bakeries
-    id: bakeries
-  -
-    title: Assignment
-    id: assignment
-  -
-    title: JOINs review
-    id: joins
----
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	  	<meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>The tenth week | Intro to Databases</title>
+<meta name="description" content="Posts and slides"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	  	<link rel="stylesheet" href="/db-course/assets/css/styles.css">
+		
+			<link rel="stylesheet" href="/db-course/assets/css/prism.css">
+		
+	</head>
+	<body class="post">
+		<section class="page">
+			
+			
+				<nav><a href="/db-course" class="button large button--home">Home</a></nav>
+			
+		  <h1 class="page__title">The tenth week</h1>
+		</section>
+		
 
-<% const part = '../../../partials/'; %>
-<% const basePath = site.basePath %>
 
-<%- include(`${part}today`) %>
+
+
+
+<section>
+  <h2 class="slide-only">Here's what we're going today</h2>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <ol class="toc">
+      
+      	<li><a href="#mssql">MS SQL Server Syntax</a></li>
+      
+      	<li><a href="#commonerrors">Common SQL Errors</a></li>
+      
+      	<li><a href="#debugging">Debugging</a></li>
+      
+      	<li><a href="#storedProcedures">Stored Procedure Review</a></li>
+      
+      	<li><a href="#bakeries">Bakeries</a></li>
+      
+      	<li><a href="#assignment">Assignment</a></li>
+      
+      	<li><a href="#joins">JOINs review</a></li>
+      
+      </ol>
+    </div>
+  </div>
+</section>
 
 <section id="mssql">
   <div class="grid-x">
@@ -528,7 +547,7 @@ CREATE TABLE bakery_discounts (
       <p>A join is when you combine the data from two or more tables.</p>
       <div class="grid-x">
         <div class="cell large-6 large-offset-3">
-          <img class="annoying-image" src="<%= basePath%>/assets/images/joins.jpg" alt="Diagram of SQL joins">
+          <img class="annoying-image" src="/db-course/assets/images/joins.jpg" alt="Diagram of SQL joins">
         </div>
       </div>
     </div>
@@ -646,3 +665,8 @@ ON b1.author_id = b2.author_id
     </div>
   </div>
 </section>
+		
+			<script src="/db-course/assets/javascript/prism.js"></script>
+		
+	</body>
+</html>
