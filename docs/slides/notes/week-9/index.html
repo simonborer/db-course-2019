@@ -1,38 +1,68 @@
----
-title: The tenth week
-layout: default
-hasSlides: true
-today:
-  -
-    title: Databases in 2018
-    id: 2018
-  - 
-    title: MySQL
-    id: MySQL
-  - 
-    title: Acid Compliance
-    id: acid
-  -
-    title: PostreSQL
-    id: postgres
-  -
-    title: MongoDB
-    id: mongo
-  -
-    title: Redis
-    id: redis
-  -
-    title: Discussion
-    id: discussion
-  -
-    title: Assignment
-    id: lab
----
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>The tenth week | Intro to Databases</title>
+<meta name="description" content="Posts and slides"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/db-course/assets/css/reveal.css">
+  <style>
+  	.slides > :not(section) {
+  		display: none;
+  	}
+  	.reveal li > ol {
+		  list-style-type: lower-alpha; 
+  	}
+    .post-only {
+      display: none;
+    }
+    .reveal blockquote {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  
+	<div class="reveal">
+		<div class="slides">
+	      	<section>
+	      		<h1>The tenth week</h1>
+	      	</section>
+			
 
-<% const part = '../../../partials/'; %>
-<% const basePath = site.basePath %>
 
-<%- include(`${part}today`) %>
+
+
+
+<section>
+  <h2 class="slide-only">Here's what we're going today</h2>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <ol class="toc">
+      
+      	<li><a href="#2018">Databases in 2018</a></li>
+      
+      	<li><a href="#MySQL">MySQL</a></li>
+      
+      	<li><a href="#acid">Acid Compliance</a></li>
+      
+      	<li><a href="#postgres">PostreSQL</a></li>
+      
+      	<li><a href="#mongo">MongoDB</a></li>
+      
+      	<li><a href="#redis">Redis</a></li>
+      
+      	<li><a href="#discussion">Discussion</a></li>
+      
+      	<li><a href="#lab">Assignment</a></li>
+      
+      </ol>
+    </div>
+  </div>
+</section>
 
 <!-- 
   MySQL 
@@ -646,4 +676,20 @@ select * from my_table;</code></pre>
       <p>Also, try thinking about what other metrics could you track/calculate to help the business?</p>
     </div>
   </div>
-</section>
+</section>	
+		</div>
+	</div>
+
+  <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+  <script>
+      Reveal.initialize({
+          dependencies: [{ src: '/db-course/assets/javascript/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: '/db-course/assets/javascript/plugin/reveal-a11y.js', async: true, condition: function() { 
+                  return !!document.body.classList; 
+                } 
+            }]
+      });
+    </script>
+  </body>
+</html>

@@ -63,27 +63,25 @@
 },
 {
     "mod": 9,
-    "description": "This week we'll cover simple queries in MySQL; using column aliases in MySQL; retrieving rows using GROUP BY and HAVING clauses; limiting search results in MySQL with the LIMIT clause; using JOINs to retrieve rows from multiple tables in MySQL; retrieving rows using inner and outer joins.",
-    "reading": "Murach’s MySQL, Chapters 6 & 7",
-    "extraContent": [{"text": "Assignment 8", "href": "./assignments/assignment-8.html"}],
-    "showSlides": false
+    "description": "This week we'll cover the state of databases in 2018.",
+    "extraContent": [{"text": "Assignment 7", "href": "./notes/week-9/index.html#lab"}],
+    "showSlides": true
 },
 {
     "mod": 10,
-    "description": "This week we'll cover INSERT, DELETE and UPDATE on rows with MySQL; using REPLACE and TRUNCATE statements; data types used in MySQL; creating tables, indices and databases in MySQL; deleting tables and indices; altering existing table structures in MySQL.",
-    "reading": "Murach’s MySQL, Chapters 4 & 5",
+    "description": "This week we'll cover the MS SQL Server, common SQL errors, debugging, reviewing stored procedures, your bakery tables, and we'll do a review of JOINs.",
+    "extraContent": [{"text": "Assignment 8", "href": "./notes/week-10/index.html#assignment"}],
+    "showSlides": true
+},
+{
+    "mod": 11,
+    "description": "This week we'll cover simple queries in MySQL; using column aliases in MySQL; retrieving rows using GROUP BY and HAVING clauses; limiting search results in MySQL with the LIMIT clause; using JOINs to retrieve rows from multiple tables in MySQL; retrieving rows using inner and outer joins; INSERT, DELETE and UPDATE on rows with MySQL; using REPLACE and TRUNCATE statements; data types used in MySQL; creating tables, indices and databases in MySQL; deleting tables and indices; altering existing table structures in MySQL.",
     "extraContent": [{"text": "Assignment 9", "href": "./assignments/assignment-9.html"}],
     "showSlides": false
 },
 {
-    "mod": 11,
+    "mod": 12,
     "description": "This week we'll cover stored procedures in MySQL.",
     "showSlides": false
-},
-{
-    "title": "Final exam",
-    "description": "You got this.",
-    "showSlides": false,
-    "noSlides": true
 }
 ]

@@ -748,3 +748,5 @@ based on dark.css by Ivan Sagalaev
 .reveal table.base-table thead { background: #fefefe; color: #3c4151; }
 
 .reveal pre code.no-max { max-height: 100%; }
+
+.reveal .annoying-image { max-width: 65%; }
