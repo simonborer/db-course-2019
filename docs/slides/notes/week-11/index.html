@@ -1,30 +1,62 @@
----
-title: The eleventh week
-layout: default
-hasSlides: true
-today:
-  -
-    title: Migrating to MySQL
-    id: migration
-  -
-    title: Views
-    id: views
-  -
-    title: Database Users
-    id: permissions
-  -
-    title: Triggers
-    id: triggers
-  -
-    title: Assignment
-    id: assignment
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>The eleventh week | Intro to Databases</title>
+<meta name="description" content="Posts and slides"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/db-course/assets/css/reveal.css">
+  <style>
+  	.slides > :not(section) {
+  		display: none;
+  	}
+  	.reveal li > ol {
+		  list-style-type: lower-alpha; 
+  	}
+    .post-only {
+      display: none;
+    }
+    .reveal blockquote {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  
+	<div class="reveal">
+		<div class="slides">
+	      	<section>
+	      		<h1>The eleventh week</h1>
+	      	</section>
+			
 
----
 
-<% const part = '../../../partials/'; %>
-<% const basePath = site.basePath %>
 
-<%- include(`${part}today`) %>
+
+
+<section>
+  <h2 class="slide-only">Here's what we're going today</h2>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <ol class="toc">
+      
+      	<li><a href="#migration">Migrating to MySQL</a></li>
+      
+      	<li><a href="#views">Views</a></li>
+      
+      	<li><a href="#permissions">Database Users</a></li>
+      
+      	<li><a href="#triggers">Triggers</a></li>
+      
+      	<li><a href="#assignment">Assignment</a></li>
+      
+      </ol>
+    </div>
+  </div>
+</section>
 
 <section id="migration">
   <div class="grid-x">
@@ -235,3 +267,20 @@ END</code></pre>
     </div>
   </div>
 </section>
+	
+		</div>
+	</div>
+
+  <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
+  <script>
+      Reveal.initialize({
+          dependencies: [{ src: '/db-course/assets/javascript/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: '/db-course/assets/javascript/plugin/reveal-a11y.js', async: true, condition: function() { 
+                  return !!document.body.classList; 
+                } 
+            }]
+      });
+    </script>
+  </body>
+</html>

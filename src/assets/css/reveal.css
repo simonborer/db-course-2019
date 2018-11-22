@@ -750,3 +750,5 @@ based on dark.css by Ivan Sagalaev
 .reveal pre code.no-max { max-height: 100%; }
 
 .reveal .annoying-image { max-width: 65%; }
+
+.reveal img { max-height: 500px; }

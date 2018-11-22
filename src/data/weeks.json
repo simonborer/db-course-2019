@@ -75,9 +75,9 @@
 },
 {
     "mod": 11,
-    "description": "This week we'll cover simple queries in MySQL; using column aliases in MySQL; retrieving rows using GROUP BY and HAVING clauses; limiting search results in MySQL with the LIMIT clause; using JOINs to retrieve rows from multiple tables in MySQL; retrieving rows using inner and outer joins; INSERT, DELETE and UPDATE on rows with MySQL; using REPLACE and TRUNCATE statements; data types used in MySQL; creating tables, indices and databases in MySQL; deleting tables and indices; altering existing table structures in MySQL.",
-    "extraContent": [{"text": "Assignment 9", "href": "./assignments/assignment-9.html"}],
-    "showSlides": false
+    "description": "This week we'll cover stored procedures, views, triggers, and user permissions in MySQL",
+    "extraContent": [{"text": "Assignment 9", "href": "./notes/week-11/index.html#assignment"}],
+    "showSlides": true
 },
 {
     "mod": 12,
