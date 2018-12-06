@@ -104,7 +104,7 @@ END;
       <pre><code class="language-sql">CREATE OR REPLACE FUNCTION [function name]
     ([parameter],[parameter])
 RETURN [data type]
-IS
+AS
     [declare variables, cursors]
 BEGIN
     [do IF statements, loops, SELECT stuff]
@@ -196,7 +196,7 @@ END;
       <h3 class="h3">Sequences</h3>
       <p>Remember that sequences are a series of numbers that counts up every time you take a value from it.</p>
       <pre><code class="language-sql">CREATE SEQUENCE [sequence_name]
-  MINVALUE [numner]
+  MINVALUE [number]
   MAXVALUE [number]
   START WITH [number]
   INCREMENT BY [number]</code></pre>
@@ -258,8 +258,7 @@ BEGIN
 EXCEPTION
     ROLLBACK;
 END;
-/
-</code></pre>
+/</code></pre>
     </div>
   </div>
 </section>
