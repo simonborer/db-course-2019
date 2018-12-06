@@ -274,7 +274,7 @@ END;
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <p>The following has 3 syntax errors</p>
-      <pre><code class="language-sql">CREATE OR REPLACE PROCEDURE insert_into_employees
+      <pre><code class="language-sql no-max">CREATE OR REPLACE PROCEDURE insert_into_employees
 (
     id_param            bakery_employees.employee_id%TYPE,
     loc_param           bakery_employees.default_loc%TYPE,
@@ -283,7 +283,12 @@ END;
     type_param          bakery_employees.employee_type%TYPE
 )
 BEGIN
-    INSERT INTO bakery_employees VALUES (id_param, loc_param, last_name_param, type_param);
+    INSERT INTO bakery_employees VALUES (
+      id_param, 
+      loc_param, 
+      last_name_param, 
+      type_param
+    );
     COMMIT;
 EXCEPTION
     ROLLBACK;
@@ -383,6 +388,12 @@ END;
       <p>You are creating a database for a library.</p>
       <p>Library patrons have library cards. They are used when patrons borrow books. Books can be borrowed for up to three weeks.</p>
       <p>Patrons are charged late fees when they do not return their books on time, unless the patrons 'renews' the book. They can renew the book for one week, up to two times. Late fees are 10 cents per business day.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <p>Librarians need to call to remind patrons of overdue books.</p>
       <p>If late fees exceed 50% of the purchase price of the book, the full amount of the book is charged to the patron, and late fees stop accruing.</p>
       <p>Librarians need to be able to quickly search for books in the database, and provide recommendations based on author and genre.</p>
