@@ -274,7 +274,7 @@ char_alignment := 'Lawful neutral';
 FOR char_row IN char_cursor LOOP
   IF (char_row.alignment IS NULL) THEN
     UPDATE characters 
-    SET alignment = char_alignment
+    SET alignment = char_row.alignment
     WHERE character_id = char_row.character_id;
   END IF;
 END LOOP;
