@@ -81,7 +81,17 @@
 },
 {
     "mod": 12,
-    "description": "This week we'll cover stored procedures in MySQL.",
+    "description": "This week we'll do a hackathon.",
+    "showSlides": true
+},
+{
+    "mod": 13,
+    "description": "This week we'll review.",
+    "showSlides": false
+},
+{
+    "mod": 13,
+    "description": "This week we'll do a final exam.",
     "showSlides": false
 }
 ]
