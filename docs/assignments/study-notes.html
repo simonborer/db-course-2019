@@ -27,7 +27,7 @@
     <div class="cell small-10 small-offset-1 large-6 large-offset-3">
       <h2 class="h2">Thoughts on the review</h2>
       <p>I wanted to write out some notes for those of you who might be trying to figure out how to work through the review questions from the <a href="/db-course/notes/week-13/" target="_blank">last class</a>.</p>
-      <hr style="height:1px">
+      <hr>
       <section>
         <h3 class="h3">Question 1</h3>
         <blockquote>How would you design the library's database tables?</blockquote>
@@ -60,7 +60,7 @@
         <blockquote>We maintain semantics with data types.</blockquote>
         <p>Going back to the example of late fees: we know that, in order to calculate late fees, we need to know an <em>amount of time</em>. Can you tell the amount of time if you're comparing the strings 'Wednesday' and 'Monday'? Which week? Which month? Which year? The database is build to answer questions with formulas. Those formulas require data of specific types. If try to provide the wrong <em>kind</em> of data to our formulas, we can't get the correct answer. <em>That</em>'s why we're specific about the types of our data.</p>
       </section>
-      <hr style="height:1px">
+      <hr>
       <section>
         <h3 class="h3">Question 2</h3>
         <blockquote>What would you use to calculate late fees?</blockquote>
@@ -71,14 +71,14 @@
         <p>Our function will find all instances of a particular person borrowing a book where the due date for the book is prior to the current date, and the book was either never returned, or was returned after the due date.</p>
         <p>The amount of time between the due date and the return (or current) date is then calculated in days<sup><a href="footnote1">1</a></sup>. This amount (of days) is added up for each book into a total number. That total is then multiplied by the fee-per-day, thus returning the total amount owing for an individual client.</p>
       </section>
-      <hr style="height:1px">
+      <hr>
       <section>
         <h3 class="h3">Question 3</h3>
         <blockquote>How would you handle renewals?</blockquote>
         <p>It would be easy to do this as a simple <code class="language-sql">UPDATE</code> statement on the due date, plus an update on a column that tracks the number of renewals of a particular book.</p>
         <p>However, since it's a good practice to <em>not</em> destroy data (in this case, the initial return date), you could do one better and create a stored procedure, as we'll be conditionally altering the data. Our stored procedure inserts a new row in the table you use to track borrowing while marking the previous instance as returned <em>if</em> there is less than two records of this client borrowing this book without a gap in time.</p>
       </section>
-      <hr style="height:1px">
+      <hr>
       <section>
         <h3 class="h3">Question 4</h3>
         <blockquote>How would you present the top 10 most borrowed books based on the genre of a patron's most recently borrowed book?</blockquote>
@@ -87,13 +87,13 @@
         <p>More efficient would be to have a column in the books table where we record the number of times it is borrowed.</p>
         <p>We can update this column either using a trigger that is run whenever the book is borrowed (a row is added to the borrowing table) or using a stored procedure that captures all the data alterations associated with borrowing a book.</p>
       </section>
-      <hr style="height:1px">
+      <hr>
       <section>
         <h3 class="h3">Question 5</h3>
         <blockquote>How would you prevent a patron from borrowing a book if they had outstanding late fees of more than one dollar?</blockquote>
         <p>This is a complicated constraint. Remember how we created a function to calculate late fees? You get the value from that function, and use it in an if/else statement in a stored procedure that you use to record instances of borrowing, and throw an error based on these conditions. However you may find it less complicated to manage this constraint in a trigger that checks the function's return value before allowing your borrowing procedure to run. Keeping this constraint in its own trigger means less complicated code in your procedure.</p>
       </section>
-      <hr style="height:1px">
+      <hr>
       <section>
         <h3 class="h3">Question 6</h3>
         <blockquote>How would you generate a list of the names and phone numbers of patrons who had overdue books?</blockquote>
@@ -101,7 +101,7 @@
         <p>Our first thought might be, since we've already been working on it, to use our function for late fees. However, the question is not about late fees - it is about overdue books. Since a person could return a book via a library dropbox, it's possible for someone to <em>not</em> have an overdue book, while still owing late fees. Therefore 'people who owe late fees' !== 'people with overdue books'.</p>
         <p>What you'll need to do is join the borrowing table and the clients table where the return date is before the current date and the book has not been returned. From this, you'll want the distinct columns showing the names and phone numbers of the patrons.</p>
       </section>
-      <hr style="height:1px">
+      <hr>
       <section>
         <h3 class="h3">Question 7</h3>
         <blockquote>How would you let a librarian waive a late fee?</blockquote>
@@ -110,14 +110,14 @@
         <p>Better to associate the fee with the individual borrowing record, and have a column that records whether or not the fee had been waived.</p>
         <p>Taking this approach, we'll have to make sure that we check this column when calculating cumulative late fees!</p>
       </section>
-      <hr style="height:1px">
+      <hr>
       <section>
         <h3 class="h3">Question 8</h3>
         <blockquote>How would you see a patron's top three favourite genres?</blockquote>
         <p>This is simply a select statement, albeit a complicated one - we join the patron table, the borrowing table, and the books table, then we use an aggregate function grouped by the patron as a subquery to an aggregate function that groups by genre, sort by the count and fetch the first three rows in descending order.</p>
         <p>If this is something we knew we'd have to do more than once, for example if librarians were going to be able to call up this information as a part of a patron's 'profile', then we would certainly want to contain this complicated query within a nice, clean <code class="language-sql">VIEW</code>.</p>
       </section>
-      <hr style="height:1px">
+      <hr>
       <section>
         <h3 class="h3">Question 9</h3>
         <blockquote>How would you delete a book entirely from the system?</blockquote>
@@ -129,9 +129,10 @@
         <p>Obviously, the Resistance will need skilled DBAs, should it ever come to that.</p>
       </section>
     </div>
-    <hr style="height:1px">
     <div class="cell small-10 small-offset-1 large-6 large-offset-3">
       <section id="footnote1">
+       <hr>
+       <hr>
         <p><small>To fully comply with the requirements of the library's fee structure, we have to loop through the 'overdue' date range and iterate our 'days' count for each day that is a weekday. I'm putting this in a footnote because it's a bit complicated, and not really something I wanted distracting you while you study. However, if you're curious, I thought I'd give you an answer.</small></p>
         <p><small>You'll need to create a placeholder number variable, followed by a for loop for the range in 1..the number of days in the range (the start day subtracted from the end day). Then, for each instance, you'll need to check if that date is a weekday.</small></p>
         <p><small>To perform this check, we use <code class="language-sql">TO_CHAR</code> to extract the day of the week from the date (including using the NLS region parameter so we don't use a type of calendar we're not expecting) for the day of the week, and check to see if that is in an array of weekdays.</small></p>
