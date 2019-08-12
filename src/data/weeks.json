@@ -11,41 +11,41 @@
     "description": "This week we'll cover retrieving rows from a single table; implementing arithmetic statements; renaming columns in results; retrieving rows using comparison operators; using DISTINCT to eliminate duplicate rows; defining the logical operators AND, OR and NOT; retrieving rows using LIKE, BETWEEN, IN and IS NULL operators; sorting the result set using ORDER BY.",
     "reading": "Murach’s Oracle, Chapter 3",
     "extraContent": [{"text": "Assignment 1", "href": "./assignments/assignment-1.html"}],
-    "showSlides": true
+    "showSlides": false
 },
 {
     "mod": 3,
     "description": "This week we'll cover coding INNER JOINs to retrieve rows from multiple tables; the use of a self-join; table aliases; JOIN with implicit INNER JOIN syntax; OUTER JOINs to retrieve rows form multiple tables; the various set operators.",
     "reading": "Murach’s Oracle, Chapter 4",
     "extraContent": [{"text": "Assignment 2", "href": "./assignments/assignment-2.html"}],
-    "showSlides": true
+    "showSlides": false
 },
 {
     "mod": 4,
     "description": "This week we'll cover queries that use aggregate functions; queries with MAX, MIN, COUNT, AVG, and SUM group functions; the use of the GROUP BY and HAVING clauses; the differences between HAVING and WHERE clauses. We'll cover subqueries & have a brief introduction to CRUD.",
     "reading": "Murach’s Oracle, Chapter 5",
     "extraContent": [{"text": "Assignment 3", "href": "./assignments/assignment-3.html"}],
-    "showSlides": true
+    "showSlides": false
 },
 {
     "mod": 5,
     "description": "This week we'll cover how to create a test table; insert new data to a table; update existing data; delete data from a table; work with date/time data; various data types used in Oracle; functions for working with numeric data; functions for working with null data values; nvl and nvl2; converting data from one type to another.",
     "reading": "Murach’s Oracle, Chapters 7 & 8",
-    "showSlides": true
+    "showSlides": false
 },
 {
     "mod": 6,
     "description": "This week we'll cover the basic steps to design a database; relationships between tables; normalization; how to define data elements; identify tables and assign columns; identify primary and foreign keys; primary key constraint; a foreign key constraint; creating tables and sequences; the use of COMMIT and ROLLBACK for changes.",
     "reading": "Murach’s Oracle, Chapters 9 & 10",
     "extraContent": [{"text": "Assignment 4", "href": "./notes/week-5/index.html#lab"}],
-    "showSlides": true
+    "showSlides": false
 },
 {
     "mod": 7,
     "description": "This week we'll cover anonymous PL/SQL; how a cursor is used; how to handle exceptions; the use of bind variables; declaring variables in PL/SQL; IF statements; loops.",
     "reading": "Murach’s Oracle, Chapter 13",
     "extraContent": [{"text": "Assignment 5", "href": "./assignments/assignment-5.html"}],
-    "showSlides": true
+    "showSlides": false
 },
 {
     "title": "Midterm",
@@ -59,35 +59,35 @@
     "description": "This week review the midterm, and cover stored procedures and user-defined functions; optional parameters, input and output parameters; how to raise errors",
     "reading": "Murach’s Oracle, Chapter 15",
     "extraContent": [{"text": "Assignment 6", "href": "./assignments/assignment-6.html"}],
-    "showSlides": true
+    "showSlides": false
 },
 {
     "mod": 9,
     "description": "This week we'll cover the state of databases in 2018.",
     "extraContent": [{"text": "Assignment 7", "href": "./notes/week-9/index.html#lab"}],
-    "showSlides": true
+    "showSlides": false
 },
 {
     "mod": 10,
     "description": "This week we'll cover the MS SQL Server, common SQL errors, debugging, reviewing stored procedures, your bakery tables, and we'll do a review of JOINs.",
     "extraContent": [{"text": "Assignment 8", "href": "./notes/week-10/index.html#assignment"}],
-    "showSlides": true
+    "showSlides": false
 },
 {
     "mod": 11,
     "description": "This week we'll cover stored procedures, views, triggers, and user permissions in MySQL",
     "extraContent": [{"text": "Assignment 9", "href": "./notes/week-11/index.html#assignment"}],
-    "showSlides": true
+    "showSlides": false
 },
 {
     "mod": 12,
     "description": "This week we'll do a hackathon.",
-    "showSlides": true
+    "showSlides": false
 },
 {
     "mod": 13,
     "description": "This week we'll review.",
-    "showSlides": true
+    "showSlides": false
 },
 {
     "mod": 13,
