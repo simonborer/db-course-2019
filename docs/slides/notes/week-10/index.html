@@ -6,7 +6,7 @@
 <title>The tenth week | Intro to Databases</title>
 <meta name="description" content="Posts and slides"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/db-course/assets/css/reveal.css">
+  <link rel="stylesheet" href="/assets/css/reveal.css">
   <style>
   	.slides > :not(section) {
   		display: none;
@@ -559,7 +559,7 @@ CREATE TABLE bakery_discounts (
       <p>A join is when you combine the data from two or more tables.</p>
       <div class="grid-x">
         <div class="cell large-6 large-offset-3">
-          <img class="annoying-image" src="/db-course/assets/images/joins.jpg" alt="Diagram of SQL joins">
+          <img class="annoying-image" src="/assets/images/joins.jpg" alt="Diagram of SQL joins">
         </div>
       </div>
     </div>
@@ -684,8 +684,8 @@ ON b1.author_id = b2.author_id
   <script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js"></script>
   <script>
       Reveal.initialize({
-          dependencies: [{ src: '/db-course/assets/javascript/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                { src: '/db-course/assets/javascript/plugin/reveal-a11y.js', async: true, condition: function() { 
+          dependencies: [{ src: '/assets/javascript/plugin/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: '/assets/javascript/plugin/reveal-a11y.js', async: true, condition: function() { 
                   return !!document.body.classList; 
                 } 
             }]

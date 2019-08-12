@@ -4,7 +4,7 @@ module.exports = {
   site: {
     title: 'Intro to Databases',
     description: 'Posts and slides',
-    basePath: process.env.NODE_ENV === 'production' ? '/db-course' : '/docs',
+    basePath: process.env.NODE_ENV === 'production' ? '' : '/docs',
     weeks
   },
   build: {

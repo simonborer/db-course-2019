@@ -6,16 +6,16 @@
 <title>Study Notes | Intro to Databases</title>
 <meta name="description" content="Posts and slides"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-	  	<link rel="stylesheet" href="/db-course/assets/css/styles.css">
+	  	<link rel="stylesheet" href="/assets/css/styles.css">
 		
-			<link rel="stylesheet" href="/db-course/assets/css/prism.css">
+			<link rel="stylesheet" href="/assets/css/prism.css">
 		
 	</head>
 	<body class="post">
 		<section class="page">
 			
 			
-				<nav><a href="/db-course" class="button large button--home">Home</a></nav>
+				<nav><a href="" class="button large button--home">Home</a></nav>
 			
 		  <h1 class="page__title">Study Notes</h1>
 		</section>
@@ -26,7 +26,7 @@
   <div class="grid-x grid-margin-x">
     <div class="cell small-10 small-offset-1 large-6 large-offset-3">
       <h2 class="h2">Thoughts on the review</h2>
-      <p>I wanted to write out some notes for those of you who might be trying to figure out how to work through the review questions from the <a href="/db-course/notes/week-13/" target="_blank">last class</a>.</p>
+      <p>I wanted to write out some notes for those of you who might be trying to figure out how to work through the review questions from the <a href="/notes/week-13/" target="_blank">last class</a>.</p>
       <hr>
       <section>
         <h3 class="h3">Question 1</h3>
@@ -38,7 +38,7 @@
         <p><strong>How do we know how late the book is?</strong></p>
         <p>What was the <strong>date</strong> the book was due?</p>
         <p>What is the difference between the <strong>current date</strong> and the date the book was due? This value should be formatted to the unit as the late fees use, i.e. a day.</p>
-        <p>Once we have broken down our problems so that we know what data is required to answers them, we can organize that data according to the <a href="/db-course/notes/week-13/#review" target="_blank">principles</a> of database architecture.</p>
+        <p>Once we have broken down our problems so that we know what data is required to answers them, we can organize that data according to the <a href="/notes/week-13/#review" target="_blank">principles</a> of database architecture.</p>
         <blockquote>Data should be duplicated as little as possible.</blockquote>
         <p>Remember that this is foundational to the purpose of an RDBMS. Look at your data - is something duplicated? Great! That means we can optimize it.</p>
         <p>When you think of the data that's going into our library database, <em>could</em> it all be put into one table? Sure! It would just be terribly inefficient. Every time someone borrowed a book, you'd have to input their whole name, address, phone number... everything about them! In order to make this more efficient, we take what we know about them and put it into a table dedicated to 'people', and then we give that record an identifier so we can reference it and get that info as often as we need.</p>
@@ -143,7 +143,7 @@
 </div>
 
 		
-			<script src="/db-course/assets/javascript/prism.js"></script>
+			<script src="/assets/javascript/prism.js"></script>
 		
 	</body>
 </html>
