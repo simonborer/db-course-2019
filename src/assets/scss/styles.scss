@@ -62,6 +62,9 @@ body {
             padding-top: 4rem;
         }
     }
+    &__hero-img {
+        margin-top: 4rem;
+    }
 }
 
 .weeks-table {
@@ -138,7 +141,7 @@ body {
 
 .post {
     &>section:not(.page) {
-        margin: 1rem 0;
+        margin: 8rem 0;
         @include breakpoint(small down) {
             padding: 0 1rem;
         }

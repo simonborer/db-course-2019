@@ -6,18 +6,19 @@
 <title>The first week | Intro to Databases</title>
 <meta name="description" content="Posts and slides"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-	  	<link rel="stylesheet" href="/assets/css/styles.css">
+	  	<link rel="stylesheet" href="/docs/assets/css/styles.css">
 		
-			<link rel="stylesheet" href="/assets/css/prism.css">
+			<link rel="stylesheet" href="/docs/assets/css/prism.css">
 		
 	</head>
 	<body class="post">
 		<section class="page">
 			
 			
-				<nav><a href="" class="button large button--home">Home</a></nav>
+				<nav><a href="/docs" class="button large button--home">Home</a></nav>
 			
 		  <h1 class="page__title">The first week</h1>
+		  
 		</section>
 		<section>
     <h2 class="slide-only">Here's what we're going to do today:</h2>
@@ -47,7 +48,7 @@
 			<h2 class="h2">Welcome!</h2>
 			<p>My name is Simon Borer. You can reach me at <a href="mailto:brrs0390@humbermail.ca">brrs0390@humbermail.ca</a>.</p>
 			<p class="slide-only">I like coffee <span role="image" aria-label="coffee">☕</span>, old-timey baseball <span role="image" aria-label="baseball">⚾</span>, horror movies <span role="image" aria-label="ghost">👻</span> and accessible websites <span role="image" aria-label="computer">💻</span>.</p>
-			<p class="slide-only">This course site is hosted on my github. Please bookmark the <a href="https://simonborer.github.io/db-course/" target="_blank">course homepage<span class="show-for-sr"> Opens in a new window</span></a>, and follow along with lectures in <a href="https://simonborer.github.io/db-course/notes/week-0/" target="_blank">the notes<span class="show-for-sr"> Opens in a new window</span></a>.</p>
+			<p class="slide-only">This course site is hosted at <a href="dbcourse2019.com">dbcourse2019.com</a>. Please bookmark the <a href="dbcourse2019.com" target="_blank">course homepage<span class="show-for-sr"> Opens in a new window</span></a>, and follow along with lectures in <a href="dbcourse2019.com/notes/week-0/" target="_blank">the notes<span class="show-for-sr"> Opens in a new window</span></a>.</p>
 		</div>
 	</div>
 </section>
@@ -75,7 +76,7 @@
 		</div>
 	</div>
 </section>
-<section>
+<!-- <section>
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<h2 class="h2">Books</h2>
@@ -93,8 +94,8 @@
 			</ul>
 		</div>
 	</div>
-</section>
-<section>
+</section> -->
+<!-- <section>
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<h2 class="h2">Assignments</h2>
@@ -148,7 +149,7 @@
 		  </div>
 		</div>
 	</div>
-</section>
+</section> -->
 <section class="slide-only">
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
@@ -174,8 +175,78 @@
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 		<h2 class="h2">The Syllabus</h2>
 		<p>
-			<a class="button" target="_blank" href="/assets/documents/HTTP5105-syllabus.pdf">Download the syllabus<span class="show-for-sr">Opens in a new window.</span></a>		
+			<a class="button" target="_blank" href="/docs/assets/documents/HTTP5105-syllabus.pdf">Download the syllabus<span class="show-for-sr">Opens in a new window.</span></a>		
 		</p>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+			<h2 class="h2">Data on the internet.</h2>
+			<p>This is data, but it is not on the internet.</p><br><br>
+			<div class="callout">
+				<div class="info callout secondary"><span id="nameInfo">I have no idea what your name is</span>, and you've clicked the button <span id="buttonInfo">zero times, as far as I can tell</span>.</div>
+				<div class="user-interface-wrapper">
+				  <label for="firstName">Your first name</label>
+				  <input 
+				    placeholder="Type your name here" 
+				    id="firstName" 
+				    type="text">
+				</div>
+				<div class="user-interface-wrapper">
+				  <button id="buttonForClicking" class="button">Click me.</button>
+				</div>
+				<script type="text/javascript">
+					
+					// Hey, you're reading the source! Glad to have you :)
+
+					// Get the name input element, and the button element.
+					var textInputForName = document.getElementById("firstName"),
+					    buttonWereGonnaClick = document.getElementById("buttonForClicking");
+
+					// Get the elements we're going to update with text.
+					var nameInformationText = document.getElementById("nameInfo"),
+					    buttonInformationText = document.getElementById("buttonInfo");
+
+					// Start the number of clicks at zero.
+					var numberOfClicks = 0;
+
+					// Listen for when a user releases a keyboard button while focused on the text input (a.k.a. the "keyup" event)
+					textInputForName.addEventListener("keyup", function(e) {
+					//   Whenever a user releases a key inside the text input, get the value (contents) of the text input
+					  const name = textInputForName.value;
+					  
+					//   If the number of characters in the name is greater than or equal to one, replace the text of the "nameInformationText" element with our string below ("I think your name is "), and the value of the text input (`name`), capitalized.
+					  if (name.length >= 1) {
+					    nameInformationText.innerText = "I think your name is " + name.charAt(0).toUpperCase() + name.slice(1);
+					  } else {
+					//     If the number of characters in the name is less than 1, replace the text inside nameInformationText with our string below ("I have no idea what your name is").
+					    nameInformationText.innerText = "I have no idea what your name is";
+					  }
+					});
+
+					// Listen for when a user releases clicks our button element (`buttonWereGonnaClick`)
+					buttonWereGonnaClick.addEventListener("click", function(e) {
+					//   Everytime our button gets clicked, add 1 to the value of the `numberOfClicks` variable
+					  numberOfClicks = numberOfClicks + 1;
+					  
+					//   If the `numberOfClicks` variable is equal to one, replace the text inside buttonInformationText with our string below ("one time").
+					  if (numberOfClicks === 1) {
+					    buttonInformationText.innerText = "one time";
+					  } else if (numberOfClicks < 1) {
+					//   If the `numberOfClicks` variable is NOT equal to one, but IS less than 1, replace the text inside the "buttonInformationText" element with our text below ("zero times or... less??")
+					    buttonInformationText.innerText = "zero times or... less??";
+					  } else {
+					//  If the `numberOfClicks` is not equal to one, and is not less than one, replace the text inside the "buttonInformationText" element with the value of the `numberOfClicks`, plus the text " times".
+					    buttonInformationText.innerText = numberOfClicks + " times";
+					  }
+					});
+				</script>
+				
+			</div>
+			<p></p>
+
 		</div>
 	</div>
 </section>
@@ -184,8 +255,8 @@
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<h2 class="h2">What a database does</h2>
 			<h3 class="post-only">Components of a client-server system</h3>
-			<a href="/assets/images/server-diagram.png" target='_blank'>
-				<img class="diagram" src="/assets/images/diagram.png" alt="A diagram of a web client making a request from a web server, which in turn either returns static files, or a dynamic request populated by data from a database.">
+			<a href="/docs/assets/images/server-diagram.png" target='_blank'>
+				<img class="diagram" src="/docs/assets/images/diagram.png" alt="A diagram of a web client making a request from a web server, which in turn either returns static files, or a dynamic request populated by data from a database.">
 				<span class="show-for-sr">Open image in a new window</span>
 			</a>
 		</div>
@@ -202,8 +273,8 @@
 <section>
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-			<a href="/assets/images/diagram-server_db.png" target='_blank'>
-				<img class="diagram image-3q" src="/assets/images/diagram-server-db.png" alt="A diagram of a web client making a request from a web server, which in turn either returns static files, or a dynamic request populated by data from a database.">
+			<a href="/docs/assets/images/diagram-server_db.png" target='_blank'>
+				<img class="diagram image-3q" src="/docs/assets/images/diagram-server-db.png" alt="A diagram of a web client making a request from a web server, which in turn either returns static files, or a dynamic request populated by data from a database.">
 				<span class="show-for-sr">Open image in a new window</span>
 			</a>
 		</div>
@@ -242,7 +313,7 @@
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<h2 class="h2">Let's see if it works!</h2>
 			<figure>
-				<img src="/assets/images/new-connection.jpg" alt="Green plus symbol">
+				<img src="/docs/assets/images/new-connection.jpg" alt="Green plus symbol">
 				<figcaption>To create a connection to a database, click on the green plus symbol in the top right of SQL Developer</figcaption>
 			</figure>
 		</div>
@@ -252,7 +323,7 @@
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 				<figure>
-					<img src="/assets/images/new-connection--fields.jpg" alt="Fields to be filled out to create a new connection to the humber database.">
+					<img src="/docs/assets/images/new-connection--fields.jpg" alt="Fields to be filled out to create a new connection to the humber database.">
 					<figcaption>Fill out the appropriate fields as indicated. <code>Connection name</code> is whatever you'll remember. <code>Username</code> is your student number. The rest of the values are required as indicated in the screenshot.</figcaption>
 				</figure>
 		</div>
@@ -262,10 +333,10 @@
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1 smaller-text">
 			<h2 class="h2">Populating your database</h2>
-			<p>Download <a href="/assets/documents/create_ap_tables.sql">this .sql file</a>.</p>
+			<p>Download <a href="/docs/assets/documents/create_ap_tables.sql">this .sql file</a>.</p>
 			<p>Open this file with SQL Developer (<code>File > Open</code>) and then...</p>
 				<figure>
-					<img src="/assets/images/run-script.jpg" alt="Image indicating placement of 'run script' icon in SQL developer">
+					<img src="/docs/assets/images/run-script.jpg" alt="Image indicating placement of 'run script' icon in SQL developer">
 					<figcaption>...click the 'Run Script' icon (or press F5)</figcaption>
 				</figure>
 			<p>When prompted, choose to run this on the connection you've already created and opened.</p>
@@ -277,7 +348,7 @@
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<h2 class="h2">Your first query</h2>
 			<figure>
-				<img src="/assets/images/worksheet.jpg" alt="How to open a new worksheet">
+				<img src="/docs/assets/images/worksheet.jpg" alt="How to open a new worksheet">
 				<figcaption>You should already have a worksheet open, but if you don't, click on the worksheet icon to open one up.</figcaption>
 			</figure>
 		</div>
@@ -294,7 +365,7 @@
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<p>You should see all kinds of wonderful data!</p>
-			<img src="/assets/images/output.jpg" alt="Database output">
+			<img src="/docs/assets/images/output.jpg" alt="Database output">
 		</div>
 	</div>
 </section>
@@ -349,7 +420,7 @@
 			<h2 class="h2">Terminology</h2>
 			<p>Let's start learning some words!</p>
 			<figure>
-				<img src="/assets/images/output--rows-columns.jpg" alt="Demonstration of rows and columns">
+				<img src="/docs/assets/images/output--rows-columns.jpg" alt="Demonstration of rows and columns">
 				<figcaption>These are easy - rows are horizontal sets of data, and columns are vertical categories of data.</figcaption>
 			</figure>
 		</div>
@@ -361,7 +432,7 @@
 			<h2 class="h2">Primary key</h2>
 			<p>Another important element that every table should have is a <strong>primary key</strong>.</p>
 			<figure>
-				<img src="/assets/images/output--primary-key.jpg" alt="Demonstration of a primary key">
+				<img src="/docs/assets/images/output--primary-key.jpg" alt="Demonstration of a primary key">
 				<figcaption>Primary keys are something you define when you create a table. They <em>must</em> be unique for each row! No two rows can have the same primary key.</figcaption>
 			</figure>
 		</div>
@@ -380,7 +451,7 @@
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<figure>
-				<img src="/assets/images/output--foreign-key.jpg" alt="Demonstration of a foreign key.">
+				<img src="/docs/assets/images/output--foreign-key.jpg" alt="Demonstration of a foreign key.">
 				<figcaption>If we look at our <code class="language-sql">INVOICES</code> table, you'll see that if references <code class="language-sql">VENDOR_ID</code>, which is the primary key for the <code class="language-sql">VENDOR</code> table. This means we can easily reference the information about the vendor that this invoice belongs to from the <code class="language-sql">VENDOR</code> table.</figcaption>
 			</figure>	
 		</div>
@@ -423,7 +494,7 @@
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<figure>
-				<img src="/assets/images/column-info.jpg" alt="Demonstration of clicking on a table to see information about it's columns.">
+				<img src="/docs/assets/images/column-info.jpg" alt="Demonstration of clicking on a table to see information about it's columns.">
 				<figcaption>In SQL Developer, if we click on a table in our table tree, it will show us information about the columns in that table, including what type of data is allowed.</figcaption>
 			</figure>	
 		</div>
@@ -687,7 +758,7 @@ ORDER BY vendor_name DESC</code></pre></td>
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<h2 class="h2">Lab Questions</h2>
-			<p>See <a href="/notes/week-0/index.html#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p>	
+			<p>See <a href="/docs/notes/week-0/index.html#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p>	
 		</div>
 	</div>
 </section>
@@ -735,7 +806,7 @@ ORDER BY invoice_number</code></pre>
 	</div>
 </section>
 		
-			<script src="/assets/javascript/prism.js"></script>
+			<script src="/docs/assets/javascript/prism.js"></script>
 		
 	</body>
 </html>

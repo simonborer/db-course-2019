@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const $    = require('gulp-load-plugins')();
+const $ = require('gulp-load-plugins')();
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const sassPaths = [
@@ -9,13 +9,15 @@ const sassPaths = [
 const postcss = require('gulp-postcss');
 const uncss = require('postcss-uncss');
 const cssnano = require('cssnano');
+const exec = require('child_process').exec;
+var browserSync = require('browser-sync').create();
 
 gulp.task('sass', function() {
-  return gulp.src('./src/assets/scss/*.scss')
+  return gulp.src('./src/assets/scss/**/*.scss')
     .pipe($.sass({
-      includePaths: sassPaths,
-      outputStyle: 'compact' // if css compressed **file size**
-    })
+        includePaths: sassPaths,
+        outputStyle: 'compact' // if css compressed **file size**
+      })
       .on('error', $.sass.logError))
     .pipe($.autoprefixer({
       browsers: ['last 2 versions', 'ie >= 9']
@@ -23,22 +25,33 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('./src/assets/css'));
 });
 
-gulp.task('prod', function () {
-    var plugins = [
-        // add back in once you can exclude hljs
-        // uncss({
-        //     ignoreSheets : ['reveals.css'],
-        //     html: ['./docs/**/*.html']
-        // }),
-        cssnano({
-            discardComments: {removeAll: true}
-        })
-    ];
-    return gulp.src('./src/assets/css/*.css')
-        .pipe(postcss(plugins))
-        .pipe(gulp.dest('./docs/assets/css'));
+gulp.task('build', function() {
+  exec('node ./scripts/build');
 });
 
-gulp.task('default', ['sass'], function() {
-  gulp.watch(['./src/assets/scss/**/*.scss'], ['sass']);
+gulp.task('serve', ['sass'], function() {
+  browserSync.init({
+    server: "./"
+  });
+
+  gulp.watch("src/scss/**/*.scss", ['sass']);
+  gulp.watch("src/**/*.+(ejs|json|js|png|jpg|svg|sql|pdf|md|csv)", ['build']).on('change', browserSync.reload);
 });
+
+gulp.task('prod', function() {
+  var plugins = [
+    // add back in once you can exclude hljs
+    // uncss({
+    //     ignoreSheets : ['reveals.css'],
+    //     html: ['./docs/**/*.html']
+    // }),
+    cssnano({
+      discardComments: { removeAll: true }
+    })
+  ];
+  return gulp.src('./src/assets/css/*.css')
+    .pipe(postcss(plugins))
+    .pipe(gulp.dest('./docs/assets/css'));
+});
+
+gulp.task('default', ['serve']);

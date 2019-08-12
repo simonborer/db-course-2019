@@ -31,7 +31,7 @@ hasSlides: true
 			<h2 class="h2">Welcome!</h2>
 			<p>My name is Simon Borer. You can reach me at <a href="mailto:brrs0390@humbermail.ca">brrs0390@humbermail.ca</a>.</p>
 			<p class="slide-only">I like coffee <span role="image" aria-label="coffee">☕</span>, old-timey baseball <span role="image" aria-label="baseball">⚾</span>, horror movies <span role="image" aria-label="ghost">👻</span> and accessible websites <span role="image" aria-label="computer">💻</span>.</p>
-			<p class="slide-only">This course site is hosted at <a href="dbcourse2019.com">dbcourse2019.com</a>. Please bookmark the <a href="dbcourse2019.com" target="_blank">course homepage<span class="show-for-sr"> Opens in a new window</span></a>, and follow along with lectures in <a href="dbcourse2019.com/notes/week-0/" target="_blank">the notes<span class="show-for-sr"> Opens in a new window</span></a>.</p>
+			<p class="slide-only">This course site is hosted on my github. Please bookmark the <a href="https://simonborer.github.io/db-course/" target="_blank">course homepage<span class="show-for-sr"> Opens in a new window</span></a>, and follow along with lectures in <a href="https://simonborer.github.io/db-course/notes/week-0/" target="_blank">the notes<span class="show-for-sr"> Opens in a new window</span></a>.</p>
 		</div>
 	</div>
 </section>
@@ -59,7 +59,7 @@ hasSlides: true
 		</div>
 	</div>
 </section>
-<!-- <section>
+<section>
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<h2 class="h2">Books</h2>
@@ -77,8 +77,8 @@ hasSlides: true
 			</ul>
 		</div>
 	</div>
-</section> -->
-<!-- <section>
+</section>
+<section>
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
 			<h2 class="h2">Assignments</h2>
@@ -132,7 +132,7 @@ hasSlides: true
 		  </div>
 		</div>
 	</div>
-</section> -->
+</section>
 <section class="slide-only">
 	<div class="grid-x">
 		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
@@ -160,76 +160,6 @@ hasSlides: true
 		<p>
 			<a class="button" target="_blank" href="<%= site.basePath %>/assets/documents/HTTP5105-syllabus.pdf">Download the syllabus<span class="show-for-sr">Opens in a new window.</span></a>		
 		</p>
-		</div>
-	</div>
-</section>
-<section>
-	<div class="grid-x">
-		<div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-			<h2 class="h2">Data on the internet.</h2>
-			<p>This is data, but it is not on the internet.</p><br><br>
-			<div class="callout">
-				<div class="info callout secondary"><span id="nameInfo">I have no idea what your name is</span>, and you've clicked the button <span id="buttonInfo">zero times, as far as I can tell</span>.</div>
-				<div class="user-interface-wrapper">
-				  <label for="firstName">Your first name</label>
-				  <input 
-				    placeholder="Type your name here" 
-				    id="firstName" 
-				    type="text">
-				</div>
-				<div class="user-interface-wrapper">
-				  <button id="buttonForClicking" class="button">Click me.</button>
-				</div>
-				<script type="text/javascript">
-					
-					// Hey, you're reading the source! Glad to have you :)
-
-					// Get the name input element, and the button element.
-					var textInputForName = document.getElementById("firstName"),
-					    buttonWereGonnaClick = document.getElementById("buttonForClicking");
-
-					// Get the elements we're going to update with text.
-					var nameInformationText = document.getElementById("nameInfo"),
-					    buttonInformationText = document.getElementById("buttonInfo");
-
-					// Start the number of clicks at zero.
-					var numberOfClicks = 0;
-
-					// Listen for when a user releases a keyboard button while focused on the text input (a.k.a. the "keyup" event)
-					textInputForName.addEventListener("keyup", function(e) {
-					//   Whenever a user releases a key inside the text input, get the value (contents) of the text input
-					  const name = textInputForName.value;
-					  
-					//   If the number of characters in the name is greater than or equal to one, replace the text of the "nameInformationText" element with our string below ("I think your name is "), and the value of the text input (`name`), capitalized.
-					  if (name.length >= 1) {
-					    nameInformationText.innerText = "I think your name is " + name.charAt(0).toUpperCase() + name.slice(1);
-					  } else {
-					//     If the number of characters in the name is less than 1, replace the text inside nameInformationText with our string below ("I have no idea what your name is").
-					    nameInformationText.innerText = "I have no idea what your name is";
-					  }
-					});
-
-					// Listen for when a user releases clicks our button element (`buttonWereGonnaClick`)
-					buttonWereGonnaClick.addEventListener("click", function(e) {
-					//   Everytime our button gets clicked, add 1 to the value of the `numberOfClicks` variable
-					  numberOfClicks = numberOfClicks + 1;
-					  
-					//   If the `numberOfClicks` variable is equal to one, replace the text inside buttonInformationText with our string below ("one time").
-					  if (numberOfClicks === 1) {
-					    buttonInformationText.innerText = "one time";
-					  } else if (numberOfClicks < 1) {
-					//   If the `numberOfClicks` variable is NOT equal to one, but IS less than 1, replace the text inside the "buttonInformationText" element with our text below ("zero times or... less??")
-					    buttonInformationText.innerText = "zero times or... less??";
-					  } else {
-					//  If the `numberOfClicks` is not equal to one, and is not less than one, replace the text inside the "buttonInformationText" element with the value of the `numberOfClicks`, plus the text " times".
-					    buttonInformationText.innerText = numberOfClicks + " times";
-					  }
-					});
-				</script>
-				
-			</div>
-			<p></p>
-
 		</div>
 	</div>
 </section>
