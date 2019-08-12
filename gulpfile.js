@@ -29,12 +29,18 @@ gulp.task('build', function() {
   exec('node ./scripts/build');
 });
 
+gulp.task('style-move', function() {
+  return gulp.src('./src/assets/css/*.css')
+    .pipe(gulp.dest('./docs/assets/css'));
+});
+
 gulp.task('serve', ['sass'], function() {
   browserSync.init({
     server: "./"
   });
 
-  gulp.watch("src/scss/**/*.scss", ['sass']);
+  gulp.watch("src/assets/scss/**/*.scss", ['sass']);
+  gulp.watch("src/assets/css/*.css", ['style-move']);
   gulp.watch("src/**/*.+(ejs|json|js|png|jpg|svg|sql|pdf|md|csv)", ['build']).on('change', browserSync.reload);
 });
 

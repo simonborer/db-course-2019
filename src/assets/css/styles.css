@@ -2713,3 +2713,5 @@ code.language-sql { border: 0 solid transparent; background-color: transparent; 
 .list-style-none, dl.no-bullet { list-style: none; }
 
 .forgetica { font-family: "Sans Forgetica", sans-serif; }
+
+table pre[class*="language-"], table code[class*="language-"] { white-space: normal !important; }

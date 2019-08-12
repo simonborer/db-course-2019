@@ -244,3 +244,7 @@ a {
 .forgetica {
     font-family: "Sans Forgetica", sans-serif;
 }
+
+table pre[class*="language-"], table code[class*="language-"] {
+    white-space: normal !important;
+}
