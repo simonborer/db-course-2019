@@ -1,6 +1,0 @@
-[submodule "themes/starter"]
-	path = themes/starter
-	url = https://github.com/jimfrenette/hugo-starter.git
-[submodule "themes/basics"]
-	path = themes/basics
-	url = https://github.com/arjunkrishnababu96/basics.git
