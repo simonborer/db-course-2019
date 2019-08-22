@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on My New Hugo Site</title>
+    <link>http://example.org/posts/</link>
+    <description>Recent content in Posts on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Mar 2019 08:47:11 +0100</lastBuildDate>
+    
+	<atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Week 1</title>
+      <link>http://example.org/posts/the-first-week/</link>
+      <pubDate>Tue, 26 Mar 2019 08:47:11 +0100</pubDate>
+      
+      <guid>http://example.org/posts/the-first-week/</guid>
+      <description>Hey, this is the first week</description>
+    </item>
+    
+    <item>
+      <title>Week 2</title>
+      <link>http://example.org/posts/the-second-week/</link>
+      <pubDate>Tue, 26 Mar 2019 08:47:11 +0100</pubDate>
+      
+      <guid>http://example.org/posts/the-second-week/</guid>
+      <description>Hey, this is the second week, buddy, and you know what that means - there has been a passage of time anywhere between 24 and 168 hours.</description>
+    </item>
+    
+  </channel>
+</rss>

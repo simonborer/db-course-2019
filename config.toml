@@ -1,0 +1,14 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "My New Hugo Site"
+theme = "blank"
+[outputFormats]
+  [outputFormats.slide]
+    mediaType = "text/html"
+    name = "slide"
+    path = "slides"
+    isHTML = "true"
+[outputs]
+  home = ["HTML", "slide"]
+  page = ["HTML", "slide"]
+  post = ["HTML", "slide"]
