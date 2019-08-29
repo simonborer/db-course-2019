@@ -1,0 +1,14 @@
+.slides > :not(section) {
+  display: none;
+}
+.reveal li > ol {
+  list-style-type: lower-alpha; 
+}
+.post-only {
+  display: none;
+}
+.reveal blockquote {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  text-align: left;
+}

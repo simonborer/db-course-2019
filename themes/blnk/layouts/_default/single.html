@@ -1,0 +1,19 @@
+{{ define "main" }}
+	<main>
+		<article>
+			<div class="hero hero--page" style="background-image:url('/images/{{ .Params.featured_image }}')">
+				<nav class="page-nav">
+					<a class="page-nav__link" href="{{ .Site.BaseURL }}">Home</a>
+					<a class="page-nav__link" href="/slides/{{ .RelPermalink }}">Slides</a>
+				</nav>
+				<h1>{{ .Title }}</h1>
+			</div>
+			<div class="grid-container">
+				<div class="grid-x">
+					<div class="cell medium-6 medium-offset-3 small-10 small-offset-1">{{ .Content }}</div>
+									
+				</div>
+			</div>
+		</article>
+	</main>
+{{ end }}

@@ -1,0 +1,16 @@
+<article class="page-list">
+	{{ if isset .Params "featured_image" }}
+		<img src="/images/{{ .Params.featured_image }}" class="post-image">
+	{{ end }}
+	<h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+	<div>
+		{{ .Summary }}
+		{{ if .Truncated }}
+			<a href="{{ .Permalink }}">Read more about {{ lower .Title }} ...</a>
+		{{ end }}
+	</div>
+	<div class="page-list__links">
+		<a href="{{ .Permalink }}" class="button small page-list__link">Notes</a>
+		<a href="/slides/{{ .RelPermalink }}" class="button small page-list__link">Slides</a>
+	</div>
+</article>
