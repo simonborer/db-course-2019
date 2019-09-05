@@ -82,11 +82,13 @@ h2 {
     .hero {
         justify-content: center;
         margin-bottom: 2rem;
+        align-items: center;
 
         &--page {
             flex-direction: column-reverse;
             justify-content: flex-end;
             height: 60vh;
+            align-items: flex-start;
         }
     }
 
