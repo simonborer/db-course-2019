@@ -2,11 +2,11 @@
 	<main>
 		<div class="hero"><h1 class="page-title">Databases!</h1></div>
 		
-		<div class="grid-container">
+		<div class="grid-container full-on-mobile">
 		{{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) 20 }}
 		{{ range $paginator.Pages.Reverse }}
 			<div class="grid-x">
-				<div class="cell medium-6 medium-offset-3 small-10 small-offset-1">{{ .Render "summary" }}</div>
+				<div class="cell medium-6 medium-offset-3 small-12">{{ .Render "summary" }}</div>
 			</div>
 		{{ end }}
 		</div>
