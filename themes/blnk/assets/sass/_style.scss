@@ -1,78 +1,110 @@
 html,
 body {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 h1,
 h2 {
-  font-weight: 700;
+    font-weight: 700;
+}
+
+h1 {
+    background: #DE5028;
+    padding: .5rem 2rem;
+    font-style: italic;
 }
 
 h2 {
-  font-size: 2rem;
-  line-height: 1.2;
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
 .hero {
-  background-color: #000000;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 50vh;
-  color: #ffffff;
-  font-size: 9vw;
-  font-weight: 900;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  padding: 0 6vh 2vh 0;
-  margin-bottom: 4rem;
+    background-image: url('/images/connecting.jpg');
+    background-color: #000000;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    height: 50vh;
+    color: #ffffff;
+    font-weight: 900;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-bottom: 4rem;
 
-  &--page {
-    height: 25vh;
-    font-size: 8vw;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+    &--page {
+        height: 25vh;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0;
+    }
 }
 
 .page-list {
-  margin: 2rem 0;
+    margin: 2rem 0;
 
-  &__link {
-    font-weight: 500;
-    margin-top: 1rem;
-    margin-right: .5rem;
-
-    &:last-child {
-      margin-right: 0;
+    &__link {
+        margin-top: 1rem;
+        margin-right: .5rem;
+        color: #ffffff;
+        font-weight: bold;
+        &:last-child {
+            margin-right: 0;
+        }
+        &:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        &:focus {
+            color: #ffffff;
+            text-decoration: underline;
+        }
     }
-  }
+
+    &__heading {
+        margin: 0;
+        padding: 1rem;
+        background: #DE5028;
+        text-align: center;
+    }
+
+    &__summary {
+        margin-top: 1rem;
+    }
+}
+
+.page-title {
+    line-height: 1.2;
+    margin: 0;
+}
+
+@media (min-width: 480px) {
+    .page-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 1080px) {
+    .page-title {
+        font-size: 4vw;
+    }
 }
 
 .post-image {
-  width: 100%;
-  max-height: 5rem;
-  object-fit: cover;
-  margin-bottom: 1rem;
+    width: 100%;
+    max-height: 8rem;
+    object-fit: cover;
 }
 
 .page-nav {
-  display: flex;
-  flex-direction: column;
-  font-size: 1rem;
-  margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    margin: 1rem;
 
-  &__link {
-    color: white;
-    text-decoration: underline;
-    transition: color .15s;
-
-    &:hover {
-      color: #d8d8d8;
+    &__link {
+        margin: 0 0 .5rem;
     }
-
-    &:focus {
-      color: #d8d8d8;
-    }
-  }
 }

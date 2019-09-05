@@ -3,10 +3,10 @@
 		<article>
 			<div class="hero hero--page" style="background-image:url('/images/{{ .Params.featured_image }}')">
 				<nav class="page-nav">
-					<a class="page-nav__link" href="{{ .Site.BaseURL }}">Home</a>
-					<a class="page-nav__link" href="/slides/{{ .RelPermalink }}">Slides</a>
+					<a class="button small primary page-nav__link" href="{{ .Site.BaseURL }}">Home</a>
+					<a class="button small primary page-nav__link" href="/slides/{{ .RelPermalink }}">Slides</a>
 				</nav>
-				<h1>{{ .Title }}</h1>
+				<h1 class="page-title">{{ .Title }}</h1>
 			</div>
 			<div class="grid-container">
 				<div class="grid-x">

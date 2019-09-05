@@ -1,6 +1,6 @@
 {{ define "main" }}
 	<main>
-		<div class="hero"><h1>Databases!</h1></div>
+		<div class="hero"><h1 class="page-title">Databases!</h1></div>
 		
 		<div class="grid-container">
 		{{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) 20 }}

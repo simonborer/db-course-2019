@@ -1,9 +1,9 @@
 <article class="page-list">
+	<h2 class="page-list__heading"><a href="{{ .Permalink }}" class="page-list__link">{{ .Title }}</a></h2>
 	{{ if isset .Params "featured_image" }}
 		<img src="/images/{{ .Params.featured_image }}" class="post-image">
 	{{ end }}
-	<h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-	<div>
+	<div class="page-list__summary">
 		{{ .Summary }}
 		{{ if .Truncated }}
 			<a href="{{ .Permalink }}">Read more about {{ lower .Title }} ...</a>

@@ -1,5 +1,6 @@
 ---
 title: "Week 9 - Introduction to Oracle"
-date: 2019-11-04T08:47:11+01:00
+date: 2019-10-29T08:47:11+01:00
+featured_image: 2019.png
+summary: "This week we'll cover the state of databases in 2019."
 ---
-Hey, this is the second week, buddy, and you know what that means - there has been a passage of time anywhere between 24 and 168 hours.
