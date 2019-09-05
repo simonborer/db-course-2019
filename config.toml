@@ -1,6 +1,6 @@
-baseURL = "http://example.org/"
+baseURL = "https://dbcourse2019.com"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Databases 2019"
 theme = "blnk"
 [outputFormats]
   [outputFormats.slide]

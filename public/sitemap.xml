@@ -3,31 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/</loc>
-    <lastmod>2019-03-26T08:47:11+01:00</lastmod>
+    <loc>https://dbcourse2019.com/categories/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/posts/</loc>
-    <lastmod>2019-03-26T08:47:11+01:00</lastmod>
+    <loc>https://dbcourse2019.com/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/posts/the-first-week/</loc>
-    <lastmod>2019-03-26T08:47:11+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://example.org/posts/the-second-week/</loc>
-    <lastmod>2019-03-26T08:47:11+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://example.org/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://dbcourse2019.com/tags/</loc>
+    <priority>0</priority>
   </url>
   
 </urlset>
