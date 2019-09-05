@@ -12,3 +12,6 @@ theme = "blnk"
   home = ["HTML", "slide"]
   page = ["HTML", "slide"]
   post = ["HTML", "slide"]
+[params]
+  author = "Simon Borer"
+  description = "2019 Humber Database Course"
