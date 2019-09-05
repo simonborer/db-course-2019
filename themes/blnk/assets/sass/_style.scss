@@ -8,9 +8,13 @@ h2 {
   font-weight: 700;
 }
 
+h2 {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
 .hero {
   background-color: #000000;
-  background-image: url('/images/card-catalogue.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 50vh;

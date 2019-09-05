@@ -3,8 +3,8 @@
 		<div class="hero"><h1>Databases!</h1></div>
 		
 		<div class="grid-container">
-		{{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
-		{{ range $paginator.Pages }}
+		{{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) 20 }}
+		{{ range $paginator.Pages.Reverse }}
 			<div class="grid-x">
 				<div class="cell medium-6 medium-offset-3 small-10 small-offset-1">{{ .Render "summary" }}</div>
 			</div>
