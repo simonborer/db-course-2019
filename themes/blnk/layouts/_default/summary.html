@@ -1,16 +1,19 @@
 <article class="page-list">
-	<h2 class="page-list__heading"><a href="{{ .Permalink }}" class="page-list__link">{{ .Title }}</a></h2>
+	<h2 class="page-list__heading"><a href='{{ cond (.Date.After now) "#" .Permalink }}' class="page-list__link" aria-disabled='{{ cond (.Date.After now) "true" "false" }}'>{{ .Title }}</a></h2>
 	{{ if isset .Params "featured_image" }}
 		<img src="/images/{{ .Params.featured_image }}" class="post-image" alt='{{ if isset .Params "featured_image_alt" }}{{ .Params.feature_image_alt }}{{ else }}Decorative post image{{ end }}'>
 	{{ end }}
 	<div class="page-list__summary">
+		{{ if .Date.After now }}
+			<div class="page-list__notification"><small><em>Notes & slides are published the Tuesday before class.</em></small></div>
+		{{ end }}
 		{{ .Summary }}
 		{{ if .Truncated }}
-			<a href="{{ .Permalink }}">Read more about {{ lower .Title }} ...</a>
+			<a href='{{ cond (.Date.After now) "#" .Permalink }}' aria-disabled='{{ cond (.Date.After now) "true" "false" }}'>Read more about {{ lower .Title }} ...</a>
 		{{ end }}
 	</div>
 	<div class="page-list__links">
-		<a href="{{ .Permalink }}" class="button small page-list__link">Notes</a>
-		<a href="/slides/{{ .RelPermalink }}" class="button small page-list__link">Slides</a>
+		<a href='{{ cond (.Date.After now) "#" .Permalink }}' class='button small page-list__link {{ cond (.Date.After now) "disabled" "" }}' aria-disabled='{{ cond (.Date.After now) "true" "false" }}'>Notes</a>
+		<a href='{{ cond (.Date.After now) "#" (printf "/slides%s" .RelPermalink) }}' class='button small page-list__link {{ cond (.Date.After now) "disabled" "" }}' aria-disabled='{{ cond (.Date.After now) "true" "false" }}'>Slides</a>
 	</div>
 </article>

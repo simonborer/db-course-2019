@@ -76,6 +76,9 @@ h2 {
     &__summary {
         margin-top: 1rem;
     }
+    &__notification {
+        margin-bottom: .5rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -151,4 +154,8 @@ h2 {
     .full-on-mobile {
         padding: 0;
     }
+}
+
+[aria-disabled="true"] {
+    pointer-events: none;
 }
