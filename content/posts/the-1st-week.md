@@ -4,13 +4,23 @@ date: 2019-09-02T08:47:11+01:00
 featured_image: card-catalogue.jpg
 summary: "This week we're starting! We're going to start by reviewing the course outline. After that, we'll learn: <strong>what a database is</strong>, and how they're used in web development; <strong>what <abbr title='Structured Query Language'>SQL</abbr> is</strong>; how to set up <strong>MAMP</strong> so that we can use the <strong>MySQL <abbr title='Relational Database Management System'>RDBMS</abbr></strong>; basic SQL terms definitions; simple single-table queries."
 ---
+<!-- 
+
+	TODO
+		Assignments vs quizzes (investigate blackboard quizzing)
+			Adjust the course description and rubric accordingly
+		Link to syllabus
+		Look at that great death-row tutorial.
+
+ -->
 <section class="slide-only"><a href="https://www.dbcourse2019.com" class="h1">dbcourse2019.com</a></section>
 <section>
     <h2 class="slide-only">Here's what we're going to do today:</h2>
     <div class="grid-x">
-    	<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+    	<div class="cell large-10 large-offset-1">
 		    <ol class="toc">
 		        <li><a href="#intro">Course introduction</a></li>
+		        <li><a href="#dbContents">What's a database?</a></li>
 		        <li><a href="#clientServer">What does a database do?</a></li>
 		        <li><a href="#access">What do we do with a database?</a></li>
 		        <li><a href="#dev">A tool for using a database</a></li>
@@ -29,17 +39,16 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section id="intro">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1 post-section">
+		<div class="cell large-10 large-offset-1 post-section">
 			<h2 class="h2">Welcome!</h2>
 			<p>My name is Simon Borer. You can reach me at <a href="mailto:brrs0390@humbermail.ca">brrs0390@humbermail.ca</a>.</p>
 			<p class="slide-only">I like coffee <span role="image" aria-label="coffee">☕</span>, old-timey baseball <span role="image" aria-label="baseball">⚾</span>, horror movies <span role="image" aria-label="ghost">👻</span> and accessible websites <span role="image" aria-label="computer">💻</span>.</p>
-			<p class="slide-only">This course site is hosted on my github. Please bookmark the <a href="https://simonborer.github.io/db-course/" target="_blank">course homepage<span class="show-for-sr"> Opens in a new window</span></a>, and follow along with lectures in <a href="https://simonborer.github.io/db-course/notes/week-0/" target="_blank">the notes<span class="show-for-sr"> Opens in a new window</span></a>.</p>
 		</div>
 	</div>
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<p>In this course, we'll learn...</p>
 			<ul>
 				<li>what a database is,</li>
@@ -52,7 +61,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Anybody can do just fine in this course.</h2>
 			<p>Come to class every week.</p>
 			<p>Do your assignments on time.</p>
@@ -63,17 +72,20 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Books</h2>
+			<div class="callout warning">
+				<em>We're investigating how to provide you with an Oracle Server. You might want to hold off on buying the Oracle textbook until the midterm.</em>			
+			</div><br><br>
 			<ul>
-				<li>Murach’s Oracle SQL and PL/SQL, 2nd Edition
-					<ul>
-						<li>ISBN <code>978-1-890774-80-6</code></li>
-					</ul>
-				</li>
 				<li>Murach’s MySQL, 2nd Edition
 					<ul>
 						<li>ISBN <code>978-1-890774-82-0</code></li>
+					</ul>
+				</li>
+				<li>Murach’s Oracle SQL and PL/SQL, 2nd Edition
+					<ul>
+						<li>ISBN <code>978-1-890774-80-6</code></li>
 					</ul>
 				</li>
 			</ul>
@@ -82,7 +94,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Assignments</h2>
 			<p>Almost every week you'll have an assignment to complete.</p>
 			<p>Assignments are due by 11:59pm the day <em>before</em> class.</p>
@@ -94,7 +106,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 		  <h2 class="h2">Rubric</h2>
 		  <div class="table-scroll">
 			  <table class="unstriped">
@@ -137,7 +149,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section class="slide-only">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 		<h2 class="h2">Seriously, don't cheat.</h2>
 		<p>Repercussions will be severe.</p>
 		<p>Also, it will be really awkward for me.</p>
@@ -149,7 +161,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Two aspects of my teaching philosophy.</h2>
 			<ol><li>I'm here for you to bug. Please ask me all your questions.</li><li>Muscle memory is key. It's going to bug you how often you have to type things you already know in your head, but you need to know it in your fingers.</li></ol>	
 		</div>
@@ -157,7 +169,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 		<h2 class="h2">The Syllabus</h2>
 		<p>
 			<a class="button" target="_blank" href="/documents/HTTP5105-syllabus.pdf">Download the syllabus<span class="show-for-sr">Opens in a new window.</span></a>		
@@ -165,10 +177,24 @@ summary: "This week we're starting! We're going to start by reviewing the course
 		</div>
 	</div>
 </section>
+<section id="dbContents">
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+			<h2 class="h2">What's a database?</h2>
+			<p>There are all different kinds of databases. The kind we'll mostly be working with in this course are called relational databases, because they're really good at connecting different kinds of data together.</p>
+			<p>Relational databases are made up of tables. A table is not a spreadsheet, but that's a handy way to think of them. Tables have rows (also known as records) for each instance of data, each entity. Think of a table called "Students". Each student would be entered into the table as a row.</p>
+			<p>Tables also have columns. Each column represents a different type of information. In a table called "Students", we might have columns for "first name", "last name", "email address", etc.</p>
+			<p>If your database is well-designed, the columns will be broken down into narrow categories, as it is easier to tell a computer how to put things together (i.e. "Patrick" + " " + "Stewart") than it is to tell a computer how to split things apart (i.e. trying to explain to a computer how to find the last name of "Sir Patrick James Stewart III, Ph.D").</p>
+			<p>A relational database holds different tables of data that are related to one another, but have different subjects. For instance, "Students", "Classes", "Teachers", and "Classrooms" are all different entities, but can be related to one another to answer questions. "Who will be in Building A at 10:45?" That is a question we can answer if our "Students" and "Teachers" tables tell us what classes those people are in, our "Classes" table tells us what classrooms the classes are in, and the "Classrooms" table tells us what building the rooms are in. We answer that question by using a language called <abbr title="Structured Query Language">SQL</abbr> to get related data from different tables.</p>
+			<p>SQL is a (relatively) old, and very reliable language, and integrates easily with many other languages that you'll learn in this program (javaScript, PHP, .NET, etc.). It's such a nicely designed language that those languages haven't tried to replace SQL, because it's easier just to write SQL in your PHP.</p>
+		</div>
+	</div>
+</section>
 <section id="clientServer">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">What a database does</h2>
+			<p>Let's look at where a database sits in relation to other technologies in order to make the internet a thing.</p>
 			<h3 class="post-only">Components of a client-server system</h3>
 			<a href="/images/server-diagram.png" target='_blank'>
 				<img class="diagram" src="/images/diagram.png" alt="A diagram of a web client making a request from a web server, which in turn either returns static files, or a dynamic request populated by data from a database.">
@@ -179,7 +205,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section id="access">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">What do we do with a database?</h2>
 			<p>Most databases are accessed using the Structured Query Language (SQL). SQL can either be written into server-side code (like <abbr title="The rare recursive acronym: 'PHP: Hypertext Preprocessor'">PHP</abbr> or <abbr title="Active Server Pages">ASP</abbr>) or run through a <abbr title="Graphical User Interface">GUI</abbr> like SQL Developer.</p>
 		</div>
@@ -187,7 +213,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<a href="/images/diagram-server_db.png" target='_blank'>
 				<img class="diagram image-3q" src="/images/diagram-server-db.png" alt="A diagram of a web client making a request from a web server, which in turn either returns static files, or a dynamic request populated by data from a database.">
 				<span class="show-for-sr">Open image in a new window</span>
@@ -197,7 +223,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section id="dev">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Installing SQL Developer</h2>
 			<ol class="smaller-text">
 				<li>Get a copy of SQL Developer from <a href="https://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html" target='_blank'>the Oracle website</a>.</li>
@@ -215,7 +241,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 		<h2 class="h2">A little presentational tweak...</h2>
 		<p>Just to make things a little more readable, go to <code>Oracle SQL Developer > Preferences</code> on Mac, or <code>Tools > Preferences</code> on PC.</p>
 		<p>Under <code>Code Editor > Line Gutter</code>, check the box for <em>Show Line Numbers</em>.</p>
@@ -225,7 +251,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Let's see if it works!</h2>
 			<figure>
 				<img src="/images/new-connection.jpg" alt="Green plus symbol">
@@ -236,7 +262,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 				<figure>
 					<img src="/images/new-connection--fields.jpg" alt="Fields to be filled out to create a new connection to the humber database.">
 					<figcaption>Fill out the appropriate fields as indicated. <code>Connection name</code> is whatever you'll remember. <code>Username</code> is your student number. The rest of the values are required as indicated in the screenshot.</figcaption>
@@ -246,7 +272,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1 smaller-text">
+		<div class="cell large-10 large-offset-1 smaller-text">
 			<h2 class="h2">Populating your database</h2>
 			<p>Download <a href="/documents/create_ap_tables.sql">this .sql file</a>.</p>
 			<p>Open this file with SQL Developer (<code>File > Open</code>) and then...</p>
@@ -260,7 +286,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Your first query</h2>
 			<figure>
 				<img src="/images/worksheet.jpg" alt="How to open a new worksheet">
@@ -271,14 +297,14 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<p>In the worksheet, type <pre><code class="language-sql">SELECT * FROM vendors</code></pre></p>
 		</div>
 	</div>
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<p>You should see all kinds of wonderful data!</p>
 			<img src="/images/output.jpg" alt="Database output">
 		</div>
@@ -286,7 +312,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Wonderful... but boring.</h2>
 			<p>Today we're working with the data that aligns with the textbook, which is pretty dry small business data. Not that exciting.</p> 
 			<p>I'm going to try to incorporate data that's a little more compelling in the coming weeks to demonstrate just how powerful it can be to ask good questions, and get good answers.</p>
@@ -295,7 +321,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<p>There is a wealth of publicly available, super-interesting data out there! Here's a few examples and resources for you to look at:</p>
 			<h3>Examples:</h3>
 			<ul>
@@ -319,7 +345,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section id="history">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">History</h2>
 			<p>Relational databases have been around since 1970, and Oracle has been around (in one form or another) for 40 years.</p>
 			<p>IBM (DB2) and Microsoft (SQL Server) released their relational database systems in the mid-80s.</p>
@@ -331,7 +357,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section id="terms">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1 smaller-text">
+		<div class="cell large-10 large-offset-1 smaller-text">
 			<h2 class="h2">Terminology</h2>
 			<p>Let's start learning some words!</p>
 			<figure>
@@ -343,7 +369,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1 smaller-text">
+		<div class="cell large-10 large-offset-1 smaller-text">
 			<h2 class="h2">Primary key</h2>
 			<p>Another important element that every table should have is a <strong>primary key</strong>.</p>
 			<figure>
@@ -355,7 +381,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 		<h2 class="h2">What makes a database 'relational'?</h2>
 		<p>This course will primarily deal with relational databases. There are other kinds, and we'll touch on them later in the course, but the relational database is one of the primary tools of the internet.</p>
 		<p>Relational databases have multiple tables that are related to one another. In addition to a <strong>primary key</strong>, tables will often have a <strong>foreign key</strong>. This is to establish a relationship between the data sets, and take our data from two dimensions to 3D!</p>
@@ -364,7 +390,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<figure>
 				<img src="/images/output--foreign-key.jpg" alt="Demonstration of a foreign key.">
 				<figcaption>If we look at our <code class="language-sql">INVOICES</code> table, you'll see that if references <code class="language-sql">VENDOR_ID</code>, which is the primary key for the <code class="language-sql">VENDOR</code> table. This means we can easily reference the information about the vendor that this invoice belongs to from the <code class="language-sql">VENDOR</code> table.</figcaption>
@@ -374,7 +400,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section id="relationships">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Types of relationships</h2>
 			<p>There are 3 types of relationship between tables, but only one of them is good!</p>
 			<p>A <strong>one-to-many</strong> relationship means that the primary key of one table is referenced multiple times in another table. That's good! If we only had a single table, that information would have to be repeated many times. Instead, we put it in one table once and reference it externally over and over. That's efficient.</p>
@@ -383,14 +409,14 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<p>A <strong>one-to-one</strong> relationship means that any row in your table is only referenced one time by another table. If that's the case, it's more efficient to store all the data in a single table.</p>
 		</div>
 	</div>
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<p>A <strong>many-to-many</strong> relationship is <em>real</em> messy. Think of students and classes. Students have many classes and classes have many students. There are two reasons this is messy: 1) because we only want one piece of information per cell in our table, and 2) because only want one column per category of data. We can solve this by creating a 'joining table' that sits between them - a table that creates a one-to-many relationship with both tables.</p>
 			<p>Wow, that got a little complicated! Don't worry, we'll go back over all this. For today, just know that tables have relationships, and efficient relationships are best.</p>
 		</div>
@@ -398,7 +424,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section id="def">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Types of Data</h2>
 			<p>There are certain ways that we keep our database organized and our data manageable. One is by defining a primary key. Oracle will throw an error if we try to add a row that has a primary key that's not unique.</p>
 			<p>Another is by defining what kind of data can go in each column.</p>
@@ -407,7 +433,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<figure>
 				<img src="/images/column-info.jpg" alt="Demonstration of clicking on a table to see information about it's columns.">
 				<figcaption>In SQL Developer, if we click on a table in our table tree, it will show us information about the columns in that table, including what type of data is allowed.</figcaption>
@@ -417,7 +443,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<p>Some common data types:</p>
 			<ul>
 				<li>CHAR/VARCHAR2 - Strings of numbers, letters and symbols</li>
@@ -430,7 +456,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section id="ddlDml">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2 post-only">Types of Commands</h2>
 				<table class="stack">
 					<thead class="post-only">
@@ -492,7 +518,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section id="query">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">What is a query?</h2>
 			<p>As you might have guess from the name of the language, queries are pretty important to <abbr title="Structured Query Language">SQL</abbr>. Queries are <code class="language-sql">SELECT</code> statements. Queries return a <strong>results table</strong>. Queries can return results from a single table, or they can take advantage of the power of relational databases by using a <code class="language-sql">JOIN</code> clause in our query to get results that have combined data from multiple tables.</p>
 		</div>
@@ -500,7 +526,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<p>There are different types of <code class="language-sql">JOIN</code>s that we can use - an <code class="language-sql">INNER JOIN</code> returns only data that can be related between the two tables by matching a cell (usually our PRIMARY and FOREIGN keys), whereas an <code class="language-sql">OUTER JOIN</code> will return data from both tables, without the need for a relationship.</p>
 			<p>There are more ways to specify how tables can be combined (<code class="language-sql">LEFT</code> and <code class="language-sql">RIGHT JOIN</code>s), but we're starting to get ahead of ourselves - for the first couple weeks, we're going to focus on getting data from a single table.</p>	
 		</div>
@@ -508,14 +534,14 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Common query elements</h2>
 		</div>
 	</div>
 </section>
 <section class="slide-only">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">SELECT</h2>
 			<p>Columns of data to include in the results table. The <code class="language-sql">*</code> character selects all columns. Can select multiple columns when the column names are comma-separated. Column names can be aliased with <code class="language-sql">AS</code> clause, concatenated with <code class="language-sql">||</code>, and/or formatted with literal strings inside single ASCII (straight, not curly) quotation marks. <code class="language-sql">SELECT</code> can use the <code class="language-sql">DISTINCT</code> keyword to eliminate duplicate rows from the results table.</p>
 			<pre><code class="language-sql">SELECT vendor_name, vendor_city || ', ' || vendor_state AS city
@@ -525,7 +551,7 @@ FROM vendors</code></pre>
 </section>
 <section class="slide-only">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">FROM</h2>
 			<p>The name of the table (or tables, when we start to use <code class="language-sql">JOIN</code>) that we're selecting data from.</p>
 			<pre><code class="language-sql">SELECT vendor_name
@@ -535,7 +561,7 @@ FROM vendors</code></pre>
 </section>
 <section class="slide-only">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1 smaller-text">
+		<div class="cell large-10 large-offset-1 smaller-text">
 			<h2 class="h2">WHERE</h2>
 			<p>Filters our results. This is where things get interesting, and we'll work on this a bunch next week. <code class="language-sql">WHERE</code> can use comparison operators (<code class="language-sql">=</code>, <code class="language-sql">></code>, <code class="language-sql"><</code>, <code class="language-sql"><=</code>, <code class="language-sql">>=</code>, <code class="language-sql"><></code>), arithmetic operators (<code class="language-sql">+</code>, <code class="language-sql">-</code>, <code class="language-sql">*</code>, <code class="language-sql">/</code>), and/or logical operators (<code class="language-sql">AND</code>, <code class="language-sql">OR</code>, <code class="language-sql">NOT</code>) to compare to declared values (including dates) or values from other columns.</p> 
 			<p>Additionally, the <code class="language-sql">IN</code> operator can check a value against a list (either declared or generated by a subquery). This can be modified with <code class="language-sql">NOT</code> to exclude results that are included in the list. There are additional operators we can use with <code class="language-sql">WHERE</code>, including <code class="language-sql">BETWEEN</code>, <code class="language-sql">LIKE</code>, and <code class="language-sql">IS NULL</code> (and their negations), but that's a lot for one day!</p>
@@ -549,7 +575,7 @@ AND terms_id NOT IN (2, 5)</code></pre>
 </section>
 <section class="slide-only">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">ORDER BY</h2>
 			<p>This orders our results by specified column(s). It can also reference aliases created in the <code class="language-sql">SELECT</code> statment, expressions or column positions.</p> 
 			<p>Defaults to ascending order (lowest to highest), but order can be declared with the keywords <code class="language-sql">DESC</code> and <code class="language-sql">ASC</code>.</p> 
@@ -562,7 +588,7 @@ ORDER BY vendor_name DESC</code></pre>
 </section>
 <section class="post-only">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<table class="unstriped stack">
 				<thead>
 					<tr>
@@ -575,8 +601,8 @@ ORDER BY vendor_name DESC</code></pre>
 					<tr>
 						<td><code class="language-sql">SELECT</code></td>
 						<td>Columns of data to include in the results table. The <code class="language-sql">*</code> character selects all columns. Can select multiple columns when the column names are comma-separated. Column names can be aliased with <code class="language-sql">AS</code> clause, concatenated with <code class="language-sql">||</code>, and/or formatted with literal strings inside single ASCII (straight, not curly) quotation marks. <code class="language-sql">SELECT</code> can use the <code class="language-sql">DISTINCT</code> keyword to eliminate duplicate rows from the results table.</td>
-						<td><pre><code class="language-sql">SELECT vendor_name, vendor_city || ', ' || vendor_state AS city
-FROM vendors</code></pre></td>
+						<td><pre><code class="language-sql">SELECT vendor_name, vendor_city || ', ' || 
+vendor_state AS city FROM vendors</code></pre></td>
 					</tr>
 					<tr>
 						<td><code class="language-sql">FROM</code></td>
@@ -607,7 +633,7 @@ ORDER BY vendor_name DESC</code></pre></td>
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">There's more!</h2>
 			<p>But not today :) <code class="language-sql">FETCH</code>, <code class="language-sql">OFFSET</code>, et al. can wait.</p>	
 		</div>
@@ -615,7 +641,7 @@ ORDER BY vendor_name DESC</code></pre></td>
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Reserved words</h2>
 			<p>What would happen if you named your column 'Select', 'Order By' and 'Distinct', and your table 'From'?</p>
 			<pre><code>SELECT 'Select', 'Distinct' FROM 'From' ORDER BY 'Order By'</code></pre>
@@ -627,7 +653,7 @@ ORDER BY vendor_name DESC</code></pre></td>
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<p>Don't worry about doing it by accident, though - Oracle will throw an error if you try to create the column without quoting the reserved word properly.</p>
 			<p>See the full list in the <a href="https://docs.oracle.com/database/121/SQLRF/ap_keywd001.htm#SQLRF55621" target="_blank">Oracle Docs<span class="show-for-sr"> Opens in a new window</span></a></p>	
 		</div>
@@ -635,7 +661,7 @@ ORDER BY vendor_name DESC</code></pre></td>
 </section>
 <section id="formatting">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Formatting your code</h2>
 			<p>You should always code according to a formatting convention.</p>
 			<p>Different languages have different formatting conventions (sometimes due to restrictions in the language, sometimes to distinguish it from other languages).</p>
@@ -645,7 +671,7 @@ ORDER BY vendor_name DESC</code></pre></td>
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<p>In SQL, we...</p>
 			<ul>
 					<li>capitalize our keywords,</li>
@@ -660,7 +686,7 @@ ORDER BY vendor_name DESC</code></pre></td>
 </section>
 <section id="lab">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Lab time!</h2>
 			<p>Labs are your time in-class to try out what we've learned, and make mistakes!</p>
 			<p>If you can't finish something by the end of class, do your best to explain where you're stuck - you'll get marks for that.</p>
@@ -671,7 +697,7 @@ ORDER BY vendor_name DESC</code></pre></td>
 </section>
 <section class="slide-only">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Lab Questions</h2>
 			<p>See <a href="<%= site.basePath %>/notes/week-0/index.html#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p>	
 		</div>
@@ -679,7 +705,7 @@ ORDER BY vendor_name DESC</code></pre></td>
 </section>
 <section class="post-only">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 medium-10 medium-offset-1">
+		<div class="cell large-10 large-offset-1">
 			<h2>Lab Questions:</h2>
 			<ol class="lab-questions">
 				<li>Run the following query:
