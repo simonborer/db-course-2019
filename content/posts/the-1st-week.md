@@ -10,8 +10,11 @@ summary: "This week we're starting! We're going to start by reviewing the course
 		Assignments vs quizzes (investigate blackboard quizzing)
 			Adjust the course description and rubric accordingly
 		Link to syllabus
-		Look at that great death-row tutorial.
-
+		Look at that great death-row tutorial. starSelectSQL.com
+			OMG I'd love to use that dude's sqlite script
+		Yo what's our dataset??
+		Replace SQL Developer with PHPMyAdmin or whatever
+		Get data from textbook publisher
  -->
 <section class="slide-only"><a href="https://www.dbcourse2019.com" class="h1">dbcourse2019.com</a></section>
 <section>
@@ -76,7 +79,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 			<h2 class="h2">Books</h2>
 			<div class="callout warning">
 				<em>We're investigating how to provide you with an Oracle Server. You might want to hold off on buying the Oracle textbook until the midterm.</em>			
-			</div><br><br>
+			</div><br>
 			<ul>
 				<li>Murach’s MySQL, 2nd Edition
 					<ul>
@@ -221,7 +224,51 @@ summary: "This week we're starting! We're going to start by reviewing the course
 		</div>
 	</div>
 </section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1"><h2 class="h2">Time to code! ...almost</h2><p>Ok, now we know what a database is, what it does, and what we can do with it. Let's get our hands dirty! We're going to install a server stack (MAMP) on our machines that will allow us to use SQL to get information from a database running on MAMP. This next part is my least favourite (getting stuff running on everybody's machines - some of y'all have weird set-ups, I'm not gonna lie), but the part after that, the writing code part, that's the <em>best</em>.</p></div>
+	</div>
+</section>
 <section id="dev">
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+			<h2 class="h2">MAMP</h2>
+			<p>MAMP stands for MacOS+Apache+MySQL+PHP. Don't worry if you're on Windows, it works on Windows, too. MAMP is a program that creates a virtual Apache server on your computer, along with a MySQL database and PHP. This allows us to develop websites and services using this technology stack on our own computers without having to push our code to another server.</p>
+			<h3 class="h3">Instructions for installing MAMP</h3>
+			<p>TODO</p>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+			<p>Let's do a little configuration!</p>
+			<p>TODO</p>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+			<p>Now that you have MAMP installed and configured, let's start it up! Open the application, and click the "Start Servers" power button.</p>
+			<img src="/images/MAMP-not_started.png" alt="MAMP before starting the servers.">
+			<p>Now we've started our two servers - our database server running MySQL, and our Apache web server, which can process PHP and co-ordinate with the browser to server web pages.</p>
+			<p>If you navigate to <a href="http://localhost:8888/phpMyAdmin/">phpMyAdmin</a>, you'll see that we have a built-in tool for managing the database.</p>
+			<p>TODO Get Christine's random table generator and have people import via phpMyAdmin</p>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+			<h2 class="h2">DBeaver</h2>
+			<p>It's good to be familiar with phpMyAdmin, as it's very common, and you'll want to know what you're doing when your buddy screws up their Wordpress site and you need to rescue their data.</p>
+			<p>It's nice to have a tool that's a little more... robust? So let's install a program named DBeaver. It's wonderful for managing MySQL, but it supports a huge range of other Database Management Systems, too!</p>
+			<p>TODO Instructions for installing DBeaver (including, possibly, installing Java); Instructions for connecting to the MAMP MySQL server through DBeaver</p>
+		</div>
+	</div>
+</section>
+<!-- <section id="dev">
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Installing SQL Developer</h2>
@@ -248,8 +295,8 @@ summary: "This week we're starting! We're going to start by reviewing the course
 		<p>Under <code>Database > Worksheet</code>, check the box for <em>Grid in checker board or Zebra pattern</em>.</p>
 		</div>
 	</div>
-</section>
-<section>
+</section> -->
+<!-- <section>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Let's see if it works!</h2>
@@ -283,7 +330,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 			<p>When prompted, choose to run this on the connection you've already created and opened.</p>
 		</div>
 	</div>
-</section>
+</section> -->
 <section>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
