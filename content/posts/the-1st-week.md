@@ -235,26 +235,40 @@ summary: "This week we're starting! We're going to start by reviewing the course
 			<h2 class="h2">MAMP</h2>
 			<p>MAMP stands for MacOS+Apache+MySQL+PHP. Don't worry if you're on Windows, it works on Windows, too. MAMP is a program that creates a virtual Apache server on your computer, along with a MySQL database and PHP. This allows us to develop websites and services using this technology stack on our own computers without having to push our code to another server.</p>
 			<h3 class="h3">Instructions for installing MAMP</h3>
-			<p>TODO</p>
+			<a href="https://www.mamp.info/en/downloads/" target="_blank"><img src="/images/download-mamp.png" alt="Screenshot of download page for both Mac & Windows versions of MAMP">Download MAMP</a>
 		</div>
 	</div>
-</section>
-<section>
-	<div class="grid-x">
-		<div class="cell large-10 large-offset-1">
-			<p>Let's do a little configuration!</p>
-			<p>TODO</p>
-		</div>
-	</div>
-</section>
-<section>
+</section><section>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
 			<p>Now that you have MAMP installed and configured, let's start it up! Open the application, and click the "Start Servers" power button.</p>
 			<img src="/images/MAMP-not_started.png" alt="MAMP before starting the servers.">
 			<p>Now we've started our two servers - our database server running MySQL, and our Apache web server, which can process PHP and co-ordinate with the browser to server web pages.</p>
+			<p>Go to the "web server" tab in MAMP. This tells you where your <code>htdocs</code> folder is located.</p>
+			<p>Create a file called <code>index.php</code> in the <code>htdocs</code> folder. Open your <code>index.php</code> file and paste in <em>all</em> of the following code:</p>
+			<textarea data-code-mirror="html">
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body style="background:black;">
+    <main style="text-align:center;font-family:sans-serif;color:white;">
+     	<h1>It's working!</h1>
+      	<img src="https://i.imgur.com/ASIS6cZ.jpg" alt="Nintendo Power Glove" style="max-height:50vh;">
+	</main>
+	</body>
+</html></textarea><br>
+			<p>Now go to <a href="localhost:8888" target="_blank">your local server</a> and refresh your browser.</p>
+			<hr class="post-only">
 			<p>If you navigate to <a href="http://localhost:8888/phpMyAdmin/">phpMyAdmin</a>, you'll see that we have a built-in tool for managing the database.</p>
-			<p>TODO Get Christine's random table generator and have people import via phpMyAdmin</p>
+			<p>Let's generate some data!</p>
+			<p>Our friend Christine has created a <a href="http://sandbox.bittsdevelopment.com/humber/datagenerator/" target="_blank">data generator for us</a>. Download a `.sql` file from the data generator.</p>
+			<a href="http://sandbox.bittsdevelopment.com/humber/datagenerator/" target="_blank"><img src="/images/data-generator.png" alt="Data generator"></a>
+
 		</div>
 	</div>
 </section>
@@ -264,6 +278,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 			<h2 class="h2">DBeaver</h2>
 			<p>It's good to be familiar with phpMyAdmin, as it's very common, and you'll want to know what you're doing when your buddy screws up their Wordpress site and you need to rescue their data.</p>
 			<p>It's nice to have a tool that's a little more... robust? So let's install a program named DBeaver. It's wonderful for managing MySQL, but it supports a huge range of other Database Management Systems, too!</p>
+			<a href="https://dbeaver.io/download/" target="_blank"><img src="/images/download-dbeaver.png" alt=""><br>Download DBeaver</a>
 			<p>TODO Instructions for installing DBeaver (including, possibly, installing Java); Instructions for connecting to the MAMP MySQL server through DBeaver</p>
 		</div>
 	</div>

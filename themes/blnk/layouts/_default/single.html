@@ -17,3 +17,30 @@
 		</article>
 	</main>
 {{ end }}
+{{ define "scripts" }}
+	<script src="{{ .Site.BaseURL }}/js/codemirror.js"></script>
+<script src="{{ .Site.BaseURL }}/js/xml.js"></script>
+<script src="{{ .Site.BaseURL }}/js/css.js"></script>
+<script src="{{ .Site.BaseURL }}/js/javascript.js"></script>
+<script src="{{ .Site.BaseURL }}/js/htmlmixed.js"></script>
+<script src="{{ .Site.BaseURL }}/js/sql.js"></script>
+<script type="text/javascript">
+function qsa(sel) {
+	return Array.apply(null, document.querySelectorAll(sel));
+}
+qsa('[data-code-mirror="html"]').forEach(function (editorEl) {
+	CodeMirror.fromTextArea(editorEl, {
+		lineNumbers: true,
+		mode: 'htmlmixed',
+		theme: 'material'
+	})
+});
+qsa('[data-code-mirror="sql"]').forEach(function (editorEl) {
+	CodeMirror.fromTextArea(editorEl, {
+		lineNumbers: true,
+		mode: 'sql',
+		theme: 'material'
+	})
+});
+</script>
+{{ end }}
