@@ -1,2 +1,68 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/images/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/images/favicon-16x16.png><link rel=manifest href=/images/site.webmanifest><title>Week 11 - Stored Procedures in Oracle</title><meta name=description content="2019 Humber Database Course"><meta name=author content="Simon Borer"><link rel=stylesheet href=https://www.dbcourse2019.com/sass/main.min.ac5a869292b05903b7799da7efc41fc39aab9245f3b70380d236cbe5b93a2d88.css></head><body><main><article><div class="hero hero--page" style=background-image:url(/images/notpass.jpg)><nav class=page-nav><a class="button small primary page-nav__link" href=https://www.dbcourse2019.com>Home</a>
-<a class="button small primary page-nav__link" href=/slides//posts/the-11th-week/>Slides</a></nav><h1 class=page-title>Week 11 - Stored Procedures in Oracle</h1></div><div class=grid-container><div class=grid-x><div class="cell medium-6 medium-offset-3 small-10 small-offset-1"></div></div></div></article></main></body></html>
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/images/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/images/favicon-16x16.png><link rel=manifest href=/images/site.webmanifest><title>Week 11 - Stored Procedures in Oracle</title><meta name=description content="2019 Humber Database Course"><meta name=author content="Simon Borer"><link rel=stylesheet href=https://www.dbcourse2019.com/sass/main.min.8fac4abf14eff93c3c1c03bdac8625572dd73f1a4e88ff544f54fdaa84b3b00d.css><link rel=stylesheet href=/css/codemirror.css></head><body><main class=post><article><div class="hero hero--page" style=background-image:url(/images/notpass.jpg)><nav class=page-nav><a class="button small primary page-nav__link" href=https://www.dbcourse2019.com>Home</a>
+<a class="button small primary page-nav__link" href=/slides//posts/the-11th-week/>Slides</a></nav><h1 class=page-title>Week 11 - Stored Procedures in Oracle</h1></div><div class=grid-container><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><section id=migration><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Step 1</h2><ul><li>Open MAMP and start your server.</li><li>Go to <a href=http://localhost:8888/phpMyAdmin/server_sql.php>PHPMyAdmin</a>, and make sure you're on the SQL tab.</li><li>Run <code class=language-sql>CREATE DATABASE bakery;</code></li></ul></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Step 2</h2><ul><li>Open DBeaver because PHPMyAdmin is kind of awful.</li><li>Create a new connection using MySQL (this may download a driver). Don't use MySQL 8 or 3, just plain ol' MySQL.</li><li>Serverhost: <code>localhost</code>; Port: <code>8889</code> (not <code>8888</code>); Database: <code>bakery</code>; User name: <code>root</code>; Password: <code>root</code>;</li><li>Test your connection and finish.</li></ul></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Step 3</h2><ul><li>Create your bakery tables in MySQL. <em>Watch out for the datatypes!</em></li><li>Don't worry about the actual data just yet; that's the next step.</li></ul></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Step 4</h2><ul><li>Migrate your data, but take a moment to set up stored procedures to help with the import:</li></ul><pre><code class=language-sql>
+CREATE PROCEDURE insert_bakery_locations ( 
+  IN location_id_param INT, 
+  IN address_param VARCHAR(40) 
+) 
+BEGIN
+  INSERT INTO bakery_locations (location_id, address) 
+  VALUES (location_id_param, address_param); 
+END</code></pre></div></div></section><section id=views><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Views</h2><img src=http://static.webshopapp.com/shops/134936/files/077085101/drake-views-cd.jpg alt="Drake album cover"></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><p>A view is a query that acts as a pseudo-table. You can even update the original tables by referencing it in an update statement.</p><pre><code class=language-sql>CREATE VIEW employee_locations AS
+  SELECT CONCAT(first_name, ' ', last_name) AS name, address
+  FROM bakery_employees JOIN bakery_locations
+  ON bakery_employees.default_loc = bakery_locations.location_id</code></pre><p>For the most part, though, views are used to make certain data available to relevant users.</p></div></div></section><section id=permissions><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Create a user</h2><p>Now you have a fully populated database that you control!</p><p>Let's add another user to our database.</p><pre><code class=language-sql>CREATE USER tyler IDENTIFIED BY 'tyler1234'</code>
+      </pre></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><p>By default, users have <em>no</em> privileges.</p><pre><code class=language-sql>SELECT * FROM mysql.user WHERE user = 'tyler';</code></pre><p>Let's grant <code>tyler</code> access to our view.</p><pre><code class=language-sql>GRANT SELECT ON employee_locations
+TO tyler</code></pre><p>Now <code>tyler</code> can see who works where!</p></div></div></section><section id=triggers><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Triggers</h2><pre><code class="language-sql no-max">CREATE TRIGGER short_on_time
+  BEFORE UPDATE ON bakery_items
+  FOR EACH ROW
+BEGIN
+  DECLARE sum_duration  INT;
+  DECLARE baker_hours   INT;
+
+  SELECT SUM(baking_time) + SUM(prep_time)
+  INTO sum_duration
+  FROM bakery_items;
+
+  SELECT COUNT(*) * 8
+  INTO baker_hours
+  FROM bakery_employees
+  WHERE LOWER(employee_type) = 'baker';
+
+  IF sum_duration > baker_hours THEN
+    SIGNAL SQLSTATE 'HY000'
+      SET MESSAGE_TEXT = 'Not enough bakers to bake this.';
+  END IF;
+END</code></pre></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><p>Triggers are a script we write that fires <code>BEFORE</code> or <code>AFTER</code> a DML event (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>)</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><p>Let's break down that trigger.</p><img src=https://d3nevzfk7ii3be.cloudfront.net/igi/UOl6JFP4SIafwQkb.medium alt=nerf></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><pre><code class=language-sql>-- create it and name it
+CREATE TRIGGER short_on_time
+-- Before or after?
+-- What event? In this case, an UPDATE on the 
+-- bakery_items table
+  BEFORE UPDATE ON bakery_items
+-- This is to specify that this trigger
+-- should be run on each affected row
+-- for example, if we updated with a WHERE condition
+  FOR EACH ROW</code></pre></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><p>Then we run a block of code, and use it as the clause in an <code>IF</code> statement that can throw an error.</p><pre><code class=language-sql>IF sum_duration > baker_hours THEN
+  -- HY000 is 'General error', fine to use if
+  -- we're just giving the user feedback.
+    SIGNAL SQLSTATE 'HY000'
+      SET MESSAGE_TEXT = 'Not enough bakers to bake this.';
+  END IF;</code></pre></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><p>Let's see an after trigger:</p><pre><code class="language-sql no-max">CREATE TRIGGER training
+  AFTER INSERT ON bakery_employees
+  FOR EACH ROW
+BEGIN
+  DECLARE new_shift INT;
+  
+  SELECT MAX(shift_id) + 1 
+  INTO new_shift
+  FROM bakery_shifts;
+
+  INSERT INTO bakery_shifts 
+  VALUES (
+    new_shift, 
+    NEW.employee_id, 
+    NEW.default_loc,
+    NOW() + INTERVAL 1 WEEK, 
+    NOW() + INTERVAL 8 DAY
+  );
+END</code></pre></div></div></section><section id=assignment><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Assignment</h2><ol><li>In MySQL, create a view that shows the schedule for this week - the employee name, start time, end time, and the location's address.</li><li>In MySQL, create a trigger that will validate that a newly entered shift is greater than 4 hours and less than 8 hours, and that the employee is working less than 44 hours in that week.</li></ol></div></div></section></div></div></div></article></main><script src=https://www.dbcourse2019.com/js/codemirror.js></script><script src=https://www.dbcourse2019.com/js/xml.js></script><script src=https://www.dbcourse2019.com/js/css.js></script><script src=https://www.dbcourse2019.com/js/javascript.js></script><script src=https://www.dbcourse2019.com/js/htmlmixed.js></script><script src=https://www.dbcourse2019.com/js/sql.js></script><script type=text/javascript>function qsa(sel){return Array.apply(null,document.querySelectorAll(sel));}
+qsa('[data-code-mirror="html"]').forEach(function(editorEl){CodeMirror.fromTextArea(editorEl,{lineNumbers:true,mode:'htmlmixed',theme:'material'})});qsa('[data-code-mirror="sql"]').forEach(function(editorEl){CodeMirror.fromTextArea(editorEl,{lineNumbers:true,mode:'sql',theme:'material'})});</script></body></html>
