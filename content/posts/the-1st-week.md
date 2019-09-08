@@ -7,14 +7,13 @@ summary: "This week we're starting! We're going to start by reviewing the course
 <!-- 
 
 	TODO
-		Assignments vs quizzes (investigate blackboard quizzing)
-			Adjust the course description and rubric accordingly
+		Adjust the course description and rubric re:quizzes accordingly
 		Link to syllabus
-		Look at that great death-row tutorial. starSelectSQL.com
-			OMG I'd love to use that dude's sqlite script
-		Yo what's our dataset??
-		Replace SQL Developer with PHPMyAdmin or whatever
-		Get data from textbook publisher
+		Pedagogy
+		Verify lab queries
+		Slides
+		instructions should be more listy
+
  -->
 <section class="slide-only"><a href="https://www.dbcourse2019.com" class="h1">dbcourse2019.com</a></section>
 <section>
@@ -210,7 +209,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">What do we do with a database?</h2>
-			<p>Most databases are accessed using the Structured Query Language (SQL). SQL can either be written into server-side code (like <abbr title="The rare recursive acronym: 'PHP: Hypertext Preprocessor'">PHP</abbr> or <abbr title="Active Server Pages">ASP</abbr>) or run through a <abbr title="Graphical User Interface">GUI</abbr> like SQL Developer.</p>
+			<p>Most databases are accessed using the Structured Query Language (SQL). SQL can either be written into server-side code (like <abbr title="The rare recursive acronym: 'PHP: Hypertext Preprocessor'">PHP</abbr> or <abbr title="Active Server Pages">ASP</abbr>) or run through a <abbr title="Graphical User Interface">GUI</abbr> like phpMyAdmin or DBeaver.</p>
 		</div>
 	</div>
 </section>
@@ -235,18 +234,24 @@ summary: "This week we're starting! We're going to start by reviewing the course
 			<h2 class="h2">MAMP</h2>
 			<p>MAMP stands for MacOS+Apache+MySQL+PHP. Don't worry if you're on Windows, it works on Windows, too. MAMP is a program that creates a virtual Apache server on your computer, along with a MySQL database and PHP. This allows us to develop websites and services using this technology stack on our own computers without having to push our code to another server.</p>
 			<h3 class="h3">Instructions for installing MAMP</h3>
-			<a href="https://www.mamp.info/en/downloads/" target="_blank"><img src="/images/download-mamp.png" alt="Screenshot of download page for both Mac & Windows versions of MAMP">Download MAMP</a>
+			<figure><a href="https://www.mamp.info/en/downloads/" target="_blank"><img src="/images/download-mamp.png" alt="Screenshot of download page for both Mac & Windows versions of MAMP">
+				<figcaption>Download MAMP</figcaption></a>
+			</figure>
+			
 		</div>
 	</div>
-</section><section>
+</section>
+<section>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
 			<p>Now that you have MAMP installed and configured, let's start it up! Open the application, and click the "Start Servers" power button.</p>
-			<img src="/images/MAMP-not_started.png" alt="MAMP before starting the servers.">
+			<figure>
+				<img src="/images/MAMP-not_started.png" alt="MAMP before starting the servers.">
+			</figure>
 			<p>Now we've started our two servers - our database server running MySQL, and our Apache web server, which can process PHP and co-ordinate with the browser to server web pages.</p>
 			<p>Go to the "web server" tab in MAMP. This tells you where your <code>htdocs</code> folder is located.</p>
 			<p>Create a file called <code>index.php</code> in the <code>htdocs</code> folder. Open your <code>index.php</code> file and paste in <em>all</em> of the following code:</p>
-			<textarea data-code-mirror="html">
+			<textarea data-code-mirror="html"data-code-mirror-height="460">
 <!doctype html>
 <html lang="">
   <head>
@@ -266,9 +271,55 @@ summary: "This week we're starting! We're going to start by reviewing the course
 			<hr class="post-only">
 			<p>If you navigate to <a href="http://localhost:8888/phpMyAdmin/">phpMyAdmin</a>, you'll see that we have a built-in tool for managing the database.</p>
 			<p>Let's generate some data!</p>
-			<p>Our friend Christine has created a <a href="http://sandbox.bittsdevelopment.com/humber/datagenerator/" target="_blank">data generator for us</a>. Download a `.sql` file from the data generator.</p>
-			<a href="http://sandbox.bittsdevelopment.com/humber/datagenerator/" target="_blank"><img src="/images/data-generator.png" alt="Data generator"></a>
-
+			<p>Our friend Christine has created a <a href="http://sandbox.bittsdevelopment.com/humber/datagenerator/" target="_blank">data generator for us</a>. Download an <code>.sql</code> file from the data generator.</p>
+			<a href="http://sandbox.bittsdevelopment.com/humber/datagenerator/" target="_blank"><figure><img src="/images/data-generator.png" alt="Data generator"><br><figcaption>Data generator</figcaption></figure></a>
+			<p>Now we've got some data and a database server - but we still need a database!</p>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+	<p>In phpMyAdmin, click on the "SQL" tab, paste in the code below, and click the "Go" button.</p>
+	<textarea data-code-mirror="sql" data-code-mirror-height="40">CREATE DATABASE blog;</textarea>
+	<figure>
+		<a href="http://localhost:8888/phpMyAdmin/server_sql.php" target="_blank"><img src="/images/create-db.png" alt="Creating a database in phpMyAdmin">
+		<figcaption>It is a tiny button - they really oughta make it bigger.</figcaption></a>
+	</figure>
+</div></div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+	<p>Congratulations! You've just run your first SQL command!</p>
+	<p>Let's take a moment to appreciate how easy this is to read:</p>
+	<p><textarea data-code-mirror="sql" data-code-mirror-height="40">CREATE DATABASE blog;</textarea></p>
+	<p>The English translation of which is<em> "Hi compter! Please create a database called "blog"</em>.</p>
+</div></div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+			<p>Now that we have a database, we can import the data that we generated earlier.</p>
+			<figure>
+				<img src="/images/import-authors.png" alt="Importing the authors.sql file">
+				<figcaption>The order here is important!</figcaption>
+			</figure>
+			<ol>
+				<li>Click on the "blog" database in the left sidebar.</li>
+				<li>Select the "Import" tab.</li>
+				<li>Use the "Choose File" dialog to select your <code>authors.sql</code> file.</li>
+				<li>Click the "Go" button.</li>
+			</ol>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+			<p>Now that we have actual data, SQL starts to get interesting. Go back to the "SQL" tab and run the following query:</p>
+			<textarea data-code-mirror="sql" data-code-mirror-height="40">SELECT * FROM authors;</textarea>
+			<p>This translates to <em>"Select all columns of data in all the rows from the authors table"</em>.</p>
 		</div>
 	</div>
 </section>
@@ -278,104 +329,68 @@ summary: "This week we're starting! We're going to start by reviewing the course
 			<h2 class="h2">DBeaver</h2>
 			<p>It's good to be familiar with phpMyAdmin, as it's very common, and you'll want to know what you're doing when your buddy screws up their Wordpress site and you need to rescue their data.</p>
 			<p>It's nice to have a tool that's a little more... robust? So let's install a program named DBeaver. It's wonderful for managing MySQL, but it supports a huge range of other Database Management Systems, too!</p>
-			<a href="https://dbeaver.io/download/" target="_blank"><img src="/images/download-dbeaver.png" alt=""><br>Download DBeaver</a>
-			<p>TODO Instructions for installing DBeaver (including, possibly, installing Java); Instructions for connecting to the MAMP MySQL server through DBeaver</p>
-		</div>
-	</div>
-</section>
-<!-- <section id="dev">
-	<div class="grid-x">
-		<div class="cell large-10 large-offset-1">
-			<h2 class="h2">Installing SQL Developer</h2>
-			<ol class="smaller-text">
-				<li>Get a copy of SQL Developer from <a href="https://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html" target='_blank'>the Oracle website</a>.</li>
-				<li>
-					<ol>
-						<li>Are you on Windows? You're done!</li>
-						<li>Are you on a Mac? Unless you have <abbr title="Java Development Kit">JDK</abbr> 8 or 9 (not 10!) installed and set as your default already, you need to <a target="_blank" href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">download</a> and install JDK 8.</li>
-						<li>If you install JDK 8, but you get an error telling you you <em>still</em> need JDK 8, then, using a <a href="https://www.sublimetext.com/" target='_blank'>text editor</a>, you need to open the file <code>$HOME/.sqldeveloper/18.2.0/product.conf</code> (note that <code>/.sqldeveloper/</code> is a hidden folder - if you don't know how to view hidden files and folders, see <a href="https://stackoverflow.com/questions/29135878/what-is-the-quickest-way-to-toggle-hide-show-hidden-files-on-a-mac-os-x-yosemite" target='_blank'>this StackOverflow answer</a>).</li>
-						<li>Edit <code>product.conf</code>, changing <pre><code># SetJavaHome ../../jdk</code></pre> to <pre><code>SetJavaHome /Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents</code></pre> (or wherever your JDK 8 is installed).</li>
-					</ol>
-				</li>
-			</ol>
-		</div>
-	</div>
-</section>
-<section>
-	<div class="grid-x">
-		<div class="cell large-10 large-offset-1">
-		<h2 class="h2">A little presentational tweak...</h2>
-		<p>Just to make things a little more readable, go to <code>Oracle SQL Developer > Preferences</code> on Mac, or <code>Tools > Preferences</code> on PC.</p>
-		<p>Under <code>Code Editor > Line Gutter</code>, check the box for <em>Show Line Numbers</em>.</p>
-		<p>Under <code>Database > Worksheet</code>, check the box for <em>Grid in checker board or Zebra pattern</em>.</p>
-		</div>
-	</div>
-</section> -->
-<!-- <section>
-	<div class="grid-x">
-		<div class="cell large-10 large-offset-1">
-			<h2 class="h2">Let's see if it works!</h2>
 			<figure>
-				<img src="/images/new-connection.jpg" alt="Green plus symbol">
-				<figcaption>To create a connection to a database, click on the green plus symbol in the top right of SQL Developer</figcaption>
+				<a href="https://dbeaver.io/download/" target="_blank"><img src="/images/download-dbeaver.png" alt="">
+				<figcaption>Download DBeaver</figcaption></a>
 			</figure>
-		</div>
-	</div>
-</section>
-<section>
-	<div class="grid-x">
-		<div class="cell large-10 large-offset-1">
-				<figure>
-					<img src="/images/new-connection--fields.jpg" alt="Fields to be filled out to create a new connection to the humber database.">
-					<figcaption>Fill out the appropriate fields as indicated. <code>Connection name</code> is whatever you'll remember. <code>Username</code> is your student number. The rest of the values are required as indicated in the screenshot.</figcaption>
-				</figure>
-		</div>
-	</div>
-</section>
-<section>
-	<div class="grid-x">
-		<div class="cell large-10 large-offset-1 smaller-text">
-			<h2 class="h2">Populating your database</h2>
-			<p>Download <a href="/documents/create_ap_tables.sql">this .sql file</a>.</p>
-			<p>Open this file with SQL Developer (<code>File > Open</code>) and then...</p>
-				<figure>
-					<img src="/images/run-script.jpg" alt="Image indicating placement of 'run script' icon in SQL developer">
-					<figcaption>...click the 'Run Script' icon (or press F5)</figcaption>
-				</figure>
-			<p>When prompted, choose to run this on the connection you've already created and opened.</p>
-		</div>
-	</div>
-</section> -->
-<section>
-	<div class="grid-x">
-		<div class="cell large-10 large-offset-1">
-			<h2 class="h2">Your first query</h2>
+			<p>Once you've downloaded, installed and started DBeaver, it will ask you to select a driver for your first database connection - select the "All" tab and choose "MySQL" (<strong>not</strong> MySQL 8+ - MAMP runs on MySQL 5.7 as of this writing).</p>
 			<figure>
-				<img src="/images/worksheet.jpg" alt="How to open a new worksheet">
-				<figcaption>You should already have a worksheet open, but if you don't, click on the worksheet icon to open one up.</figcaption>
+				<img src="/images/dbeaver-mysql.png" alt="Selecting the MySQL driver in DBeaver">
+				<figcaption>That's a lot of different kinds of Database management!</figcaption>
 			</figure>
+			<p>You may be prompted to download an additional driver - and you should!</p>
+			<p>Finally, you can fill out the prompt to connect to our database. Fill out the following values:</p>
+			<table class="fixed">
+				<thead>
+					<tr>
+						<th>Port</th>
+						<th>User name</th>
+						<th>Password</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>8889</td>
+						<td>root</td>
+						<td>root</td>
+					</tr>
+				</tbody>
+			</table>
+			<figure>
+				<img src="/images/dbeaver-connect.png" alt="DBeaver connection form">
+				<figcaption>Aside from Port, User name and Password, leave everything else as-is.</figcaption>
+			</figure>
+			<p>Finally, test your connection with - you guessed it - the "Test Connection ..." button, and, provided your connection works, click "Finish".</p>
 		</div>
 	</div>
 </section>
 <section>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
-			<p>In the worksheet, type <pre><code class="language-sql">SELECT * FROM vendors</code></pre></p>
+			<figure>
+				<figcaption>Select the <code>blog</code> database on the left.</figcaption>
+				<img src="/images/dbeaver-select-db.png" alt="Select the 'blog' database">
+			</figure>
+			<figure>
+				<figcaption>Open the SQL editor from the DBeaver menu.</figcaption>
+				<img src="/images/dbeaver-sql-editor.png" alt="Select the SQL editor">
+			</figure>
+			<p></p>
 		</div>
 	</div>
 </section>
 <section>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
-			<p>You should see all kinds of wonderful data!</p>
-			<img src="/images/output.jpg" alt="Database output">
+			<p>Let's try a query, just like we did in phpMyAdmin, but we'll add a little spice to it:</p>
+			<textarea data-code-mirror="sql" data-code-mirror-height="70">SELECT * FROM blog.authors
+WHERE authoremail LIKE '%yahoo.c%'</textarea>
 		</div>
 	</div>
 </section>
 <section>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
-			<h2 class="h2">Wonderful... but boring.</h2>
 			<p>Today we're working with the data that aligns with the textbook, which is pretty dry small business data. Not that exciting.</p> 
 			<p>I'm going to try to incorporate data that's a little more compelling in the coming weeks to demonstrate just how powerful it can be to ask good questions, and get good answers.</p>
 		</div>
@@ -400,8 +415,22 @@ summary: "This week we're starting! We're going to start by reviewing the course
 				<li><a href="https://cse.google.com/cse?q=+&cx=002720237717066476899:v2wv26idk7m" target="_blank">Google custom search <span class="show-for-sr">Opens in a new tab</span></a></li>
 				<li><a href="https://www.reddit.com/r/datasets/top/" target="_blank">Reddit/r/datasets <span class="show-for-sr">Opens in a new tab</span></a></li>
 			</ul>	
-			<div class="callout success post-only"><strong>Note:</strong> SQL Developer can import most spreadsheet file formats, including <code>.csv</code>, <code>.xls</code>, etc.</div>
-			<div class="callout alert post-only"><strong>Note:</strong> Datasets vary wildly in size, from bytes to terabytes. Know before you download! And definitely don't upload large datasets to Calvin, or you'll be getting some angry emails from our DBA <span role="img" aria-label="grinning face with smiling eyes">😁</span></div>
+			<div class="callout success post-only"><strong>Note:</strong> Most database clients can pretty easily import most spreadsheet file formats, including <code>.csv</code>, <code>.xls</code>, etc. into a database.</div>
+			<div class="callout alert post-only"><strong>Note:</strong> Datasets vary wildly in size, from bytes to terabytes. Know before you download!</div>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+			<hr class="post-only">
+			<p>For today, though, we're going to import some big fat databases based on the textbook.</p>
+			<p>Download this <a href="/files/create_db.zip" download>zip file</a>, unzip it, and then, in DBeaver, go to <code>File</code> > <code>Import</code> and select <code>Scripts</code>. Click <code>next</code>, and for "Input directory", select the folder that you unzipped (create_db). Under "Root scripts folder", select "Scripts", and click <code>Finish</code>. Finally, from the DBeaver menu, select "SQL Editor", and, under the "Choose SQL Script" dialog, you should see <code>create_mysql_databases.sql</code>.</p>
+			<p>Select this <code>.sql</code> file, and then run it with the "Execute Script" button.</p>
+			<figure>
+				<figcaption>There are keyboard shortcuts for this kind of thing that you'll want to familiarize yourself with.</figcaption>
+				<img src="/images/execute.png" alt="Execute script button"></figure>
+			<p>That's going to give us a real relational database to play with! But first, a little historical context :)</p>
 		</div>
 	</div>
 </section>
@@ -488,7 +517,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Types of Data</h2>
-			<p>There are certain ways that we keep our database organized and our data manageable. One is by defining a primary key. Oracle will throw an error if we try to add a row that has a primary key that's not unique.</p>
+			<p>There are certain ways that we keep our database organized and our data manageable. One is by defining a primary key. Your SQL client will throw an error if we try to add a row that has a primary key that's not unique.</p>
 			<p>Another is by defining what kind of data can go in each column.</p>
 		</div>
 	</div>
@@ -498,7 +527,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 		<div class="cell large-10 large-offset-1">
 			<figure>
 				<img src="/images/column-info.jpg" alt="Demonstration of clicking on a table to see information about it's columns.">
-				<figcaption>In SQL Developer, if we click on a table in our table tree, it will show us information about the columns in that table, including what type of data is allowed.</figcaption>
+				<figcaption>In DBeaver, if we click on a table in our table tree, it will show us information about the columns in that table, including what type of data is allowed.</figcaption>
 			</figure>	
 		</div>
 	</div>
@@ -651,7 +680,7 @@ ORDER BY vendor_name DESC</code></pre>
 <section class="post-only">
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
-			<table class="unstriped stack">
+			<table class="unstriped stack fixed">
 				<thead>
 					<tr>
 						<th>Code</th>
@@ -706,7 +735,8 @@ ORDER BY vendor_name DESC</code></pre></td>
 		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Reserved words</h2>
 			<p>What would happen if you named your column 'Select', 'Order By' and 'Distinct', and your table 'From'?</p>
-			<pre><code>SELECT 'Select', 'Distinct' FROM 'From' ORDER BY 'Order By'</code></pre>
+			<pre><code class="language-sql">SELECT 'Select', 'Distinct' 
+FROM 'From' ORDER BY 'Order By'</code></pre>
 			<p>You <em>could</em> do it (as long as you quoted them in your query), but everyone would be mad at you.</p>
 			<p><strong>Reserved words</strong> are words that are used by the SQL syntax.</p>
 			<p>Here's a few to watch out for: <code>DATE</code>, <code>FILE</code>, <code>DEFAULT</code>, <code>GROUP</code>, <code>LEVEL</code>, <code>NUMBER</code>, <code>OPTION</code>, <code>RESOURCE</code>, <code>VALUES</code>.</p>
@@ -716,8 +746,8 @@ ORDER BY vendor_name DESC</code></pre></td>
 <section>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
-			<p>Don't worry about doing it by accident, though - Oracle will throw an error if you try to create the column without quoting the reserved word properly.</p>
-			<p>See the full list in the <a href="https://docs.oracle.com/database/121/SQLRF/ap_keywd001.htm#SQLRF55621" target="_blank">Oracle Docs<span class="show-for-sr"> Opens in a new window</span></a></p>	
+			<p>Don't worry about doing it by accident, though - your SQL client will throw an error if you try to create the column without quoting the reserved word properly.</p>
+			<p>See the full list in the <a href="https://dev.mysql.com/doc/refman/5.5/en/keywords.html#keywords-5-5-detailed-A" target="_blank">MySQL Docs<span class="show-for-sr"> Opens in a new window</span></a></p>	
 		</div>
 	</div>
 </section>
@@ -751,8 +781,7 @@ ORDER BY vendor_name DESC</code></pre></td>
 		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Lab time!</h2>
 			<p>Labs are your time in-class to try out what we've learned, and make mistakes!</p>
-			<p>If you can't finish something by the end of class, do your best to explain where you're stuck - you'll get marks for that.</p>
-			<p>When class is done, turn in what you have. This is <em>not</em> a take-home assignment, and I won't accept labs done outside of class.</p>
+			<p>At the beginning of next class, you'll be quizzed on the same topics as are in your lab (although obviously not the exact questions).</p>
 			<p>If you're finished before the end of class, please see if anyone needs a hand!</p>
 		</div>
 	</div>
@@ -761,44 +790,44 @@ ORDER BY vendor_name DESC</code></pre></td>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Lab Questions</h2>
-			<p>See <a href="<%= site.basePath %>/notes/week-0/index.html#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p>	
+			<p>See <a href="/posts/the-1st-week/#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p>	
 		</div>
 	</div>
 </section>
 <section class="post-only">
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
-			<h2>Lab Questions:</h2>
+			<h3>Lab Questions:</h3>
 			<ol class="lab-questions">
 				<li>Run the following query:
-					<pre><code class="language-sql">SELECT invoice_number, invoice_date, invoice_total
+					<textarea data-code-mirror="sql" data-code-mirror-height="170">SELECT invoice_number, invoice_date, invoice_total
 FROM invoices
-WHERE invoice_date BETWEEN '1-APR-08' AND '31-MAY-08'
+WHERE invoice_date BETWEEN '2014-04-01' AND '2014-05-31'
 AND invoice_total > 2000.00
-ORDER BY invoice_date ASC, invoice_total ASC</code></pre>
+ORDER BY invoice_date ASC, invoice_total ASC</textarea>
 					<strong>Describe, in your own words, what each element of this query is doing to produce the result table you see.</strong>
 				</li>
 				<li>Run the following query:
-					<pre><code class="language-sql">SELECT vendor_id, invoice_date, invoice_total
+<textarea data-code-mirror="sql" data-code-mirror-height="170">SELECT vendor_id, invoice_date, invoice_total
 FROM invoices
-WHERE invoice_date BETWEEN '1-APR-08' AND '31-MAY-08'
+WHERE invoice_date BETWEEN '2014-04-01' AND '2014-05-31'
 AND invoice_total > 2000.00
-ORDER BY invoice_date ASC, invoice_total ASC</code></pre>
+ORDER BY invoice_date ASC, invoice_total ASC</textarea>
 					<strong>Describe, in your own words, what each element of this query is doing to produce the result table you see.</strong>
 				</li>
 				<li>Run the following query:
-					<pre><code class="language-sql">SELECT vendor_name, vendor_address1, vendor_city, vendor_state
+<textarea data-code-mirror="sql" data-code-mirror-height="140">SELECT vendor_name, vendor_address1, vendor_city, vendor_state
 FROM vendors
 WHERE vendor_state IN ('MI', 'AZ', 'TX')
-ORDER BY vendor_state DESC</code></pre>
+ORDER BY vendor_state DESC</textarea>
 					<strong>Describe, in your own words, what each element of this query is doing to produce the result table you see.</strong>
 				</li>
 				<li>Run the following query:
-					<pre><code class="language-sql">SELECT invoice_number, invoice_total, payment_total, invoice_total - payment_total AS "Balance Owing"
+<textarea data-code-mirror="sql" data-code-mirror-height="170">SELECT invoice_number, invoice_total, payment_total, invoice_total - payment_total AS "Balance Owing"
 FROM invoices
 WHERE invoice_total - payment_total <> 0
 AND invoice_total >= 500
-ORDER BY invoice_number</code></pre>
+ORDER BY invoice_number</textarea>
 					<strong>Describe, in your own words, what each element of this query is doing to produce the result table you see.</strong>
 				</li>
 				<li>Write a query to display the <code class="language-sql">vendor_name</code>, <code class="language-sql">vendor_state</code>, and <code class="language-sql">vendor_city</code>. Create an alias for the three columns. Create an alias for <code class="language-sql">vendor_name</code> called <code class="language-sql">Vendor</code>, an alias for <code class="language-sql">vendor_state</code> called <code class="language-sql">state</code>, and an alias for <code class="language-sql">vendor_city</code> called <code class="language-sql">City</code>. Order the results of the output so it displays in ascending sequence by <code class="language-sql">vendor_city</code>.</li>

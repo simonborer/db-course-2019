@@ -24,6 +24,19 @@ td {
     font-size: .8em;
 }
 
+figure {
+    margin: 2rem 0;
+}
+figcaption {
+    font-size: .8em;
+    font-style: italic;
+    margin: .5rem 0;
+}
+
+.CodeMirror {
+    margin-bottom: 1rem;
+}
+
 @media (max-width: 768px) {
 
     // Let's fix this, shall we?
@@ -200,4 +213,16 @@ td {
 
 [aria-disabled="true"] {
     pointer-events: none;
+}
+
+.fixed {
+    table-layout: fixed;
+}
+
+pre > code {
+    border: none;
+}
+
+.lab-questions li {
+    margin-bottom: 1rem;
 }

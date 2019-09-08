@@ -82,7 +82,6 @@ END</code></pre>
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
       <h2 class="h2">Views</h2>
-      <img src="http://static.webshopapp.com/shops/134936/files/077085101/drake-views-cd.jpg" alt="Drake album cover">
     </div>
   </div>
 </section>
