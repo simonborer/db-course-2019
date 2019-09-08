@@ -174,7 +174,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 		<div class="cell large-10 large-offset-1">
 		<h2 class="h2">The Syllabus</h2>
 		<p>
-			<a class="button" target="_blank" href="/documents/HTTP5105-syllabus.pdf">Download the syllabus<span class="show-for-sr">Opens in a new window.</span></a>		
+			<a class="button" target="_blank" rel="noopener" href="/documents/HTTP5105-syllabus.pdf">Download the syllabus<span class="show-for-sr">Opens in a new window.</span></a>		
 		</p>
 		</div>
 	</div>
@@ -234,7 +234,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 			<h2 class="h2">MAMP</h2>
 			<p>MAMP stands for MacOS+Apache+MySQL+PHP. Don't worry if you're on Windows, it works on Windows, too. MAMP is a program that creates a virtual Apache server on your computer, along with a MySQL database and PHP. This allows us to develop websites and services using this technology stack on our own computers without having to push our code to another server.</p>
 			<h3 class="h3">Instructions for installing MAMP</h3>
-			<figure><a href="https://www.mamp.info/en/downloads/" target="_blank"><img src="/images/download-mamp.png" alt="Screenshot of download page for both Mac & Windows versions of MAMP">
+			<figure><a href="https://www.mamp.info/en/downloads/" target="_blank" rel="noopener"><img src="/images/download-mamp.png" alt="Screenshot of download page for both Mac & Windows versions of MAMP">
 				<figcaption>Download MAMP</figcaption></a>
 			</figure>
 			
@@ -267,12 +267,12 @@ summary: "This week we're starting! We're going to start by reviewing the course
 	</main>
 	</body>
 </html></textarea><br>
-			<p>Now go to <a href="localhost:8888" target="_blank">your local server</a> and refresh your browser.</p>
+			<p>Now go to <a href="localhost:8888" target="_blank" rel="noopener">your local server</a> and refresh your browser.</p>
 			<hr class="post-only">
 			<p>If you navigate to <a href="http://localhost:8888/phpMyAdmin/">phpMyAdmin</a>, you'll see that we have a built-in tool for managing the database.</p>
 			<p>Let's generate some data!</p>
-			<p>Our friend Christine has created a <a href="http://sandbox.bittsdevelopment.com/humber/datagenerator/" target="_blank">data generator for us</a>. Download an <code>.sql</code> file from the data generator.</p>
-			<a href="http://sandbox.bittsdevelopment.com/humber/datagenerator/" target="_blank"><figure><img src="/images/data-generator.png" alt="Data generator"><br><figcaption>Data generator</figcaption></figure></a>
+			<p>Our friend Christine has created a <a href="http://sandbox.bittsdevelopment.com/humber/datagenerator/" target="_blank" rel="noopener">data generator for us</a>. Download an <code>.sql</code> file from the data generator.</p>
+			<a href="http://sandbox.bittsdevelopment.com/humber/datagenerator/" target="_blank" rel="noopener"><figure><img src="/images/data-generator.png" alt="Data generator"><br><figcaption>Data generator</figcaption></figure></a>
 			<p>Now we've got some data and a database server - but we still need a database!</p>
 		</div>
 	</div>
@@ -283,7 +283,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 	<p>In phpMyAdmin, click on the "SQL" tab, paste in the code below, and click the "Go" button.</p>
 	<textarea data-code-mirror="sql" data-code-mirror-height="40">CREATE DATABASE blog;</textarea>
 	<figure>
-		<a href="http://localhost:8888/phpMyAdmin/server_sql.php" target="_blank"><img src="/images/create-db.png" alt="Creating a database in phpMyAdmin">
+		<a href="http://localhost:8888/phpMyAdmin/server_sql.php" target="_blank" rel="noopener"><img src="/images/create-db.png" alt="Creating a database in phpMyAdmin">
 		<figcaption>It is a tiny button - they really oughta make it bigger.</figcaption></a>
 	</figure>
 </div></div>
@@ -330,7 +330,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 			<p>It's good to be familiar with phpMyAdmin, as it's very common, and you'll want to know what you're doing when your buddy screws up their Wordpress site and you need to rescue their data.</p>
 			<p>It's nice to have a tool that's a little more... robust? So let's install a program named DBeaver. It's wonderful for managing MySQL, but it supports a huge range of other Database Management Systems, too!</p>
 			<figure>
-				<a href="https://dbeaver.io/download/" target="_blank"><img src="/images/download-dbeaver.png" alt="">
+				<a href="https://dbeaver.io/download/" target="_blank" rel="noopener"><img src="/images/download-dbeaver.png" alt="">
 				<figcaption>Download DBeaver</figcaption></a>
 			</figure>
 			<p>Once you've downloaded, installed and started DBeaver, it will ask you to select a driver for your first database connection - select the "All" tab and choose "MySQL" (<strong>not</strong> MySQL 8+ - MAMP runs on MySQL 5.7 as of this writing).</p>
@@ -402,18 +402,18 @@ WHERE authoremail LIKE '%yahoo.c%'</textarea>
 			<p>There is a wealth of publicly available, super-interesting data out there! Here's a few examples and resources for you to look at:</p>
 			<h3>Examples:</h3>
 			<ul>
-				<li><a href="http://data.torontopolice.on.ca/datasets/bicycle-thefts/data" target="_blank">Bike theft in Toronto, 2014-2017 <span class="show-for-sr">Opens in a new tab</span></a></li>
-				<li><a href="https://github.com/fivethirtyeight/data/blob/master/tarantino/tarantino.csv" target="_blank">Swearing in Tarantino Movies <span class="alert">(NSFW)</span> <span class="show-for-sr">Opens in a new tab</span></a></li>
-				<li><a href="https://github.com/fivethirtyeight/data/blob/master/hate-crimes/hate_crimes.csv" target="_blank">Hate crimes and income inequality <span class="show-for-sr">Opens in a new tab</span></a></li>
-				<li><a href="https://www.ontario.ca/data/ontario-forest-biomonitoring-network" target="_blank">Effects of climate change on Ontario forests <span class="show-for-sr">Opens in a new tab</span></a></li>
-				<li><a href="https://selectstarsql.com/data/tx_deathrow_full.csv" target="_blank">Texas execution data <span class="show-for-sr">Opens in a new tab</span></a></li>
+				<li><a href="http://data.torontopolice.on.ca/datasets/bicycle-thefts/data" target="_blank" rel="noopener">Bike theft in Toronto, 2014-2017 <span class="show-for-sr">Opens in a new tab</span></a></li>
+				<li><a href="https://github.com/fivethirtyeight/data/blob/master/tarantino/tarantino.csv" target="_blank" rel="noopener">Swearing in Tarantino Movies <span class="alert">(NSFW)</span> <span class="show-for-sr">Opens in a new tab</span></a></li>
+				<li><a href="https://github.com/fivethirtyeight/data/blob/master/hate-crimes/hate_crimes.csv" target="_blank" rel="noopener">Hate crimes and income inequality <span class="show-for-sr">Opens in a new tab</span></a></li>
+				<li><a href="https://www.ontario.ca/data/ontario-forest-biomonitoring-network" target="_blank" rel="noopener">Effects of climate change on Ontario forests <span class="show-for-sr">Opens in a new tab</span></a></li>
+				<li><a href="https://selectstarsql.com/data/tx_deathrow_full.csv" target="_blank" rel="noopener">Texas execution data <span class="show-for-sr">Opens in a new tab</span></a></li>
 			</ul>
 			<h3 class="post-only">Resources:</h3>
 			<ul class="post-only">
-				<li><a href="https://www.opendatasoft.com/a-comprehensive-list-of-all-open-data-portals-around-the-world/" target="_blank">A list of 2600+ Open Data portals around the world <span class="show-for-sr">Opens in a new tab</span></a></li>
-				<li><a href="https://github.com/fivethirtyeight/data/" target="_blank">Data sets from fivethirtyeight.com <span class="show-for-sr">Opens in a new tab</span></a></li>
-				<li><a href="https://cse.google.com/cse?q=+&cx=002720237717066476899:v2wv26idk7m" target="_blank">Google custom search <span class="show-for-sr">Opens in a new tab</span></a></li>
-				<li><a href="https://www.reddit.com/r/datasets/top/" target="_blank">Reddit/r/datasets <span class="show-for-sr">Opens in a new tab</span></a></li>
+				<li><a href="https://www.opendatasoft.com/a-comprehensive-list-of-all-open-data-portals-around-the-world/" target="_blank" rel="noopener">A list of 2600+ Open Data portals around the world <span class="show-for-sr">Opens in a new tab</span></a></li>
+				<li><a href="https://github.com/fivethirtyeight/data/" target="_blank" rel="noopener">Data sets from fivethirtyeight.com <span class="show-for-sr">Opens in a new tab</span></a></li>
+				<li><a href="https://cse.google.com/cse?q=+&cx=002720237717066476899:v2wv26idk7m" target="_blank" rel="noopener">Google custom search <span class="show-for-sr">Opens in a new tab</span></a></li>
+				<li><a href="https://www.reddit.com/r/datasets/top/" target="_blank" rel="noopener">Reddit/r/datasets <span class="show-for-sr">Opens in a new tab</span></a></li>
 			</ul>	
 			<div class="callout success post-only"><strong>Note:</strong> Most database clients can pretty easily import most spreadsheet file formats, including <code>.csv</code>, <code>.xls</code>, etc. into a database.</div>
 			<div class="callout alert post-only"><strong>Note:</strong> Datasets vary wildly in size, from bytes to terabytes. Know before you download!</div>
@@ -747,7 +747,7 @@ FROM 'From' ORDER BY 'Order By'</code></pre>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
 			<p>Don't worry about doing it by accident, though - your SQL client will throw an error if you try to create the column without quoting the reserved word properly.</p>
-			<p>See the full list in the <a href="https://dev.mysql.com/doc/refman/5.5/en/keywords.html#keywords-5-5-detailed-A" target="_blank">MySQL Docs<span class="show-for-sr"> Opens in a new window</span></a></p>	
+			<p>See the full list in the <a href="https://dev.mysql.com/doc/refman/5.5/en/keywords.html#keywords-5-5-detailed-A" target="_blank" rel="noopener">MySQL Docs<span class="show-for-sr"> Opens in a new window</span></a></p>	
 		</div>
 	</div>
 </section>
@@ -790,7 +790,7 @@ FROM 'From' ORDER BY 'Order By'</code></pre>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">Lab Questions</h2>
-			<p>See <a href="/posts/the-1st-week/#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p>	
+			<p>See <a href="/posts/the-1st-week/#lab" target="_blank" rel="noopener">notes<span class="show-for-sr"> Opens in a new tab</span></a></p>	
 		</div>
 	</div>
 </section>
