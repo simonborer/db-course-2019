@@ -1,11 +1,17 @@
 .slides > :not(section) {
   display: none;
 }
+.reveal {
+	font-size: 2rem;
+}
+.reveal figcaption {
+	font-size: 1rem;
+}
 .reveal li > ol {
   list-style-type: lower-alpha; 
 }
-.post-only {
-  display: none;
+.post-only, .reveal ul.post-only {
+  display: none !important;
 }
 .show-for-sr {
     font-size: 0;
@@ -14,4 +20,22 @@
   font-size: 1.5rem;
   line-height: 1.5;
   text-align: left;
+}
+.toc {
+	font-size: 2rem;
+}
+.reveal table {
+	font-size: 1.75rem;
+}
+.reveal pre {
+	font-size: 1em;
+}
+
+.reveal .diagram, .reveal figure img {
+	background: #ffffff;
+	max-height: 55vh;
+}
+
+script[type="text/plain"] {
+	display: block;
 }

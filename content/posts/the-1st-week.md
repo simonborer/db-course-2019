@@ -169,10 +169,39 @@ summary: "This week we're starting! We're going to start by reviewing the course
 		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">What's a database?</h2>
 			<p>There are all different kinds of databases. The kind we'll mostly be working with in this course are called relational databases, because they're really good at connecting different kinds of data together.</p>
-			<p>Relational databases are made up of tables. A table is not a spreadsheet, but that's a handy way to think of them. Tables have rows (also known as records) for each instance of data, each entity. Think of a table called "Students". Each student would be entered into the table as a row.</p>
-			<p>Tables also have columns. Each column represents a different type of information. In a table called "Students", we might have columns for "first name", "last name", "email address", etc.</p>
+			<figure>
+				<img src="/images/connecting-data.jpg" alt="Data from Star Trek and another Data from Star Trek">
+				<figcaption>There are going to be a lot of puns in this course. I am genuinely sorry.</figcaption>
+			</figure>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+			<p>Relational databases are made up of <strong>tables</strong>. <span class="post-only">A table is not a spreadsheet, but that's a handy way to think of them.</span><br class="slide-only">Tables have <strong>rows</strong> (also known as records) for each instance of data, each entity. Think of a table called "Students". Each student would be entered into the table as a row.</p>
+			<p>Tables also have <strong>columns</strong>. Each column represents a different type of information. In a table called "Students", we might have columns for "first name", "last name", "email address", etc.</p>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<p>If your database is well-designed, the columns will be broken down into narrow categories, as it is easier to tell a computer how to put things together (i.e. "Patrick" + " " + "Stewart") than it is to tell a computer how to split things apart (i.e. trying to explain to a computer how to find the last name of "Sir Patrick James Stewart III, Ph.D").</p>
-			<p>A relational database holds different tables of data that are related to one another, but have different subjects. For instance, "Students", "Classes", "Teachers", and "Classrooms" are all different entities, but can be related to one another to answer questions. "Who will be in Building A at 10:45?" That is a question we can answer if our "Students" and "Teachers" tables tell us what classes those people are in, our "Classes" table tells us what classrooms the classes are in, and the "Classrooms" table tells us what building the rooms are in. We answer that question by using a language called <abbr title="Structured Query Language">SQL</abbr> to get related data from different tables.</p>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+			<p>A relational database holds different tables of data that are related to one another, but have different subjects. For instance, "Students", "Classes", "Teachers", and "Classrooms" are all different entities, but can be related to one another to answer questions. <pre><code>"Who will be in Building A at 10:45?"</code></pre> That is a question we can answer if our "Students" and "Teachers" tables tell us what classes those people are in, our "Classes" table tells us what classrooms the classes are in, and the "Classrooms" table tells us what building the rooms are in.</p>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1"> 
+			<p>We answer that question by using a language called <abbr title="Structured Query Language">SQL</abbr> to get related data from different tables.</p>
 			<p>SQL is a (relatively) old, and very reliable language, and integrates easily with many other languages that you'll learn in this program (javaScript, PHP, .NET, etc.). It's such a nicely designed language that those languages haven't tried to replace SQL, because it's easier just to write SQL in your PHP.</p>
 		</div>
 	</div>
@@ -210,7 +239,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1"><h2 class="h2">Time to code! ...almost</h2><p>Ok, now we know what a database is, what it does, and what we can do with it. Let's get our hands dirty! We're going to install a server stack (MAMP) on our machines that will allow us to use SQL to get information from a database running on MAMP. This next part is my least favourite (getting stuff running on everybody's machines - some of y'all have weird set-ups, I'm not gonna lie), but the part after that, the writing code part, that's the <em>best</em>.</p></div>
+		<div class="cell large-10 large-offset-1"><h2 class="h2">Time to code! ...almost</h2><p>Ok, now we know what a database is, what it does, and what we can do with it. Let's get our hands dirty! We're going to install a server stack (MAMP) on our machines that will allow us to use SQL to get information from a database running on MAMP.</p><p>This next part is my least favourite (getting stuff running on everybody's machines - some of y'all have weird set-ups, I'm not gonna lie), but the part after that, the writing code part, that's the <em>best</em>.</p></div>
 	</div>
 </section>
 <section id="dev">
@@ -218,6 +247,12 @@ summary: "This week we're starting! We're going to start by reviewing the course
 		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">MAMP</h2>
 			<p>MAMP stands for MacOS+Apache+MySQL+PHP. Don't worry if you're on Windows, it works on Windows, too. MAMP is a program that creates a virtual Apache server on your computer, along with a MySQL database and PHP. This allows us to develop websites and services using this technology stack on our own computers without having to push our code to another server.</p>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<h3 class="h3">Instructions for installing MAMP</h3>
 			<figure><a href="https://www.mamp.info/en/downloads/" target="_blank" rel="noopener"><img src="/images/download-mamp.png" alt="Screenshot of download page for both Mac & Windows versions of MAMP">
 				<figcaption>Download MAMP</figcaption></a>
@@ -233,10 +268,23 @@ summary: "This week we're starting! We're going to start by reviewing the course
 			<figure>
 				<img src="/images/MAMP-not_started.png" alt="MAMP before starting the servers.">
 			</figure>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<p>Now we've started our two servers - our database server running MySQL, and our Apache web server, which can process PHP and co-ordinate with the browser to server web pages.</p>
-			<p>Go to the "web server" tab in MAMP. This tells you where your <code>htdocs</code> folder is located.</p>
-			<p>Create a file called <code>index.php</code> in the <code>htdocs</code> folder. Open your <code>index.php</code> file and paste in <em>all</em> of the following code:</p>
-			<textarea data-code-mirror="html"data-code-mirror-height="460">
+			<p><strong>Step 1: </strong> Go to the "web server" tab in MAMP. This tells you where your <code>htdocs</code> folder is located.</p>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+			<p><strong>Step 2: </strong>Create a file called <code>index.php</code> in the <code>htdocs</code> folder. </p>
+			<p><strong>Step 3: </strong>Open your <code>index.php</code> file and paste in <em>all</em> of the following code:</p>
+			<textarea data-code-mirror="html" data-code-mirror-height="460" rows="15" cols="120">
 <!doctype html>
 <html lang="">
   <head>
@@ -251,11 +299,26 @@ summary: "This week we're starting! We're going to start by reviewing the course
       	<img src="https://i.imgur.com/ASIS6cZ.jpg" alt="Nintendo Power Glove" style="max-height:50vh;">
 	</main>
 	</body>
-</html></textarea><br>
+</html></textarea>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<p>Now go to <a href="localhost:8888" target="_blank" rel="noopener">your local server</a> and refresh your browser.</p>
-			<hr class="post-only">
 			<p>If you navigate to <a href="http://localhost:8888/phpMyAdmin/">phpMyAdmin</a>, you'll see that we have a built-in tool for managing the database.</p>
-			<p>Let's generate some data!</p>
+			<figure>
+				<img src="/images/phpmyadmin.png" alt="The phpMyAdmin interface">
+				<figcaption>Let's interface like it's 1999!</figcaption>
+			</figure>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+			<h2 class="h2">Let's generate some data!</h2>
 			<p>Our friend Christine has created a <a href="http://sandbox.bittsdevelopment.com/humber/datagenerator/" target="_blank" rel="noopener">data generator for us</a>. Download an <code>.sql</code> file from the data generator.</p>
 			<a href="http://sandbox.bittsdevelopment.com/humber/datagenerator/" target="_blank" rel="noopener"><figure><img src="/images/data-generator.png" alt="Data generator"><br><figcaption>Data generator</figcaption></figure></a>
 			<p>Now we've got some data and a database server - but we still need a database!</p>
@@ -266,7 +329,8 @@ summary: "This week we're starting! We're going to start by reviewing the course
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
 	<p>In phpMyAdmin, click on the "SQL" tab, paste in the code below, and click the "Go" button.</p>
-	<textarea data-code-mirror="sql" data-code-mirror-height="40">CREATE DATABASE blog;</textarea>
+	<pre class="slide-only"><code class="language-sql">CREATE DATABASE blog;</code></pre>
+	<textarea data-code-mirror="sql" data-code-mirror-height="40" cols="50" class="post-only">CREATE DATABASE blog;</textarea>
 	<figure>
 		<a href="http://localhost:8888/phpMyAdmin/server_sql.php" target="_blank" rel="noopener"><img src="/images/create-db.png" alt="Creating a database in phpMyAdmin">
 		<figcaption>It is a tiny button - they really oughta make it bigger.</figcaption></a>
@@ -278,8 +342,8 @@ summary: "This week we're starting! We're going to start by reviewing the course
 		<div class="cell large-10 large-offset-1">
 	<p>Congratulations! You've just run your first SQL command!</p>
 	<p>Let's take a moment to appreciate how easy this is to read:</p>
-	<p><textarea data-code-mirror="sql" data-code-mirror-height="40">CREATE DATABASE blog;</textarea></p>
-	<p>The English translation of which is<em> "Hi compter! Please create a database called "blog"</em>.</p>
+	<p><pre class="slide-only"><code class="language-sql">CREATE DATABASE blog;</code></pre><textarea data-code-mirror="sql" data-code-mirror-height="40" cols="50" class="post-only">CREATE DATABASE blog;</textarea></p>
+	<p>The English translation of which is <em>"Hi compter! Please create a database called "blog"</em>.</p>
 </div></div>
 </section>
 <section>
@@ -290,6 +354,12 @@ summary: "This week we're starting! We're going to start by reviewing the course
 				<img src="/images/import-authors.png" alt="Importing the authors.sql file">
 				<figcaption>The order here is important!</figcaption>
 			</figure>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<ol>
 				<li>Click on the "blog" database in the left sidebar.</li>
 				<li>Select the "Import" tab.</li>
@@ -303,7 +373,8 @@ summary: "This week we're starting! We're going to start by reviewing the course
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
 			<p>Now that we have actual data, SQL starts to get interesting. Go back to the "SQL" tab and run the following query:</p>
-			<textarea data-code-mirror="sql" data-code-mirror-height="40">SELECT * FROM authors;</textarea>
+			<pre class="slide-only"><code class="language-sql">SELECT * FROM authors;</code></pre>
+			<textarea data-code-mirror="sql" data-code-mirror-height="40" class="post-only">SELECT * FROM authors;</textarea>
 			<p>This translates to <em>"Select all columns of data in all the rows from the authors table"</em>.</p>
 		</div>
 	</div>
@@ -314,16 +385,34 @@ summary: "This week we're starting! We're going to start by reviewing the course
 			<h2 class="h2">DBeaver</h2>
 			<p>It's good to be familiar with phpMyAdmin, as it's very common, and you'll want to know what you're doing when your buddy screws up their Wordpress site and you need to rescue their data.</p>
 			<p>It's nice to have a tool that's a little more... robust? So let's install a program named DBeaver. It's wonderful for managing MySQL, but it supports a huge range of other Database Management Systems, too!</p>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<figure>
 				<a href="https://dbeaver.io/download/" target="_blank" rel="noopener"><img src="/images/download-dbeaver.png" alt="">
 				<figcaption>Download DBeaver</figcaption></a>
 			</figure>
 			<p>Once you've downloaded, installed and started DBeaver, it will ask you to select a driver for your first database connection - select the "All" tab and choose "MySQL" (<strong>not</strong> MySQL 8+ - MAMP runs on MySQL 5.7 as of this writing).</p>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<figure>
 				<img src="/images/dbeaver-mysql.png" alt="Selecting the MySQL driver in DBeaver">
 				<figcaption>That's a lot of different kinds of Database management!</figcaption>
 			</figure>
 			<p>You may be prompted to download an additional driver - and you should!</p>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<p>Finally, you can fill out the prompt to connect to our database. Fill out the following values:</p>
 			<table class="fixed">
 				<thead>
@@ -341,10 +430,22 @@ summary: "This week we're starting! We're going to start by reviewing the course
 					</tr>
 				</tbody>
 			</table>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<figure>
 				<img src="/images/dbeaver-connect.png" alt="DBeaver connection form">
 				<figcaption>Aside from Port, User name and Password, leave everything else as-is.</figcaption>
 			</figure>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<p>Finally, test your connection with - you guessed it - the "Test Connection ..." button, and, provided your connection works, click "Finish".</p>
 		</div>
 	</div>
@@ -368,7 +469,9 @@ summary: "This week we're starting! We're going to start by reviewing the course
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
 			<p>Let's try a query, just like we did in phpMyAdmin, but we'll add a little spice to it:</p>
-			<textarea data-code-mirror="sql" data-code-mirror-height="70">SELECT * FROM blog.authors
+			<pre class="slide-only"><code class="language-sql">SELECT * FROM blog.authors
+WHERE authoremail LIKE '%yahoo.c%'</code></pre>
+			<textarea data-code-mirror="sql" data-code-mirror-height="70" class="post-only">SELECT * FROM blog.authors
 WHERE authoremail LIKE '%yahoo.c%'</textarea>
 		</div>
 	</div>
@@ -410,13 +513,33 @@ WHERE authoremail LIKE '%yahoo.c%'</textarea>
 		<div class="cell large-10 large-offset-1">
 			<hr class="post-only">
 			<p>For today, though, we're going to import some big fat databases based on the textbook.</p>
-			<p>Download this <a href="/files/create_db.zip" download>zip file</a>, unzip it, and then, in DBeaver, go to <code>File</code> > <code>Import</code> and select <code>Scripts</code>. Click <code>next</code>, and for "Input directory", select the folder that you unzipped (create_db). Under "Root scripts folder", select "Scripts", and click <code>Finish</code>. Finally, from the DBeaver menu, select "SQL Editor", and, under the "Choose SQL Script" dialog, you should see <code>create_mysql_databases.sql</code>.</p>
+			<ol>
+				<li>Download this <a href="/files/create_db.zip" download>zip file</a> and unzip it.</li>
+				<li>In DBeaver, go to <code>File</code> > <code>Import</code> and select <code>Scripts</code>.</li>
+				<li>Click <code>next</code>, and for "Input directory", select the folder that you unzipped (create_db).</li>
+				<li>Under "Root scripts folder", select "Scripts", and click <code>Finish</code>.</li>
+				<li>Finally, from the DBeaver menu, select "SQL Editor", and, under the "Choose SQL Script" dialog, you should see <code>create_mysql_databases.sql</code>.</li>
+			</ol>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<p>Select this <code>.sql</code> file, and then run it with the "Execute Script" button.</p>
 			<figure>
 				<figcaption>There are keyboard shortcuts for this kind of thing that you'll want to familiarize yourself with.</figcaption>
-				<img src="/images/execute.png" alt="Execute script button"></figure>
+				<img src="/images/execute.png" alt="Execute script button">
+			</figure>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<p>One more thing, just to give MySQL a slightly more 'generic' dialect of our SQL language, please run the following:</p>
-			<textarea data-code-mirror="sql" data-code-mirror-height="50">SET GLOBAL sql_mode='ANSI';</textarea>
+			<pre class="slide-only"><code class="language-sql">SET GLOBAL sql_mode='ANSI';</code></pre>
+			<textarea data-code-mirror="sql" data-code-mirror-height="50" class="post-only">SET GLOBAL sql_mode='ANSI';</textarea>
 			<p>Vanilla MySQL has a few little quirks that we'll cover later on. The line of code above serves to "normalize" those quirks.</p>
 			<p>That's going to give us a real relational database to play with! But first, a little historical context :)</p>
 		</div>
@@ -426,6 +549,16 @@ WHERE authoremail LIKE '%yahoo.c%'</textarea>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">History</h2>
+			<figure>
+				<img src="/images/lovelace.png" alt="Ada Lovelace">
+				<figcaption>Ada Lovelace, the first computer programmer. Nerd alert!</figcaption>
+			</figure>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<p>Relational databases have been around since 1970, and Oracle has been around (in one form or another) for 40 years.</p>
 			<p>IBM (DB2) and Microsoft (SQL Server) released their relational database systems in the mid-80s.</p>
 			<p>Since the technology world was a bit slower then, they were able to agree on standards (a.k.a. the SQL language).</p>
@@ -623,7 +756,9 @@ WHERE authoremail LIKE '%yahoo.c%'</textarea>
 		<div class="cell large-10 large-offset-1">
 			<h2 class="h2">SELECT</h2>
 			<p>Columns of data to include in the results table. The <code class="language-sql">*</code> character selects all columns. Can select multiple columns when the column names are comma-separated. Column names can be aliased with <code class="language-sql">AS</code> clause, concatenated with <code class="language-sql">||</code>, and/or formatted with literal strings inside single ASCII (straight, not curly) quotation marks. <code class="language-sql">SELECT</code> can use the <code class="language-sql">DISTINCT</code> keyword to eliminate duplicate rows from the results table.</p>
-			<pre><code class="language-sql">SELECT vendor_name, vendor_city || ', ' || vendor_state AS city
+			<pre><code class="language-sql">SELECT 
+	vendor_name,
+	vendor_city || ', ' || vendor_state AS city
 FROM vendors</code></pre>
 		</div>
 	</div>
@@ -643,6 +778,12 @@ FROM vendors</code></pre>
 		<div class="cell large-10 large-offset-1 smaller-text">
 			<h2 class="h2">WHERE</h2>
 			<p>Filters our results. This is where things get interesting, and we'll work on this a bunch next week. <code class="language-sql">WHERE</code> can use comparison operators (<code class="language-sql">=</code>, <code class="language-sql">></code>, <code class="language-sql"><</code>, <code class="language-sql"><=</code>, <code class="language-sql">>=</code>, <code class="language-sql"><></code>), arithmetic operators (<code class="language-sql">+</code>, <code class="language-sql">-</code>, <code class="language-sql">*</code>, <code class="language-sql">/</code>), and/or logical operators (<code class="language-sql">AND</code>, <code class="language-sql">OR</code>, <code class="language-sql">NOT</code>) to compare to declared values (including dates) or values from other columns.</p> 
+		</div>
+	</div>
+</section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
 			<p>Additionally, the <code class="language-sql">IN</code> operator can check a value against a list (either declared or generated by a subquery). This can be modified with <code class="language-sql">NOT</code> to exclude results that are included in the list. There are additional operators we can use with <code class="language-sql">WHERE</code>, including <code class="language-sql">BETWEEN</code>, <code class="language-sql">LIKE</code>, and <code class="language-sql">IS NULL</code> (and their negations), but that's a lot for one day!</p>
 			<pre><code class="language-sql">SELECT invoice_number, invoice_date, invoice_total 
 FROM invoices
