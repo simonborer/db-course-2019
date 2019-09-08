@@ -7,10 +7,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 <!-- 
 
 	TODO
-		Adjust the course description and rubric re:quizzes accordingly
-		Link to syllabus
 		Pedagogy
-		Verify lab queries
 		Slides
 		instructions should be more listy
 
@@ -97,18 +94,6 @@ summary: "This week we're starting! We're going to start by reviewing the course
 <section>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
-			<h2 class="h2">Assignments</h2>
-			<p>Almost every week you'll have an assignment to complete.</p>
-			<p>Assignments are due by 11:59pm the day <em>before</em> class.</p>
-			<p>If they're late, you lose 5% per day for up to 5 days. After that, you get a zero.</p>
-			<p>If there's a reason you can't complete an assignment on time, talk to me <em>before</em> it's due to see if we can work something out.</p>
-			<p>These assignments are a big part of your final grade.</p>
-		</div>
-	</div>
-</section>
-<section>
-	<div class="grid-x">
-		<div class="cell large-10 large-offset-1">
 		  <h2 class="h2">Rubric</h2>
 		  <div class="table-scroll">
 			  <table class="unstriped">
@@ -174,7 +159,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 		<div class="cell large-10 large-offset-1">
 		<h2 class="h2">The Syllabus</h2>
 		<p>
-			<a class="button" target="_blank" rel="noopener" href="/documents/HTTP5105-syllabus.pdf">Download the syllabus<span class="show-for-sr">Opens in a new window.</span></a>		
+			<a class="button" target="_blank" rel="noopener" href="/files/syllabus-HTTP5105.pdf">Download the syllabus<span class="show-for-sr">Opens in a new window.</span></a>		
 		</p>
 		</div>
 	</div>
@@ -430,6 +415,9 @@ WHERE authoremail LIKE '%yahoo.c%'</textarea>
 			<figure>
 				<figcaption>There are keyboard shortcuts for this kind of thing that you'll want to familiarize yourself with.</figcaption>
 				<img src="/images/execute.png" alt="Execute script button"></figure>
+			<p>One more thing, just to give MySQL a slightly more 'generic' dialect of our SQL language, please run the following:</p>
+			<textarea data-code-mirror="sql" data-code-mirror-height="50">SET GLOBAL sql_mode='ANSI';</textarea>
+			<p>Vanilla MySQL has a few little quirks that we'll cover later on. The line of code above serves to "normalize" those quirks.</p>
 			<p>That's going to give us a real relational database to play with! But first, a little historical context :)</p>
 		</div>
 	</div>
@@ -831,7 +819,7 @@ ORDER BY invoice_number</textarea>
 					<strong>Describe, in your own words, what each element of this query is doing to produce the result table you see.</strong>
 				</li>
 				<li>Write a query to display the <code class="language-sql">vendor_name</code>, <code class="language-sql">vendor_state</code>, and <code class="language-sql">vendor_city</code>. Create an alias for the three columns. Create an alias for <code class="language-sql">vendor_name</code> called <code class="language-sql">Vendor</code>, an alias for <code class="language-sql">vendor_state</code> called <code class="language-sql">state</code>, and an alias for <code class="language-sql">vendor_city</code> called <code class="language-sql">City</code>. Order the results of the output so it displays in ascending sequence by <code class="language-sql">vendor_city</code>.</li>
-				<li>Write a query that will display the <code class="language-sql">invoice_id</code>, <code class="language-sql">invoice_number</code>, and <code class="language-sql">invoice_total</code> minus <code class="language-sql">payment_total</code> with an alias <code class="language-sql">balance</code>. Only show invoices that have an <code class="language-sql">invoice_date</code> between April 1, 2008 and April 30, 2008. Remember your date format for these values.</li>
+				<li>Write a query that will display the <code class="language-sql">invoice_id</code>, and the <code class="language-sql">invoice_number</code>. Also include the <code class="language-sql">invoice_total</code> minus <code class="language-sql">payment_total</code> with an alias <code class="language-sql">balance</code>. Only show invoices that have an <code class="language-sql">invoice_date</code> between April 1, 2014 and April 30, 2014. Remember your date format for these values.</li>
 				<li>Write a query to show <code class="language-sql">vendor_id</code>, <code class="language-sql">vendor_name</code>, <code class="language-sql">vendor_contact_first_name</code>, <code class="language-sql">vendor_contact_last_name</code>, and <code class="language-sql">vendor_phone</code>. The columns <code class="language-sql">vendor_contact_first_name</code> and <code class="language-sql">vendor_contact_last_name</code> are to be shown in the output as one single column with an alias for this column called <code class="language-sql">Vendor Contact Name</code>. Sort the results by <code class="language-sql">vendor_contact_last_name</code>.</li>
 			</ol>	
 		</div>
