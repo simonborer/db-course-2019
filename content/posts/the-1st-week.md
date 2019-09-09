@@ -217,7 +217,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1"> 
+		<div class="cell large-10 large-offset-1">
 			<p>We answer that question by using a language called <abbr title="Structured Query Language">SQL</abbr> to get related data from different tables.</p>
 			<p>SQL is a (relatively) old, and very reliable language, and integrates easily with many other languages that you'll learn in this program (javaScript, PHP, .NET, etc.). It's such a nicely designed language that those languages haven't tried to replace SQL, because it's easier just to write SQL in your PHP.</p>
 		</div>
@@ -294,7 +294,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 <section>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
-			<p>Now we've started our two servers - our database server running MySQL, and our Apache web server, which can process PHP and co-ordinate with the browser to server web pages.</p>
+			<p>Now we've started our two servers - our database server running MySQL, and our Apache web server, which can process PHP and co-ordinate with the browser to serve web pages.</p>
 			<p><strong>Step 1: </strong> Go to the "web server" tab in MAMP. This tells you where your <code>htdocs</code> folder is located.</p>
 		</div>
 	</div>
@@ -687,10 +687,16 @@ WHERE authoremail LIKE '%yahoo.c%'</textarea>
 		</div>
 	</div>
 </section>
+<section>
+	<div class="grid-x">
+		<div class="cell large-10 large-offset-1">
+			<h2 class="h2">Types of Commands</h2>
+		</div>
+	</div>
+</section>
 <section id="ddlDml">
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
-			<h2 class="h2 post-only">Types of Commands</h2>
 				<table class="stack">
 					<thead class="post-only">
 						<tr>
@@ -827,10 +833,9 @@ ORDER BY vendor_name DESC</code></pre>
 		</div>
 	</div>
 </section>
-<section class="post-only">
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1">
-			<table class="unstriped stack fixed">
+		<div class="cell large-12">
+			<table class="unstriped stack code-examples fixed">
 				<thead>
 					<tr>
 						<th>Code</th>
@@ -841,37 +846,36 @@ ORDER BY vendor_name DESC</code></pre>
 				<tbody>
 					<tr>
 						<td><code class="language-sql">SELECT</code></td>
-						<td>Columns of data to include in the results table. The <code class="language-sql">*</code> character selects all columns. Can select multiple columns when the column names are comma-separated. Column names can be aliased with <code class="language-sql">AS</code> clause, concatenated with <code class="language-sql">||</code>, and/or formatted with literal strings inside single ASCII (straight, not curly) quotation marks. <code class="language-sql">SELECT</code> can use the <code class="language-sql">DISTINCT</code> keyword to eliminate duplicate rows from the results table.</td>
-						<td><pre><code class="language-sql">SELECT vendor_name, vendor_city || ', ' || 
-vendor_state AS city FROM vendors</code></pre></td>
+						<td><strong>Chooses columns of data to include in the results table.</strong> The <code class="language-sql">*</code> character selects all columns. Can select multiple columns when the column names are comma-separated. Column names can be aliased with <code class="language-sql">AS</code> clause, concatenated with <code class="language-sql">||</code>, and/or formatted with literal strings inside single ASCII (straight, not curly) quotation marks. <code class="language-sql">SELECT</code> can use the <code class="language-sql">DISTINCT</code> keyword to eliminate duplicate rows from the results table.</td>
+						<td><textarea data-code-mirror="sql" data-code-mirror-height="60">SELECT vendor_name, vendor_city || ', ' || 
+vendor_state AS city FROM vendors</textarea></td>
 					</tr>
 					<tr>
 						<td><code class="language-sql">FROM</code></td>
-						<td>The name of the table (or tables, when we start to use <code class="language-sql">JOIN</code>) that we're selecting data from.</td>
-						<td><pre><code class="language-sql">SELECT vendor_name
-FROM vendors</code></pre></td>
+						<td><strong>The name of the table</strong> (or tables, when we start to use <code class="language-sql">JOIN</code>) <strong>that we're selecting data from</strong>.</td>
+						<td><textarea data-code-mirror="sql" data-code-mirror-height="60">SELECT vendor_name
+FROM vendors</textarea></td>
 					</tr>
 					<tr>
 						<td><code class="language-sql">WHERE</code></td>
-						<td>Filters our results. This is where things get interesting, and we'll work on this a bunch next week. <code class="language-sql">WHERE</code> can use comparison operators (<code class="language-sql">=</code>, <code class="language-sql">></code>, <code class="language-sql"><</code>, <code class="language-sql"><=</code>, <code class="language-sql">>=</code>, <code class="language-sql"><></code>), arithmetic operators (<code class="language-sql">+</code>, <code class="language-sql">-</code>, <code class="language-sql">*</code>, <code class="language-sql">/</code>), and/or logical operators (<code class="language-sql">AND</code>, <code class="language-sql">OR</code>, <code class="language-sql">NOT</code>) to compare to declared values (including dates) or values from other columns. Additionally, the <code class="language-sql">IN</code> operator can check a value against a list (either declared or generated by a subquery). This can be modified with <code class="language-sql">NOT</code> to exclude results that are included in the list. There are additional operators we can use with <code class="language-sql">WHERE</code>, including <code class="language-sql">BETWEEN</code>, <code class="language-sql">LIKE</code>, and <code class="language-sql">IS NULL</code> (and their negations), but that's a lot for one day!</td>
-						<td><pre><code class="language-sql">SELECT invoice_number, invoice_date, invoice_total 
+						<td><strong>Filters our results.</strong> This is where things get interesting, and we'll work on this a bunch next week. <code class="language-sql">WHERE</code> can use comparison operators (<code class="language-sql">=</code>, <code class="language-sql">></code>, <code class="language-sql"><</code>, <code class="language-sql"><=</code>, <code class="language-sql">>=</code>, <code class="language-sql"><></code>), arithmetic operators (<code class="language-sql">+</code>, <code class="language-sql">-</code>, <code class="language-sql">*</code>, <code class="language-sql">/</code>), and/or logical operators (<code class="language-sql">AND</code>, <code class="language-sql">OR</code>, <code class="language-sql">NOT</code>) to compare to declared values (including dates) or values from other columns. Additionally, the <code class="language-sql">IN</code> operator can check a value against a list (either declared or generated by a subquery). This can be modified with <code class="language-sql">NOT</code> to exclude results that are included in the list. There are additional operators we can use with <code class="language-sql">WHERE</code>, including <code class="language-sql">BETWEEN</code>, <code class="language-sql">LIKE</code>, and <code class="language-sql">IS NULL</code> (and their negations), but that's a lot for one day!</td>
+						<td><textarea data-code-mirror="sql" data-code-mirror-height="130">SELECT invoice_number, invoice_date, invoice_total 
 FROM invoices
 WHERE invoice_total > credit_total
 OR invoice_total - payment_total - credit_total > 0
-AND terms_id NOT IN (2, 5)</code></pre></td>
+AND terms_id NOT IN (2, 5)</textarea></td>
 					</tr>
 					<tr>
 						<td><code class="language-sql">ORDER BY</code></td>
-						<td>This orders our results by specified column(s). It can also reference aliases created in the <code class="language-sql">SELECT</code> statment, expressions or column positions. Defaults to ascending order (lowest to highest), but order can be declared with the keywords <code class="language-sql">DESC</code> and <code class="language-sql">ASC</code> This can be applied to any column in the table, not just the ones being output in the results table. The exception to this is when using <code class="language-sql">SELECT</code> with the <code class="language-sql">DISTINCT</code> keyword.</td>
-						<td><pre><code class="language-sql">SELECT vendor_name
+						<td>This <strong>orders our results</strong> by specified column(s). It can also reference aliases created in the <code class="language-sql">SELECT</code> statment, expressions or column positions. Defaults to ascending order (lowest to highest), but order can be declared with the keywords <code class="language-sql">DESC</code> and <code class="language-sql">ASC</code> This can be applied to any column in the table, not just the ones being output in the results table. The exception to this is when using <code class="language-sql">SELECT</code> with the <code class="language-sql">DISTINCT</code> keyword.</td>
+						<td><textarea data-code-mirror="sql" data-code-mirror-height="80">SELECT vendor_name
 FROM vendors 
-ORDER BY vendor_name DESC</code></pre></td>
+ORDER BY vendor_name DESC</textarea></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-</section>
 <section>
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">

@@ -23,7 +23,15 @@ h2 {
 td {
     font-size: .8em;
 }
-
+.code-examples {
+    margin-top: 3rem;
+}
+.code-examples td, .code-examples th {
+    width: 42%;
+}
+.code-examples td:first-child, .code-examples th:first-child {
+    width: 16%;
+}
 figure {
     margin: 2rem 0;
 }
