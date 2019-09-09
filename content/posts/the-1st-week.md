@@ -4,38 +4,54 @@ date: 2019-09-02T08:47:11+01:00
 featured_image: card-catalogue.jpg
 summary: "This week we're starting! We're going to start by reviewing the course outline. After that, we'll learn: <strong>what a database is</strong>, and how they're used in web development; <strong>what <abbr title='Structured Query Language'>SQL</abbr> is</strong>; how to set up <strong>MAMP</strong> so that we can use the <strong>MySQL <abbr title='Relational Database Management System'>RDBMS</abbr></strong>; basic SQL terms definitions; simple single-table queries."
 ---
-<!-- 
-
-	TODO
-		Pedagogy
-		Slides
-		instructions should be more listy
-
- -->
 <section class="slide-only"><a href="https://www.dbcourse2019.com" class="h1">dbcourse2019.com</a></section>
 <section>
     <h2 class="slide-only">Here's what we're going to do today:</h2>
     <div class="grid-x">
     	<div class="cell large-10 large-offset-1">
 		    <ol class="toc">
-		        <li><a href="#intro">Course introduction</a></li>
-		        <li><a href="#dbContents">What's a database?</a></li>
-		        <li><a href="#clientServer">What does a database do?</a></li>
-		        <li><a href="#access">What do we do with a database?</a></li>
-		        <li><a href="#dev">A tool for using a database</a></li>
-		        <li><a href="#history">What are the basic components of a db?</a></li>
-		        <li class="post-only"><a href="#terms">Terminology</a></li>
-		        <li><a href="#org">Organization of a (relational) database</a></li>
-		        <li><a href="#relationships">Types of relationships</a></li>
-		        <li><a href="#def">Types of data (and other ways to define columns)</a></li>
-		        <li><a href="#ddlDml">Types of commands</a></li>
-		        <li class="post-only"><a href="#query">What is a query?</a></li>
-		        <li><a href="#formatting">How to format your code</a></li>
-		        <li><a href="#lab">Lab time!</a></li>
+		    	<li>
+		    		<strong>Housekeeping</strong>
+		    		<ul>
+		    			<li><a href="#intro">Course introduction</a></li>
+		    		</ul>
+		    	</li>
+		    	<li>
+		    		<strong>The Big Picture</strong>
+		    		<ul>
+		    			<li><a href="#dbContents">What's a database?</a></li>
+		        		<li><a href="#clientServer">What does a database do?</a></li>
+		        		<li><a href="#access">What do we do with a database?</a></li>
+		    		</ul>
+		    	</li>
+		    	<li>
+		    		<strong>Getting ready</strong>
+		    		<ul><li><a href="#dev">A tool for using a database</a></li></ul>
+		    	</li>
+		    	<li>
+		    		<strong>History, terms & definitions</strong>
+		    		<ul>
+		    			<li><a href="#history">History</a></li>
+		        		<li class="post-only"><a href="#terms">Terminology</a></li>
+		        		<li><a href="#org">Organization of a (relational) database</a></li>
+		        		<li><a href="#relationships">Types of relationships</a></li>
+		        		<li><a href="#def">Types of data (and other ways to define columns)</a></li>
+		        		<li><a href="#ddlDml">Types of commands</a></li>
+		        		<li class="post-only"><a href="#query">What is a query?</a></li>
+		        	</ul>
+		    	</li>
+		    	<li>
+		    		<strong>Getting our hands dirty</strong>
+		    		<ul>
+		    			<li><a href="#formatting">How to format your code</a></li>
+		        		<li><a href="#lab">Lab time!</a></li>
+		        	</ul>
+		    	</li>
 		    </ol>
     	</div>
     </div>
 </section>
+<section class="slide-only"><h2 class="h2">Housekeeping</h2></section>
 <section id="intro">
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1 post-section">
@@ -164,6 +180,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 		</div>
 	</div>
 </section>
+<section class="slide-only"><h2 class="h2">The Big Picture</h2></section>
 <section id="dbContents">
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
@@ -239,9 +256,12 @@ summary: "This week we're starting! We're going to start by reviewing the course
 </section>
 <section>
 	<div class="grid-x">
-		<div class="cell large-10 large-offset-1"><h2 class="h2">Time to code! ...almost</h2><p>Ok, now we know what a database is, what it does, and what we can do with it. Let's get our hands dirty! We're going to install a server stack (MAMP) on our machines that will allow us to use SQL to get information from a database running on MAMP.</p><p>This next part is my least favourite (getting stuff running on everybody's machines - some of y'all have weird set-ups, I'm not gonna lie), but the part after that, the writing code part, that's the <em>best</em>.</p></div>
+		<div class="cell large-10 large-offset-1">
+			<h2 class="h2">Time to code! ...almost</h2>
+			<p>Ok, now we know what a database is, what it does, and what we can do with it. Let's get our hands dirty! We're going to install a server stack (MAMP) on our machines that will allow us to use SQL to get information from a database running on MAMP.</p><p>This next part is my least favourite (getting stuff running on everybody's machines - some of y'all have weird set-ups, I'm not gonna lie), but the part after that, the writing code part, that's the <em>best</em>.</p></div>
 	</div>
 </section>
+<section class="slide-only"><h2 class="h2">Getting Ready</h2></section>
 <section id="dev">
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
@@ -545,6 +565,7 @@ WHERE authoremail LIKE '%yahoo.c%'</textarea>
 		</div>
 	</div>
 </section>
+<section class="slide-only"><h2 class="h2">History, Terms & Definitions</h2></section>
 <section id="history">
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">
@@ -880,6 +901,7 @@ FROM 'From' ORDER BY 'Order By'</code></pre>
 		</div>
 	</div>
 </section>
+<section class="slide-only"><h2 class="h2">Getting our hands dirty</h2></section>
 <section id="formatting">
 	<div class="grid-x">
 		<div class="cell large-10 large-offset-1">

@@ -24,6 +24,12 @@
 .toc {
 	font-size: 2rem;
 }
+.toc ul {
+	font-size: 1rem;
+}
+.reveal ol.toc ul {
+	margin-left: 0;
+}
 .reveal table {
 	font-size: 1.75rem;
 }
