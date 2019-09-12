@@ -10,7 +10,6 @@ featured_image: rpg.jpg
     <div class="grid-x">
       <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
         <ol class="toc">
-            <li><a href="#lab">Lessons from the lab</a></li>
             <li><a href="#basics">Query basics review</a></li>
             <li><a href="#single">More single table query techniques</a></li>
             <li><a href="#scalar">Scalar functions</a></li>
