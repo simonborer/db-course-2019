@@ -5,11 +5,15 @@ publishdate: 2019-09-02T08:47:11+01:00
 summary: "This week we'll cover retrieving rows from a single table; implementing arithmetic statements; renaming columns in results; retrieving rows using comparison operators; using DISTINCT to eliminate duplicate rows; defining the logical operators AND, OR and NOT; retrieving rows using LIKE, BETWEEN, IN and IS NULL operators; sorting the result set using ORDER BY."
 featured_image: rpg.jpg
 ---
+<!-- 
+TODO: Quiz
+-->
 <section>
     <h2 class="slide-only">Here's what we're going to do today:</h2>
     <div class="grid-x">
-      <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+      <div class="cell large-10 large-offset-1">
         <ol class="toc">
+            <li class="slide-only"><a href="#Quiz">Quiz!</a></li>
             <li><a href="#basics">Query basics review</a></li>
             <li><a href="#single">More single table query techniques</a></li>
             <li><a href="#scalar">Scalar functions</a></li>
@@ -19,30 +23,101 @@ featured_image: rpg.jpg
 </section>
 <section class="slide-only">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Welcome back!</h2>
     </div>
   </div>
 </section>
-<section>
+<section class="slide-only" id="#Quiz">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1 post-section">
-      <p>Let's play around with a new dataset today: <a href="/documents/autotheft.sql">autotheft.sql</a>.</p>
-      <p>This data is from the <a href="http://data.torontopolice.on.ca/datasets/" target="_blank">Toronto Police Service Public Safety Data Portal<span class="show-for-sr"> Opens in a new tab</span></a>, and it refers to reports of vehicle theft from 2014-2017.</p>
-      <p>There are almost 6900 row of data, so it will take a minute to run.</p>
+    <div class="cell large-10 large-offset-1">
+      <h2 class="h2">This is going to be easy.</h2>
+      <p>You get an automatic 50% on these quizzes - because they're also how I check attendance.</p>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1 post-section">
+      <p>Let's play around with a new dataset today: <a download href="/files/bike-thefts.sql">bike-thefts.sql</a>.</p>
+      <p>This data is from the <a href="http://data.torontopolice.on.ca/datasets/" target="_blank">Toronto Police Service Public Safety Data Portal<span class="show-for-sr"> Opens in a new tab</span></a>, and it refers to reports of bicycle theft from 2018-present.</p>
+      <p>There are almost 4000 row of data, so it will take a minute to run.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <h2 class="h2">Importing a script</h2>
+      <p>We're going to import a script I've created - like we did last week.</p>
+      <ol>
+        <li>Start your MAMP server.</li>
+        <li>Create a folder on your computer called "bikes".</li>
+        <li>Move <code>bike-thefts.sql</code> into the "bikes" folder.</li>
+        <li>In DBeaver, go to <kbd>File > Import</kbd> and select "Scripts" as your import wizard.</li>
+        <li>Click <kbd>Next</kbd>.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <figure><img src="/images/import-scripts.png" alt="Example of script wizard."><figcaption>Should look something like this.</figcaption></figure>
+      <ol start="6">
+        <li><em>Make sure your default connection is "MySQL - localhost".</em></li>
+        <li>Click <kbd>Finish</kbd>.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <figure><img src="/images/run-script.png" alt="DBeaver"><figcaption>Why do they make these buttons so small</figcaption></figure>
+      <ol start="8">
+        <li>After importing the script, find it in your DBeaver "Scripts" folder, and double click to bring it up in the editor.</li>
+        <li>Click the (weirdly small and hard to recognize) <kbd>Execute SQL Script</kbd> button.</li>
+      </ol>
+      <div class="callout success post-only">If in doubt, hover your mouse over the button until the title comes up. Remember, a SQL statement is just that - a single idea. A SQL script is long with many different instructions - like a movie script!</div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <h2 class="h2">One more tweak:</h2>
+      <figure>
+        <img src="/images/return.png" alt="DBeaver max results rows.">
+        <figcaption>Since we're dealing with large amounts of data today, (and don't have to worry about our internet speed while working on our local machines), change the maximum number of results rows from the default 200 to 5000.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <h2 class="h2">Test your import.</h2>
+      <ol>
+        <li>Right-click your "MySQL - localhost" connection and select "SQL Editor".</li>
+        <li>Run the following query:  
+          <pre class="slide-only"><code class="language-sql">select * from bikes.thefts</code></pre>
+          <textarea data-code-mirror="sql" data-code-mirror-height="40" cols="50" class="post-only">select * from bikes.thefts</textarea>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+<!-- <section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p>While that's happening, if everyone's on board, let's get a <a href="https://join.slack.com/t/http5105/shared_invite/enQtNDM1NjI4NzY0MTE5LTY0YWEzZjNhN2JiNmVmYjY4ZmU2MWQ0ZGNmNmU3NGMxZTNhZGU3ODNmYmFlM2NiMWVlMTljZjQ0ZmEyODA3Yzg">slack channel</a> together.</p> 
     </div>
   </div>
 </section>
 <section class="slide-only" id="lab">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Lessons from the lab</h2>
       <p>I've marked all your labs - you did really great!</p>
       <p>Even if I gave you 7/7, check out my comments on Blackboard.</p>
@@ -51,7 +126,7 @@ featured_image: rpg.jpg
 </section>
 <section >
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1 post-section">
+    <div class="cell large-10 large-offset-1 post-section">
       <h2 class="h2">Common mistakes from the lab:</h2>
       <p>A <code>SELECT</code> statement doesn't affect the table - it shows us results in a temporary "results" table.</p>
       <p><code><></code> means "not equal to".</p>
@@ -62,7 +137,7 @@ featured_image: rpg.jpg
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Homoglyphs</h2>
       <div class="h1">‐ ‑ ‒ – ﹘ ۔‎ ⁃ ˗ −➖ -</div>
       <p>Homoglyphs are characters that look the same or similar. To you and me, they're very hard to tell apart. To computers, they're entirely different symbols.</p>
@@ -77,9 +152,10 @@ featured_image: rpg.jpg
     </div>
   </div>
 </section>
-<section id="basics">
+ -->
+ <section id="basics">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1 post-section">
+    <div class="cell large-10 large-offset-1 post-section">
       <h2 class="h2">Query Basics</h2>
       <ul>
         <li><code>SELECT</code> <em>What do we want?</em></li>
@@ -92,27 +168,29 @@ featured_image: rpg.jpg
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">SELECT basics</h2>
       <p><code>*</code> selects all rows.</p>
-      <p><code>||</code> concatenates.</p>
+      <p><code>||</code> concatenates<sup>*</sup>.</p>
       <p>Single quotes let us use string literals.</p>
       <p><code>AS</code> creates an alias.</p>  
       <p><code>DISTINCT</code> eliminates duplicates.</p>
+      <hr>
+      <small>Remember to normalize your SQL by running the statement <code class="language-sql">SET sql_mode='ANSI';</code>, otherwise you'll need to wrap your values in the <code>CONCAT</code> function, i.e. <code>CONCAT('My', 'S', 'QL')</code></small>
     </div>
   </div>
 </section>
-<section class="slide-only">
+<!-- <section class="slide-only">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>From the <code>autotheft</code> table, write a query that creates a column called <code>Reported on</code>. This column should combine four columns from the table in the format DayOfTheWeek, Month Day, Year.</p>
+    <div class="cell large-10 large-offset-1">
+      <p>From the <code>bike.theft</code> table, write a query that creates a column called <code>Reported on</code>. This column should combine four columns from the table in the format DayOfTheWeek, Month Day, Year.</p>
       <p>When you've got something that works, post it in slack.</p>
     </div>
   </div>
-</section>
+</section> -->
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">WHERE basics</h2>
       <p>We can use comparison operators (<code>=</code>, <code><></code>, <code>>=</code>, etc.)</p>
       <p>We can use arithmetic operators (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>).</p>
@@ -124,15 +202,15 @@ featured_image: rpg.jpg
 </section>
 <section class="slide-only">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>From the <code>autotheft</code> table, write a query that returns rows where the premises was neither a house nor an apartment. Exclude rows where the incident was reported before 5pm.</p>
+    <div class="cell large-10 large-offset-1">
+      <p>From the <code>bike.theft</code> table, write a query that returns rows where the premises was neither a house nor an apartment. Exclude rows where the incident was reported before 5pm.</p>
       <p>When you've got something that works, post it in slack.</p>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">ORDER BY basics</h2>
       <p><code>ORDER BY</code> lets us sort our table based on a specified column. We can specify more than one column (or an alias).</p>
       <p>We can use <code>ASC</code> and <code>DESC</code> to say whether we want our results in ascending or descending order.</p>
@@ -141,14 +219,14 @@ featured_image: rpg.jpg
 </section>
 <section class="slide-only">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <p>There's just a few more commands and concepts we're going to cover today, and you'll have mastered selecting from a single table! Next week we'll start to <code>JOIN</code> things.</p>  
     </div>
   </div>
 </section>
-<section id="single" >
+<section id="single">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1 post-section">
+    <div class="cell large-10 large-offset-1 post-section">
       <h2 class="h2">Today we'll look at:</h2>
       <ul>
           <li>the <code>DUAL</code> table</li>
@@ -165,7 +243,7 @@ featured_image: rpg.jpg
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">The DUAL table</h2>
       <p>The <code>DUAL</code> table is created automatically for every table, and is available to all users.</p>
       <p>In Oracle, we can't write an expression without specifying where the data is coming from. There are certain expressions we can write that don't require a table, so we use <code>DUAL</code> table as a kind of 'dummy' source.</p>
@@ -177,7 +255,7 @@ FROM dual</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <p>The dual table is a great place to futz around!</p>
       <p>We can create columns and values, and execute functions:</p>
       <pre><code class="sql">SELECT 'test' AS test_string,
@@ -189,7 +267,7 @@ FROM dual</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Order of operations</h2>
       <p><strong>BEDMAS</strong>: <strong>B</strong>rackets, <strong>E</strong>xponents, <strong>D</strong>ivision and <strong>M</strong>ultiplication, <strong>A</strong>ddition and <strong>S</strong>ubtraction.</p>
       <p>Try running this statement:</p>
@@ -200,7 +278,7 @@ FROM dual</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <p>We can use brackets (parentheses) to affect the order of operations for our logical operators as well, so that these two statements:</p>
       <pre><code class="language-sql">SELECT invoice_number
 FROM invoices
@@ -218,7 +296,7 @@ WHERE (invoice_date > '01-MAY-14' OR invoice_total > 500)
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">The ROWNUM pseudocolumn</h2>
       <p>In addition to a dummy table in all our databases, we have access to a pseudocolumn (a column that isn't really a column, but acts like one for queries) in all our tables. The <code>ROWNUM</code> pseudocolumn assigns a sequential number to all our returned rows.</p>
       <p>The most common usage of <code>ROWNUM</code> is to limit the number of rows in our results table.</p>
@@ -238,7 +316,7 @@ ORDER BY invoice_date</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Another way to limit results: FETCH and OFFSET</h2>
       <p><code>FETCH</code> is a clause that lets us declare what rows we want to return. <code>OFFSET</code> lets us declare at what row to begin.</p>  
       <p>FETCH can be less efficient, but offers more flexibility than querying ROWNUM.</p>
@@ -255,7 +333,7 @@ OFFSET 5 ROWS FETCH NEXT 25 PERCENT ROWS WITH TIES</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">IS NULL</h2>
       <p>This one is pretty straightforward - <code>IS NULL</code> and <code>IS NOT NULL</code> are conditions we can add to the <code>WHERE</code> clause to return results that are (or aren't) null.</p>
       <pre><code class="language-sql">SELECT * FROM invoices
@@ -266,7 +344,7 @@ WHERE payment_date IS NULL</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">LIKE and wildcards</h2>
       <p><code>LIKE</code> is a powerful search tool for finding strings that match a pattern.</p>
       <p>The <code>%</code> symbol matches zero or more characters.</p>
@@ -280,8 +358,8 @@ WHERE vendor_state LIKE '_A'</code></pre>
 </section>
 <section class="slide-only">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Let's try another one from the <code>autotheft</code> table.</p>
+    <div class="cell large-10 large-offset-1">
+      <p>Let's try another one from the <code>bike theft</code> table.</p>
       <p>Write a query that shows a list of neighbourhoods with the word 'dale' in their name. Only one row per neighbourhood.</p>
       <p>When you've got something that works, post it in slack.</p>
     </div>
@@ -289,7 +367,7 @@ WHERE vendor_state LIKE '_A'</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">A few more things about ORDER BY</h2>
       <p><code>ASC</code> and <code>DESC</code> are specific to a column, so the following two statements produce different results:</p>
       <pre><code class="language-sql">SELECT * FROM invoices
@@ -303,7 +381,7 @@ ORDER BY vendor_id, payment_total DESC</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <p>The order of precedence is...</p> 
       <ol>
          <li>special characters</li>
@@ -318,7 +396,7 @@ ORDER BY vendor_id, payment_total DESC</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <p>As we talked about, you can order according to any column (except when using <code>DISTINCT</code>, in which case it can only be a column you've selected). Additionally, we can select by an alias created in our <code>SELECT</code>.</p>
       <p>We are also able to select using an expression, or with the column number.</p>
       <pre><code class="language-sql">SELECT *
@@ -332,7 +410,7 @@ ORDER BY 3,2</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Wait, isn't that just 2 different ways of writing <code class="language-sql">ORDER BY first_name, last_name</code>?</h2>
       <p>Yep! Oracle SQL is pretty generous in terms of how to accomplish things. Which is not to say you should be writing things three different ways if you don't need to - just a) that you should be able to read alternate methods when you come across them, and b) you know that you have options if you're in a situation where one method works better than another.</p>  
     </div>
@@ -340,7 +418,7 @@ ORDER BY 3,2</code></pre>
 </section>
 <section id="scalar">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1 post-section">
+    <div class="cell large-10 large-offset-1 post-section">
       <h2 class="h2">Scalar functions</h2>
       <p>Scalar functions are predefined functions that operate on a single value. Later, we'll learn about <em>aggregate</em> functions, that can do things like sum an entire column, but for now, the functions we're working with will both consume and return a single datapoint.</p>
       <div class="callout primary">In mathematics, <em>scalar</em> is defined as <q>having magnitude, but not direction.</q></div>
@@ -349,7 +427,7 @@ ORDER BY 3,2</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Let's try one</h2>
       <p>Let's try the <code>ROUND()</code> function.</p>
       <pre><code class="language-sql">SELECT invoice_total AS with_cents, ROUND(invoice_total) as no_cents
@@ -359,7 +437,7 @@ FROM invoices</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">SUBSTR</h2>
       <p>The <code>SUBSTR()</code> function takes 3 arguments - <strong>string</strong>, <strong>position</strong>, and <strong>length</strong>.</p>
       <p>If we want a column featuring the vendors initials, we would format that as follows:</p> 
@@ -371,7 +449,7 @@ FROM vendor_contacts</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Scalar functions are nestable</h2>
       <p>I know what you're thinking, "What if I want to know what the <em>last</em> letters in their names are?"</p>
       <pre><code class="language-sql">SELECT 
@@ -386,12 +464,12 @@ FROM vendor_contacts</code></pre>
 </section>
 <section>
   <div class="grid-x slide-only">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <p>See the notes for a handy cheat sheet of (nearly) all the scalar functions.</p>
     </div>
   </div>
   <div class="grid-x post-only">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">There are a <em>ton</em> of these functions.</h2>
       <table>
         <thead>
@@ -551,7 +629,7 @@ FROM vendor_contacts</code></pre>
 </section>
 <section id="lab">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Lab time!</h2>
       <p>If you're done your lab before the end of class, you're welcome to start on your <a href="<%= site.basePath %>/assignments/assignment-1.html">first assignment</a>.</p>
     </div>
@@ -559,7 +637,7 @@ FROM vendor_contacts</code></pre>
 </section>
 <section class="slide-only">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Lab Questions</h2>
       <p>See <a href="<%= site.basePath %>/notes/week-1/index.html#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p> 
     </div>
@@ -567,7 +645,7 @@ FROM vendor_contacts</code></pre>
 </section>
 <section class="post-only">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2>Lab Questions:</h2>
       <ol class="lab-questions">
         <li>Write a query to display the vendor id, vendor name, vendor city and vendor state.  Only display vendors located in the following states: MI, OH, PA, NV, and TN.  Only display rows where the vendor city begins with either the letter C or the letter A.  The results are to be sorted first on the vendor state then by vendor city within the state.</li>
