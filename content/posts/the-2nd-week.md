@@ -111,7 +111,7 @@ TODO: Quiz
 <section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <p>While that's happening, if everyone's on board, let's get a <a href="https://join.slack.com/t/dbcourse2019/shared_invite/enQtNzQ3OTUzODk2ODAzLWNiMzk4MGQ3MTViMGIzYTRiNzNiNjkzZWI2ZDQ3NDViMGI1YTUzMGQ4MmM3ZmYwMDM1Y2U0OWI5M2RiNmQ1M2U">slack channel</a> together.</p> 
+      <p>While that's happening, if everyone's on board, let's get a <a href="https://join.slack.com/t/dbcourse2019/shared_invite/enQtNzQ3OTUzODk2ODAzLWNiMzk4MGQ3MTViMGIzYTRiNzNiNjkzZWI2ZDQ3NDViMGI1YTUzMGQ4MmM3ZmYwMDM1Y2U0OWI5M2RiNmQ1M2U" target="_blank" rel="noopener">slack channel</a> together.</p> 
     </div>
   </div>
 </section>
