@@ -108,13 +108,14 @@ TODO: Quiz
     </div>
   </div>
 </section>
-<!-- <section>
+<section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <p>While that's happening, if everyone's on board, let's get a <a href="https://join.slack.com/t/http5105/shared_invite/enQtNDM1NjI4NzY0MTE5LTY0YWEzZjNhN2JiNmVmYjY4ZmU2MWQ0ZGNmNmU3NGMxZTNhZGU3ODNmYmFlM2NiMWVlMTljZjQ0ZmEyODA3Yzg">slack channel</a> together.</p> 
+      <p>While that's happening, if everyone's on board, let's get a <a href="https://join.slack.com/t/dbcourse2019/shared_invite/enQtNzQ3OTUzODk2ODAzLWNiMzk4MGQ3MTViMGIzYTRiNzNiNjkzZWI2ZDQ3NDViMGI1YTUzMGQ4MmM3ZmYwMDM1Y2U0OWI5M2RiNmQ1M2U">slack channel</a> together.</p> 
     </div>
   </div>
 </section>
+<!--
 <section class="slide-only" id="lab">
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
@@ -153,7 +154,7 @@ TODO: Quiz
   </div>
 </section>
  -->
- <section id="basics">
+<section id="basics">
   <div class="grid-x">
     <div class="cell large-10 large-offset-1 post-section">
       <h2 class="h2">Query Basics</h2>
@@ -171,23 +172,42 @@ TODO: Quiz
     <div class="cell large-10 large-offset-1">
       <h2 class="h2">SELECT basics</h2>
       <p><code>*</code> selects all rows.</p>
-      <p><code>||</code> concatenates<sup>*</sup>.</p>
+      <p><code>||</code> concatenates<sup>[1]</sup>.</p>
       <p>Single quotes let us use string literals.</p>
       <p><code>AS</code> creates an alias.</p>  
       <p><code>DISTINCT</code> eliminates duplicates.</p>
       <hr>
-      <small>Remember to normalize your SQL by running the statement <code class="language-sql">SET sql_mode='ANSI';</code>, otherwise you'll need to wrap your values in the <code>CONCAT</code> function, i.e. <code>CONCAT('My', 'S', 'QL')</code></small>
+      <small>1. Remember to normalize your SQL by running the statement <code class="language-sql">SET sql_mode='ANSI';</code>, otherwise you'll need to wrap your values in the <code>CONCAT</code> function, i.e. <code>CONCAT('My', 'S', 'QL')</code></small>
     </div>
   </div>
 </section>
-<!-- <section class="slide-only">
+<section class="grid-x">
+  <div class="cell large-10 large-offset-1">
+    <h2 class="h2">Example</h2>
+    <p>A query that selects one example of each make of bicycle reported stolen.</p>
+    <pre class="slide-only"><code class="language-sql">SELECT DISTINCT Bike_Make AS 'Make of Bicycle' 
+FROM bikes.thefts ORDER BY Bike_Make</code></pre>
+    <textarea data-code-mirror="sql" data-code-mirror-height="110" cols="50" class="post-only">SELECT DISTINCT Bike_Make 
+  AS 'Make of Bicycle' 
+FROM bikes.thefts ORDER BY Bike_Make</textarea>
+  </div>
+</section>
+<section class="slide-only">
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <p>From the <code>bike.theft</code> table, write a query that creates a column called <code>Reported on</code>. This column should combine four columns from the table in the format DayOfTheWeek, Month Day, Year.</p>
+      <p>From the <code>bikes.thefts</code> table, write a query that that only selects one row for each unique location type per neighbourhood. Order it by neighbourhood.</p>
       <p>When you've got something that works, post it in slack.</p>
     </div>
   </div>
-</section> -->
+</section>
+<section class="slide-only">
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <p>From the <code>bikes.thefts</code> table, write a query that creates a column called <code>Reported on</code>. This column should combine four columns from the table in the format DayOfTheWeek, Month Day, Year.</p>
+      <p>When you've got something that works, post it in slack.</p>
+    </div>
+  </div>
+</section>
 <section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
@@ -203,7 +223,15 @@ TODO: Quiz
 <section class="slide-only">
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <p>From the <code>bike.theft</code> table, write a query that returns rows where the premises was neither a house nor an apartment. Exclude rows where the incident was reported before 5pm.</p>
+      <p>From the <code>bikes.thefts</code> table, write a query that returns rows where the reported value of the bike was greater than $1000. Select the make, model and cost, and order by the cost.</p>
+      <p>When you've got something that works, post it in slack.</p>
+    </div>
+  </div>
+</section>
+<section class="slide-only">
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <p>From the <code>bikes.thefts</code> table, write a query that returns rows where the location was neither a house nor an apartment. Exclude rows where the incident took place in winter (December-March).</p>
       <p>When you've got something that works, post it in slack.</p>
     </div>
   </div>
@@ -214,6 +242,14 @@ TODO: Quiz
       <h2 class="h2">ORDER BY basics</h2>
       <p><code>ORDER BY</code> lets us sort our table based on a specified column. We can specify more than one column (or an alias).</p>
       <p>We can use <code>ASC</code> and <code>DESC</code> to say whether we want our results in ascending or descending order.</p>
+    </div>
+  </div>
+</section>
+<section class="slide-only">
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <p>From the <code>bikes.thefts</code> table, write a query that puts the reports in reverse chronological order.</p>
+      <p>When you've got something that works, post it in slack.</p>
     </div>
   </div>
 </section>
@@ -231,13 +267,28 @@ TODO: Quiz
       <ul>
           <li>the <code>DUAL</code> table</li>
           <li>order of operations</li>
-          <li>the <code>ROWNUM</code> pseudocolumn</li>
           <li>the <code>OFFSET</code> clause</li>
           <li>the <code>IS NULL</code> condition</li>
           <li>the <code>LIKE</code> clause (and its operators <code>%</code> and <code>_</code>)</li>
           <li>a few quirks of the <code>ORDER BY</code> operator</li>
-          <li>scalar functions: <code>SUBSTR()</code>, <code>SYSDATE</code>, <code>ROUND()</code>, <code>TO_CHAR()</code>, <code>MOD()</code>, and more!</li>
+          <li>scalar functions: <code>SUBSTR()</code>, <code>SYSDATE()</code>, <code>ROUND()</code>, <code>CAST()</code>, <code>MOD()</code>, and more!</li>
         </ul>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <p>The dual table is a great place to futz around!</p>
+      <p>We can create columns and values, and execute functions:</p>
+      <pre class="slide-only"><code class="language-sql">SELECT 'test' AS test_string,
+    10-7 AS test_calculation,
+    SYSDATE() AS test_date
+FROM dual</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="160" cols="50" class="post-only">SELECT 'test' AS test_string,
+    10-7 AS test_calculation,
+    SYSDATE() AS test_date
+FROM dual</textarea>
     </div>
   </div>
 </section>
@@ -248,20 +299,10 @@ TODO: Quiz
       <p>The <code>DUAL</code> table is created automatically for every table, and is available to all users.</p>
       <p>In Oracle, we can't write an expression without specifying where the data is coming from. There are certain expressions we can write that don't require a table, so we use <code>DUAL</code> table as a kind of 'dummy' source.</p>
       <p>Try running this statement:</p>
-      <pre><code class="language-sql">SELECT 10 * 4 / 2 + 30 - 8 AS result 
+      <pre class="slide-only"><code class="language-sql">SELECT 10 * 4 / 2 + 30 - 8 AS result 
 FROM dual</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <p>The dual table is a great place to futz around!</p>
-      <p>We can create columns and values, and execute functions:</p>
-      <pre><code class="sql">SELECT 'test' AS test_string,
-    10-7 AS test_calculation,
-    SYSDATE AS test_date
-FROM dual</code></pre>  
+      <textarea data-code-mirror="sql" data-code-mirror-height="70" cols="50" class="post-only">SELECT 10 * 4 / 2 + 30 - 8 AS result 
+FROM dual</textarea>
     </div>
   </div>
 </section>
@@ -271,8 +312,8 @@ FROM dual</code></pre>
       <h2 class="h2">Order of operations</h2>
       <p><strong>BEDMAS</strong>: <strong>B</strong>rackets, <strong>E</strong>xponents, <strong>D</strong>ivision and <strong>M</strong>ultiplication, <strong>A</strong>ddition and <strong>S</strong>ubtraction.</p>
       <p>Try running this statement:</p>
-      <pre><code class="language-sql">SELECT 10 * 4 / (2 + 30) - 8 AS result
-FROM dual</code></pre>
+      <pre class="slide-only"><code class="language-sql">SELECT 10 * 4 / (2 + 30) - 8 AS result</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="40" cols="50" class="post-only">FROM dual</textarea>
     </div>
   </div>
 </section>
@@ -280,15 +321,15 @@ FROM dual</code></pre>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <p>We can use brackets (parentheses) to affect the order of operations for our logical operators as well, so that these two statements:</p>
-      <pre><code class="language-sql">SELECT invoice_number
-FROM invoices
+      <pre class="slide-only"><code class="language-sql">SELECT invoice_number
+FROM ap.invoices
 WHERE invoice_date > '01-MAY-14' OR invoice_total > 500 
   AND invoice_total - payment_total - credit_total > 0</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="140" cols="50" class="post-only">SELECT invoice_number
+FROM ap.invoices
+WHERE invoice_date > '01-MAY-14' OR invoice_total > 500 
+  AND invoice_total - payment_total - credit_total > 0</textarea>
       <p><small><em>Is the invoice date after May 1st 2014? If not, is it true both that the invoice total more than five hundred, and the payments and credits don't eliminate the invoice total?</em></small></p>
-      <pre><code class="language-sql">SELECT invoice_number
-FROM invoices
-WHERE (invoice_date > '01-MAY-14' OR invoice_total > 500) 
-  AND invoice_total - payment_total - credit_total > 0</code></pre>
       <p><small><em>Is it true that either the invoice date is after May 1st 2014, or the invoice is for more than 500? Is it also true that the payments and credits don't eliminate the invoice total?</em></small></p>
       <p>...produce different results.</p>
     </div>
@@ -297,37 +338,20 @@ WHERE (invoice_date > '01-MAY-14' OR invoice_total > 500)
 <section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <h2 class="h2">The ROWNUM pseudocolumn</h2>
-      <p>In addition to a dummy table in all our databases, we have access to a pseudocolumn (a column that isn't really a column, but acts like one for queries) in all our tables. The <code>ROWNUM</code> pseudocolumn assigns a sequential number to all our returned rows.</p>
-      <p>The most common usage of <code>ROWNUM</code> is to limit the number of rows in our results table.</p>
-      <p>To see the 5 most recent invoices:</p>
-      <pre><code>SELECT vendor_id, invoice_date
-FROM invoices
-WHERE rownum <= 5
-ORDER BY invoice_date</code></pre>
-      <p>Why would this expression return no rows?</p>
-      <pre><code>SELECT vendor_id, invoice_date
-FROM invoices
-WHERE rownum = 5
-ORDER BY invoice_date</code></pre>  
-      <p><code>ROWNUM</code> is an older, but efficient way of limiting results.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <h2 class="h2">Another way to limit results: FETCH and OFFSET</h2>
-      <p><code>FETCH</code> is a clause that lets us declare what rows we want to return. <code>OFFSET</code> lets us declare at what row to begin.</p>  
-      <p>FETCH can be less efficient, but offers more flexibility than querying ROWNUM.</p>
-      <p>We write our FETCH clause after our ORDER BY. If we want to offset, we prepend the OFFSET clause to FETCH.</p>
+      <h2 class="h2">Our way to limit results: LIMIT and OFFSET</h2>
+      <p><code>LIMIT</code> is a clause that lets us declare what rows we want to return. <code>OFFSET</code> lets us declare at what row to begin.</p>  
+      <p>We write our LIMIT clause after our ORDER BY. If we want to offset, we append the OFFSET clause to LIMIT.</p>
       <p>Our syntax is:</p>
-      <pre><code class="language-sql">[OFFSET <em>n</em> ROWS] FETCH {FIRST | NEXT} <em>n</em> ROWS {ONLY | WITH TIES}</code></pre>
+      <pre><code class="language-sql">LIMIT <em>n</em> [OFFSET <em>n</em> ROWS]</code></pre>
       <p><strong>Example:</strong></p>
-      <pre><code class="language-sql">SELECT vendor_id
-FROM invoices
+      <pre class="slide-only"><code class="language-sql">SELECT vendor_id
+FROM ap.invoices
 ORDER BY vendor_id
-OFFSET 5 ROWS FETCH NEXT 25 PERCENT ROWS WITH TIES</code></pre>
+LIMIT 5 OFFSET 2</code></pre>
+          <textarea data-code-mirror="sql" data-code-mirror-height="140" cols="50" class="post-only">SELECT vendor_id
+FROM ap.invoices
+ORDER BY vendor_id
+LIMIT 5 OFFSET 2</textarea>
     </div>
   </div>
 </section>
@@ -336,8 +360,10 @@ OFFSET 5 ROWS FETCH NEXT 25 PERCENT ROWS WITH TIES</code></pre>
     <div class="cell large-10 large-offset-1">
       <h2 class="h2">IS NULL</h2>
       <p>This one is pretty straightforward - <code>IS NULL</code> and <code>IS NOT NULL</code> are conditions we can add to the <code>WHERE</code> clause to return results that are (or aren't) null.</p>
-      <pre><code class="language-sql">SELECT * FROM invoices
+      <pre class="slide-only"><code class="language-sql">SELECT * FROM ap.invoices
 WHERE payment_date IS NULL</code></pre>
+          <textarea data-code-mirror="sql" data-code-mirror-height="70" cols="50" class="post-only">SELECT * FROM ap.invoices
+WHERE payment_date IS NULL</textarea>
       <div class="callout alert">Remember that 0 is not null</div>
     </div>
   </div>
@@ -349,10 +375,14 @@ WHERE payment_date IS NULL</code></pre>
       <p><code>LIKE</code> is a powerful search tool for finding strings that match a pattern.</p>
       <p>The <code>%</code> symbol matches zero or more characters.</p>
       <p>The <code>_</code> (underscore) symbol matches one character.</p>
-      <pre><code class="language-sql">SELECT * FROM vendors
+      <pre class="slide-only"><code class="language-sql">SELECT * FROM ap.vendors
 WHERE vendor_address1 LIKE '%PO Box%'</code></pre>
-      <pre><code class="language-sql">SELECT DISTINCT vendor_state FROM vendors
+          <textarea data-code-mirror="sql" data-code-mirror-height="70" cols="50" class="post-only">SELECT * FROM ap.vendors
+WHERE vendor_address1 LIKE '%PO Box%'</textarea>
+      <pre class="slide-only"><code class="language-sql">SELECT DISTINCT vendor_state FROM ap.vendors
 WHERE vendor_state LIKE '_A'</code></pre>
+          <textarea data-code-mirror="sql" data-code-mirror-height="70" cols="50" class="post-only">SELECT DISTINCT vendor_state FROM ap.vendors
+WHERE vendor_state LIKE '_A'</textarea>
     </div>
   </div>
 </section>
@@ -370,11 +400,15 @@ WHERE vendor_state LIKE '_A'</code></pre>
     <div class="cell large-10 large-offset-1">
       <h2 class="h2">A few more things about ORDER BY</h2>
       <p><code>ASC</code> and <code>DESC</code> are specific to a column, so the following two statements produce different results:</p>
-      <pre><code class="language-sql">SELECT * FROM invoices
-ORDER BY vendor_id DESC, payment_total</code></pre>  
+      <pre class="slide-only"><code class="language-sql">SELECT * FROM ap.invoices
+ORDER BY vendor_id DESC, payment_total</code></pre>
+          <textarea data-code-mirror="sql" data-code-mirror-height="70" cols="50" class="post-only">SELECT * FROM ap.invoices
+ORDER BY vendor_id DESC, payment_total</textarea>
       <small><em>Ordered by descending vendor_id, ascending payment_total.</em></small>
-      <pre><code class="language-sql">SELECT * FROM invoices
-ORDER BY vendor_id, payment_total DESC</code></pre>  
+      <pre class="slide-only"><code class="language-sql">SELECT * FROM ap.invoices
+ORDER BY vendor_id, payment_total DESC</code></pre>
+          <textarea data-code-mirror="sql" data-code-mirror-height="70" cols="50" class="post-only">SELECT * FROM ap.invoices
+ORDER BY vendor_id, payment_total DESC</textarea>
       <small><em>Ordered by ascending vendor_id, descending payment_total.</em></small>
     </div>
   </div>
@@ -399,20 +433,26 @@ ORDER BY vendor_id, payment_total DESC</code></pre>
     <div class="cell large-10 large-offset-1">
       <p>As we talked about, you can order according to any column (except when using <code>DISTINCT</code>, in which case it can only be a column you've selected). Additionally, we can select by an alias created in our <code>SELECT</code>.</p>
       <p>We are also able to select using an expression, or with the column number.</p>
-      <pre><code class="language-sql">SELECT *
-FROM vendor_contacts
+      <pre class="slide-only"><code class="language-sql">SELECT *
+FROM ap.vendor_contacts
 ORDER BY first_name || last_name</code></pre>
-        <pre><code class="language-sql">SELECT *
-FROM vendor_contacts
-ORDER BY 3,2</code></pre> 
+          <textarea data-code-mirror="sql" data-code-mirror-height="110" cols="50" class="post-only">SELECT *
+FROM ap.vendor_contacts
+ORDER BY first_name || last_name</textarea>
+      <pre class="slide-only"><code class="language-sql">SELECT *
+FROM ap.vendor_contacts
+ORDER BY 3,2</code></pre>
+          <textarea data-code-mirror="sql" data-code-mirror-height="110" cols="50" class="post-only">SELECT *
+FROM ap.vendor_contacts
+ORDER BY 3,2</textarea>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <h2 class="h2">Wait, isn't that just 2 different ways of writing <code class="language-sql">ORDER BY first_name, last_name</code>?</h2>
-      <p>Yep! Oracle SQL is pretty generous in terms of how to accomplish things. Which is not to say you should be writing things three different ways if you don't need to - just a) that you should be able to read alternate methods when you come across them, and b) you know that you have options if you're in a situation where one method works better than another.</p>  
+      <h2 class="h2">Wait, isn't that just 2 different ways of writing <small><code class="language-sql">ORDER BY first_name, last_name</code></small>?</h2>
+      <p>Yep! SQL is pretty generous in terms of how to accomplish things. Which is not to say you should be writing things three different ways if you don't need to - just a) that you should be able to read alternate methods when you come across them, and b) you know that you have options if you're in a situation where one method works better than another.</p>  
     </div>
   </div>
 </section>
@@ -430,8 +470,12 @@ ORDER BY 3,2</code></pre>
     <div class="cell large-10 large-offset-1">
       <h2 class="h2">Let's try one</h2>
       <p>Let's try the <code>ROUND()</code> function.</p>
-      <pre><code class="language-sql">SELECT invoice_total AS with_cents, ROUND(invoice_total) as no_cents
-FROM invoices</code></pre>
+      <pre class="slide-only"><code class="language-sql">SELECT invoice_total AS with_cents, 
+  ROUND(invoice_total) as no_cents
+FROM ap.invoices</code></pre>
+          <textarea data-code-mirror="sql" data-code-mirror-height="110" cols="50" class="post-only">SELECT invoice_total AS with_cents, 
+  ROUND(invoice_total) as no_cents
+FROM ap.invoices</textarea>
     </div>
   </div>
 </section>
@@ -441,8 +485,15 @@ FROM invoices</code></pre>
       <h2 class="h2">SUBSTR</h2>
       <p>The <code>SUBSTR()</code> function takes 3 arguments - <strong>string</strong>, <strong>position</strong>, and <strong>length</strong>.</p>
       <p>If we want a column featuring the vendors initials, we would format that as follows:</p> 
-      <pre><code class="language-sql">SELECT last_name, first_name, SUBSTR(first_name, 1, 1) || SUBSTR(last_name, 1, 1) AS initials
-FROM vendor_contacts</code></pre>
+      <pre class="slide-only"><code class="language-sql">SELECT last_name, first_name, 
+  SUBSTR(first_name, 1, 1) || SUBSTR(last_name, 1, 1) AS initials
+FROM ap.vendor_contacts</code></pre>
+          <textarea data-code-mirror="sql" data-code-mirror-height="200" cols="50" class="post-only">SELECT 
+  last_name, 
+  first_name, 
+  SUBSTR(first_name, 1, 1) || SUBSTR(last_name, 1, 1) 
+  AS initials
+FROM ap.vendor_contacts</textarea>
       <div class="callout primary"><code>SUBSTR</code> can count backwards! Use a negative position value to count back from the end of a string.</div>
     </div>
   </div>
@@ -452,13 +503,20 @@ FROM vendor_contacts</code></pre>
     <div class="cell large-10 large-offset-1">
       <h2 class="h2">Scalar functions are nestable</h2>
       <p>I know what you're thinking, "What if I want to know what the <em>last</em> letters in their names are?"</p>
-      <pre><code class="language-sql">SELECT 
+      <pre class="slide-only"><code class="language-sql">SELECT 
     last_name, 
     first_name, 
     UPPER(SUBSTR(REVERSE(first_name), 1, 1)) || 
         UPPER(SUBSTR(REVERSE(last_name), 1, 1)) 
-    AS initials
-FROM vendor_contacts</code></pre>  
+    AS last_initials
+FROM ap.vendor_contacts</code></pre>
+          <textarea data-code-mirror="sql" data-code-mirror-height="220" cols="50" class="post-only">SELECT 
+    last_name, 
+    first_name, 
+    UPPER(SUBSTR(REVERSE(first_name), 1, 1)) || 
+        UPPER(SUBSTR(REVERSE(last_name), 1, 1)) 
+    AS last_initials
+FROM ap.vendor_contacts</textarea>
     </div>
   </div>
 </section>
@@ -539,52 +597,34 @@ FROM vendor_contacts</code></pre>
             <td>Converts string to uppercase</td>
           </tr>
           <tr>
-            <td>Initial capital</td>
-            <td><code class="language-sql">INITCAP('jUstIcE fOR bARb')</code></td>
-            <td>Justice For Barb</td>
-            <td>Returns a character expression, with the first letter of each word in uppercase, all other letters in lowercase.</td>
-          </tr>
-          <tr>
-            <td>Add months</td>
-            <td><code class="language-sql">ADD_MONTHS('2018-SEP-1' , 4)</code></td>
-            <td>19-01-01</td>
-            <td>Returns a specified date with additional months</td>
+            <td>Add dates</td>
+            <td><code class="language-sql">DATE_ADD('2019-9-15' , INTERVAL 15 DAY)</code></td>
+            <td>2019-09-30</td>
+            <td>Adds interval to date.</td>
           </tr>
           <tr>
             <td>Extract</td>
-            <td><code class="language-sql">EXTRACT (MONTH FROM SYSDATE)</code></td>
+            <td><code class="language-sql">EXTRACT (MONTH FROM SYSDATE())</code></td>
             <td>9</td>
             <td>Returns the value of a specified date.</td>
           </tr>
           <tr>
             <td>Last day of the month</td>
-            <td><code class="language-sql">LAST_DAY('2018-SEP-12')</code></td>
-            <td>'18-09-30'</td>
+            <td><code class="language-sql">LAST_DAY('2019-09-12')</code></td>
+            <td>'2019-09-30'</td>
             <td>Returns a date representing the last day of the month for specified date. </td>
           </tr>
           <tr>
-            <td>Months between</td>
-            <td><code class="language-sql">MONTHS_BETWEEN('2019-JAN-01', '2018-SEP-13')</code></td>
-            <td>3.61290322580645161290322580645161290323</td>
-            <td>Returns the count of months between the specified start date and end date</td>
-          </tr>
-          <tr>
-            <td>Next day</td>
-            <td><code class="language-sql">NEXT_DAY('2018-SEP-13' , 'Sunday')</code></td>
-            <td>'18-09-16'</td>
-            <td>Returns the next specified weekday.</td>
-          </tr>
-          <tr>
             <td>System date</td>
-            <td><code class="language-sql">SYSDATE</code></td>
-            <td>18-09-13</td>
+            <td><code class="language-sql">SYSDATE()</code></td>
+            <td>2019-09-13-12.29.09 -0400</td>
             <td>Returns the current database system date.</td>
           </tr>
           <tr>
             <td>Truncate</td>
-            <td><code class="language-sql">TRUNC(59.9)</code></td>
+            <td><code class="language-sql">TRUNCATE(59.9, 0)</code></td>
             <td>59</td>
-            <td>Rounds down to the nearest integer</td>
+            <td>Rounds down the first value to the decimal place provided in the second value.</td>
           </tr>
           <tr>
             <td>Ceiling</td>
@@ -594,31 +634,19 @@ FROM vendor_contacts</code></pre>
           </tr>
           <tr>
             <td>Modulus</td>
-            <td><code class="language-sql">MOD(11,5)</code></td>
-            <td>1</td>
+            <td><code class="language-sql">MOD(12,5)</code></td>
+            <td>2</td>
             <td>Returns the modulus (remainder) of two values</td>
           </tr>
           <tr>
-            <td>To character</td>
-            <td><code class="language-sql">TO_CHAR(1506)</code></td>
+            <td>Cast</td>
+            <td><code class="language-sql">CAST(1506 AS CHAR)</code></td>
             <td>The string value '1506'</td>
-            <td>Change datatype to character</td>
+            <td>Convert datatype</td>
           </tr>
           <tr>
-            <td>To date</td>
-            <td><code class="language-sql">TO_DATE('2018-SEP-12')</code></td>
-            <td>18-09-12</td>
-            <td>Change datatype to date</td>
-          </tr>
-          <tr>
-            <td>To number</td>
-            <td><code class="language-sql">TO_NUMBER('11')</code></td>
-            <td>11</td>
-            <td>Change datatype to number</td>
-          </tr>
-          <tr>
-            <td>Null Value</td>
-            <td><code class="language-sql">NVL(NULL,'Will Byers')</code></td>
+            <td>Coalesce</td>
+            <td><code class="language-sql">COALESCE(NULL,'Will Byers')</code></td>
             <td>Will Byers</td>
             <td>Replaces null values with specified value.</td>
           </tr>
@@ -631,7 +659,6 @@ FROM vendor_contacts</code></pre>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <h2 class="h2">Lab time!</h2>
-      <p>If you're done your lab before the end of class, you're welcome to start on your <a href="<%= site.basePath %>/assignments/assignment-1.html">first assignment</a>.</p>
     </div>
   </div>
 </section>
