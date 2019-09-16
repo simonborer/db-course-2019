@@ -181,33 +181,6 @@ TODO: Quiz
     </div>
   </div>
 </section>
-<section class="grid-x">
-  <div class="cell large-10 large-offset-1">
-    <h2 class="h2">Example</h2>
-    <p>A query that selects one example of each make of bicycle reported stolen.</p>
-    <pre class="slide-only"><code class="language-sql">SELECT DISTINCT Bike_Make AS 'Make of Bicycle' 
-FROM bikes.thefts ORDER BY Bike_Make</code></pre>
-    <textarea data-code-mirror="sql" data-code-mirror-height="110" cols="50" class="post-only">SELECT DISTINCT Bike_Make 
-  AS 'Make of Bicycle' 
-FROM bikes.thefts ORDER BY Bike_Make</textarea>
-  </div>
-</section>
-<section class="slide-only">
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <p>From the <code>bikes.thefts</code> table, write a query that that only selects one row for each unique location type per neighbourhood. Order it by neighbourhood.</p>
-      <p>When you've got something that works, post it in slack.</p>
-    </div>
-  </div>
-</section>
-<section class="slide-only">
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <p>From the <code>bikes.thefts</code> table, write a query that creates a column called <code>Reported on</code>. This column should combine four columns from the table in the format DayOfTheWeek, Month Day, Year.</p>
-      <p>When you've got something that works, post it in slack.</p>
-    </div>
-  </div>
-</section>
 <section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
@@ -249,6 +222,43 @@ FROM bikes.thefts ORDER BY Bike_Make</textarea>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <p>From the <code>bikes.thefts</code> table, write a query that puts the reports in reverse chronological order.</p>
+      <p>When you've got something that works, post it in slack.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <h2 class="h2">DISTINCT basics</h2>
+      <p>The <code class="language-sql">DISTINCT</code> clause, placed after <code class="language-sql">SELECT</code> means our query only returns rows where the data in the selected column(s) are unique.</p>
+      <p>We can select multiple rows, and <code class="language-sql">DISTINCT</code> will return rows where the <em>combination</em> of column data is unique.</p>
+      <p><small><em>Note: If you try to <code class="language-sql">ORDER BY</code> a column that you haven't selected in a distinct select statement, you will get an error.</em></small></p>
+    </div>
+  </div>
+</section>
+<section class="grid-x">
+  <div class="cell large-10 large-offset-1">
+    <h2 class="h2">Example</h2>
+    <p>A query that selects one example of each make of bicycle reported stolen.</p>
+    <pre class="slide-only"><code class="language-sql">SELECT DISTINCT Bike_Make AS 'Make of Bicycle' 
+FROM bikes.thefts ORDER BY Bike_Make</code></pre>
+    <textarea data-code-mirror="sql" data-code-mirror-height="110" cols="50" class="post-only">SELECT DISTINCT Bike_Make 
+  AS 'Make of Bicycle' 
+FROM bikes.thefts ORDER BY Bike_Make</textarea>
+  </div>
+</section>
+<section class="slide-only">
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <p>From the <code>bikes.thefts</code> table, write a query that that only selects one row for each unique location type per neighbourhood. Order it by neighbourhood.</p>
+      <p>When you've got something that works, post it in slack.</p>
+    </div>
+  </div>
+</section>
+<section class="slide-only">
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <p>From the <code>bikes.thefts</code> table, write a query that creates a column called <code>Reported on</code>. This column should combine four columns from the table in the format DayOfTheWeek, Month Day, Year.</p>
       <p>When you've got something that works, post it in slack.</p>
     </div>
   </div>
