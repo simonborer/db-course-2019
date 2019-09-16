@@ -204,7 +204,7 @@ TODO: Quiz
 <section class="slide-only">
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <p>From the <code>bikes.thefts</code> table, write a query that returns rows where the location was neither a house nor an apartment. Exclude rows where the incident took place in winter (December-March).</p>
+      <p>From the <code>bikes.thefts</code> table, write a query that returns rows where the incident did NOT place in winter (December-March).</p>
       <p>When you've got something that works, post it in slack.</p>
     </div>
   </div>
@@ -258,7 +258,7 @@ FROM bikes.thefts ORDER BY Bike_Make</textarea>
 <section class="slide-only">
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <p>From the <code>bikes.thefts</code> table, write a query that creates a column called <code>Reported on</code>. This column should combine four columns from the table in the format DayOfTheWeek, Month Day, Year.</p>
+      <p>From the <code>bikes.thefts</code> table, write a query that creates a column called <code>Reported on</code>. This column should combine four columns from the table in the format DayOfTheWeek, Month, Day, Year.</p>
       <p>When you've got something that works, post it in slack.</p>
     </div>
   </div>
