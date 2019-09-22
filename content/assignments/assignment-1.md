@@ -14,10 +14,10 @@ featured_image: hackers.gif
       <p>Submit the assignment through Blackboard.</p>
       <section class="post-section">
         <h2>Questions</h2>
-        <ol>
+        <ol class="assignment__questions">
           <li>
             <ol>
-              <li>Write a SELECT statement that returns three columns from the Vendors table: vendor_name, vendor_contact_last_name, and vendor_contact_first_name. Then, run this statement.</li>
+              <li>Write a SELECT statement that returns three columns from the Vendors table: vendor_name, vendor_contact_last_name, and vendor_contact_first_name.</li>
               <li>Next, add code to this statement so it sorts the result set by last name and then first name.</li>
             </ol>
           </li>

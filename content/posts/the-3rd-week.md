@@ -30,7 +30,7 @@ summary: "This week we'll cover coding INNER JOINs to retrieve rows from multipl
                 <li><a href="#joiningMultiple">Joining multiple tables</a></li>
                 <li><a href="#selfJoin">Self joins</a></li>
                 <li><a href="#syntaxVariations">Syntax variations</a></li>
-                <li><a href="#other">Other table merges</a></li>
+                <li><a href="#other">Another table merge</a></li>
               </ul>
             </li>
             <li><strong><a href="#lab">Lab</a></strong></li>
@@ -121,7 +121,7 @@ summary: "This week we'll cover coding INNER JOINs to retrieve rows from multipl
           <li>The results are to be sorted first on the vendor state then by vendor city within the state.</li>
         </ul>      
       </blockquote>
-      <pre><code class="language-sql">SELECT vendor_id, vendor_name, vendor_city, vendor_state 
+      <pre class="slide-only"><code class="language-sql">SELECT vendor_id, vendor_name, vendor_city, vendor_state 
 FROM vendors
 WHERE vendor_state IN ('MI','OH','PA','NV','TN')
 AND SUBSTR(VENDOR_CITY,1,1) IN ('C','A')
@@ -129,6 +129,14 @@ AND SUBSTR(VENDOR_CITY,1,1) IN ('C','A')
 (vendor_city LIKE 'C%'
 OR vendor_city LIKE 'A%') */
 ORDER BY vendor_state, vendor_city</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="250" cols="50" class="post-only">SELECT vendor_id, vendor_name, vendor_city, vendor_state 
+FROM vendors
+WHERE vendor_state IN ('MI','OH','PA','NV','TN')
+AND SUBSTR(VENDOR_CITY,1,1) IN ('C','A')
+/* or you could use 
+(vendor_city LIKE 'C%'
+OR vendor_city LIKE 'A%') */
+ORDER BY vendor_state, vendor_city</textarea>
     </div>
   </div>
 </section>
@@ -166,7 +174,7 @@ OR vendor_city LIKE 'A%')</code></pre>
           <li>The results are to be displayed in descending sequence on the vendor name.</li>
         </ul>      
       </blockquote>
-      <pre><code class="language-sql">SELECT 
+      <pre class="slide-only"><code class="language-sql">SELECT 
   vendor_name, 
   vendor_address1, 
   vendor_city, 
@@ -175,6 +183,15 @@ FROM vendors
 WHERE vendor_address1 LIKE '%P%O% Box%'
 AND vendor_state = 'CA'
 ORDER BY vendor_name DESC</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="280" cols="50" class="post-only">SELECT 
+  vendor_name, 
+  vendor_address1, 
+  vendor_city, 
+  vendor_state 
+FROM vendors
+WHERE vendor_address1 LIKE '%P%O% Box%'
+AND vendor_state = 'CA'
+ORDER BY vendor_name DESC</textarea>
     </div>
   </div>
 </section>
@@ -190,7 +207,7 @@ ORDER BY vendor_name DESC</code></pre>
           <li>The results are to be displayed in sequence by the vendor’s last name then by the vendor’s first name both in ascending sequence.</li>
         </ul>      
       </blockquote>
-      <pre><code class="language-sql">SELECT 
+      <pre class="slide-only"><code class="language-sql">SELECT 
   vendor_name AS Name, 
   vendor_contact_last_name AS 'Last Name', 
   vendor_contact_first_name AS 'First Name', 
@@ -198,6 +215,14 @@ ORDER BY vendor_name DESC</code></pre>
 FROM vendors
 WHERE vendor_phone IS NULL
 ORDER BY vendor_contact_last_name, vendor_contact_first_name</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="250" cols="50" class="post-only">SELECT 
+  vendor_name AS Name, 
+  vendor_contact_last_name AS 'Last Name', 
+  vendor_contact_first_name AS 'First Name', 
+  COALESCE(vendor_phone, 'N/A') AS 'Vendor Phone'
+FROM vendors
+WHERE vendor_phone IS NULL
+ORDER BY vendor_contact_last_name, vendor_contact_first_name</textarea>
     </div>
   </div>
 </section>
@@ -213,7 +238,7 @@ ORDER BY vendor_contact_last_name, vendor_contact_first_name</code></pre>
           <li>Display the results in ascending sequence based on invoice total.</li>
         </ul>      
       </blockquote>
-      <pre><code class="language-sql">SELECT 
+      <pre class="slide-only"><code class="language-sql">SELECT 
     vendor_id, 
     invoice_total,
     payment_total,
@@ -222,6 +247,15 @@ FROM invoices
 WHERE invoice_total > 10000 
     AND payment_date IS NULL
 ORDER BY invoice_total</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="280" cols="50" class="post-only">SELECT 
+    vendor_id, 
+    invoice_total,
+    payment_total,
+    payment_date
+FROM invoices
+WHERE invoice_total > 10000 
+    AND payment_date IS NULL
+ORDER BY invoice_total</textarea>
     </div>
   </div>
 </section>
@@ -243,7 +277,7 @@ ORDER BY invoice_total</code></pre>
 <section>
   <div class="grid-x">
     <div class="cell">
-      <pre><code class="language-sql">SELECT 
+      <pre class="slide-only"><code class="language-sql">SELECT 
     invoice_number,
     vendor_id, 
     invoice_date,
@@ -253,6 +287,16 @@ FROM invoices
 WHERE invoice_total - (payment_total + credit_total) <> 0 
   AND invoice_date BETWEEN '2014-04-01' AND '2014-05-31'
 ORDER BY "Balance Due"</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="280" cols="50" class="post-only">SELECT 
+    invoice_number,
+    vendor_id, 
+    invoice_date,
+    invoice_total - (payment_total + credit_total) 
+  AS "Balance Due"
+FROM invoices
+WHERE invoice_total - (payment_total + credit_total) <> 0 
+  AND invoice_date BETWEEN '2014-04-01' AND '2014-05-31'
+ORDER BY "Balance Due"</textarea>
     </div>
   </div>
 </section>
@@ -314,6 +358,12 @@ WHERE ([filter logic] OR [more logic])
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <h2 class="h2">JOINS!<br><span role="image" aria-label="backhand index pointing right">👉</span><span role="image" aria-label="backhand index pointing left">👈</span></h2>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p>A join is when you merge data from two (or more) different tables to create your results table.</p>  
       <p>Remember that results tables are <strong>not</strong> the same as database tables. Using a join, we create a new results table that includes columns from each of the joined tables.</p>
       <p>We match rows from each of the tables by selecting one column from each to match up.</p>
@@ -327,10 +377,24 @@ FROM [table]
   JOIN [INNER|OUTER (RIGHT|LEFT)|FULL] 
   [otherTable]
   ON [table].[column] = [otherTable].[column]</textarea>
+</div>
+</div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p>Usually, joins are what we call an 'inner join'. Inner join is the default. You don't even have to write <code class="language-sql">INNER JOIN</code>, you can just write <code class="language-sql">JOIN</code>.</p>
-      <pre class="slide-only"><code class="language-sql"></code></pre>
-      <textarea data-code-mirror="sql" data-code-mirror-height="40" cols="50" class="post-only"></textarea>
       <p>The different types of joins refer to what data to include from which table.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <p>Inner joins <strong>only</strong> include data from rows <strong>where a match is found in both tables.</strong></p>
+      <p>Left outer joins include data from rows where a match is found in both tables <strong>plus rows from the first table</strong>.
+      <p>Right outer joins include data from rows where a match is found in both tables <strong>plus rows from the second table</strong>.</p>
+      <p>Full joins include data from <strong>both tables</strong>.</p>
     </div>
   </div>
 </section>
@@ -347,6 +411,12 @@ FROM [table]
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <p>We define a relationship between two tables by using the clause <code class="language-sql">ON</code> to reference a column from each table to be our matching key.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p>Let's see a table of invoices with the vendor name and the date they paid.</p>
       <pre class="slide-only"><code class="language-sql">SELECT invoice_due_date AS "Due on", 
   vendor_name AS "Due from", 
@@ -359,6 +429,12 @@ JOIN vendors ON invoices.vendor_id = vendors.vendor_id</code></pre>
 FROM invoices
 JOIN vendors 
   ON invoices.vendor_id = vendors.vendor_id</textarea>
+</div>
+</div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p>The invoice due date and the paid date come from the <code>invoices</code> table, but the vendor name comes from the vendors table. We can retrieve information about a vendor by looking up the vendor's id. This way the <code>invoices</code> table doesn't have to repeat information about every vendor - we just have to store it once in the <code>vendors</code> table.</p>
       <p>This is an inner join, which means the results table will <em>only</em> show a row for invoices that have a vendor <strong>and</strong> vendors that have an invoice.</p>
     </div>
@@ -390,10 +466,14 @@ JOIN vendors
     <div class="cell large-10 large-offset-1">
       <p>When two tables have the same column name, we have to specify what table the column is coming from. We do this by prefixing the column name with the table name and a dot.</p>
       <p>To make this easier, we can alias our tables, similar to how we alias our columns, but without the need for the <code>AS</code> operator. We can simply add the alias with a space after the table name in the join syntax.</p>
-      <pre><code class="language-sql">SELECT invoice_due_date, v.vendor_id, payment_date
+      <pre class="slide-only"><code class="language-sql">SELECT invoice_due_date, v.vendor_id, payment_date
 FROM invoices i
 JOIN vendors v 
-ON i.vendor_id = v.vendor_id</code></pre>  
+ON i.vendor_id = v.vendor_id</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="130" cols="50" class="post-only">SELECT invoice_due_date, v.vendor_id, payment_date
+FROM invoices i
+JOIN vendors v 
+ON i.vendor_id = v.vendor_id</textarea>
     </div>
   </div>
 </section>
@@ -401,13 +481,20 @@ ON i.vendor_id = v.vendor_id</code></pre>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <p>We've seen a list of all the invoices and their associated vendors. What if we wanted to include vendors that <em>didn't</em> have an invoice? That's where we'd use an outer join - in this case, a <code class="language-sql">RIGHT JOIN</code> because we want to include data that only appears on the <strong>right</strong> side of the <code>JOIN</code> clause.</p>
-      <pre><code class="language-sql">SELECT invoice_due_date AS "Due on", 
+      <pre class="slide-only"><code class="language-sql">SELECT invoice_due_date AS "Due on", 
   vendor_name AS "Due from", 
   payment_date AS "Paid on" 
 FROM invoices /* left side */ 
 RIGHT JOIN vendors /* right side */ 
 ON invoices.vendor_id = vendors.vendor_id
 ORDER BY "Due on" DESC</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="220" cols="50" class="post-only">SELECT invoice_due_date AS "Due on", 
+  vendor_name AS "Due from", 
+  payment_date AS "Paid on" 
+FROM invoices /* left side */ 
+RIGHT JOIN vendors /* right side */ 
+ON invoices.vendor_id = vendors.vendor_id
+ORDER BY "Due on" DESC</textarea>
     </div>
   </div>
 </section>
@@ -416,10 +503,14 @@ ORDER BY "Due on" DESC</code></pre>
     <div class="cell large-10 large-offset-1">
       <p>Let's look at a few more examples!</p>
       <p>A 'left' outer join, as you'd expect, works the same way as a right join, only it includes records that are only from the left side of the join.</p>
-      <pre><code class="language-sql">SELECT department_name, d.department_number, last_name
+      <pre class="slide-only"><code class="language-sql">SELECT department_name, d.department_number, last_name
 FROM departments d
 LEFT JOIN employees e
-ON d.department_number = e.department_number</code></pre>  
+ON d.department_number = e.department_number</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="130" cols="50" class="post-only">SELECT department_name, d.department_number, last_name
+FROM departments d
+LEFT JOIN employees e
+ON d.department_number = e.department_number</textarea>
     </div>
   </div>
 </section>
@@ -456,11 +547,11 @@ FROM departments, employees</code></pre>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <h2 class="h2">Let's review our types of joins</h2>
-      <h3 class="h3">Say we have two tables: one for assignments, one for students.</h3>
+      <p>Say we have two tables: one for assignments, one for students.</p>
     </div>
   </div>
   <div class="grid-x">
-    <div class="cell large-offset-3 large-6 medium-10 medium-offset-1 text-center slide-half-col">
+    <div class="cell medium-10 medium-offset-1 slide-half-col">
       <table class="base-table">
         <thead>
           <tr>
@@ -487,7 +578,7 @@ FROM departments, employees</code></pre>
         </tbody>
       </table>
     </div>
-    <div class="cell large-offset-3 large-6 medium-10 medium-offset-1 text-center slide-half-col">
+    <div class="cell medium-10 medium-offset-1 slide-half-col">
       <table class="base-table">
         <thead>
           <tr>
@@ -520,10 +611,14 @@ FROM departments, employees</code></pre>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <h3>Inner join</h3>
-      <pre><code class="language-sql">SELECT student, assignment
+      <pre class="slide-only"><code class="language-sql">SELECT student, assignment
 FROM assignments
 JOIN students
 ON assignments.class = students.class</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="130" cols="50" class="post-only">SELECT student, assignment
+FROM assignments
+JOIN students
+ON assignments.class = students.class</textarea>
       <table>
         <tbody>
           <tr>
@@ -687,7 +782,7 @@ FROM assignments, students</code></pre>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <h2 class="h2">Schema</h2>
-      <p>Wouldn't it be nice if you could spend all day writing out your <code>JOIN</code>s without having to always look up which table has which columns by clicking on them individually in SQLDeveloper? And wouldn't it be even better if you had some way of quickly visualizing the relationships between between tables?</p>
+      <p>Wouldn't it be nice if you could spend all day writing out your <code>JOIN</code>s without having to always look up which table has which columns by clicking on them individually in DBeaver? And wouldn't it be even better if you had some way of quickly visualizing the relationships between between tables?</p>
     </div>
   </div>
 </section>
@@ -695,15 +790,39 @@ FROM assignments, students</code></pre>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <h2 class="h2">Entity relationship diagrams</h2>
-      <p><img src="/images/er.png" alt="An entity relationship diagram"></p>  
+      <figure><img src="/images/er.png" alt="An entity relationship diagram"></figure>  
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p>You can make your own!</p>
       <p>DBeaver gives us two ways to generate an ER diagram.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p>1. If you double click on a table in the Database Navigator pane, you'll open up a panel of information about that table. One of the panel tabs is "ER Diagram", which show any <em>direct</em> relationships between the selected table and related tables in the database.</p>
       <figure>
         <img src="/images/invoices-erd.png" alt="An entity relationship diagram based on the invoices table.">
         <figcaption>Invoices and tables directly related to it.</figcaption>
       </figure>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p>2. You can create a <strong>custom</strong> diagram by right-clicking on your connection, and selecting <kbd>Create > Other... > ER Diagram > Next</kbd> and selecting the tables you want to include in your diagram.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p>Either way, your diagram comes with a good amount of information, including all columns, their data types, keys, and, particularly helpful, the arrows and crow's feet. This signify a one-to-many relationship.</p>
       <p>This will particularly come in handy when you're...</p>
     </div>
@@ -728,6 +847,12 @@ FROM vendors v
         ON li.account_number = gl.account_number
 WHERE (invoice_total - payment_total - credit_total) > 0
 ORDER BY vendor_name, line_item_amount DESC</code></pre>
+</div>
+</div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p>Tables can effectively be 'chained' together using joins.</p>
       <p class="callout alert">This can come in particularly handy when using an intermediary table to break up a many-to-many relationship into two one-to-many relationships.</p>
     </div>
@@ -770,11 +895,6 @@ ORDER BY v1.vendor_city</code></pre>
       <pre><code class="language-sql">SELECT invoice_number, vendor_name
 FROM vendors v, invoices i
 WHERE v.vendor_id = i.vendor_id</code></pre>
-      <h3>Outer join - implicit (a.k.a. non-ANSI) syntax</h3>
-      <p>The implicit syntax for an outer join also puts both tables in the <code>FROM</code> conditions, and uses <code>WHERE</code> in place of <code>ON</code>. A plus symbol enclosed by parentheses (<code>(+)</code>) indicates the table whose data will be included beyond the join.</p>
-      <pre><code class="language-sql">SELECT invoice_number, vendor_name
-FROM invoices i, vendors v
-WHERE i.vendor_id (+) = v.vendor_id</code></pre>
     </div>
   </div>
 </section>
@@ -786,9 +906,15 @@ WHERE i.vendor_id (+) = v.vendor_id</code></pre>
       <pre><code class="language-sql">SELECT invoice_number, vendor_name
 FROM invoices JOIN vendors
 USING (vendor_id)</code></pre>
+</div>
+</div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <h3><code>NATURAL</code></h3>
       <p><code>NATURAL</code>, however, <em>is</em> sloppy syntax, and should be avoided. It tells the database to <em>guess</em> what columns to join on. It only works if there is a single, identically named shared column. It's very poor for maintainability.</p>
-      <pre><code class="language-sql">/* Shame! */
+      <pre><code class="language-sql">-- Shame!
 SELECT invoice_number, vendor_name
 FROM invoices NATURAL JOIN vendors</code></pre>
     </div>
@@ -797,8 +923,14 @@ FROM invoices NATURAL JOIN vendors</code></pre>
 <section id="other">
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <h2 class="h2">Other ways to 'join' table data <span class="post-only">(that aren't JOINs)</span></h2>
-      <p>We're not going to dive into these today, but I want you to know about these things:</p>
+      <h2 class="h2">Another way to 'join' table data <span class="post-only">(that isn't a JOIN)</span></h2>
+      <p>We're not going to dive into this today, but I want you to have heard of this.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <h3 class="post-only">UNION</h3>
       <p>There is an operator called <code>UNION</code>. It's similar to a join, but it doesn't merge any rows. Instead it lets you add rows from multiple tables to a single results table. So, if you've got a table of current students, and a table of past students, you could do something like this:</p>
       <pre><code class="language-sql">SELECT 'current' AS status, 
