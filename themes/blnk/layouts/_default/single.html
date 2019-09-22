@@ -4,7 +4,9 @@
 			<div class="hero hero--page" style="background-image:url('/images/{{ .Params.featured_image }}')">
 				<nav class="page-nav">
 					<a class="button small primary page-nav__link" href="{{ .Site.BaseURL }}">Home</a>
+					{{ if in .File.Path "posts" }}
 					<a class="button small primary page-nav__link" href="/slides/{{ .RelPermalink }}">Slides</a>
+					{{ end }}
 				</nav>
 				<h1 class="page-title">{{ .Title }}</h1>
 			</div>

@@ -69,8 +69,13 @@ figcaption {
 
 .post .h2 {
     margin-top: 4rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     font-size: 2rem;
+}
+
+.post .callout .h2 {
+    margin-top: 1rem;
+    margin-bottom: .5rem;
 }
 
 @media (min-width: 768px) {
@@ -229,6 +234,7 @@ figcaption {
 
 pre > code {
     border: none;
+    padding-left: 0;
 }
 
 pre {
@@ -237,4 +243,8 @@ pre {
 
 .lab-questions li {
     margin-bottom: 1rem;
+}
+
+ol ol li {
+    list-style-type: lower-alpha;
 }
