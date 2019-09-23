@@ -6,7 +6,6 @@ featured_image: hackers.gif
 <div class="grid-container">
   <div class="grid-x grid-margin-x">
     <div class="cell small-10 small-offset-1">
-      <h2>Retrieving data from a single table</h2>
       <div class="callout alert"><strong>Due Date</strong>: Before 4:59pm, Monday, September 30th</div>
       <p>Write SELECT statements to produce the required results.</p>
       <p>Your submitted assignment should be a well formatted SQL file.</p>
