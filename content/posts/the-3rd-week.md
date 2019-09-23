@@ -41,7 +41,7 @@ summary: "This week we'll cover coding INNER JOINs to retrieve rows from multipl
 <section class="slide-only">
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <h2 class="h2">Happy Thursday!</h2>
+      <h2 class="h2">Happy Monday!</h2>
     </div>
   </div>
 </section>
@@ -369,12 +369,12 @@ WHERE ([filter logic] OR [more logic])
       <p>We match rows from each of the tables by selecting one column from each to match up.</p>
       <pre class="slide-only"><code class="language-sql">SELECT [columns] 
 FROM [table] 
-  JOIN [INNER|OUTER (RIGHT|LEFT)|FULL] 
+  [INNER|OUTER (RIGHT|LEFT)|FULL] JOIN
   [otherTable]
   ON [table].[column] = [otherTable].[column]</code></pre>
       <textarea data-code-mirror="sql" data-code-mirror-height="160" cols="50" class="post-only">SELECT [columns] 
 FROM [table] 
-  JOIN [INNER|OUTER (RIGHT|LEFT)|FULL] 
+  [INNER|OUTER (RIGHT|LEFT)|FULL] JOIN
   [otherTable]
   ON [table].[column] = [otherTable].[column]</textarea>
 </div>
