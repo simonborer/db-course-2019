@@ -30,6 +30,21 @@ today:
     </div>
   </div>
 </section>
+<section class="slide-only">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Quiz review</h2>
+      <p>Choose the value that matches <code>LIKE '_-%'</code></p>
+      <hr>
+      <ul class="no-bullet">
+        <li>❌ <code>ABCDEF</code></li>
+        <li>✅ <code>%-__</code></li>
+        <li>❌ <code>__-%%</code></li>
+        <li>❌ <code>AB-A</code></li>
+      </ul>
+    </div>
+  </div>
+</section>
 <section>
   <div class="grid-x">
     <div class="cell medium-10 medium-offset-1">

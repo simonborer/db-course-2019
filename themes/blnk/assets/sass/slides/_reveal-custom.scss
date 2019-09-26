@@ -45,3 +45,9 @@
 script[type="text/plain"] {
 	display: block;
 }
+.reveal ul.no-bullet {
+	margin-left: 0;
+}
+.reveal .no-bullet li {
+	list-style: none;
+}
