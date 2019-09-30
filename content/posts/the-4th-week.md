@@ -437,7 +437,7 @@ WHERE UPPER(alignment) LIKE ('%EVIL%')</code></pre>
         <li>Write a statement that returns the oldest incident (based on the occurrence date) from this dataset.</li>
         <li>Write a statement that returns the top 10 neighbourhoods with the most reported thefts.</li>
         <li>Write a statement that returns the top 5 neighbourhoods in terms of thefts, and a column that shows how many incidents they had above the average neighbourhood. <em>This may be a good case for a subquery.</em></li>
-        <li>Write a statement to insert your own character in the <code>characters_copy</code> table, with no null values. Give yourself the most hitpoints of any character (but only by one). Don't sneak a peak at the hitpoints column beforehand - your query can accomplish this.</li>
+        <li>Write a statement to insert your own character in the <code>characters_copy</code> table, with no null values. Give yourself the most hitpoints of any character (but only by one). Don't sneak a peek at the hitpoints column beforehand - your query can accomplish this.</li>
         <li>Wait, that looks suspicious. Write a statement to update your character so that you've got the fourth highest hitpoints.</li>
         <li>Get a list of all the subclasses that are schools and are associated with a character whose constitution stat is an even number.</li>
         <li>Write a statement that returns the earliest invoice for each line item description, provided that the line item description begins with a letter in the first half of the alphabet, and the vendor's last name ends with a letter in the second half of the alphabet. At which point, I'll admit, we're getting a little silly.</li>

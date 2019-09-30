@@ -206,7 +206,7 @@ featured_image: hackers.gif
           <li>
             <ol>
               <li>Write a SELECT statement that returns two columns from the General_Ledger_Accounts table: account_number and account_description. </li>
-              <li>The result set should have one row for each account number that has never been used or each value in the line_iems table that has a NULL value.</li>
+              <li>The result set should have one row for each account number that has never been used or each value in the line_items table that has a NULL value.</li>
               <li>Sort the final result set by account_number.</li>
               <li class="list-style-none"><em>Hint: what other table might help you accomplish this?</em></li>
             </ol>
