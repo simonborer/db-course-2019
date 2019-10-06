@@ -518,3 +518,204 @@ ORDER BY "Invoices" DESC</code></pre>
     </div>
   </div>
 </section>
+<section class="post-only">
+  <div class="grid-x">
+    <div class="cellmedium-10 medium-offset-1 post-section">
+      <h2 class="h2">Here's a little cheat sheet.</h2>
+      <ul>
+        <li>
+          <a href="#basicQuery">Basic query</a> 
+        </li>
+        <li><a href="#where">Where</a></li>
+        <li><a href="#alteringValues">Altering values - arithmetic and scalar functions</a></li>
+        <li><a href="#orderOfOperations">Order of operations</a></li>
+        <li><a href="#joins">JOINs</a></li>
+        <li><a href="#aggregateFunctions">Aggregate functions</a></li>
+        <li><a href="#groupBy">GROUP BY</a></li>
+        <li><a href="#crud">CRUD</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="post-only" id="basicQuery">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1 post-section">
+      <h2 class="h2">Basic query</h2>
+      <pre><code class="language-sql">SELECT [DISTINCT] {column(s)}
+FROM {table}
+-- optional
+WHERE {condition(s)}
+ORDER BY {column(s)} [ASC|DESC]
+LIMIT {number} OFFSET {number}
+</code></pre> 
+    </div>
+  </div>
+</section>
+<section id="where">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1 post-section">
+      <h2 class="h2">WHERE</h2>
+      <div class="callout">Values can include <strong>strings</strong>, <strong>numbers</strong>, and <strong>dates</strong>. Most often these values come from referencing a column name.</div>
+      <div class="callout">Operators can be comparative (=, <>, >=, <=), or built-in operators like <code>IN</code> for a list, <code>BETWEEN</code> for a range, <code>LIKE</code> for a pattern, or <code>IS NULL</code>. All built-in operators can be inverted with <code>NOT</code>.</div>
+      <div class="callout">Statements can be chained with logical operators: <code>AND</code>, <code>OR</code>, and <code>NOT</code></div>
+      <pre><code class="language-sql">SELECT {column(s)}
+FROM {table}
+WHERE {value} {operator} {value}
+  {logical operator} {value} {operator} {value}
+</code></pre> 
+    </div>
+  </div>
+</section>
+<section class="post-only" id="alteringValues">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1 post-section">
+      <h2 class="h2">Altering values</h2>
+      <div class="callout">Anywhere we can use values, we can alter them with arithmetic operators, or scalar (one-in, one-out) functions.</div>  
+      <pre><code class="language-sql">SELECT col1 * 5, REVERSE(col2) 
+FROM {table}</code></pre>
+    </div>
+  </div>
+</section>
+<section class="post-only">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="4" class="text-center">Common scalar functions</th>
+          </tr>
+          <tr>
+            <th>Name</th>
+            <th>Example</th>
+            <th>Example result</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Round</td>
+            <td><code class="language-sql">ROUND(57.9283, 2)</code></td>
+            <td>57.93</td>
+            <td>Returns a number rounded to the specified decimal place (defaults to no decimal).</td>
+          </tr>
+          <tr>
+            <td>In String</td>
+            <td><code class="language-sql">INSTR('Demodogs' , 'dog')</code></td>
+            <td>5</td>
+            <td>Returns the location of a substring in a string</td>
+          </tr>
+          <tr>
+            <td>Length</td>
+            <td><code class="language-sql">LENGTH('Mornings are for coffee and contemplation')</code></td>
+            <td>41</td>
+            <td>Returns the number of characters</td>
+          </tr>
+          <tr>
+            <td>Left trim</td>
+            <td><code class="language-sql">LTRIM(' MKULTRA    ')</code></td>
+            <td>'MKULTRA    '</td>
+            <td>Trims initial whitespace</td>
+          </tr>
+          <tr>
+            <td>Replace</td>
+            <td><code class="language-sql">REPLACE('High score: DUSTIN' , 'DUSTIN' , 'MADMAX')</code></td>
+            <td>High score: MADMAX</td>
+            <td>Replaces all of one string value with another.</td>
+          </tr>
+          <tr>
+            <td>Uppercase</td>
+            <td><code class="language-sql">UPPER('Why are you keeping this curiosity door locked?')</code></td>
+            <td>WHY ARE YOU KEEPING THIS CURIOSITY DOOR LOCKED?</td>
+            <td>Converts string to uppercase</td>
+          </tr>
+          <tr>
+            <td>System date</td>
+            <td><code class="language-sql">NOW()</code></td>
+            <td>2019-10-06 02:40:19.0</td>
+            <td>Returns the current database system date.</td>
+          </tr>
+          <tr>
+            <td>Modulus</td>
+            <td><code class="language-sql">MOD(11,5)</code></td>
+            <td>1</td>
+            <td>Returns the modulus (remainder) of two values</td>
+          </tr>
+          <tr>
+            <td>Coalesce</td>
+            <td><code class="language-sql">COALESCE(NULL,'Will Byers')</code></td>
+            <td>Will Byers</td>
+            <td>Replaces null values with specified value.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<section class="post-only" id="orderOfOperations">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1 post-section">
+      <h2 class="h2">Order of operations</h2>
+      <p>You can change the order in which operators execute with parentheses.  This applies to arithmetical operators, but also includes logical operators - <code>AND</code> & <code>OR</code>. Otherwise, operations follow BEDMAS - <strong>B</strong>rackets (a.k.a. parentheses), <strong>E</strong>xponents, <strong>D</strong>ivision and <strong>M</strong>ultiplication, <strong>A</strong>ddition and <strong>S</strong>ubtraction.</p>  
+    </div>
+  </div>
+</section>
+<section class="post-only" id="joins">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1 post-section">
+      <h2 class="h2">JOINs</h2>
+      <p>Joins merge rows between two tables by finding rows in each table that have a column that matches.</p>
+      <p>Joins are inner joins by default - only return rows that are matched.</p>
+      <p>Outer joins return rows that don't have a match in the other table.</p>
+      <p>One kind of outer join is a <code>RIGHT JOIN</code>, which includes rows from the first table that don't have a match, but excludes rows form the second table that don't have a match.</p>
+      <p>A <code>LEFT JOIN</code> does the opposite.</p>
+      <p>A <code>FULL JOIN</code> includes all rows from both tables, merging where it can.</p>
+      <p>A <code>SELF JOIN</code> creates a virtual copy of a table, and then joins to itself. This is usually for finding rows that match on certain rows but not others.</p>  
+      <pre><code class="language-sql">SELECT {columnName} 
+FROM {table1} {table1Alias}
+[LEFT|RIGHT|FULL] JOIN {table2} {table2Alias}
+ON {table1Alias}.{columnName} = {table2Alias}.{columnName}
+</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="post-only" id="aggregateFunctions">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1 post-section">
+      <h2 class="h2">Aggregate functions</h2>
+      <div class="callout">Aggregate functions can take in <em>many</em> values and return one value. The most common are <code>AVG()</code>, <code>SUM()</code>, <code>MIN()</code>, <code>MAX()</code>, and <code>COUNT()</code>.</div>
+      <pre><code class="language-sql">SELECT AVG({columnName}) FROM {table}</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="post-only" id="groupBy">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1 post-section">
+      <h2 class="h2">GROUP BY</h2>
+      <p><code>GROUP BY</code> lets you run aggregate functions against groups of rows within a table. These groups are created grouping rows together based on matching values from a specified column.</p>
+      <p>You can filter row groups using <code>HAVING</code>, just like you filter rows using <code>WHERE</code>.</p>
+      <pre><code class="language-sql">SELECT {columnName1}, AVG({columnName2})
+FROM {table}
+GROUP BY {columnName1}
+-- optional
+HAVING {value} {operator} {value}</code></pre>  
+    </div>
+  </div>
+</section>
+
+<section class="post-only" id="crud">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1 post-section">
+      <h2 class="h2">CRUD in SQL</h2>
+      <table>
+        <tbody>
+          <tr><td><strong>Create</strong></td><td><code>INSERT</code></td></tr>
+          <tr><td><strong>Read</strong></td><td><code>SELECT</code></td></tr>
+          <tr><td><strong>Update</strong></td><td><code>UPDATE</code></td></tr>
+          <tr><td><strong>Delete</strong></td><td><code>DELETE</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
