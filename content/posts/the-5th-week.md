@@ -1,384 +1,107 @@
 ---
-title: "Week 5 - Tables; Numeric Data; NVL"
-date: 2019-10-01T08:47:11+01:00
+title: "Week 5 - Database Design / Midterm Prep"
+date: 2019-10-05T08:47:11+01:00
 publishdate: 2019-09-02T08:47:11+01:00
-featured_image: space-time.jpg
-summary: "This week we'll cover how to create a test table; insert new data to a table; update existing data; delete data from a table; work with date/time data; various data types used in Oracle; functions for working with numeric data; functions for working with null data values; nvl and nvl2; converting data from one type to another."
+featured_image: arch.jpg
+summary: "This week we'll cover the basic steps to design a database; relationships between tables; identify tables and assign columns; identify primary and foreign keys; primary key constraints; foreign key constraints; midterm review."
 today:
   -
-    title: Lessons from the lab
-    id: labLessons
+    title: Steps to designing a database
+    id: design
   -
-    title: Creating tables
-    id: creatingTables
+    title: Midterm prep
+    id: midterm
   -
-    title: Constraints
-    id: constraints
-  -
-    title: Alter
-    id: alter
-  -
-    title: Lab
+    title: Assignment
     id: lab
 ---
-<!-- <% const today = page.today %>
-
-<section>
-  <h2 class="slide-only">Here's what we're going today</h2>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <ol class="toc">
-      <% today.forEach(item => { %>
-      	<li><a href="#<%= item.id %>"><%= item.title %></a></li>
-      <% }) %>
-      </ol>
-    </div>
-  </div>
-</section> -->
 <section class="slide-only">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Happy Thursday!</h2>
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Happy Monday!</h2>
     </div>
   </div>
 </section>
-<section id="<%- page.today[0].id %>">
+<section class="slide-only">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2"><%- page.today[0].title %></h2>
-      <p>You did pretty ok on the lab!</p>
-      <p>It was definitely a challenge, but I was still impressed. I marked it out of 7, and was pretty forgiving with things like syntax, and whether your queries actually, you know, worked.</p>
-      <p>Thank you for fighting through it, and I'm going to give you a little reward for your hard work.</p>
-      <p>Let's review...</p>
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Your midterm is on October 28th</h2>
+      <p>...during regular classroom hours.</p>
+    </div>
+  </div>
+</section>
+<section>
+    <h2 class="slide-only">Here's what we're going to do today:</h2>
+    <div class="grid-x">
+      <div class="cell large-10 large-offset-1">
+        <ol class="toc">
+          <li><a href="#design">Steps to designing a database</a></li>
+          <li><a href="#midterm">Midterm prep</a></li>
+          <li><a href="#lab">Lab</a></li>
+        </ol>
+      </div>
+    </div>
+</section>
+<section id="design">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Steps to designing a database</h2>
+      <p>It's time for us to take the next step beyond creating a database. It's time to <em>design</em> a database.</p>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 1</h2>
-      <p>Write a statement to return the average time<del>, rounded off to two decimal places,</del> of vehicle thefts <del>for each month. Only include occurrences between 2014 and 2017. Order the results from the latest time of day to the earliest.</del></p>
-      <pre><code class="language-sql">SELECT AVG(occurrencehour)
-FROM autotheft</code></pre> 
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Steps for designing a database</h2>
+      <ol>
+        <li>Identify data</li>
+        <li>Simplify data</li>
+        <li>Divide into tables and columns</li>
+        <li>Choose primary & foreign keys</li>
+        <li>Normalize</li>
+        <li>Index</li>
+      </ol>  
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Write a statement to return the average time, rounded off to two decimal places, of vehicle thefts <del>for each month</del>. Only include occurrences between 2014 and 2017. Order the results from the latest time of day to the earliest.</p>
-      <pre><code class="language-sql">SELECT ROUND(AVG(occurrencehour), 2) AS time_of_day
-FROM autotheft
-WHERE occurrenceyear BETWEEN 2014 AND 2017
-ORDER BY time_of_day DESC</code></pre> 
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Identifying data</h2>
+      <p>So far we've gotten datasets where the data has been selected for us. However, when designing a database, you'll often have to make descisions about what kinds of data are needed.</p>
+      <p>Can you identify what the data that we might need to store when setting up a typical e-commerce site?</p>
+      <div class="callout primary"><p>Try thinking first about the data <em>entities</em> (people, events, objects, etc.) that are important.</p></div>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Write a statement to return the average time, rounded off to two decimal places, of vehicle thefts for each month. Only include occurrences between 2014 and 2017. Order the results from the latest time of day to the earliest.</p>
-      <pre><code class="language-sql">SELECT occurrencemonth, 
-    ROUND(AVG(occurrencehour), 2) AS time_of_day
-FROM autotheft
-WHERE occurrenceyear BETWEEN 2014 AND 2017
-GROUP BY occurrencemonth
-ORDER BY time_of_day DESC</code></pre> 
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Simplifying data</h2>
+      <p>In this step, we break down our data into the smallest necessary pieces.</p>
+      <p>It's important to think of the current <strong>and potential future</strong> use-cases for the data.</p>
+      <p>How would you break down an address?</p>
+      <code>John Doe, 143 Humber Blvd., Rm 205, Toronto, ON, M7V 3X6</code>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 2</h2>
-      <p>Write a statement that shows a list of premises types<del> with more than 500 total thefts</del>.</p>
-      <pre><code class="language-sql">SELECT DISTINCT premisetype
-FROM autotheft</code></pre> 
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Dividing into tables and columns</h2>
+      <p>Tables are for <em>entities</em> (types of things).</p>
+      <p>Columns are for <em>attributes</em> (stuff about things).</p>
+      <p>Rows are for <em>instances</em> (things).</p>
+      <p>For example, if I need to keep track of people's phone numbers, the people are the entity, the numbers are the attribute, and the rows are the instances.</p>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Write a statement that shows a list of premises types with more than 500 total thefts.</p>
-      <pre><code class="language-sql">SELECT premisetype, COUNT(*) 
-FROM autotheft
-GROUP BY premisetype
-HAVING COUNT(*) > 500</code></pre> 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 3</h2>
-      <p>Write a statement that returns the oldest <del>incident</del> from this dataset.</p>
-      <pre><code class="language-sql">SELECT MIN(occurrencedate) 
-FROM autotheft</code></pre> 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Write a statement that returns the oldest incident from this dataset.</p>
-      <pre><code class="language-sql">SELECT event_unique_id, occurrencedate
-FROM autotheft
-WHERE occurrencedate = (
-    SELECT MIN(occurrencedate) FROM autotheft
-    )
-FETCH FIRST 1 ROW ONLY</code></pre> 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 4</h2>
-      <p>Write a statement that returns <del>the top</del> 10 neighbourhoods <del>that had the most reported thefts in 2017</del>.</p>
-      <pre><code class="language-sql">SELECT neighbourhood
-FROM autotheft
-FETCH FIRST 10 ROWS ONLY</code></pre> 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Write a statement that returns the top 10 neighbourhoods that had the most reported thefts <del>in 2017</del>.</p>
-      <pre><code class="language-sql">SELECT neighbourhood, COUNT(*) AS incidents 
-FROM autotheft
-GROUP BY neighbourhood
-ORDER BY incidents DESC
-FETCH FIRST 10 ROWS ONLY</code></pre> 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Write a statement that returns the top 10 neighbourhoods that had the most reported thefts in 2017.</p>
-      <pre><code class="language-sql">SELECT neighbourhood, COUNT(*) AS incidents 
-FROM autotheft
-WHERE reportedyear = 2017
-GROUP BY neighbourhood
-ORDER BY incidents DESC
-FETCH FIRST 10 ROWS ONLY</code></pre> 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 5</h2>
-      <p>Write a statement that returns the top 5 neighbourhoods in terms of thefts (in any year)<del>, and a column that shows how many incidents they had above the average neighbourhood</del>.</p>
-      <pre><code class="language-sql">SELECT neighbourhood, COUNT(*)
-FROM autotheft
-GROUP BY neighbourhood
-ORDER BY COUNT(*) DESC
-FETCH FIRST 5 ROW ONLY</code></pre> 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Write a statement that returns the <del>top 5 neighbourhoods in terms of thefts (in any year), and a column that shows how many incidents they had above the </del>average neighbourhood.</p>
-      <pre><code class="language-sql">SELECT AVG(COUNT(*))
-        FROM autotheft
-        GROUP BY neighbourhood</code></pre> 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Write a statement that returns the top 5 neighbourhoods in terms of thefts (in any year), and a column that shows how many incidents they had above the average neighbourhood.</p>
-      <pre><code class="language-sql">SELECT neighbourhood, COUNT(*),
-    COUNT(*) - (
-        SELECT AVG(COUNT(*))
-        FROM autotheft
-        GROUP BY neighbourhood
-    ) AS "More than average" 
-FROM autotheft
-GROUP BY neighbourhood
-ORDER BY "More than average" DESC
-FETCH FIRST 5 ROW ONLY</code></pre> 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 6</h2>
-      <p>Write a statement to insert your own character in the characters_copy table<del>, with no null values. Give yourself the most hitpoints of any character (but only by one)</del>.</p>
-      <pre><code class="language-sql">INSERT INTO characters_copy (character_id)
-VALUES ('34567')</code></pre> 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Write a statement to insert your own character in the characters_copy table<del>, with no null values</del>. Give yourself the most hitpoints of any character (but only by one).</p>
-      <pre><code class="language-sql">SELECT MAX(hitpoints) FROM characters_copy</code></pre>
-      <pre><code class="language-sql">INSERT INTO characters_copy (character_id, hitpoints)
-VALUES ('34567', 285)</code></pre> 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Write a statement to insert your own character in the characters_copy table<del>, with no null values</del>. Give yourself the most hitpoints of any character (but only by one).</p>
-      <pre><code class="language-sql">SELECT MAX(hitpoints) FROM characters_copy</code></pre>
-      <pre><code class="language-sql">INSERT INTO characters_copy (character_id, hitpoints)
-VALUES ('34567', (
-  SELECT MAX(hitpoints) + 1 FROM characters_copy)
-)</code></pre> 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Write a statement to insert your own character in the characters_copy table, with no null values. Give yourself the most hitpoints of any character (but only by one).</p>
-      <pre><code class="language-sql">SELECT MAX(hitpoints) FROM characters_copy</code></pre>
-      <pre><code class="language-sql">INSERT INTO characters_copy (
-    character_id, race, background, primary_class,
-    subclass, char_level, feats, hitpoints, armour_class, 
-    strength, dexterity, constitution, intelligence, wisdom, 
-    charisma, alignment, skills, weapons, spells
-)
-VALUES (
-  '34567', 'Half-Elf', 'Sailor', 'Druid', 'Circle of the Shepherd', 
-  9, 'Linguist', (
-    SELECT MAX(hitpoints) + 1 FROM characters_copy
-  ), 20, 24, 16, 24, 22, 24, 20, 'chaotic good', 'Stealth', 
-  'Longbow', 'Tree Stride'
-)</code></pre> 
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 7</h2>
-      <p>Wait, that looks suspicious. Write a statement to update your character so that you've got the fourth highest hitpoints.</p>
-      <pre><code class="language-sql">SELECT hitpoints FROM characters_copy
-WHERE character_id <> '34567'
-ORDER BY hitpoints DESC
-FETCH FIRST 4 ROWS WITH TIES</code></pre> 
-<pre><code class="language-sql">UPDATE characters_copy SET hitpoints='259'
-WHERE character_id='34567'</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-<pre><code class="language-sql">UPDATE characters_copy SET hitpoints=(
-    SELECT hitpoints FROM characters_copy
-    ORDER BY hitpoints DESC
-    OFFSET 2 ROWS
-    FETCH NEXT 1 ROW ONLY
-) - 1
-WHERE character_id='34567'</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 8</h2>
-      <p>Get a list of all the subclasses <del>that are schools and are associated with a character whose constitution stat is an even number</del>.</p>
-      <pre><code class="language-sql">SELECT DISTINCT subclass FROM characters_copy</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Get a list of all the subclasses that are schools <del>and are associated with a character whose constitution stat is an even number</del>.</p>
-      <pre><code class="language-sql">SELECT DISTINCT subclass 
-FROM characters_copy
-WHERE UPPER(subclass) LIKE ('%SCHOOL%')
-</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Get a list of all the subclasses that are schools and are associated with a character whose constitution stat is an even number.</p>
-      <pre><code class="language-sql">SELECT DISTINCT subclass 
-FROM characters_copy
-WHERE MOD(constitution, 2) = 0 
-  AND UPPER(subclass) LIKE ('%SCHOOL%')
-</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Question 8</h2>
-      <p>Write a statement that returns the earliest invoice for each line item description<del>, provided that the line item description begins with a letter in the first half of the alphabet, and the vendor's last name ends with a letter in the second half of the alphabet</del>.</p>
-      <pre><code class="language-sql">SELECT line_item_description, MIN(invoice_date) 
-FROM invoices 
-JOIN invoice_line_items
-USING(invoice_id)
-GROUP BY line_item_description
-</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Write a statement that returns the earliest invoice for each line item description, provided that the line item description begins with a letter in the first half of the alphabet<del>, and the vendor's last name ends with a letter in the second half of the alphabet</del>.</p>
-      <pre><code class="language-sql">SELECT line_item_description, MIN(invoice_date) 
-FROM invoices 
-JOIN invoice_line_items
-USING(invoice_id)
-GROUP BY line_item_description
-HAVING line_item_description BETWEEN 'A' AND 'M' 
-ORDER BY line_item_description
-</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Write a statement that returns the earliest invoice for each line item description, provided that the line item description begins with a letter in the first half of the alphabet, and the vendor's last name ends with a letter in the second half of the alphabet.</p>
-      <pre><code class="language-sql">SELECT line_item_description, MIN(invoice_date) FROM invoices 
-JOIN invoice_line_items
-USING(invoice_id)
-JOIN vendors
-USING(vendor_id)
-WHERE 
-  UPPER(SUBSTR(vendor_contact_last_name, -1, 1)) BETWEEN 'N' AND 'Z'
-GROUP BY line_item_description
-HAVING line_item_description BETWEEN 'A' AND 'M' 
-ORDER BY line_item_description
-</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Your reward</h2>
-      <p>I made you a <a href="<%= basePath %>/notes/week-4/cheatsheet.html" target="_blank">cheat sheet</a></p>  
-    </div>
-  </div>
-</section>
-<section id="<%= page.today[1].id %>">
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell medium-10 medium-offset-1">
       <h2 class="h2">So you want to create a table...</h2>
-      <p>As you go to make your first tables from scratch, a few things to know/remember:</p>
+      <p>As you go to make tables for your database, a few things to know/remember:</p>
       <ul>
         <li>Each cell should contain no more than one piece of data</li>
         <li>Columns are for categories of data</li>
@@ -390,7 +113,7 @@ ORDER BY line_item_description
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell medium-10 medium-offset-1">
       <h2 class="h2">Designing your table - the basics</h2>
       <p>For each column, you'll need to decide the following:</p>  <ul>
         <li>The name of the column</li>
@@ -403,28 +126,13 @@ ORDER BY line_item_description
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Column names...</p>
-      <ul>
-        <li>Must be <em>no more than </em>30 characters</li>
-        <li>Must start with a letter [A-Za-z]</li>
-        <li>Can include numbers, underscore, or hash (#)</li>
-        <li>Can<em>not</em> include whitespace</li>
-        <li>Must be unique for the user+database</li>
-        <li>Can<em>not</em> be reserved words</li>
-      </ul>  
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell medium-10 medium-offset-1">
       <p>Let's look at this code:</p>
       <pre><code class="language-sql">CREATE TABLE new_students
 (
-  student_id  NUMBER(6)     PRIMARY KEY,
-  last_name   VARCHAR2(15)  NOT NULL,
-  first_name  VARCHAR2(15),
+  student_id  INT(6)     PRIMARY KEY,
+  last_name   VARCHAR(15)  NOT NULL,
+  first_name  VARCHAR(15),
   gpa         NUMERIC(3, 2)
 )</code></pre>  
     </div>
@@ -432,7 +140,7 @@ ORDER BY line_item_description
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell medium-10 medium-offset-1">
       <p>Okay, now let's populate our table.</p>
       <p>Let's find the errors in these rows so we can insert them.</p>
       <pre><code class="language-sql">INSERT INTO new_students
@@ -448,14 +156,14 @@ VALUES(124, null, 'Chucky', 3.4);</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell medium-10 medium-offset-1">
       <p>The errors we just cleared were created by the <em>constraints</em> we made when creating the table.</p>  
     </div>
   </div>
 </section>
 <section id="<%= page.today[2].id %>">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell medium-10 medium-offset-1">
       <p>Constraints are:</p>
       <ul>
         <li>Primary key (both <code>UNIQUE</code> and <code>NOT NULL</code>)</li>
@@ -473,15 +181,15 @@ VALUES(124, null, 'Chucky', 3.4);</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell medium-10 medium-offset-1">
       <h2 class="h2">The foreign key constraint</h2>
       <pre><code class="language-sql">CREATE TABLE work_placements
 (
-  placement_id  NUMBER(6)     PRIMARY KEY,
-  student       NUMBER(6)     REFERENCES new_students(student_id),
-  country       VARCHAR2(20)  DEFAULT 'Canada'
-  name          VARCHAR2(15)
-)</code></pre>
+  placement_id  INT(6)     PRIMARY KEY,
+  student       INT(6)     REFERENCES new_students(student_id),
+  country       VARCHAR(20)  DEFAULT 'Canada',
+  name          VARCHAR(15)
+);</code></pre>
       <p>The syntax for creating a foreign key constraint is <code class="language-sql">REFERENCES {table}({columnName})</code></p>
       <p class="callout alert">If you try to create a foreign key constraint with an incompatible datatype, you'll get an error.</p>
     </div>
@@ -489,7 +197,7 @@ VALUES(124, null, 'Chucky', 3.4);</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell medium-10 medium-offset-1">
       <p>Try this:</p>
       <pre><code class="language-sql">INSERT INTO work_placements
 VALUES(123, 120, DEFAULT, 'Crystal Lake');</code></pre>
@@ -498,29 +206,17 @@ VALUES(123, 120, DEFAULT, 'Crystal Lake');</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Once you've cleared the error, run <code class="language-sql">SELECT * FROM work_placements</code></p>
+    <div class="cell medium-10 medium-offset-1">
+      <p>Now run <code class="language-sql">SELECT * FROM work_placements</code></p>
       <p>Note the value in the country column. We didn't insert that - how did it get there?</p>  
-      <p class="callout primary">Try using DEFAULT with SYSDATE - it can come in really handy!</p>
+      <p class="callout primary">Try using <code>DEFAULT</code> with <code>NOW()</code> - it can come in really handy!</p>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Oracle actually keeps track of all our constraints. We can query them!</p>
-      <pre><code class="language-sql">SELECT constraint_name, constraint_type, status 
-FROM user_constraints 
-WHERE table_name = UPPER('work_placements')</code></pre>  
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Our constraints are given generated names by Oracle.</p>
-      <p>However, Oracle isn't very good at naming things, so let's name them ourselves!</p>
-      <p>A good naming conventions is [table_name]_[column_name]_[constraint_shortform]</p>
+    <div class="cell medium-10 medium-offset-1">
+      <p>A good naming convention for constraints is [table_name]_[column_name]_[constraint_shortform]</p>
       <table><thead>
         <tr>
           <th>Constraint</th>
@@ -554,84 +250,270 @@ WHERE table_name = UPPER('work_placements')</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Let's try naming our constraints!</p>
-      <pre><code class="language-sql">DROP TABLE work_placements;
-CREATE TABLE work_placements (
-  placement_id  NUMBER(6)     
-    CONSTRAINT work_placements_placement_id_pk PRIMARY KEY,
-  student       NUMBER(6)     
-    CONSTRAINT work_placements_student_fk REFERENCES new_students(student_id),
-  country       VARCHAR2(20)  
-    DEFAULT 'Canada',
-  name          VARCHAR2(15)  
-    CONSTRAINT work_placements_name_ck CHECK (SUBSTR(name, 1, 1) BETWEEN 'A' AND 'M')
-);
-SELECT * FROM user_constraints WHERE table_name = UPPER('work_placements');</code></pre>  
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell medium-10 medium-offset-1">
       <p><strong>Q: Can you define more than one primary key?</strong></p>
       <p>A: Yes! They're often used with 'bridging' tables that are created to resolve many-to-many relationships.</p>
       <p><strong>Q: Can you add or otherwise change the constraints to an existing table?</strong></p>
       <p>A: Yup! Just use the <code>ALTER TABLE</code> command. <code class="language-sql">ALTER TABLE {tableName} ADD CONSTRAINT {constraintName} {constraint}</code>.</p>
-      <p><strong>Q: Can I specify that if the row referenced by a foreign key is deleted, that should also drop the with the foreign key?</strong></p>
+      <p><strong>Q: Can I specify that if the row referenced by a foreign key is deleted, that should also drop the foreign key?</strong></p>
       <p>A: Yes, but that's a bold move! You can add the command <code class="language-sql">ON DELETE CASCADE</code> to your constraint definition, like this: <code class="language-sql">CONSTRAINT work_placements_student_fk REFERENCES new_students(student_id) ON DELETE CASCADE</code></p>  
     </div>
   </div>
 </section>
-<section id="<%= page.today[3].id %>">
+<section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">ALTER TABLE</h2>
-      <p>We can alter our tables in a number of ways.</p>
-      <pre><code class="language-sql">ALTER TABLE work_placements
-DROP CONSTRAINT work_placements_name_ck</code></pre>
-      <p>In addition to adding and dropping, you can also <code>ENABLE</code> and <code>DISABLE</code> them.</p>
-      <pre><code class="language-sql">ALTER TABLE
-ADD {columnName} {dataType}</code></pre>
-      <pre><code class="language-sql">ALTER TABLE
-DROP COLUMN {columnName}</code></pre>
-      <pre><code class="language-sql">ALTER TABLE
-MODIFY COLUMN {columnName} {dataType|attribute}</code></pre>  
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Choosing keys</h2>
+      <p>Sometimes, there will be an obvious attribute (column) that acts as a 'fingerprint' for each instance (row).</p>
+      <p>Most times, however, you'll need to create your primary key from scratch. This is a good thing - it means that your primary key doesn't need to worry about being anything but your primary key.</p>
+      <p>To create a foreign key, you need two entities (tables) that have a relationship, where one of them has unique records that can be referenced by the other.</p>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Other commands that change tables</h2>
-      <pre><code class="language-sql">DROP TABLE {tableName}</code></pre>
-      <pre><code class="language-sql">RENAME TABLE {tableName} TO {newName}</code></pre>
-      <pre><code class="language-sql">TRUNCATE TABLE {tableName}
--- drops the data, but not the table structure</code></pre>
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Normalization</h2>
+      <p>Normalization is a the process of separating your data to reduce redundancy.</p>
+      <p>Most of the tables we've worked with so far are already normalized.</p>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Indexing</h2>
-      <p>Indices are a tool that Oracle uses to speed up queries. Great for large databases. Probably unnecessary for anything we're working with in class. Plus, they're automatically created for primary and foreign keys.</p>
-      <p><em>That being said</em>, if you want to create one for a column that is going to be accessed a lot, here's how you do it:</p>
-      <pre><code class="language-sql">CREATE INDEX new_students_last_name_ix
-ON new_students(last_name)</code></pre>  
+    <div class="cell medium-10 medium-offset-1">
+      <p>Normalization is required when, for instance, you have repeating columns.</p>
+      <p>If we had a table that contained one row for each person registered at the library, with columns for each book that they are currently borrowing, that table would need normalization.</p>
+      <table><thead>
+        <tr>
+          <th>first name</th>
+          <th>last name</th>
+          <th>card number</th>
+          <th>book_1</th>
+          <th>book_2</th>
+          <th>...</th>
+        </tr>
+      </thead><tbody>
+        <tr>
+          <td>Simon</td>
+          <td>Borer</td>
+          <td>1234567</td>
+          <td>How To Cook For Humans</td>
+          <td>How To Cook Forty Humans</td>
+          <td>...</td>
+        </tr>
+      </tbody></table>
     </div>
   </div>
 </section>
-<section id="<%= page.today[4].id %>">
+<section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Lab time!</h2>
+    <div class="cell medium-10 medium-offset-1">
+      <p>Normalization is also required when you have redundant data.</p>
+      <p>If we had a table that had a record for every time anyone took a book out of the library, that table would need normalization.</p>
+      <table><thead>
+        <tr>
+          <th>first name</th>
+          <th>last name</th>
+          <th>card number</th>
+          <th>book</th>
+          <th>date</th>
+        </tr>
+      </thead><tbody>
+        <tr>
+          <td>Simon</td>
+          <td>Borer</td>
+          <td>1234567</td>
+          <td>Databases for Dummies</td>
+          <td>31-10-2019</td>
+        </tr>
+        <tr>
+          <td>Simon</td>
+          <td>Borer</td>
+          <td>1234567</td>
+          <td>Self-Esteem for Dummies</td>
+          <td>31-10-2019</td>
+        </tr>
+      </tbody></table>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <p>To normalize these tables, we'd need to break the data down into 3 tables:</p>
+      <ul>
+        <li><strong>Table 1</strong>: Each registered person</li>
+        <li><strong>Table 2</strong>: Each book</li>
+        <li><strong>Table 3</strong>: Each instance of a book being borrowed</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Why three tables?</h2>
+      <p>If we were to try to build our library table with <em>only</em> one table for registered people and one table for each book, that would create a <em>many-to-many</em> relationship - many people can take out one book, and many books can be taken out by one person.</p>
+      <p>To keep track of who took out which book, we'd have to have multiple columns of an indeterminate number, i.e. borrowed_book_1, borrowed_book_2, etc.</p>
+      <p>When we design our databases, we resolve these many-to-many relationships with <em>bridging tables</em>. In this case, our bridging table is a table for each time a book is borrowed. This table references <em>both</em> the books table and the people table.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <h2>Creating tables</h2>
+      <!-- Describe PK and FK -->
+      <p>Last week we covered the basics of creating, altering and dropping a table, as well as inserting data, updating columns, etc.</p>
+    </div>
+  </div>
+</section>
+<section id="sequence">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2"><code>AUTO_INCREMENT</code></h2>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <pre class="slide-only"><code class="language-sql">CREATE TABLE books (
+  book_id INT(11) NOT NULL AUTO_INCREMENT,
+  author_first_name VARCHAR(50),
+  author_last_name VARCHAR(50),
+  CONSTRAINT book_pk PRIMARY KEY (book_id)
+);</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="160" cols="50" class="post-only">CREATE TABLE books (
+  book_id INT(11) NOT NULL AUTO_INCREMENT,
+  author_first_name VARCHAR(50),
+  author_last_name VARCHAR(50),
+  CONSTRAINT book_pk PRIMARY KEY (book_id)
+);</textarea>
+      <p>Create a table called <code>books</code> with three columns.</p>
+      <p>The <code>book_id</code> column can't be empty when inserting data, and will automatically be given a value one greater than the previous row.</p>
+      <p>The <code>author_first_name</code> and <code>author_last_name</code> columns can have up to 50 characters.</p>
+      <p>Finally, we identify the table's primary key (<code>book_id</code>). This constraint means that the value in this column has to be unique. We give it a name (<code>book_pk</code>) so we can reference it elsewhere.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <p>If you need a primary key, don't write them out by hand - just let <code>AUTO-INCREMENT</code> do it's thing!</p>
+      <pre class="slide-only"><code class="language-sql">-- You can omit your primary key from your list of columns
+INSERT INTO books (author_first_name, author_last_name) VALUES ('Stephen', 'King');
+-- OR if you don't want to write out all your columns, you can just pass NULL
+INSERT INTO books VALUES (NULL, 'Stephen', 'King');</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="160" cols="50" class="post-only">-- You can omit your primary key from your list of columns
+INSERT INTO books (author_first_name, author_last_name) VALUES ('Stephen', 'King');
+-- OR if you don't want to write out all your columns, you can just pass NULL
+INSERT INTO books VALUES (NULL, 'Stephen', 'King');</textarea>
+    </div>
+  </div>
+</section>
+<section id="midterm">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Midterm prep</h2>
+      <p>Let's work with the invoices table to prep for the midterm.</p>
+      <p>The midterm <em>may</em> include content from <em>any</em> of our classes.</p>
+      <p>If you know your way around the different table joins and summary functions, you'll probably be ok.</p>
+      <p>What we cover today will have a couple of additions/clarifications, but mostly we'll be going over stuff we've talked about already.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <p>In this example, we use a <code>JOIN</code> to find all vendors with an unpaid invoice:</p>
+      <pre><code class="language-sql">-- Select all columns from vendors
+SELECT DISTINCT v.*
+-- Left join vendors and invoices
+FROM vendors v
+LEFT JOIN invoices i
+    ON v.vendor_id = i.vendor_id
+-- Filter for an invoice id with no payment date
+WHERE payment_date IS NULL
+    AND invoice_id IS NOT NULL</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <p>In this example, we format a summary query to make a readable output showing vendors that have a balance owing.</p>
+      <pre><code class="language-sql">SELECT CONCAT(v.vendor_name,
+  ' owes us $',
+  SUM(invoice_total - payment_total - credit_total)) 
+    AS "Who owes what"
+FROM invoices i
+JOIN vendors v ON i.vendor_id = v.vendor_id
+WHERE invoice_total - payment_total - credit_total > 0
+GROUP BY v.vendor_id, v.vendor_name</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <p>In this example, we see what vendors have more than 2 invoices.</p>
+      <pre><code class="language-sql">SELECT 
+    vendor_id AS "Vendor ID", 
+    COUNT(invoice_id) AS "Invoices"
+FROM vendors
+JOIN invoices
+    USING(vendor_id)
+GROUP BY vendor_id
+HAVING COUNT(invoice_id) > 2
+ORDER BY "Invoices" DESC</code></pre>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">The Feynmann technique</h2>
+      <p>The Feynmann technique is a way to study. It's very simple and effective.</p>
       <ol>
-        <li>Create 3 tables. Each should have a primary key, and a foreign key that references one of your other tables' primary key. Each should have 4 columns. Use 4 different data types. Use at least 2 kinds of constraint besides primary and foreign keys. Use at least 1 default value.</li>
-        <li>Insert at least 3 rows of data into each table.</li>
-        <li>Write a statement that does a FULL JOIN on all three tables.</li>
-        <li>Add a column to one of your tables.</li>
-        <li>Rename one of your tables.</li>
+        <li>Without looking at your notes, write down an explanation of the concept you want to study. Write it as though you're teaching it, using plain language. The purpose of this is identify what you know and what you don't know.</li>
+        <li>Whatever you don't know, look up. Repeat step 1.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Assignment time!</h2>
+      <p class="slide-only">See <a href="/posts/the-5th-week/#lab" target="_blank">notes<span class="show-for-sr"> Opens in a new tab</span></a></p>
+    </div>
+  </div>
+</section>
+<section id="lab" class="post-only">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <p>As this is prep for your midterm, try doing as much as you can without looking at the notes.</p>
+      <ol>
+        <li>Write a query that uses an alias</li>
+        <li>Write a query that concatenates two column names and a string</li>
+        <li>Query the dual table to divide the sum of 848 and 1126 from the sum of 45 plus 2 (using the order of operations)</li>
+        <li>Write a query that excludes rows based on a pattern. This pattern should match more than one value.</li>
+        <li>Write a query that sorts things by the third last letter</li>
+        <li>Using <code>dual</code>, <em>and without hardcoding the current date</em>, find out how many days are between now and Hallowe'en, rounded off to the full day</li>
+        <li>Write a query that shows all the invoices if they don't have a listing in <code>invoice_line_items</code></li>
+        <li>Write a query that joins invoices, vendors, and vendor_contacts that won't exclude any rows from any of the tables</li>
+        <li>Write a query that counts how many invoices there are</li>
+        <li>Write a query that gets a list of all the vendors with no invoices</li>
+        <li>Write a query that lists all the vendor names, and if they have invoices, list the line item description.</li>
+        <li>Write a query that gets the average balance owing from all invoices</li>
+        <li>Write a query that gets the sum of all the invoices in the month of July (any year)</li>
+        <li>Write a query that gets all the vendor ids, along with the most and least they've paid on an invoice, assuming those two numbers are different</li>
+        <li>Write a query that gets all the invoices where the credit total is more than average</li>
+        <li>Create a table of books. Include books with more than one author. Include all the information you think a library might use.</li>
+        <li>Create a table of authors. Include authors who have written more than one book in the previous table. Update the previous table if necessary.</li>
+        <li>Create a bridging table between the two. Write statements to update the previous tables if necessary.</li>
       </ol>
     </div>
   </div>

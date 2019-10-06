@@ -1,9 +1,9 @@
 ---
-title: "Week 6 - Tables; Numeric Data; NVL"
+title: "Week 5 - Tables; Numeric Data; NVL"
 date: 2019-10-01T08:47:11+01:00
 publishdate: 2019-09-02T08:47:11+01:00
 featured_image: space-time.jpg
-summary: "This week we'll work with date/time data; various data types used in MySQL; functions for working with numeric data; functions for working with null data values; nvl and nvl2; converting data from one type to another; normalization; how to define data elements; stored procedures."
+summary: "This week we'll cover how to create a test table; insert new data to a table; update existing data; delete data from a table; work with date/time data; various data types used in Oracle; functions for working with numeric data; functions for working with null data values; nvl and nvl2; converting data from one type to another."
 today:
   -
     title: Lessons from the lab
@@ -21,6 +21,20 @@ today:
     title: Lab
     id: lab
 ---
+<!-- <% const today = page.today %>
+
+<section>
+  <h2 class="slide-only">Here's what we're going today</h2>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <ol class="toc">
+      <% today.forEach(item => { %>
+      	<li><a href="#<%= item.id %>"><%= item.title %></a></li>
+      <% }) %>
+      </ol>
+    </div>
+  </div>
+</section> -->
 <section class="slide-only">
   <div class="grid-x">
     <div class="cell medium-10 medium-offset-1">
