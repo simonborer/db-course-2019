@@ -45,14 +45,6 @@ today:
 <section id="design">
   <div class="grid-x">
     <div class="cell medium-10 medium-offset-1">
-      <h2 class="h2">Steps to designing a database</h2>
-      <p>It's time for us to take the next step beyond creating a database. It's time to <em>design</em> a database.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell medium-10 medium-offset-1">
       <h2 class="h2">Steps for designing a database</h2>
       <ol>
         <li>Identify data</li>
@@ -69,7 +61,7 @@ today:
   <div class="grid-x">
     <div class="cell medium-10 medium-offset-1">
       <h2 class="h2">Identifying data</h2>
-      <p>So far we've gotten datasets where the data has been selected for us. However, when designing a database, you'll often have to make descisions about what kinds of data are needed.</p>
+      <p>So far we've gotten datasets where the data has been selected for us. However, when designing a database, you'll often have to make decisions about what kinds of data are needed.</p>
       <p>Can you identify what the data that we might need to store when setting up a typical e-commerce site?</p>
       <div class="callout primary"><p>Try thinking first about the data <em>entities</em> (people, events, objects, etc.) that are important.</p></div>
     </div>
@@ -93,7 +85,7 @@ today:
       <p>Tables are for <em>entities</em> (types of things).</p>
       <p>Columns are for <em>attributes</em> (stuff about things).</p>
       <p>Rows are for <em>instances</em> (things).</p>
-      <p>For example, if I need to keep track of people's phone numbers, the people are the entity, the numbers are the attribute, and the rows are the instances.</p>
+      <p>For example, if I need to keep track of people's phone numbers, the people are the entity, the numbers are the attribute, and each person is an instance.</p>
     </div>
   </div>
 </section>
@@ -103,7 +95,7 @@ today:
       <h2 class="h2">So you want to create a table...</h2>
       <p>As you go to make tables for your database, a few things to know/remember:</p>
       <ul>
-        <li>Each cell should contain no more than one piece of data</li>
+        <li>Each cell should contain no more than one piece of usable data</li>
         <li>Columns are for categories of data</li>
         <li>Rows are for instances of data</li>
         <li>Tables can only be created in a db if you have permission (don't worry - you do!)</li>
@@ -270,6 +262,50 @@ VALUES(123, 120, DEFAULT, 'Crystal Lake');</code></pre>
     </div>
   </div>
 </section>
+<section id="sequence">
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2"><code>AUTO_INCREMENT</code></h2>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <pre class="slide-only"><code class="language-sql">CREATE TABLE books (
+  book_id INT(11) NOT NULL AUTO_INCREMENT,
+  author_first_name VARCHAR(50),
+  author_last_name VARCHAR(50),
+  CONSTRAINT book_pk PRIMARY KEY (book_id)
+);</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="160" cols="50" class="post-only">CREATE TABLE books (
+  book_id INT(11) NOT NULL AUTO_INCREMENT,
+  author_first_name VARCHAR(50),
+  author_last_name VARCHAR(50),
+  CONSTRAINT book_pk PRIMARY KEY (book_id)
+);</textarea>
+      <p>Create a table called <code>books</code> with three columns.</p>
+      <p>The <code>book_id</code> column can't be empty when inserting data, and will automatically be given a value one greater than the previous row.</p>
+      <p>The <code>author_first_name</code> and <code>author_last_name</code> columns can have up to 50 characters.</p>
+      <p>Finally, we identify the table's primary key (<code>book_id</code>). This constraint means that the value in this column has to be unique. We give it a name (<code>book_pk</code>) so we can reference it elsewhere.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <p>If you need a primary key, don't write them out by hand - just let <code>AUTO-INCREMENT</code> do it's thing!</p>
+      <pre class="slide-only"><code class="language-sql">-- You can omit your primary key from your list of columns
+INSERT INTO books (author_first_name, author_last_name) VALUES ('Stephen', 'King');
+-- OR if you don't want to write out all your columns, you can just pass NULL
+INSERT INTO books VALUES (NULL, 'Stephen', 'King');</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="160" cols="50" class="post-only">-- You can omit your primary key from your list of columns
+INSERT INTO books (author_first_name, author_last_name) VALUES ('Stephen', 'King');
+-- OR if you don't want to write out all your columns, you can just pass NULL
+INSERT INTO books VALUES (NULL, 'Stephen', 'King');</textarea>
+    </div>
+  </div>
+</section>
 <section>
   <div class="grid-x">
     <div class="cell medium-10 medium-offset-1">
@@ -357,59 +393,6 @@ VALUES(123, 120, DEFAULT, 'Crystal Lake');</code></pre>
       <p>If we were to try to build our library table with <em>only</em> one table for registered people and one table for each book, that would create a <em>many-to-many</em> relationship - many people can take out one book, and many books can be taken out by one person.</p>
       <p>To keep track of who took out which book, we'd have to have multiple columns of an indeterminate number, i.e. borrowed_book_1, borrowed_book_2, etc.</p>
       <p>When we design our databases, we resolve these many-to-many relationships with <em>bridging tables</em>. In this case, our bridging table is a table for each time a book is borrowed. This table references <em>both</em> the books table and the people table.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell medium-10 medium-offset-1">
-      <h2>Creating tables</h2>
-      <!-- Describe PK and FK -->
-      <p>Last week we covered the basics of creating, altering and dropping a table, as well as inserting data, updating columns, etc.</p>
-    </div>
-  </div>
-</section>
-<section id="sequence">
-  <div class="grid-x">
-    <div class="cell medium-10 medium-offset-1">
-      <h2 class="h2"><code>AUTO_INCREMENT</code></h2>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell medium-10 medium-offset-1">
-      <pre class="slide-only"><code class="language-sql">CREATE TABLE books (
-  book_id INT(11) NOT NULL AUTO_INCREMENT,
-  author_first_name VARCHAR(50),
-  author_last_name VARCHAR(50),
-  CONSTRAINT book_pk PRIMARY KEY (book_id)
-);</code></pre>
-      <textarea data-code-mirror="sql" data-code-mirror-height="160" cols="50" class="post-only">CREATE TABLE books (
-  book_id INT(11) NOT NULL AUTO_INCREMENT,
-  author_first_name VARCHAR(50),
-  author_last_name VARCHAR(50),
-  CONSTRAINT book_pk PRIMARY KEY (book_id)
-);</textarea>
-      <p>Create a table called <code>books</code> with three columns.</p>
-      <p>The <code>book_id</code> column can't be empty when inserting data, and will automatically be given a value one greater than the previous row.</p>
-      <p>The <code>author_first_name</code> and <code>author_last_name</code> columns can have up to 50 characters.</p>
-      <p>Finally, we identify the table's primary key (<code>book_id</code>). This constraint means that the value in this column has to be unique. We give it a name (<code>book_pk</code>) so we can reference it elsewhere.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell medium-10 medium-offset-1">
-      <p>If you need a primary key, don't write them out by hand - just let <code>AUTO-INCREMENT</code> do it's thing!</p>
-      <pre class="slide-only"><code class="language-sql">-- You can omit your primary key from your list of columns
-INSERT INTO books (author_first_name, author_last_name) VALUES ('Stephen', 'King');
--- OR if you don't want to write out all your columns, you can just pass NULL
-INSERT INTO books VALUES (NULL, 'Stephen', 'King');</code></pre>
-      <textarea data-code-mirror="sql" data-code-mirror-height="160" cols="50" class="post-only">-- You can omit your primary key from your list of columns
-INSERT INTO books (author_first_name, author_last_name) VALUES ('Stephen', 'King');
--- OR if you don't want to write out all your columns, you can just pass NULL
-INSERT INTO books VALUES (NULL, 'Stephen', 'King');</textarea>
     </div>
   </div>
 </section>
@@ -551,7 +534,7 @@ LIMIT {number} OFFSET {number}
     </div>
   </div>
 </section>
-<section id="where">
+<section class="post-only" id="where">
   <div class="grid-x">
     <div class="cell medium-10 medium-offset-1 post-section">
       <h2 class="h2">WHERE</h2>
