@@ -450,7 +450,7 @@ JOIN invoices
     USING(vendor_id)
 GROUP BY vendor_id
 HAVING COUNT(invoice_id) > 2
-ORDER BY "Invoices" DESC</code></pre>
+ORDER BY COUNT(invoice_id) DESC</code></pre>
     </div>
   </div>
 </section>
