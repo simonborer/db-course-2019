@@ -691,7 +691,7 @@ ON assignments.class = students.class</code></pre>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <h3>Mimicing a Full (outer) join</h3>
-      <p>Unlike most other SQL-driven RDBMS', MySQL does not feature a <code>FULL JOIN</code>. However, we can mimic it with the <code>UNION</code> operator, which combines queries (while omitting duplicate rows).</p>
+      <p>Unlike most other SQL-driven RDBMS', MySQL does not feature a <code>FULL JOIN</code>. However, we can mimic it with the <code>UNION</code> clause, which combines queries (while omitting duplicate rows).</p>
       <p>If we create a <code>UNION</code> between a right join and a left join, we get an identical result to a full join.</p>
       <pre><code class="language-sql">SELECT student, assignment FROM assignments
 LEFT JOIN students
