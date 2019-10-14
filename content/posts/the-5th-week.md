@@ -651,11 +651,11 @@ FROM {table}</code></pre>
       <p>Outer joins return rows that don't have a match in the other table.</p>
       <p>One kind of outer join is a <code>RIGHT JOIN</code>, which includes rows from the first table that don't have a match, but excludes rows form the second table that don't have a match.</p>
       <p>A <code>LEFT JOIN</code> does the opposite.</p>
-      <p>A <code>FULL JOIN</code> includes all rows from both tables, merging where it can.</p>
+      <p><code>FULL JOIN</code>s are not a feature of MySQL, but we can mimic them with a <code>UNION</code> of a right join and a left join.</p>
       <p>A <code>SELF JOIN</code> creates a virtual copy of a table, and then joins to itself. This is usually for finding rows that match on certain rows but not others.</p>  
       <pre><code class="language-sql">SELECT {columnName} 
 FROM {table1} {table1Alias}
-[LEFT|RIGHT|FULL] JOIN {table2} {table2Alias}
+[LEFT|RIGHT] JOIN {table2} {table2Alias}
 ON {table1Alias}.{columnName} = {table2Alias}.{columnName}
 </code></pre>
     </div>

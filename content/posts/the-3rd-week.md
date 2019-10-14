@@ -369,12 +369,12 @@ WHERE ([filter logic] OR [more logic])
       <p>We match rows from each of the tables by selecting one column from each to match up.</p>
       <pre class="slide-only"><code class="language-sql">SELECT [columns] 
 FROM [table] 
-  [INNER|OUTER (RIGHT|LEFT)|FULL] JOIN
+  [INNER|OUTER (RIGHT|LEFT)] JOIN
   [otherTable]
   ON [table].[column] = [otherTable].[column]</code></pre>
       <textarea data-code-mirror="sql" data-code-mirror-height="160" cols="50" class="post-only">SELECT [columns] 
 FROM [table] 
-  [INNER|OUTER (RIGHT|LEFT)|FULL] JOIN
+  [INNER|OUTER (RIGHT|LEFT)] JOIN
   [otherTable]
   ON [table].[column] = [otherTable].[column]</textarea>
 </div>
@@ -394,7 +394,6 @@ FROM [table]
       <p>Inner joins <strong>only</strong> include data from rows <strong>where a match is found in both tables.</strong></p>
       <p>Left outer joins include data from rows where a match is found in both tables <strong>plus rows from the first table</strong>.
       <p>Right outer joins include data from rows where a match is found in both tables <strong>plus rows from the second table</strong>.</p>
-      <p>Full joins include data from <strong>both tables</strong>.</p>
     </div>
   </div>
 </section>
@@ -691,11 +690,16 @@ ON assignments.class = students.class</code></pre>
 <section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <h3>Full (outer) join</h3>
-      <pre><code class="language-sql">SELECT student, assignment
-FROM assignments
-FULL JOIN students
-ON assignments.class = students.class</code></pre>
+      <h3>Mimicing a Full (outer) join</h3>
+      <p>Unlike most other SQL-driven RDBMS', MySQL does not feature a <code>FULL JOIN</code>. However, we can mimic it with the <code>UNION</code> operator, which combines queries (while omitting duplicate rows).</p>
+      <p>If we create a <code>UNION</code> between a right join and a left join, we get an identical result to a full join.</p>
+      <pre><code class="language-sql">SELECT student, assignment FROM assignments
+LEFT JOIN students
+  ON assignments.class = students.class
+UNION
+SELECT student, assignment FROM assignments
+RIGHT JOIN students
+  ON assignments.class = students.class</code></pre>
       <table>
         <tbody>
           <tr>
@@ -707,12 +711,12 @@ ON assignments.class = students.class</code></pre>
             <td>Exam</td>
           </tr>
           <tr>
-            <td>Ryan</td>
-            <td><code>(null)</code></td>
-          </tr>
-          <tr>
             <td><code>(null)</code></td>
             <td>Lab</td>
+          </tr>
+          <tr>
+            <td>Ryan</td>
+            <td><code>(null)</code></td>
           </tr>
         </tbody>
       </table>
@@ -727,42 +731,15 @@ ON assignments.class = students.class</code></pre>
 FROM assignments, students</code></pre>
       <table>
         <tbody>
-          <tr>
-            <td>Birinder</td>
-            <td>Paper</td>
-          </tr>
-          <tr>
-            <td>Amandeep</td>
-            <td>Paper</td>
-          </tr>
-          <tr>
-            <td>Ryan</td>
-            <td>Paper</td>
-          </tr>
-          <tr>
-            <td>Birinder</td>
-            <td>Exam</td>
-          </tr>
-          <tr>
-            <td>Amandeep</td>
-            <td>Exam</td>
-          </tr>
-          <tr>
-            <td>Ryan</td>
-            <td>Exam</td>
-          </tr>
-          <tr>
-            <td>Birinder</td>
-            <td>Lab</td>
-          </tr>
-          <tr>
-            <td>Amandeep</td>
-            <td>Lab</td>
-          </tr>
-          <tr>
-            <td>Ryan</td>
-            <td>Lab</td>
-          </tr>
+          <tr><td>Birinder</td><td>Lab</td></tr>
+          <tr><td>Birinder</td><td>Paper</td></tr>
+          <tr><td>Birinder</td><td>Exam</td></tr>
+          <tr><td>Amandeep</td><td>Lab</td></tr>
+          <tr><td>Amandeep</td><td>Paper</td></tr>
+          <tr><td>Amandeep</td><td>Exam</td></tr>
+          <tr><td>Ryan</td><td>Lab</td></tr>
+          <tr><td>Ryan</td><td>Paper</td></tr>
+          <tr><td>Ryan</td><td>Exam</td></tr>
         </tbody>
       </table>
     </div>
