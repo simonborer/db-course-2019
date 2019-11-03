@@ -27,7 +27,7 @@ today:
 <section class="slide-only">
   <div class="grid-x">
     <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Happy Thursday!</h2>
+      <h2 class="h2">Happy Monday!</h2>
     </div>
   </div>
 </section>

@@ -185,11 +185,11 @@ TODO: Quiz
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <h2 class="h2">WHERE basics</h2>
-      <p>We can use comparison operators (<code>=</code>, <code><></code>, <code>>=</code>, etc.)</p>
+      <p>We can use comparison operators (<code>=</code>, <code><></code>, <code>>=</code>, etc.) <em>Note that >, <, etc. can be used with letters as well as numbers.</em></p>
       <p>We can use arithmetic operators (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>).</p>
       <p>We can use logical operators <code>AND</code>, <code>OR</code>, <code>NOT</code>.</p>
       <p><code>IN</code> lets us check against a list.</p>  
-      <p><code>BETWEEN</code> lets us specify a range.</p>
+      <p><code>BETWEEN</code> lets us specify a range (for alphanumeric characters).</p>
     </div>
   </div>
 </section>

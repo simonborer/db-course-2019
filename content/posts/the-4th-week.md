@@ -412,6 +412,20 @@ WHERE UPPER(alignment) LIKE ('%EVIL%')</code></pre>
     </div>
   </div>
 </section>
+<section>
+  <div class="grid-x">
+    <div class="cell medium-10 medium-offset-1">
+      <h2 class="h2">Deleting on join</h2>
+      <p>You can delete using a join, but you must specify which table(s) you are deleting from using the table alias.</p>
+      <pre><code class="language-sql">-- Delete all invoices for vendors in
+-- a particular city
+DELETE i 
+  FROM invoices i 
+  JOIN vendors v on i.vendor_id = v.vendor_id 
+  WHERE vendor_city = 'Gardena'</code></pre>
+    </div>
+  </div>
+</section>
 <section id="<%= page.today[8].id%>">
   <div class="grid-x">
     <div class="cell medium-10 medium-offset-1">
