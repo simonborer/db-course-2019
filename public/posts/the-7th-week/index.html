@@ -606,7 +606,7 @@ CREATE FUNCTION recommendation(
       -- of the member's favourite genre
       -- excluding those books
       -- that the member has checked
-      out in the past.
+      -- out in the past.
       WHERE genre = f_genre AND b.book_id 
         NOT IN (
           SELECT book_id FROM withdrawals 
