@@ -13,10 +13,10 @@ summary: "This week we'll review the midterm, and work with date/time data; vari
   </div>
 </section>
 <section>
-    <h2 class="slide-only">Here's what we're going to do today:</h2>
     <div class="grid-x">
       <div class="cell large-10 large-offset-1">
         <ol class="toc">
+          <h2 class="slide-only">Here's what we're going to do today:</h2>
           <li><a href="#midtermReview">Midterm Review</a></li>
           <li><a href="#datetime">Date/time deep dive</a></li>
           <li><a href="#lab">Lab</a></li>

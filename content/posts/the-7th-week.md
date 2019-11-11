@@ -14,7 +14,15 @@ summary: "This week we'll make a database for a library, and look at how functio
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-10 large-offset-1"><p>Today we're building a database, and looking at routines. Routines refer to <em>procedures</em> and <em>functions</em>.</p>
+    <div class="cell large-10 large-offset-1"><p>Today we're building a database, and looking at routines.</p>
+      <img class="slide-only" src="/images/groundhog.jpg" alt="A furry rodent with a beaver.">
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1"><p>
+    Routines refer to <em>procedures</em> and <em>functions</em>.</p>
       <p>Procedures and functions share a lot of the same syntax, and are both saved in the database (meaning that after you create them, you can keep using them indefinitely), but there's one major difference between them.</p>
       <p><strong>Procedures</strong> perform an operation.</p>
       <p><strong>Functions</strong> return a value.</p>
