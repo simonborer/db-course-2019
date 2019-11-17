@@ -14,7 +14,15 @@ summary: "This week we'll make a database for a library, and look at how functio
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-10 large-offset-1"><p>Today we're building a database, and looking at routines. Routines refer to <em>procedures</em> and <em>functions</em>.</p>
+    <div class="cell large-10 large-offset-1"><p>Today we're building a database, and looking at routines.</p>
+      <img class="slide-only" src="/images/groundhog.jpg" alt="A furry rodent with a beaver.">
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1"><p>
+    Routines refer to <em>procedures</em> and <em>functions</em>.</p>
       <p>Procedures and functions share a lot of the same syntax, and are both saved in the database (meaning that after you create them, you can keep using them indefinitely), but there's one major difference between them.</p>
       <p><strong>Procedures</strong> perform an operation.</p>
       <p><strong>Functions</strong> return a value.</p>
@@ -32,7 +40,7 @@ summary: "This week we'll make a database for a library, and look at how functio
 <section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <p>Functions gets something for us, like a number, date or string.</p>
+      <p>Functions get something for us, like a number, date or string.</p>
       <p>You're already familiar with functions, like <code>MIN()</code>, <code>AVG()</code>, etc. Today we get to define our own!</p>
     </div>
   </div>
@@ -237,8 +245,8 @@ INSERT INTO authorship (authorship_id,
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <p>Phew, that's a lot of work! Three insert statements just to add one book? There's got to be a better way!</p>
-      <p>We're going to create a procedure. When it's done, we're going to be able to add a book to all the required tables (books, authors, authorship) just by writing <code class="post-only">CALL insert_book_dup('JavaScript: The Good Parts', 'Technology', 'Douglas', 'Crockford');</code></p>
-      <pre class="slide-only"><code class="language-sql">CALL insert_book_dup(
+      <p>We're going to create a procedure. When it's done, we're going to be able to add a book to all the required tables (books, authors, authorship) just by writing <code class="post-only">CALL insert_book('JavaScript: The Good Parts', 'Technology', 'Douglas', 'Crockford');</code></p>
+      <pre class="slide-only"><code class="language-sql">CALL insert_book(
   'JavaScript: The Good Parts', 
   'Technology', 
   'Douglas', 
@@ -258,9 +266,9 @@ INSERT INTO authorship (authorship_id,
 DELIMITER // ;
 
 -- Step 2: We name our procedure 
--- (`insert_book_dup`), and define the 
+-- (`insert_book`), and define the 
 -- arguments that we're going to pass in.
-CREATE PROCEDURE insert_book_dup(
+CREATE PROCEDURE insert_book(
   IN p_title TEXT, 
   IN p_genre VARCHAR(200), 
   IN p_author_first_name VARCHAR(50), 
@@ -311,9 +319,9 @@ END //</code></pre>
 DELIMITER // ;
 
 -- Step 2: We name our procedure 
--- (`insert_book_dup`), and define the 
+-- (`insert_book`), and define the 
 -- arguments that we're going to pass in.
-CREATE PROCEDURE insert_book_dup(
+CREATE PROCEDURE insert_book(
   IN p_title TEXT, 
   IN p_genre VARCHAR(200), 
   IN p_author_first_name VARCHAR(50), 
@@ -741,7 +749,7 @@ CREATE FUNCTION recommendation(
       -- of the member's favourite genre
       -- excluding those books
       -- that the member has checked
-      out in the past.
+      -- out in the past.
       WHERE genre = f_genre AND b.book_id NOT IN (
         SELECT book_id FROM withdrawals WHERE member_id = f_member_id
       )
@@ -801,7 +809,7 @@ CREATE FUNCTION recommendation(
       -- of the member's favourite genre
       -- excluding those books
       -- that the member has checked
-      out in the past.
+      -- out in the past.
       WHERE genre = f_genre AND b.book_id 
         NOT IN (
           SELECT book_id FROM withdrawals 
@@ -822,6 +830,7 @@ CREATE FUNCTION recommendation(
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <h2 class="h2" id="lab">Lab</h2>
+      <p><em>Windows users who haven't installed PHP - install XAMPP</em></p>
       <p>For your lab today, try to do one of the following. I'll be coming around to chat with each of you about your thoughts on how to approach the task you choose to do.</p>
       <p>And of course, if you're happy with how you've done, you can always do another!</p>
       <p>The first step is to create the library tables in your own database. Feel free to copy and paste the code in this lesson.</p>
