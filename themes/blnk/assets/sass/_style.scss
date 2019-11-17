@@ -83,7 +83,9 @@ figcaption {
     margin-top: 1rem;
     margin-bottom: .5rem;
 }
-
+.post h3.h3 {
+    margin-top:1.5rem;
+}
 @media (min-width: 768px) {
     .post .h2 {
         font-size: 2rem;
@@ -262,4 +264,16 @@ ol ol li {
 
 .post .section-break {
     margin-top: 2rem;
+}
+
+.review {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background: rgba(23, 121, 186,.15);
+    font-size: .8em;
+    padding: 1rem;
+    box-shadow: -2px 2px 2px rgba(0,0,0,.25);
+}
+.post section:last-child {
+    margin-bottom: 15rem;
 }

@@ -1,177 +1,37 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/images/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/images/favicon-16x16.png><link rel=manifest href=/images/site.webmanifest><title>Week 8 - Working on Stored Procedures</title><meta name=description content="2019 Humber Database Course"><meta name=author content="Simon Borer"><link rel=stylesheet href=https://www.dbcourse2019.com/sass/main.min.8c979db45f6c4a880676571cd900fb6665fb828ec1582d7a5f93855fa4647a24.css><link rel=stylesheet href=/css/codemirror.css></head><body><main class=post><article><div class="hero hero--page" style=background-image:url(/images/failed.jpg)><nav class=page-nav><a class="button small primary page-nav__link" href=https://www.dbcourse2019.com>Home</a>
-<a class="button small primary page-nav__link" href=/slides//posts/the-8th-week/>Slides</a></nav><h1 class=page-title>Week 8 - Working on Stored Procedures</h1></div><div class=grid-container><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><section class=slide-only><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Happy Cheap Candy Day!</h2><p class=h1>🍬🍭🍬</p></div></div></section><%- include(`${part}today`) %><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><p>I was pretty pleased with the grade distribution - lots of 80's and 90's.</p><p>The average was 74%, with a nice smooth bell curve.</p><img src="<%- basePath %>/assets/images/curve.png" alt="Smooth distribution of grades along a bell curve."></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><p>If the exam was a wake-up call - don't worry, we're going to go over everything today.</p><p>Also, I suspect a number of you are not using the textbook. It is a really good resource. If you read the assigned chapters for each week, you <em>will</em> understand that week's content. I've even designed some of our data sets to align with the examples in the book.</p></div></div></section><section><div class=grid-x id="<%- page.today[0].id %>"><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Lettered questions</h2><p>Nearly everyone was able to get all of these. For those of you who struggled, please refer back to Module 3 where we discussed Entity Relationship diagrams, and Module 6 where we did a deep dive on primary and foreign keys.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 1</h2><blockquote>Return a column called “Teacher Full Name” that combines their last and first names, separated by a comma.</blockquote><pre><code class=language-sql>SELECT teacherlname || ', ' || teacherfname AS "Teacher Full Name"
-FROM teachers</code></pre></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 2</h2><blockquote>Return a column called “Seniority” that shows how long it has been since a teacher was hired, and order it starting with the most seniority.</blockquote><pre><code class=language-sql>SELECT teacherid, ROUND(SYSDATE - hiredate) AS "Seniority"
-FROM teachers
-ORDER BY "Seniority" DESC</code></pre><p>This one gave a few people trouble. Maybe it was how the question was worded, but the answer was meant to be not just the date of hiring, but the difference between <code>hiredate</code> and the current date. I gave out a lot of half marks for this.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 3</h2><blockquote>Find all the students with a last name starting with the letters A through E.</blockquote><pre><code class=language-sql>SELECT * FROM students
-WHERE UPPER(SUBSTR(studentlname, 1, 1)) BETWEEN 'A' and 'E'</code></pre><p>A few of you still want to use a range instead of an array, which, <em>technically</em>, works. I may have given you this one.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 4</h2><blockquote>Return a list of the top 5 highest paid teachers and their salary to the nearest dollar.</blockquote><pre><code class=language-sql>SELECT teacherid, ROUND(salary) AS Salary 
-FROM teachers
-ORDER BY salary DESC
-FETCH FIRST 5 ROWS ONLY</code></pre><p>Remember, <code>FETCH</code> gets executed after <code>ORDER BY</code>, but <code>ROWNUM</code> doesn't.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 5</h2><blockquote>Vanessa Cox (studentid = 43, studentnumber = N1712) Is asking about their registered courses. Print out a list of classes this student is enrolled in.</blockquote><pre><code class=language-sql>SELECT classname FROM studentsxclasses
-JOIN classes USING(classid)
-WHERE studentid = 43</code></pre><p>Remember, <code>FETCH</code> gets executed after <code>ORDER BY</code>, but <code>ROWNUM</code> doesn't.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 6</h2><blockquote>Print a list of every class which has a teacher assigned to it. Include the teacher’s name.</blockquote><pre><code class=language-sql>SELECT classname, teacherfname || ' ' || teacherlname AS teacher 
-FROM classes
-JOIN teachers USING(teacherid)</code></pre><p>Okay, a lot of you were <em>all over the place</em> with your joins. I suggest reviewing which joins do what, because problems like this take a little bit of thinking.</p><p>In this case, an inner join selects all classes with an assigned teacher because if there's no teacher, the join omits the class row.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 7</h2><blockquote>Print out a list of classes in the fall 2018 semester. The fall semester starts in September 2018 and ends in December 2018.</blockquote><pre><code class=language-sql>SELECT classname AS "Fall Classes" FROM classes
-WHERE TO_CHAR(startdate, 'YY-MM') = '18-09'
-    AND TO_CHAR(finishdate, 'YY-MM') = '18-12'
-</code></pre><p>Okay, we need to start treating dates <strong>as dates</strong>, not strings. This came up in a bunch of questions. Respect the data type.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 8</h2><blockquote>Find classes not in the web program. Note: the web program classes are all prefixed with ‘http’.</blockquote><pre><code class=language-sql>SELECT * FROM classes
-WHERE LOWER(classcode) NOT LIKE ('http%')</code></pre><p>You did really well on this one. A few of you might want to brush up on how the wildcards (<code>%</code>, which means any number of any characters, and <code>_</code>, which means one of any character) work.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 9</h2><blockquote>Find students who enrolled in August. Order by their last name, then by their first name.</blockquote><pre><code class=language-sql>SELECT * FROM students
-WHERE TO_CHAR(enrolmentdate, 'MM') = '08'
-ORDER BY studentlname, studentfname</code></pre></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 10</h2><blockquote>Find the average teacher’s salary.</blockquote><pre><code class=language-sql>SELECT AVG(salary) FROM teachers</code></pre><p>You all did pretty great on this one and the next. You know aggregate functions!</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 11</h2><blockquote>Find when the first teacher was hired.</blockquote><pre><code class=language-sql>SELECT MIN(hiredate) FROM teachers</code></pre></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 12</h2><blockquote>Linda Chan (teacherid = 3) teaches Web Application Development 2 (classid = 7) in the winter semester. She needs an attendance sheet organized by students’ last name, then by the students’ first name. Print out a list of students who are registered in this class, including their student number.</blockquote><pre><code class=language-sql>SELECT studentid, studentlname, studentfname FROM studentsxclasses
-JOIN students USING(studentid)
-WHERE classid = 7
-ORDER BY studentlname, studentfname</code></pre><p>I didn't dock any points for this, but be careful not to add unnecessary filters.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 13</h2><blockquote>Find teachers with no classes. Hint: Counting classes per teacher.</blockquote><pre><code class=language-sql>SELECT t.teacherid, teacherfname, teacherlname FROM teachers t
-LEFT JOIN classes c
-ON t.teacherid = c.teacherid
-WHERE c.teacherid IS NULL</code></pre><p>Ugh, ok, this one's on me. I meant to remove the 'hints' on this and the next question. They were <em>not</em> helpful. A few of you got these questions correct, but most people got a half mark for trying to kludge something together with the <code>COUNT()</code> function.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 14</h2><blockquote>Find classes with no students. Hint: Counting students per classroom.</blockquote><pre><code class=language-sql>SELECT * FROM classes c
-LEFT JOIN studentsxclasses sxc
-ON c.classid = sxc.classid
-WHERE sxc.classid IS NULL</code></pre></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 15</h2><blockquote>Find students with less than 5 classes.</blockquote><pre><code class=language-sql>SELECT studentid, COUNT(*) FROM studentsxclasses
-GROUP BY studentid
-HAVING COUNT(*) < 5</code></pre><p><code>GROUP BY</code> and <code>HAVING</code> add a bit of complexity to aggregate functions, but a lot of you got this. Great work!</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 16</h2><blockquote>Print out a list that reads “x teaches y classes”, where x is the teacher’s name, and y is the number of classes they teach. Include the teachers that teach 0 classes.</blockquote><pre><code class=language-sql>SELECT 
-    teacherfname || 
-    ' ' || teacherlname || 
-    ' teaches ' || COUNT(classid) || 
-    ' class(es).'
-FROM teachers LEFT JOIN classes USING(teacherid)
-GROUP BY teacherid, teacherfname, teacherlname</code></pre><p>A lot of folks forgot that, if you're going to select a column while using an aggregate function, you need to reference it in the <code>GROUP BY</code> clause.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 17</h2><blockquote>Modify the above query so that the printed string include “this semester” and only select classes which are this semester. This semester begins in September and ends in December.</blockquote><pre><code class=language-sql>SELECT 
-    teacherfname || 
-    ' ' || teacherlname || 
-    ' teaches ' || COUNT(classid) || 
-    ' class(es) this semester.' AS "Who teaches what"
-FROM teachers LEFT JOIN (
-    SELECT * FROM classes
-    WHERE TO_CHAR(startdate, 'YY-MM') = '18-09'
-    AND TO_CHAR(finishdate, 'YY-MM') = '18-12'
-)
-USING(teacherid)
-GROUP BY teacherid, teacherfname, teacherlname</code></pre><p class=smaller-text>Ok, nobody <em>fully</em> got this one. It's tricky. To include teachers that teach zero classes (like in the previous question), we have to get <em>all</em> the teachers (via a left join), and then use a subquery to select only those classes that are in the fall semester.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 18</h2><blockquote>Add yourself to the students table. Use your student number and name. Assume the highest student id in the table is 99.</blockquote><pre><code class=language-sql>INSERT INTO students (
-  studentid, studentfname, 
-  studentlname, studentnumber, 
-  enrolmentdate
-)
-VALUES (
-  100, 'Simon', 
-  'Borer', 1234567, 
-  TO_DATE('18-06-18', 'YY-MM-DD')
-)</code></pre><p>Pretty much everybody got the CRUD questions.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 19</h2><blockquote>Put yourself into 3 classes that are offered next semester.</blockquote><pre><code class=language-sql>INSERT INTO studentsxclasses (studentxclassid, studentid, classid)
-VALUES ((SELECT MAX(studentxclassid) + 1 FROM studentsxclasses), 100, 6)
-
-INSERT INTO studentsxclasses (studentxclassid, studentid, classid)
-VALUES ((SELECT MAX(studentxclassid) + 1 FROM studentsxclasses), 100, 7)
-
-INSERT INTO studentsxclasses (studentxclassid, studentid, classid)
-VALUES ((SELECT MAX(studentxclassid) + 1 FROM studentsxclasses), 100, 8)</code></pre><p>Note that you need separate <code>INSERT</code>s for each row.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 20</h2><blockquote>Change your record. Make your student number the first five characters of your original student number.</blockquote><pre><code class=language-sql>UPDATE students SET studentid = 12345
-WHERE studentid = 100</code></pre></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 21</h2><blockquote>Drop one of the three courses you put yourself into.</blockquote><pre><code class=language-sql>DELETE FROM studentsxclasses 
-WHERE studentid = 100
-AND classid = 8</code></pre><p>Less people got this one, maybe because the word 'drop' threw you off. Also note that you had to filter for your student id <strong>and</strong> the course you wanted to drop.</p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Question 22</h2><blockquote>Save your changes to the database.</blockquote><pre><code class=language-sql>COMMIT</code></pre></div></div></section><section><div class=grid-x id="<%- page.today[1].id %>"><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2><%- page.today[1].title %></h2><p><strong>Procedures</strong> are a set of tasks, i.e. CRUD functions. They <em>can</em> return a value, but that's not what they're for. They <em>can't</em> be used in queries and statements. Simply put, they're for changing things.</p><p><strong>Functions</strong> are for returning values. They don't change stuff.</p></div></div></section><section><div class=grid-x id="<%- page.today[2].id %>"><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2><%- page.today[2].title %></h2><pre><code class="no-max language-sql">CREATE OR REPLACE PROCEDURE update_invoices_credit_total /* Give it a name */
-(
-    /*  our parameters - the options we'll pass in when 
-        we call the procedure */
-    invoice_number_param     VARCHAR2,
-    credit_total_param      NUMBER
-)
-AS
-/* Define the procedure as PL/SQL code */
-BEGIN
-    UPDATE invoices
-    SET credit_total = credit_total_param
-    WHERE invoice_number = invoice_number_param;
-    
-    COMMIT;
-EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-END;
-/</code></pre></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><p>After we run this as a script, it's stored in the database. We can call it like this:</p><pre><code class=language-sql>CALL update_invoices_credit_total('367447', 400);</code></pre><p>Note that it won't give us any feedback beyond <code>Call completed.</code></p></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><p>If we're calling the function in a script, we can write it simply as...</p><pre><code class=language-sql>BEGIN
-  update_invoices_credit_total('367447', 400);
-END;
-/</code></pre><p>We can also reference our parameters if we want to do them out of order, or omit optional parameters, like so:</p><pre><code class=language-sql>BEGIN
-  update_invoices_credit_total(
-    credit_total_param=>500, 
-    invoice_number_param=>'367447'
-  );
-END;
-/</code></pre></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><p>We can also define our parameters as input or output parameters. Parameters are input (as in, they get passed into the procedure) by default. Output parameters <strong>can't</strong> be returned to a statement, but can be output to the script output (<code>DMBS_OUTPUT.PUT_LINE</code>).</p><p>Parameters can also be made optional by supplying a default.</p><pre class=post-only><code class=language-sql>CREATE OR REPLACE PROCEDURE update_invoices_credit_total
-(
-    /* declare in/out here */
-    invoice_number_param        IN      VARCHAR2,
-    credit_total_param          IN      NUMBER,
-    update_count                OUT     INTEGER,
-    /* declare defaults last */
-    totally_optional            IN      NUMBER  DEFAULT   100
-)
-AS
-BEGIN
-    UPDATE invoices
-    SET credit_total = credit_total_param
-    WHERE invoice_number = invoice_number_param;
-
-    SELECT COUNT(*) + totally_optional
-    INTO update_count
-    FROM invoices
-    WHERE invoice_number = invoice_number_param;
-
-    COMMIT;
-
-EXCEPTION
-    WHEN OTHERS THEN
-        SELECT 0 INTO update_count FROM dual;
-        ROLLBACK;
-END;</code></pre><pre class=post-only><code class=language-sql>SET SERVEROUTPUT ON;
-DECLARE
-    row_count INTEGER;
-BEGIN
-    /* output parameter named here */
-    update_invoices_credit_total('367477', 200, row_count);
-    /* outpute parameter referenced here */
-    DBMS_OUTPUT.PUT_LINE('row_count: ' || row_count);
-END;
-/</code></pre></div></div></section><section><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Raising errors</h2><p>Because stored procedures are an abstraction - we're removing some of the logic from the working space - it's important to validate data and raise informative errors.</p><p class=callout>You can refer to the Oracle docs for their full list of <a href=https://docs.oracle.com/cd/E11882_01/timesten.112/e21639/exceptions.htm#CIHFIGFE target=_blank>error types</a>.</p><pre class=post-only><code class=language-sql>CREATE OR REPLACE PROCEDURE update_invoices_credit_total
-(
-    invoice_number_param    VARCHAR2,
-    credit_total_param  NUMBER
-)
-AS
-BEGIN
-    IF credit_total_param < 0 THEN
-        RAISE VALUE_ERROR;
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/images/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/images/favicon-16x16.png><link rel=manifest href=/images/site.webmanifest><title>Week 8 - Triggers, Views &amp; Users</title><meta name=description content="2019 Humber Database Course"><meta name=author content="Simon Borer"><link rel=stylesheet href=https://www.dbcourse2019.com/sass/main.min.f62ef879db2caecfdd118355f9ed7158520219de055273e42af08572a2c5c898.css><link rel=stylesheet href=/css/codemirror.css></head><body><main class=post><article><div class="hero hero--page" style=background-image:url(/images/notpass.jpg)><nav class=page-nav><a class="button small primary page-nav__link" href=https://www.dbcourse2019.com>Home</a>
+<a class="button small primary page-nav__link" href=/slides//posts/the-8th-week/>Slides</a></nav><h1 class=page-title>Week 8 - Triggers, Views &amp; Users</h1></div><div class=grid-container><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><section class=slide-only><div class=grid-x><div class="cell large-10 large-offset-1"><h2 class=h2>Happy Monday!</h2></div></div></section><section><h2 class=slide-only>Here's what we're going to do today:</h2><div class=grid-x><div class="cell large-10 large-offset-1"><ol class=toc><li class=slide-only><a href=#Quiz>Quiz!</a></li><li class=slide-only><a href=#last-quiz>Last week's quiz</a></li><li><a href=#assignment>Final Assignment</a></li><li><a href=#users>Users</a></li><li><a href=#views>Views</a></li><li><a href=#triggers>Triggers</a></li></ol></div></div></section><section class=slide-only><div class=grid-x><div class="cell large-10 large-offset-1" id=Quiz><h2 class=h2>Quiz!</h2></div></div></section><section id=last-quiz><div class=grid-x><div class="cell large-10 large-offset-1"><h2 class=h2>Last week's quiz</h2></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1 review"><p><code>SELECT YEAR(NOW())</code> is the same as <code>SELECT EXTRACT(YEAR_MONTH FROM NOW())</code><hr><strong>false</strong></p><p><em><code>SELECT EXTRACT(YEAR_MONTH FROM NOW())</code> gets the year AND the month</em></p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1 review"><p><code>SELECT CURDATE()</code> is the same as <code>SELECT DATE(NOW())</code><hr><strong>true</strong></p><p><em>Yup, same thing.</em></p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1 review"><p><code>SELECT DATE_FORMAT(NOW(),'%m')</code> is the same as <code>SELECT EXTRACT(MONTH FROM NOW())</code><hr><strong>true</strong></p><p><em>Again, exactly the same.</em></p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1 review"><p><code>CAST()</code>, <code>CONVERT()</code>, and <code>STR_TO_DATE()</code> can all turn a string into a date<hr><strong>true</strong></p><p><em>They can! <code>STR_TO_DATE()</code> can only do that, whereas the others can convert different data types into other data types.</em></p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1 review"><p>The <code>DATEDIFF()</code> function returns the difference between two dates in years, weeks, or days<hr><strong>true</strong></p><p><em>Yessir.</em></p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1 review"><p>Self joins are common<hr><strong>false</strong></p><p><em>Nope, a self join - used to create a list of things that have common values within a single table, is a very niche operation.</em></p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1 review"><p>Normalization is the process of merging tables together<hr><strong>false</strong></p><p><em>Nope, that would be <code>JOIN</code>s. Normalization reduces the need for duplicated data.</em></p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1 review"><p>You can pass a <code>NULL</code> value to an auto-incremented column even if it is set to <code>NOT NULL</code><hr><strong>true</strong></p><p><em>Yes! Because it doesn't <strong>end up</strong> being null, it ends up auto-incremented.</em></p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1 review"><p>The <code>ON DELETE CASCADE</code> command deletes foreign key constraints<hr><strong>false</strong></p><p><em><code>ON DELETE CASCADE</code> <strong>uses</strong> foreign key constraints to know which data to delete from referenced tables. The constraints themselves don't go anywhere.</em></p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1 review"><p>Using <code>NOW()</code> as the default for a column is an easy way to timestamp your<hr><strong>true</strong></p><p><em>Yup, it's handy.</em></p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><hr class=post-only><h3 class=h3>The next 3 weeks will be as follows:</h3><p><strong>Next week</strong> we'll be looking at what other kinds of databases are out there, and what the database world looks like in 2019. Mostly though, I'll be giving you a review on the term's materials to prep for the final exam.</p><p>The remainder of the time, you'll be able to check in with me about the progress of your final assignment.</p><p>The <strong>following week</strong>, you'll be presenting your final assignments to the class (which we'll talk about momentarily).</p><p>In <strong>three weeks</strong>, on December 9th, you'll take your final exam. The format will be similar to the midterm.</p></div></div></section><section id=assignment><div class=grid-x><div class="cell large-10 large-offset-1"><h2 class=h2>Your assignment</h2><p>Try to create a feature for a library's database.</p><p>In development teams, you have to share your code with the team, often when it is unfinished.</p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p><h3 class=h3>What to talk about</h2></p><ol><li>What you are trying to do?</li><li>Why you are trying to do it?</li><li>How you are trying to do it?</li><li>Why did you <em>not</em> do it another way?</li><li>What is working well?</li><li>What is not going well?</li><li>What you are going to do next?</li><li>When will you know you are done, and how are you going to get there?</li></ol></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Your assignment is to <em>try</em> to create a feature.</p><p>You'll get up to <strong>5 minutes</strong> to talk us through your code, and show us your work.</p><p>Include comments in your code explaining what each block of code does.</p><p>If your code doesn't work, <strong>that's ok.</strong></p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><h3 class=h3>You're being marked on the following:</h3><ul><li>How well do you explain the state and progress of your work (see above, 1-8)? <strong>5 marks</strong></li><li>How well did you plan and scope your feature? <strong>2 marks</strong></li><li>How innovative was your feature? <strong>1 mark</strong></li><li>How useful would your feature be to end-users and/or other developers? <strong>1 mark</strong></li><li>How well-formatted/easy-to-read is your code? <strong>1 mark</strong></li></ul><p><em>Note: make sure that you're able to present using the projector.</em></p></div></div></section><section id=triggers><div class=grid-x><div class="cell large-10 large-offset-1"><h2 class=h2>Triggers</h2><pre><code class=language-sql>
+DELIMITER //
+CREATE TRIGGER max_renewals
+  BEFORE UPDATE ON withdrawals
+    FOR EACH ROW
+  BEGIN
+    IF (OLD.renewals > 1) THEN
+      -- Note: 45000 is a code for 
+      -- a generic, user-defined error
+      SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'No more renewals allowed';
     END IF;
-    
-    UPDATE invoices
-    SET credit_total = credit_total_param
-    WHERE invoice_number = invoice_number_param;
-
-    COMMIT;
-END;</code></pre><pre class=post-only><code class=language-sql>/* using the error category for output */
-SET SERVEROUTPUT ON;
-
-BEGIN 
-    update_invoices_credit_total('367477', -25);
-EXCEPTION
-    WHEN VALUE_ERROR THEN
-        DBMS_OUTPUT.PUT_LINE('A value error occurred');
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('An unknown error occurred');
-END;
-/</code></pre></div></div></section><section><div class=grid-x id="<%- page.today[3].id %>"><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2><%= page.today[3].title %></h2><p>Creating a function:</p><pre><code class="no-max language-sql">CREATE OR REPLACE FUNCTION get_vendor_id
-(
-  /* reference the data type of the appropriate column */
-  vendor_name_param vendors.vendor_name%TYPE 
-)
-RETURN NUMBER
-AS
-  vendor_id_var NUMBER;
-BEGIN 
-  SELECT vendor_id
-  INTO vendor_id_var
-  FROM vendors
-  WHERE vendor_name = vendor_name_param;
-
-  RETURN vendor_id_var;
-END;
-/</code></pre></div></div></section><section><div class=grid-x id="<%- page.today[3].id %>"><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><p>Calling the function:</p><pre><code class=language-sql>SELECT 
-  invoice_number, 
-  invoice_total
-FROM invoices
-WHERE vendor_id = get_vendor_id('IBM')</code></pre></div></div></section><section><div class=grid-x id="<%- page.today[1].id %>"><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Lab time!</h2><ol><li>Create a stored procedure or function for anything from the previous weeks, the syntax of which you find difficult to remember.</li><li>Create 2 tables, one called my_books, one called my_movies. In each, create a primary key, a column called 'title', a column called 'genre', and a column called 'rank'. Then create a stored procedure that can insert a row into either of those tables, with the values passed as parameters. Insert at least 3 each of your favourite books and movies into the tables using your procedure.</li><li>Create a stored function that can return the title based on your ranking.</li></ol></div></div></section></div></div></div></article></main><script src=https://www.dbcourse2019.com/js/prism.js></script><script src=https://www.dbcourse2019.com/js/codemirror.js></script><script src=https://www.dbcourse2019.com/js/xml.js></script><script src=https://www.dbcourse2019.com/js/css.js></script><script src=https://www.dbcourse2019.com/js/javascript.js></script><script src=https://www.dbcourse2019.com/js/htmlmixed.js></script><script src=https://www.dbcourse2019.com/js/sql.js></script><script type=text/javascript>function qsa(sel){return Array.apply(null,document.querySelectorAll(sel));}
+  END
+//</code></pre></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Triggers are like stored procedures that fire <code>BEFORE</code> or <code>AFTER</code> a data manipulation event (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>)</p><p>They are great for defining error logic, and maintaining data integrity.</p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Let's break down that trigger.</p><img src=https://d3nevzfk7ii3be.cloudfront.net/igi/UOl6JFP4SIafwQkb.medium alt=nerf></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><pre><code class=language-sql>-- create it and name it
+CREATE TRIGGER max_renewals
+-- Before or after?
+-- What event on what table? In this case, an 
+-- UPDATE on the withdrawals table
+  BEFORE UPDATE ON withdrawals
+-- This is to specify that this trigger
+-- should be run on each affected row
+-- for example, if we updated with a WHERE condition
+  FOR EACH ROW</code></pre></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>The rest of the trigger is familiar with the exception of the <code>OLD</code> keyword.</p><pre class=slide-only><code class=language-sql>IF (OLD.renewals > 1) THEN</code></pre><textarea data-code-mirror=sql data-code-mirror-height=40 cols=50 class=post-only>IF (OLD.renewals > 1) THEN</textarea><p>The keywords <code>OLD</code> and <code>NEW</code> let us differentiate the <em>existing</em> value and the <em>new value</em> when performing an update.</p></div></section><section id=views><div class=grid-x><div class="cell large-10 large-offset-1"><h2 class=h2>Views</h2></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>A view is a query that acts as a pseudo-table. You can even update the original tables by referencing it in an update statement<a href=#conditions>*</a>.</p><pre><code class=language-sql>CREATE VIEW books_and_authors 
+  AS
+    SELECT title, CONCAT(first_name, ' ', last_name) 
+      AS name 
+    FROM books b JOIN authorship atp 
+      ON b.book_id = atp.book_id 
+      JOIN authors a 
+        ON a.author_id = atp.author_id</code></pre><p>For the most part, though, views are used to make queries simpler, and to make certain data available to relevant users.</p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p id=conditions>You can update a view unless it contains:</p><ul><li>aggregate functions such as MIN, MAX, SUM, AVG, and COUNT.</li><li>DISTINCT</li><li>a GROUP BY clause</li><li>a HAVING clause</li><li>a UNION clause</li><li>a left join or outer join</li><li>a subquery in the SELECT clause or in the WHERE clause that refers to the table appeared in the FROM clause</li></ul></div></div></section><section id=permissions><div class=grid-x><div class="cell large-10 large-offset-1"><h2 class=h2>Create a user</h2><p>Let's add a user to our database.</p><pre><code class=language-sql>-- Username
+CREATE USER tyler 
+-- password
+IDENTIFIED BY 'tyler1234'</code>
+      </pre></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>By default, users have <em>no</em> privileges.</p><pre><code class=language-sql>SELECT * FROM mysql.user WHERE user = 'tyler';</code></pre><p>Let's grant <code>tyler</code> access to our view.</p><pre><code class=language-sql>GRANT SELECT ON books_and_authors
+TO tyler</code></pre><p>Now <code>tyler</code> books and authors!</p><p><em>Note: you won't be able to grant privileges to users because - you guessed it - you don't have the right privileges!</em></p><p>Here is a <a href=https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html>list of all available privileges</a>.</p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Users and user privileges are generally managed by the website/application. For example, a library would give access to the database at a librarian's terminal, but only give read access at a public kiosk. These permissions would typically be managed through the website, and the website would be the 'user' as far as the database is concerned.</p><p>What this means is, the website is connecting to the database using a single set of credentials (username/password).</p><p>The "filtering" of information happens in the server-side code based on the user. Users would not be presented with options on the website that they don't have permissions for in the database.</p></div></div></section></div></div></div></article></main><script src=https://www.dbcourse2019.com/js/prism.js></script><script src=https://www.dbcourse2019.com/js/codemirror.js></script><script src=https://www.dbcourse2019.com/js/xml.js></script><script src=https://www.dbcourse2019.com/js/css.js></script><script src=https://www.dbcourse2019.com/js/javascript.js></script><script src=https://www.dbcourse2019.com/js/htmlmixed.js></script><script src=https://www.dbcourse2019.com/js/sql.js></script><script type=text/javascript>function qsa(sel){return Array.apply(null,document.querySelectorAll(sel));}
 qsa('[data-code-mirror="html"]').forEach(function(editorEl){var mirror=CodeMirror.fromTextArea(editorEl,{lineNumbers:true,mode:'htmlmixed',theme:'material'});if(editorEl.hasAttribute("data-code-mirror-height")){var setHeight=editorEl.getAttribute("data-code-mirror-height");mirror.setSize(null,setHeight);}});qsa('[data-code-mirror="sql"]').forEach(function(editorEl){var mirror=CodeMirror.fromTextArea(editorEl,{lineNumbers:true,mode:'sql',theme:'material'});if(editorEl.hasAttribute("data-code-mirror-height")){var setHeight=editorEl.getAttribute("data-code-mirror-height");mirror.setSize(null,setHeight);}});</script></body></html>
