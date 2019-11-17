@@ -1,0 +1,621 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><link rel=apple-touch-icon sizes=180x180 href=/images/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/images/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/images/favicon-16x16.png><link rel=manifest href=/images/site.webmanifest><title>Week 7 - Routines</title><meta name=description content="2019 Humber Database Course"><meta name=author content="Simon Borer"><link rel=stylesheet href=https://www.dbcourse2019.com/sass/slides/main-slides.min.8d906c197688c31feb21f74c1957127d2d8db8fe27a3226d390f571c6e7d4e14.css><link rel=stylesheet href=/css/codemirror.css></head><body><div class=reveal><div class=slides><section class=slide-only><div class=grid-x><div class="cell large-6 large-offset-3 medium-10 medium-offset-1"><h2 class=h2>Happy Monday!</h2></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Today we're building a database, and looking at routines.</p><img class=slide-only src=/images/groundhog.jpg alt="A furry rodent with a beaver."></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Routines refer to <em>procedures</em> and <em>functions</em>.</p><p>Procedures and functions share a lot of the same syntax, and are both saved in the database (meaning that after you create them, you can keep using them indefinitely), but there's one major difference between them.</p><p><strong>Procedures</strong> perform an operation.</p><p><strong>Functions</strong> return a value.</p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Procedures do things for us, like updating, inserting, deleting, etc.</p><p>They help us reduce repetition in our code when we want to do similar tasks over and over.</p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Functions get something for us, like a number, date or string.</p><p>You're already familiar with functions, like <code>MIN()</code>, <code>AVG()</code>, etc. Today we get to define our own!</p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><h2 class=h2>BUT FIRST</h2><p>Let's build a database for a library.</p><p>We'll walk through it together, and learn a few things along the way.</p><p>Then, I'll be asking you to add features (and data, if your features need it). I'll give you the option of choosing some features I'll suggest, or trying your own!</p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>For now, we're just building the database portion of the application. While building your feature, assume you have an application with any forms you need (inputs, buttons, etc.), and a way to display data.</p><figure><img src=/images/form.png alt="sample form" style=max-height:20vh><figcaption>Example of a form.</figcaption></figure><p>However, any logic, validation and, of course, data, will be located in the database.</p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Okay, <strong>don't actually do this part</strong> - you'll be working on your own database, the one named after your student number</p><pre class=slide-only><code class=language-sql>CREATE DATABASE IF NOT EXISTS library;
+
+-- This next bit sets the library database as the 
+-- default when we run queries. You also don't need
+-- to do this.
+USE library;</code></pre><textarea data-code-mirror=sql data-code-mirror-height=190 cols=50 class=post-only>
+CREATE DATABASE IF NOT EXISTS library;
+
+-- This next bit sets the library database 
+-- as the default when we run queries. 
+-- You also don't need to do this.
+USE library;</textarea></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Now we'll create some tables. This you can do on your own databases!</p><p>Now, libraries have books, so...</p><pre class=slide-only><code class=language-sql>CREATE TABLE IF NOT EXISTS books (
+   book_id INT NOT NULL AUTO_INCREMENT,
+   title TEXT,
+   genre VARCHAR(200),
+   author VARCHAR(100),
+   PRIMARY KEY (book_id)
+);</code></pre><textarea data-code-mirror=sql data-code-mirror-height=220 cols=50 class=post-only>CREATE TABLE IF NOT EXISTS books (
+   book_id INT NOT NULL AUTO_INCREMENT,
+   title TEXT,
+   genre VARCHAR(200),
+   author VARCHAR(100),
+   PRIMARY KEY (book_id)
+);</textarea></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>But wait! What if a book has more than one author?</p><p>That's right, we need to create a bridging table. First, though, we need to clean up.</p><pre class=slide-only><code class=language-sql>ALTER TABLE books
+DROP COLUMN author;</code></pre><textarea data-code-mirror=sql data-code-mirror-height=70 cols=50 class=post-only>ALTER TABLE books
+DROP COLUMN author;</textarea></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Now that we don't have a column we won't use, we can create our authors table, and the bridging table.</p><pre class=slide-only><code class=language-sql>CREATE TABLE IF NOT EXISTS authors (
+  author_id INT NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  PRIMARY KEY (author_id)
+);</code></pre><textarea data-code-mirror=sql data-code-mirror-height=190 cols=50 class=post-only>CREATE TABLE IF NOT EXISTS authors (
+  author_id INT NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  PRIMARY KEY (author_id)
+);</textarea></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>In our bridging table's foreign key declaration, we use `ON DELETE CASCADE` because if we get rid of a book or author we don't want orphan data.</p><pre class=slide-only><code class=language-sql>CREATE TABLE IF NOT EXISTS authorship (
+  authorship_id INT NOT NULL AUTO_INCREMENT,
+  author_id INT,
+  book_id INT,
+  PRIMARY KEY (authorship_id),
+  FOREIGN KEY (author_id)
+    REFERENCES authors(author_id)
+      ON DELETE CASCADE,
+  FOREIGN KEY (book_id)
+    REFERENCES books (book_id)
+      ON DELETE CASCADE
+);</code></pre><textarea data-code-mirror=sql data-code-mirror-height=370 cols=50 class=post-only>CREATE TABLE IF NOT EXISTS authorship (
+  authorship_id INT NOT NULL AUTO_INCREMENT,
+  author_id INT,
+  book_id INT,
+  PRIMARY KEY (authorship_id),
+  FOREIGN KEY (author_id)
+    REFERENCES authors(author_id)
+      ON DELETE CASCADE,
+  FOREIGN KEY (book_id)
+    REFERENCES books (book_id)
+      ON DELETE CASCADE
+);</textarea></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>What's a library without some people?</p><pre class=slide-only><code class=language-sql>CREATE TABLE IF NOT EXISTS members (
+  member_id INT NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  PRIMARY KEY (member_id)
+);</code></pre><textarea data-code-mirror=sql data-code-mirror-height=190 cols=50 class=post-only>CREATE TABLE IF NOT EXISTS members (
+  member_id INT NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  PRIMARY KEY (member_id)
+);</textarea></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>And what are the people here if not for taking out books!</p><p>Notice that for our foreign keys in `withdrawals`, we don't use `ON DELETE CASCADE`. This is because, even if a member or book is removed from the database, we may still want records of withdrawals for statistical purposes.</p><pre class=slide-only><code class=language-sql>CREATE TABLE IF NOT EXISTS withdrawals (
+  withdrawal_id INT NOT NULL AUTO_INCREMENT,
+  book_id INT REFERENCES books(book_id),
+  member_id INT REFERENCES members(member_id), 
+  withdrawal_date DATE,
+  due_date DATE,
+  return_date DATE,
+  renewals  INT,
+  PRIMARY KEY (withdrawal_id)
+);</code></pre><textarea data-code-mirror=sql data-code-mirror-height=310 cols=50 class=post-only>CREATE TABLE IF NOT EXISTS withdrawals (
+  withdrawal_id INT NOT NULL AUTO_INCREMENT,
+  book_id INT REFERENCES books(book_id),
+  member_id INT REFERENCES members(member_id), 
+  withdrawal_date DATE,
+  due_date DATE,
+  return_date DATE,
+  renewals  INT,
+  PRIMARY KEY (withdrawal_id)
+);</textarea></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Now let's get some books in this library!</p><pre class=slide-only><code class=language-sql>INSERT INTO books (book_id, title, genre) 
+  VALUES (NULL, 'Don Camillo''s Dilemma', 
+    'Literature');
+INSERT INTO authors (author_id, first_name, last_name) 
+  VALUES (NULL, 'Giovanni', 'Guareschi');
+INSERT INTO authorship (authorship_id, 
+  author_id, book_id)
+  VALUES (NULL, 1, 1);</code></pre><textarea data-code-mirror=sql data-code-mirror-height=310 cols=50 class=post-only>INSERT INTO books (book_id, title, genre) 
+  VALUES (NULL, 'Don Camillo''s Dilemma', 
+    'Literature');
+INSERT INTO authors (author_id, first_name, 
+  last_name) 
+  VALUES (NULL, 'Giovanni', 
+    'Guareschi');
+INSERT INTO authorship (authorship_id, 
+  author_id, book_id)
+  VALUES (NULL, 1, 1);</textarea></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Phew, that's a lot of work! Three insert statements just to add one book? There's got to be a better way!</p><p>We're going to create a procedure. When it's done, we're going to be able to add a book to all the required tables (books, authors, authorship) just by writing <code class=post-only>CALL insert_book('JavaScript: The Good Parts', 'Technology', 'Douglas', 'Crockford');</code></p><pre class=slide-only><code class=language-sql>CALL insert_book(
+  'JavaScript: The Good Parts', 
+  'Technology', 
+  'Douglas', 
+  'Crockford');</code></pre></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><pre class=slide-only><code class=language-sql>-- Step 1: 
+-- We define a delimiter. This is because
+-- normally we have ';' as a way of saying
+-- "this statement is over", be because this 
+-- statement contains other statements, we
+-- have to define a temporary one.
+
+DELIMITER // ;
+
+-- Step 2: We name our procedure 
+-- (`insert_book`), and define the 
+-- arguments that we're going to pass in.
+CREATE PROCEDURE insert_book(
+  IN p_title TEXT, 
+  IN p_genre VARCHAR(200), 
+  IN p_author_first_name VARCHAR(50), 
+  IN p_author_last_name VARCHAR(50)
+)
+
+-- Step 3: We begin!
+BEGIN
+  
+  -- Step 4: Define variables (placeholders) 
+  -- that we're going to use in the procedure.
+  DECLARE p_book_id INT;
+  DECLARE p_author_id INT;
+
+  -- Step 5: Populate the variables (using
+  -- `SELECT [value] INTO [variable]`)
+  SELECT MAX(book_id) + 1 INTO p_book_id 
+    FROM books;
+  SELECT MAX(author_id) + 1 INTO p_author_id 
+    FROM authors;
+
+  -- Step 6: Work with our variables. 
+  -- Note that Steps 5 and 6 aren't always 
+  -- one after the other - they're often 
+  -- interwoven.
+  INSERT INTO authors (author_id, first_name,
+   last_name) 
+    VALUES (p_author_id, p_author_first_name, 
+      p_author_last_name);
+
+  INSERT INTO books (book_id, title, genre) 
+      VALUES (p_book_id, p_title, p_genre);
+  
+  INSERT INTO authorship (author_id, book_id)
+    VALUES (p_author_id, p_book_id);
+
+-- Step 7: That's all folks!
+-- We use the `END` statement with our 
+-- custom delimiter to wrap things up.
+END //</code></pre><textarea data-code-mirror=sql data-code-mirror-height=1600 cols=50 class=post-only>-- Step 1: 
+-- We define a delimiter. This is because
+-- normally we have ';' as a way of saying
+-- "this statement is over", be because this 
+-- statement contains other statements, we
+-- have to define a temporary one.
+
+DELIMITER // ;
+
+-- Step 2: We name our procedure 
+-- (`insert_book`), and define the 
+-- arguments that we're going to pass in.
+CREATE PROCEDURE insert_book(
+  IN p_title TEXT, 
+  IN p_genre VARCHAR(200), 
+  IN p_author_first_name VARCHAR(50), 
+  IN p_author_last_name VARCHAR(50)
+)
+
+-- Step 3: We begin!
+BEGIN
+  
+  -- Step 4: Define variables (placeholders) 
+  -- that we're going to use in the procedure.
+  DECLARE p_book_id INT;
+  DECLARE p_author_id INT;
+
+  -- Step 5: Populate the variables (using
+  -- `SELECT [value] INTO [variable]`)
+  SELECT MAX(book_id) + 1 INTO p_book_id 
+    FROM books;
+  SELECT MAX(author_id) + 1 INTO p_author_id 
+    FROM authors;
+
+  -- Step 6: Work with our variables. 
+  -- Note that Steps 5 and 6 aren't always 
+  -- one after the other - they're often 
+  -- interwoven.
+  INSERT INTO authors (author_id, first_name,
+   last_name) 
+    VALUES (p_author_id, p_author_first_name, 
+      p_author_last_name);
+
+  INSERT INTO books (book_id, title, genre) 
+      VALUES (p_book_id, p_title, p_genre);
+  
+  INSERT INTO authorship (author_id, book_id)
+    VALUES (p_author_id, p_book_id);
+
+-- Step 7: That's all folks!
+-- We use the `END` statement with our 
+-- custom delimiter to wrap things up.
+END //</textarea></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><pre class=slide-only><code class=language-sql>-- But there's a problem...
+-- Our procedure is going to create
+-- a new author every time we add a book!
+
+-- Let's start over
+DROP PROCEDURE insert_book
+
+-- Same stuff as last time...
+DELIMITER // ;
+
+CREATE PROCEDURE insert_book(
+  IN p_title TEXT, 
+  IN p_genre VARCHAR(200), 
+  IN p_author_first_name VARCHAR(50), 
+  IN p_author_last_name VARCHAR(50)
+)
+
+-- Still the same stuff...
+BEGIN
+
+  DECLARE p_book_id INT;
+  DECLARE p_author_id INT;
+
+  -- Something new!
+  -- We're creating the protocol for
+  -- what happens when we get an error
+  -- with the code '1242'.
+
+  DECLARE EXIT HANDLER FOR 1242
+    BEGIN
+      -- 'ROLLBACK' means "Even if you
+      -- inserted a bunch of rows already,
+      -- undo everything if there's an error".
+        ROLLBACK;
+
+      -- This is the message we return.
+        SELECT CONCAT('Looks like ',
+          'you have multiple authors ',
+          'by the name ', 
+          p_author_first_name, ' ',
+          p_author_last_name);
+    END;
+
+  -- This is the same as last time
+  SELECT MAX(book_id) + 1 INTO p_book_id 
+    FROM books;
+
+  -- This is new!
+
+  -- If the author already exists...
+  IF (
+    SELECT author_id FROM authors 
+      WHERE first_name = p_author_first_name 
+      AND last_name = p_author_last_name
+    ) 
+
+  THEN 
+  
+  -- ...select the existing author_id 
+  -- into the p_author_id variable
+    SELECT author_id INTO p_author_id 
+      FROM authors 
+      WHERE first_name = p_author_first_name 
+      AND last_name = p_author_last_name;
+    
+  -- Okay, quick aside - remember error 1242? 
+  -- That's the number of the error we get if 
+  -- the above SELECT statement returns more 
+  -- than one result! Aaaaand back to talking 
+  -- about the if/else code:
+
+  -- However, if the author doesn't 
+  -- already exist...
+  ELSE
+
+    -- ...create a new author...
+    INSERT INTO authors (author_id, 
+      first_name, last_name) 
+      VALUES (NULL, p_author_first_name, 
+        p_author_last_name);
+    -- ...and then select the new author's 
+    -- id into the p_author_id variable.
+    SELECT MAX(author_id) INTO p_author_id 
+      FROM authors; 
+
+    -- And this is the end of the 
+    -- conditional stuff.
+    END IF; 
+
+  -- And we're back to doing the same stuff 
+  -- as last time.
+  INSERT INTO books (book_id, title, genre) 
+    VALUES (p_book_id, p_title, p_genre);
+  
+  INSERT INTO authorship (author_id, book_id)
+    VALUES (p_author_id, p_book_id);
+
+END //</code></pre><textarea data-code-mirror=sql data-code-mirror-height=2950 cols=50 class=post-only>-- But there's a problem...
+-- Our procedure is going to create
+-- a new author every time we add a book!
+
+-- Let's start over
+DROP PROCEDURE insert_book
+
+-- Same stuff as last time...
+DELIMITER // ;
+
+CREATE PROCEDURE insert_book(
+  IN p_title TEXT, 
+  IN p_genre VARCHAR(200), 
+  IN p_author_first_name VARCHAR(50), 
+  IN p_author_last_name VARCHAR(50)
+)
+
+-- Still the same stuff...
+BEGIN
+
+  DECLARE p_book_id INT;
+  DECLARE p_author_id INT;
+
+  -- Something new!
+  -- We're creating the protocol for
+  -- what happens when we get an error
+  -- with the code '1242'.
+
+  DECLARE EXIT HANDLER FOR 1242
+    BEGIN
+      -- 'ROLLBACK' means "Even if you
+      -- inserted a bunch of rows already,
+      -- undo everything if there's an error".
+        ROLLBACK;
+
+      -- This is the message we return.
+        SELECT CONCAT('Looks like ',
+          'you have multiple authors ',
+          'by the name ', 
+          p_author_first_name, ' ',
+          p_author_last_name);
+    END;
+
+  -- This is the same as last time
+  SELECT MAX(book_id) + 1 INTO p_book_id 
+    FROM books;
+
+  -- This is new!
+
+  -- If the author already exists...
+  IF (
+    SELECT author_id FROM authors 
+      WHERE first_name = p_author_first_name 
+      AND last_name = p_author_last_name
+    ) 
+
+  THEN 
+  
+  -- ...select the existing author_id 
+  -- into the p_author_id variable
+    SELECT author_id INTO p_author_id 
+      FROM authors 
+      WHERE first_name = p_author_first_name 
+      AND last_name = p_author_last_name;
+    
+  -- Okay, quick aside - remember error 1242? 
+  -- That's the number of the error we get if 
+  -- the above SELECT statement returns more 
+  -- than one result! Aaaaand back to talking 
+  -- about the if/else code:
+
+  -- However, if the author doesn't 
+  -- already exist...
+  ELSE
+
+    -- ...create a new author...
+    INSERT INTO authors (author_id, 
+      first_name, last_name) 
+      VALUES (NULL, p_author_first_name, 
+        p_author_last_name);
+    -- ...and then select the new author's 
+    -- id into the p_author_id variable.
+    SELECT MAX(author_id) INTO p_author_id 
+      FROM authors; 
+
+    -- And this is the end of the 
+    -- conditional stuff.
+    END IF; 
+
+  -- And we're back to doing the same stuff 
+  -- as last time.
+  INSERT INTO books (book_id, title, genre) 
+    VALUES (p_book_id, p_title, p_genre);
+  
+  INSERT INTO authorship (author_id, book_id)
+    VALUES (p_author_id, p_book_id);
+
+END //</textarea></div></div></section><section><div class=grid-x><p>Now it's easy to insert books!</p><div class="cell large-10 large-offset-1"><pre class=slide-only><code class=language-sql>CALL insert_book('Night of the Living Dummy', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('The Haunted Mask', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('One Day at Horrorland', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('The Curse of the Mummy''s Tomb', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('The Werewolf of Fever Swamp', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('The Scarecrow Walks at Midnight', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('Return of the Mummy', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('A Revolta dos Gnomos', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('Vampire Breath', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('Stay Out of the Basement', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('Night of the Living Dummy II', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('The Ghost Next Door', 'Horror', 'R.L.', 'Stine');</code></pre><textarea data-code-mirror=sql data-code-mirror-height=520 cols=50 class=post-only>CALL insert_book(
+  'Night of the Living Dummy', 
+  'Horror', 
+  'R.L.', 
+  'Stine'
+);
+
+CALL insert_book('The Haunted Mask', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('One Day at Horrorland', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('The Curse of the Mummy''s Tomb', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('The Werewolf of Fever Swamp', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('The Scarecrow Walks at Midnight', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('Return of the Mummy', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('A Revolta dos Gnomos', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('Vampire Breath', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('Stay Out of the Basement', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('Night of the Living Dummy II', 'Horror', 'R.L.', 'Stine');
+CALL insert_book('The Ghost Next Door', 'Horror', 'R.L.', 'Stine');</textarea></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Let's add some more data so we can see what functions can do for us</p><pre class=slide-only><code class=language-sql>INSERT INTO members VALUES (NULL, 'Simon', 'Borer');
+INSERT INTO members VALUES (NULL, 'John', 'Joseph');
+INSERT INTO members VALUES (NULL, 'Ian', 'MacKaye');
+
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 2,4),(NULL, 2,4),(NULL, 2,13),(NULL, 3,4),(NULL, 2,6),(NULL, 3,14),(NULL, 1,15),(NULL, 3,4);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 3,10),(NULL, 3,10),(NULL, 2,2),(NULL, 1,3),(NULL, 3,10),(NULL, 2,5),(NULL, 2,1),(NULL, 2,6),(NULL, 2,11);
+-- etc (see notes)</code></pre><textarea data-code-mirror=sql data-code-mirror-height=700 cols=50 class=post-only>INSERT INTO members VALUES (NULL, 'Simon', 'Borer');
+INSERT INTO members VALUES (NULL, 'John', 'Joseph');
+INSERT INTO members VALUES (NULL, 'Ian', 'MacKaye');
+
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 2,4),(NULL, 2,4),(NULL, 2,13),(NULL, 3,4),(NULL, 2,6),(NULL, 3,14),(NULL, 1,15),(NULL, 3,4);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 3,10),(NULL, 3,10),(NULL, 2,2),(NULL, 1,3),(NULL, 3,10),(NULL, 2,5),(NULL, 2,1),(NULL, 2,6),(NULL, 2,11);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 1,5),(NULL, 1,10),(NULL, 2,13),(NULL, 1,7),(NULL, 2,3),(NULL, 1,15),(NULL, 2,9),(NULL, 1,10),(NULL, 2,12);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 3,12),(NULL, 1,13),(NULL, 2,13),(NULL, 2,15),(NULL, 1,8),(NULL, 1,13),(NULL, 2,8),(NULL, 1,15);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 3,1),(NULL, 3,6),(NULL, 2,15),(NULL, 1,1),(NULL, 3,1),(NULL, 3,11),(NULL, 2,6),(NULL, 2,13),(NULL, 2,5),(NULL, 3,3);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 3,5),(NULL, 3,5),(NULL, 3,6),(NULL, 1,6),(NULL, 3,10),(NULL, 3,8),(NULL, 3,6),(NULL, 1,9);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 2,14),(NULL, 3,14),(NULL, 2,12),(NULL, 1,1),(NULL, 3,7),(NULL, 1,9),(NULL, 3,1),(NULL, 3,15),(NULL, 2,7);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 1,7),(NULL, 3,14),(NULL, 1,1),(NULL, 2,11),(NULL, 2,13),(NULL, 2,7),(NULL, 3,5),(NULL, 1,1),(NULL, 3,7);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 2,9),(NULL, 2,14),(NULL, 1,10),(NULL, 3,7),(NULL, 2,12),(NULL, 1,11),(NULL, 1,9),(NULL, 3,8),(NULL, 3,3);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 3,4),(NULL, 1,2),(NULL, 3,6),(NULL, 3,2),(NULL, 2,9),(NULL, 1,10),(NULL, 3,3),(NULL, 3,4);INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 2,4),(NULL, 2,4),(NULL, 2,13),(NULL, 3,4),(NULL, 2,6),(NULL, 3,14),(NULL, 1,15),(NULL, 3,4);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 3,10),(NULL, 3,10),(NULL, 2,2),(NULL, 1,3),(NULL, 3,10),(NULL, 2,5),(NULL, 2,1),(NULL, 2,6),(NULL, 2,11);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 1,5),(NULL, 1,10),(NULL, 2,13),(NULL, 1,7),(NULL, 2,3),(NULL, 1,15),(NULL, 2,9),(NULL, 1,10),(NULL, 2,12);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 3,12),(NULL, 1,13),(NULL, 2,13),(NULL, 2,15),(NULL, 1,8),(NULL, 1,13),(NULL, 2,8),(NULL, 1,15);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 3,1),(NULL, 3,6),(NULL, 2,15),(NULL, 1,1),(NULL, 3,1),(NULL, 3,11),(NULL, 2,6),(NULL, 2,13),(NULL, 2,5),(NULL, 3,3);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 3,5),(NULL, 3,5),(NULL, 3,6),(NULL, 1,6),(NULL, 3,10),(NULL, 3,8),(NULL, 3,6),(NULL, 1,9);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 2,14),(NULL, 3,14),(NULL, 2,12),(NULL, 1,1),(NULL, 3,7),(NULL, 1,9),(NULL, 3,1),(NULL, 3,15),(NULL, 2,7);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 1,7),(NULL, 3,14),(NULL, 1,1),(NULL, 2,11),(NULL, 2,13),(NULL, 2,7),(NULL, 3,5),(NULL, 1,1),(NULL, 3,7);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 2,9),(NULL, 2,14),(NULL, 1,10),(NULL, 3,7),(NULL, 2,12),(NULL, 1,11),(NULL, 1,9),(NULL, 3,8),(NULL, 3,3);
+INSERT INTO withdrawals (withdrawal_id, member_id,book_id) VALUES (NULL, 3,4),(NULL, 1,2),(NULL, 3,6),(NULL, 3,2),(NULL, 2,9),(NULL, 1,10),(NULL, 3,3),(NULL, 3,4);</textarea></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Let's create a function that can recommend a book for a particular user.</p><p>It should check to see what genre the person likes, and return the most popular book of that genre that the person has not yet borrowed from the the library.</p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>But first, let's see a simple function.</p><p>Functions can be very simple. If you find yourself repeating something a lot, or if there's something you don't want to have to remember, write yourself a function!</p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>A simple function that takes in a values (number of miles) and converts it into kilometres.</p><p>We'll be able to use it like this: <code>SELECT miles_to_km(20);</code></p><pre class=slide-only><code class=language-sql>-- Define our delimiter
+DELIMITER $$
+-- Create statement names our
+-- function and defines the argument(s) 
+CREATE FUNCTION miles_to_km(miles DECIMAL) 
+
+-- Here we define the datatype of the return value
+RETURNS DECIMAL(30,5)
+
+BEGIN
+  -- Declare a variable we'll use inside the function
+  DECLARE conversion DECIMAL(7,6);
+  -- Set the value of the variable
+  SELECT 0.621371 INTO conversion;
+  -- Return the value  
+  RETURN (miles * conversion);
+  -- And we're done!
+END$$</code></pre><textarea data-code-mirror=sql data-code-mirror-height=850 cols=50 class=post-only>-- Define our delimiter
+DELIMITER $$
+
+-- Create statement names our
+-- function and defines the argument(s) 
+CREATE FUNCTION miles_to_km(
+    miles DECIMAL
+) 
+
+-- Here we define the datatype of the
+-- return value
+RETURNS DECIMAL(30,5)
+
+-- And then we start!
+BEGIN
+
+  -- Declare a variable we'll use 
+  -- inside the function
+  DECLARE conversion DECIMAL(7,6);
+ 
+  -- Set the value of the variable
+  SELECT 0.621371 INTO conversion;
+
+  -- Return the value  
+  RETURN (miles * conversion);
+
+  -- And we're done!
+END$$</textarea></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><p>Now let's create our recommendation function.</p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><pre class=slide-only><code class=language-sql>DELIMITER // ;
+-- Take a member id as the argument
+CREATE FUNCTION recommendation(
+  f_member_id INT
+)
+  RETURNS TEXT
+  BEGIN
+    -- We're going to use three variables
+    DECLARE f_genre VARCHAR(200);
+    DECLARE f_recommendation TEXT;
+    DECLARE f_genre_count INT;
+    
+    -- What genre does the member withdraw most frequently?
+
+    -- Get the member's most frequently
+    -- borrowed genre, and store it
+    -- in the `f_genre` variable.
+    -- Store the count in another variable,
+    -- not because we'll need it later, but
+    -- because otherwise SQL will try
+    -- to put it into the f_genre variable,
+    -- too.
+    SELECT genre, COUNT(*) INTO f_genre, f_genre_count
+      FROM withdrawals w 
+        JOIN books b
+      ON w.book_id = b.book_id
+      WHERE member_id = f_member_id
+      GROUP BY genre
+      ORDER BY COUNT(*) DESC
+      LIMIT 1;
+      
+    -- What is the most popular book of 
+    -- that genre that has not 
+    -- been withdrawn by this member
+
+    -- Put the title into the 
+    -- `f_recommendation` variable
+    SELECT b.title INTO f_recommendation
+      FROM withdrawals w 
+        JOIN books b
+      ON w.book_id = b.book_id
+      -- of the most popular book
+      -- of the member's favourite genre
+      -- excluding those books
+      -- that the member has checked
+      -- out in the past.
+      WHERE genre = f_genre AND b.book_id NOT IN (
+        SELECT book_id FROM withdrawals WHERE member_id = f_member_id
+      )
+      GROUP BY b.book_id, title
+      ORDER BY COUNT(*) DESC
+      LIMIT 1;
+    
+    RETURN (f_recommendation);
+    
+  END //  
+</code></pre><textarea data-code-mirror=sql data-code-mirror-height=1840 cols=50 class=post-only>DELIMITER // ;
+-- Take a member id as the argument
+CREATE FUNCTION recommendation(
+  f_member_id INT
+)
+  RETURNS TEXT
+  BEGIN
+    -- We're going to use three variables
+    DECLARE f_genre VARCHAR(200);
+    DECLARE f_recommendation TEXT;
+    DECLARE f_genre_count INT;
+    
+    -- What genre does the member withdraw 
+    -- most frequently?
+
+    -- Get the member's most frequently
+    -- borrowed genre, and store it
+    -- in the `f_genre` variable.
+    -- Store the count in another variable,
+    -- not because we'll need it later, but
+    -- because otherwise SQL will try
+    -- to put it into the f_genre variable,
+    -- too.
+    SELECT genre, COUNT(*) INTO 
+      f_genre, 
+      f_genre_count
+      FROM withdrawals w 
+        JOIN books b
+      ON w.book_id = b.book_id
+      WHERE member_id = f_member_id
+      GROUP BY genre
+      ORDER BY COUNT(*) DESC
+      LIMIT 1;
+      
+    -- What is the most popular book of 
+    -- that genre that has not 
+    -- been withdrawn by this member
+
+    -- Put the title into the 
+    -- `f_recommendation` variable
+    SELECT b.title INTO f_recommendation
+      FROM withdrawals w 
+        JOIN books b
+      ON w.book_id = b.book_id
+      -- of the most popular book
+      -- of the member's favourite genre
+      -- excluding those books
+      -- that the member has checked
+      -- out in the past.
+      WHERE genre = f_genre AND b.book_id 
+        NOT IN (
+          SELECT book_id FROM withdrawals 
+          WHERE member_id = f_member_id
+      )
+      GROUP BY b.book_id, title
+      ORDER BY COUNT(*) DESC
+      LIMIT 1;
+    
+    RETURN (f_recommendation);
+    
+  END //  
+</textarea></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><h2 class=h2 id=lab>Lab</h2><p><em>Windows users who haven't installed PHP - install XAMPP</em></p><p>For your lab today, try to do one of the following. I'll be coming around to chat with each of you about your thoughts on how to approach the task you choose to do.</p><p>And of course, if you're happy with how you've done, you can always do another!</p><p>The first step is to create the library tables in your own database. Feel free to copy and paste the code in this lesson.</p><p>Some of these tasks require you to add data, or alter a table or tables. Go nuts! (As long as it's inside your own db!)</p></div></div></section><section><div class=grid-x><div class="cell large-10 large-offset-1"><ol><li>There's a library sale! Create a stored procedure to find books aren't popular. This can mean books that are taken out infrequently, or there are more copies than are justified by the demand.</li><li>I used to love getting movies from the library as a kid! Add tables necessary to give the library a video collection.</li><li>What do you mean it's already checked out? Create the functionality needed for a waiting list for popular books.</li><li>Libraries aren't just for bookworms. Create the functionality needed to have people sign up for events at the library.</li><li>Libraries are incredibly flexible, adapting to their communities - from tool libraries to jobs programs to community organizing, a library can be whatever people need it to be. Come up with your own idea for how the library's database can serve the community.</li></ol></div></div></section></div></div><script type=text/javascript src=/js/reveal.js></script><script>Reveal.initialize({dependencies:[{src:'/js/highlight.js',async:true,callback:function(){hljs.initHighlightingOnLoad();}},{src:'/js/reveal-a11y.js',async:true,condition:function(){return!!document.body.classList;}}]});</script></body></html>
