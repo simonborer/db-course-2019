@@ -1,5 +1,5 @@
 ---
-title: "Week 9 - Introduction to Oracle"
+title: "Week 9 - State of DB; Final Review"
 date: 2019-10-29T08:47:11+01:00
 publishdate: 2020-11-02T08:47:11+01:00
 featured_image: 2019.png
@@ -8,9 +8,6 @@ today:
   -
     title: Databases in 2019
     id: 2019
-  - 
-    title: MySQL
-    id: MySQL
   - 
     title: Acid Compliance
     id: acid
@@ -32,7 +29,7 @@ today:
 ---
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <p>I've been warned against giving you a shallow knowledge of many subjects.</p>
       <p>Instead, today I'll give you an <em>extremely</em> shallow understanding.</p>
     </div>
@@ -40,33 +37,35 @@ today:
 </section>
 <section id="2018">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">The state of the <code>UNION</code></h2>
-      <h3 class="h3">-- Databases in 2018 --</h3>
+      <h3 class="h3">-- Databases in 2019 --</h3>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>In 2018, the #1 most common database management system is Oracle<sup><a href="https://db-engines.com/en/ranking">1</a></sup>.</p>
-      <p>MySQL is the DBMS used by most developers<sup><a href="https://insights.stackoverflow.com/survey/2018#technology-databases">2</a></sup>.</p>
-      <p>Postgres gained the most market share since last year<sup><a href="https://insights.stackoverflow.com/survey/2017#technology-databases">3</a></sup>, and is now the #3 DBMS overall.</p>
+    <div class="cell large-10 large-offset-1">
+      <p>In 2019, MySQL is the DBMS used by most developers<sup><a href="https://insights.stackoverflow.com/survey/2019#technology-_-databases">2</a></sup>.</p>
+      <img src="/images/use.png" alt="Stackoverflow developer survey">
+      <p>In 2019, the #1 most frequently discussed database management system is Oracle<sup><a href="https://db-engines.com/en/ranking">1</a></sup>.</p>
+      <img src="/images/discussion.png" alt="Rankings from db-engines.com">
+      <p>Postgres gained the most market share since last year<sup><a href="https://insights.stackoverflow.com/survey/2018#technology-_-databases">3</a></sup>, and is now the #2 most-used DBMS overall.</p>
+      <em><strong>Note:</strong> I strongly encourage you to check out the entire <a href="https://insights.stackoverflow.com/survey/2019">Stack Overflow Developer survey</a>. It will give you a lot of insight into the community you're joining, including things like demographics, job turnover, gender equality, salary, etc.</em>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>NoSQL ("Not only SQL") databases tried to offer an alternative to relational database architecture by using key/value stores, documents (i.e. JSON) or other "flat" architectures instead of tables. While this was a strong industry trend for a few years, in 2017 and 2018 adoption flattened or fell slightly.</p>
+    <div class="cell large-10 large-offset-1">
+      <p>NoSQL ("Not only SQL") databases tried to offer an alternative to relational database architecture by using key/value stores, documents or other "flat" architectures instead of tables. While this was a strong industry trend for a few years, in 2017 and 2018 adoption flattened or fell slightly.</p>
       <p>The consensus seems to be that NoSQL is a good supplemental tool for vertical scalability and rapid iteration, rather than a replacement for relational databases.</p>
-      
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <p>For example, if you think your data structures will change while you're working on a project, and you're not sure <em>how</em> they will change, a document-based NoSQL db might be a good choice.</p>
       <p>If your primary concern is high-speed caching of data, a key-value store db like Redis might be the best choice.</p>
       <p>If you're dealing with huge chunks of inconsistently structured data, you might need a column-store db like Cassandra.</p>
@@ -74,263 +73,57 @@ today:
     </div>
   </div>
 </section>
-<section id="MySQL">
+<section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">MySQL</h2>
-      <p>If you haven't already, install <a target="_blank" href="https://www.mamp.info/en/downloads/">MAMP</a>.</p>
+    <div class="cell large-10 large-offset-1">
+      <p>You're most likely to encounter MongoDB when working with React. A popular development stack is </p>
+      <ul>
+        <li>React (the application framework)</li>
+        <li>Express (the backend framework)</li>
+        <li>Node (the runtime environment)</li>
+        <li>Mongo (the database)</li>
+      </ul>
+      <p>To see what different dev teams use as their stack, check out <a href="https://stackshare.io/feed">Stackshare</a></p>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Once you have MAMP installed, run the application and go to <a href="http://localhost:8888/phpMyAdmin/server_sql.php">phpMyAdmin</a>.</p>
-      <p>You now have a local development server!</p>
-      <p>Try running a command like you would in SQLDeveloper:</p>
-      <pre><code class="language-sql">CREATE TABLE locations (
-    location_id    NUMBER(4)    PRIMARY KEY,
-    address        VARCHAR2(40)
-);</code></pre>
-      <p><span role="image" aria-label="collision">💥</span>This is going to produce errors<span role="image" aria-label="collision">💥</span></p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>If you run the <code>CREATE TABLE</code> command, you should see <code>No database selected</code> and <code>Unrecognized data type</code> errors.</p>
-      <p>We can resolve the former with</p>
-      <pre><code class="language-sql">CREATE DATABASE my_database</code></pre>
-      <p>... and then prefixing the table name with the db name, as</p>
-      <pre><code class="language-sql">CREATE TABLE my_database.locations ();</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>To resolve the <code>Unrecognized data type</code> errors, we'll need to learn about MySQL data types, which are similar to Oracle data types, but with different names.</p>
-      <table>
-        <thead>
-          <tr>
-            <th colspan="2">Data type analogues</th>
-          </tr>
-          <tr>
-            <th>Oracle</th>
-            <th>MySQL</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>VARCHAR2</code></td>
-            <td><code>VARCHAR</code></td>
-          </tr>
-          <tr>
-            <td><code>NUMBER</code></td>
-            <td><code>INT</code> or <code>DECIMAL</code></td>
-          </tr>
-          <tr>
-            <td><code>DATE</code></td>
-            <td><code>DATETIME</code></td>
-          </tr>
-        </tbody>
-      </table>
-      
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>MySQL, like Oracle, has a lot of data types that provide more granularity within these general data types. Check out more <a href="https://dev.mysql.com/doc/refman/8.0/en/data-types.html">in their docs</a>.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Run the following:</p>
-      <pre><code class="language-sql">CREATE TABLE my_database.locations (
-    location_id    INT(4)    PRIMARY KEY,
-    address        VARCHAR(40)
-);
-INSERT INTO my_database.locations VALUES (1, '123 Fake St.');</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Now try...</p>
-      <pre><code class="language-sql">SELECT * FROM my_db.locations</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Queries in MySQL are virtually the same as they are in Oracle, aside from a few of the data types.</p>
-      <p>We will notice some differences in our blocks of code, but these tend to be minor. For example: <code>ELSIF</code> in Oracle would be written as <code>ELSEIF</code> in MySQL.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>In MySQL, stored procedures and functions are called 'routines'.</p>
-      <p>They are kinda clunky.</p>
-      <pre><code class="language-sql">CREATE FUNCTION hello (s CHAR(20))
-    RETURNS CHAR(50) DETERMINISTIC
-    RETURN CONCAT('Hello, ',s,'!');
-
-  SELECT hello('world');</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>But if I showed you this:</p>
-      <pre><code class="language-sql no-max">CREATE PROCEDURE get_customer_level(
-    IN  customer_number_param INT(11), 
-    OUT customer_level_param  VARCHAR(10))
-BEGIN
-    DECLARE credit_limit_var DOUBLE;
- 
-    SELECT credit_limit INTO credit_limit_var
-    FROM customers
-    WHERE customer_number = customer_number_param;
- 
-    IF credit_limit_var > 50000 THEN
- SET customer_level_param = 'PLATINUM';
-    ELSEIF (credit_limit_var <= 50000 AND credit_limit_var >= 10000) THEN
-        SET customer_level_param = 'GOLD';
-    ELSEIF credit_limit_var < 10000 THEN
-        SET customer_level_param = 'SILVER';
-    END IF;
- 
-END</code></pre>
-    <p>...I think you could figure it out pretty quickly.</p>
-    </div>
-  </div>
-</section>
-<section id="acid">
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">ACID compliance</h2>
-      <p>One thing to note about MySQL is that it is <em>not</em> ACID compliant by default. What does that mean, and why should we care?</p>
-      <p>ACID is an acronym for what database nerds, as far back as <a href="https://dl.acm.org/citation.cfm?doid=289.291" target="_blank">1983</a>, have agreed are important standards for a database management system.</p>
-      
-      
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p><strong>A</strong> stands for Atomicity, which means that if one statement in a transaction fails, the whole transaction fails. If you try to insert a hundred rows, and one of your inserts is missing a closing bracket, the whole script fails.</p>
-      <p><strong>C</strong> stands for Consistency, meaning that any data that breaks a rule (think data types and other constraints) is not allowed.</p>
-      <p><strong>I</strong> stands for Isolation. That means that even if transactions run at the same time, you get the same result as if you'd run them in order.</p>
-      <p><strong>D</strong> stands for Durability, meaning that after you've committed to the db, the power can out and no data will be lost. That means writing to 'non-volatile' memory (i.e. something besides RAM).</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>MySQL falls short particularly with <strong>D</strong>. But does that matter for most web projects? Simply put: no.</p>
+    <div class="cell large-10 large-offset-1">
+      <p>Before we dive into the different individual Database Management Systems, I also wanted to mention that there's a new query language that's becoming popular:</p>
+      <p><strong>GraphQL</strong> is presented as an alternative to REST APIs. REST shares data (usually as JSON) by allowing you to make an HTTP GET request, and returning data.</p>
+      <p>GraphQL does that too, <strong>BUT</strong>, unlike REST, it allows you to define the format and structure of the data that gets returned, which is pretty cool.</p>
+      <p>Here's <a href="https://blog.apollographql.com/graphql-vs-rest-5d425123e34b">a good article summarizing the topic</a>.</p>
     </div>
   </div>
 </section>
 <section id="postgres">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Postgres</h2>
-      <p>ACID compliance bragging rights <em>do</em> go to Postgres, however. Postgres is the somewhat more mature, dependable older sibling to MySQL, and its robust feature set and dependability have made it the fastest growing DBMS the past two years in a row.</p>
-      <p>It's got great support for JSON, impressive features like table partitioning, and cool data types like Money, Geometry, IP addresses, JSON, and data ranges.</p>
-      <p>Let's try it out!</p>
+      <p>ACID compliance bragging rights <em>do</em> go to Postgres, however. Postgres is the somewhat more mature, dependable sibling to MySQL, and its robust feature set and dependability have made it the fastest growing DBMS the past three years in a row.</p>
+      <p>It's got great support for JSON, impressive features like table partitioning, and cool data types like Money, Geometry, IP addresses, and data ranges.</p>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>If you're on a Windows machine, I have no idea if this will work. Postgres is the default DBMS on Mac OS Servers, and is build with Mac OS in mind. That said, try running the <a href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads">Windows installer</a>.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>If you're on Mac, and you <em>don't</em> have homebrew installed already, you're going to want it. It's a handy package manager that's going to crop up a lot during your work.</p>
-      <p>That said, if these installation instructions don't work out for your, you can always <a href="https://postgresapp.com/">install the app</a>. But where's the fun in that?</p>
-      <p>You can install homebrew on Mac by copying and pasting this command in your terminal: <pre><code>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</code></pre></p>
-
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Once that's done, it's as easy as <code>brew install postgresql</code>.</p>
-      <p>When the command has finished running, you can start the service with <code>pg_ctl -D /usr/local/var/postgres start && brew services start postgresql</code>.</p>
-      <p>Check to see what your user name is: <code>psql postgres</code>, then <code>\du</code></p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>At this point, we've got the DBMS running on our local machine, but unlike when we installed MAMP, we don't have a default server and web interface.</p>
-      <p>My understanding is that the stock GUI for postgres, pgAdmin 4, is not good.</p>
-      <p>Luckily, there's a pretty great free DB GUI that handles postgres (as well as a number of other DBMSs) called <a href="https://dbeaver.io/" target="_blank">DBeaver</a>. Homebrew users can run <code>brew cask install dbeaver-community.</code></p>
-
-
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>You can connect to your Postgres DB by clicking the "plug" icon in the top left.</p>
-      <p>Select postgreSQL, and then fill out your info: Host/localhost, Port/5432, Database/postgres, User/${user}, and leave the password blank. Test your connection, and if it works, click 'Finish'.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>Select your connection from the left-hand menu, and run the following:</p>
-      <pre><code class="language-sql">create database my_db;
-create table my_table (
-  my_id INT   primary key,
-  my_name VARCHAR,
-  my_money  MONEY
-);
-insert into my_table values (1, 'Simon', 14.50);
-select * from my_table;</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">NoSQL</h2>
     </div>
   </div>
 </section>
 <section id="mongo">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">MongoDB</h2>
-      <p>MongoDB installation can be tedious (although I may have you run Mongo in the future via Docker, so consider <a href="https://www.docker.com/products/docker-desktop" target="_blank">installing it</a>), so in the interests of time, let's look at how data is stored in Mongo...</p>
+      <p>Let's look at how data is stored in Mongo...</p>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
 <pre class="slide-only"><code class="language-json">{
     "_id" : 1,
     "name" : {
@@ -531,53 +324,239 @@ select * from my_table;</code></pre>
         }
     ]
 }</code></pre>
-      <p>Look familiar? It's not SQL, it's JSON.</p>
+      <p>Look familiar? It's not SQL, it's JSON (well, technically it's BSON - binary JSON).</p>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <p>While concepts like table joins don't transfer to NoSQL, basic databased CRUD operations remain. So instead of writing <code class="language-sql">DROP TABLE people</code>, we write <code class="language-javascript">db.people.drop()</code></p>
+    <div class="cell large-10 large-offset-1">
+      <p>While concepts like table joins don't transfer to NoSQL, basic database CRUD operations remain. So instead of writing <code class="language-sql">DROP TABLE people</code>, we write <code class="language-javascript">db.people.drop()</code></p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <p>If you'd like to know more about how MongoDB compares to MyQL, Mongo has a (biased, but comprehensive) <a href="https://www.mongodb.com/compare/mongodb-mysql">write-up on their site</a>.</p>
     </div>
   </div>
 </section>
 <section id="redis">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Redis</h2>
       <p>Redis is a pretty fascinating "in-memory data structure store", meant to be used for really impressive caching. It definitely challenges the notions of what a database is - in some ways it's the <em>opposite</em> of ACID.</p>
-      <p>I'll try and give us a sample of Redis soon - I want to run it as a Docker image, but I haven't had time to set that up for us yet.</p>
     </div>
   </div>
 </section>
+<section id="acid">
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <h2 class="h2">ACID compliance</h2>
+      <p>One thing to note when comparing database management systems is ACID compliance.</p>
+      <p>What is that, and why should we care?</p>
+      <p>ACID is an acronym for what database nerds, as far back as <a href="https://dl.acm.org/citation.cfm?doid=289.291" target="_blank">1983</a>, have agreed are important standards for a database management system.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <p><strong>A</strong> stands for Atomicity, which means that if one statement in a transaction fails, the whole transaction fails. If you try to insert a hundred rows, and one of your inserts is missing a closing bracket, the whole script fails.</p>
+      <p><strong>C</strong> stands for Consistency, meaning that any data that breaks a rule (think data types and other constraints) is not allowed.</p>
+      <p><strong>I</strong> stands for Isolation. That means that even if transactions run at the same time, you get the same result as if you'd run them in order.</p>
+      <p><strong>D</strong> stands for Durability, meaning that after you've committed to the db, the power can out and no data will be lost. That means writing to 'non-volatile' memory (i.e. something besides RAM).</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <p>MySQL falls short particularly with <strong>D</strong>. But does that matter for most web projects? Simply put: no.</p>
+    </div>
+  </div>
+</section>
+
 <section id="discussion">
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Discussion</h2>
       <p>What technology you decide to use can be a factor in whether a project succeeds or fails. Even as a junior developer, you should be able to take part in those discussions, and push back when someone (*ahem* management) starts taking you down the wrong path. It's not about having all the answers, but asking good questions.</p>
       <p>Get in small groups. Talk about what questions might be important when deciding on a database solution.</p>
     </div>
   </div>
 </section>
-<section class="slide-only">
+<section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1"><h2 class="h2">Reviewing Routines</h2>
+      <p>There are two kinds of routine: procedures and functions.</p>
+      <p>Procedures <em>do a job for you</em>.</p>
+      <p>Functions <em>get a value for you</em>.</p>
+      <p>Routines are things you can create and save in the database to make things easier.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <p>This procedure does <em>nothing</em>.</p>
+      <pre class="slide-only"><code class="language-sql">DELIMITER $$
+
+CREATE PROCEDURE i_do_nothing()
+BEGIN
+  -- nothing happens
+END$$</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="40" cols="50" class="post-only">DELIMITER $$
+
+CREATE PROCEDURE i_do_nothing()
+BEGIN
+  -- nothing happens
+END$$</textarea>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">We then do nothing by calling it.
+      <pre class="slide-only"><code class="language-sql">CALL i_do_nothing()</code></pre>
+    <textarea data-code-mirror="sql" data-code-mirror-height="40" cols="50" class="post-only">CALL i_do_nothing()</textarea></div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1"><p>This <em>can</em> something (when we call it).</p>
+      <pre class="slide-only"><code class="language-sql">DELIMITER $$
+
+CREATE PROCEDURE i_do_something()
+BEGIN
+  INSERT INTO authors (author_id, first_name, last_name) 
+    VALUES (NULL, 'Christopher', 'Pike');
+END$$</code></pre>
+    <textarea data-code-mirror="sql" data-code-mirror-height="40" cols="50" class="post-only">DELIMITER $$
+
+CREATE PROCEDURE i_do_something()
+BEGIN
+  INSERT INTO authors (author_id, first_name, last_name) 
+    VALUES (NULL, 'Christopher', 'Pike');
+END$$</textarea></div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1"><p>But it's not a very <em>useful</em> something. It does nothing we couldn't do just by writing <code>INSERT INTO authors (author_id, first_name, last_name) 
+    VALUES (NULL, 'Christopher', 'Pike');</code>. It's not yet making life any easier.</p></div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1"><p>That's where variables come in.</p></div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1"><pre class="slide-only"><code class="language-sql">DELIMITER $$
+
+CREATE PROCEDURE i_do_something_useful(
+  IN p_first_name VARCHAR(50),
+  IN p_last_name  VARCHAR(50)
+)
+BEGIN
+  INSERT INTO authors (author_id, first_name, last_name) 
+    VALUES (NULL, p_first_name, p_last_name);
+END$$</code></pre>
+    <textarea data-code-mirror="sql" data-code-mirror-height="40" cols="50" class="post-only">DELIMITER $$
+
+CREATE PROCEDURE i_do_something_useful(
+  IN p_first_name VARCHAR(50),
+  IN p_last_name  VARCHAR(50)
+)
+BEGIN
+  INSERT INTO authors (author_id, first_name, last_name) 
+    VALUES (NULL, p_first_name, p_last_name);
+END$$</textarea></div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">Now we've made something useful - because <code>CALL i_do_something_useful('J.K.', 'Rowling');</code> is simpler and safer than writing out a whole insert statement.</div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">In <code>i_do_something_useful()</code> we had a variable that got its value from an input parameter - the value you supply in the paranthese when you <code>CALL</code> it.</div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+      <p>Variables can also be internal - meaning their value doesn't come from the <code>CALL</code> statement.</p>
+      <pre class="slide-only"><code class="language-sql">DELIMITER $$
+
+CREATE PROCEDURE too_many_tolkiens()
+BEGIN
+  DECLARE p_tolkien INT;
+  SELECT author_id INTO p_tolkien
+    FROM authors
+    WHERE UPPER(last_name) = 'TOLKIEN'
+    ORDER BY author_id
+    LIMIT 1;
+  
+  DELETE FROM authors WHERE author_id = p_tolkien;
+  
+END$$</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="40" cols="50" class="post-only">DELIMITER $$
+
+CREATE PROCEDURE too_many_tolkiens()
+BEGIN
+  DECLARE p_tolkien INT;
+  SELECT author_id INTO p_tolkien
+    FROM authors
+    WHERE UPPER(last_name) = 'TOLKIEN'
+    ORDER BY author_id
+    LIMIT 1;
+  
+  DELETE FROM authors WHERE author_id = p_tolkien;
+  
+END$$</textarea>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1"><h2 class="h2">Functions</h2>
+      <pre class="slide-only"><code class="language-sql">DELIMITER $$
+
+CREATE FUNCTION i_return_nothing()
+RETURNS INT
+BEGIN
+  RETURN 0;
+END$$
+
+SELECT i_return_nothing();</code></pre>
+      <textarea data-code-mirror="sql" data-code-mirror-height="40" cols="50" class="post-only">DELIMITER $$
+
+CREATE FUNCTION i_return_nothing()
+RETURNS INT
+BEGIN
+  RETURN 0;
+END$$
+
+SELECT i_return_nothing();</textarea>
+      </div>
+  </div>
+</section>
+<!-- <section class="slide-only">
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <h2 class="h2">Another discussion</h2>
     </div>
   </div>
-</section>
-<section>
-  <div class="grid-x" id="lab">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
-      <h2 class="h2">Assignment time!</h2>
-      <p>This week you will be doing some database architecture. Create tables based on the following. Don't feel the need to actually <em>solve</em> any problems listed below, but think about how you might, and design your tables to facilitate that.</p>
-    </div>
-  </div>
-</section>
-<section>
+</section> -->
+
+<!-- <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <p>You run a bakery.</p>
       <p>Your bakery has three locations in the west end of Toronto.</p>
       <p>Your bakery has 2 types of employee - bakers and cashiers.</p>
@@ -589,7 +568,7 @@ select * from my_table;</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <ul>
         <li>create a schedule for your employees, keeping in mind that 
           <ul>
@@ -606,7 +585,7 @@ select * from my_table;</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <ul>
         <li>create a menu, factoring in that 
           <ul>
@@ -622,7 +601,7 @@ select * from my_table;</code></pre>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-6 large-offset-3 medium-10 medium-offset-1">
+    <div class="cell large-10 large-offset-1">
       <p>How do you design your database tables?</p>
       <p>Will you be able to...</p>
       <ul>
@@ -635,4 +614,4 @@ select * from my_table;</code></pre>
       <p>Also, try thinking about what other metrics could you track/calculate to help the business?</p>
     </div>
   </div>
-</section>
+</section> -->
