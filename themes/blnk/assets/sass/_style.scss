@@ -86,6 +86,16 @@ figcaption {
 .post h3.h3 {
     margin-top:1.5rem;
 }
+
+.post .h2 + .h3 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.post img {
+    margin-bottom: 1rem;
+}
+
 @media (min-width: 768px) {
     .post .h2 {
         font-size: 2rem;
