@@ -357,7 +357,7 @@ WHERE ([filter logic] OR [more logic])
 <section id="joins">
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <h2 class="h2">JOINS!<br><span role="image" aria-label="backhand index pointing right">👉</span><span role="image" aria-label="backhand index pointing left">👈</span></h2>
+      <h2 class="h2">JOINS!<br><span role="img" aria-label="backhand index pointing right">👉</span><span role="img" aria-label="backhand index pointing left">👈</span></h2>
     </div>
   </div>
 </section>
@@ -442,7 +442,7 @@ JOIN vendors
 <section id="tableAliases">
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <p>Let's run that code again, with a slight modification to produce an error! <span role="image" aria-label="fire">🔥</span><span role="image" aria-label="Person gesturing no">🙅</span><span role="image" aria-label="fire">🔥</span></p> 
+      <p>Let's run that code again, with a slight modification to produce an error! <span role="img" aria-label="fire">🔥</span><span role="img" aria-label="Person gesturing no">🙅</span><span role="img" aria-label="fire">🔥</span></p> 
       <pre class="slide-only"><code class="language-sql">SELECT invoice_due_date AS "Due on", 
   vendor_name AS "Due from", 
   payment_date AS "Paid on",
@@ -622,10 +622,10 @@ ON assignments.class = students.class</textarea>
         <tbody>
           <tr>
             <td>Birinder</td>
-            <td>Paper</td>
+            <td>Lab</td>
           </tr>
           <tr>
-            <td>Amandeep</td>
+            <td>Ryan</td>
             <td>Exam</td>
           </tr>
         </tbody>
@@ -645,15 +645,15 @@ ON assignments.class = students.class</code></pre>
         <tbody>
           <tr>
             <td>Birinder</td>
-            <td>Paper</td>
-          </tr>
-          <tr>
-            <td>Amandeep</td>
-            <td>Exam</td>
+            <td>Lab</td>
           </tr>
           <tr>
             <td><code>(null)</code></td>
             <td>Lab</td>
+          </tr>
+          <tr>
+            <td>Ryan</td>
+            <td>Exam</td>
           </tr>
         </tbody>
       </table>
@@ -672,15 +672,15 @@ ON assignments.class = students.class</code></pre>
         <tbody>
           <tr>
             <td>Birinder</td>
-            <td>Paper</td>
+            <td>Lab</td>
           </tr>
           <tr>
             <td>Amandeep</td>
-            <td>Exam</td>
+            <td><code>(null)</code></td>
           </tr>
           <tr>
             <td>Ryan</td>
-            <td><code>(null)</code></td>
+            <td>Exam</td>
           </tr>
         </tbody>
       </table>
@@ -704,19 +704,19 @@ RIGHT JOIN students
         <tbody>
           <tr>
             <td>Birinder</td>
+            <td>Lab</td>
+          </tr>
+          <tr>
+            <td><code>(null)</code></td>
             <td>Paper</td>
           </tr>
           <tr>
             <td>Amandeep</td>
-            <td>Exam</td>
-          </tr>
-          <tr>
             <td><code>(null)</code></td>
-            <td>Lab</td>
           </tr>
           <tr>
             <td>Ryan</td>
-            <td><code>(null)</code></td>
+            <td>Exam</td>
           </tr>
         </tbody>
       </table>

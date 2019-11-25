@@ -57,7 +57,7 @@ summary: "This week we're starting! We're going to start by reviewing the course
 		<div class="cell large-10 large-offset-1 post-section">
 			<h2 class="h2">Welcome!</h2>
 			<p>My name is Simon Borer. You can reach me at <a href="mailto:brrs0390@humbermail.ca">brrs0390@humbermail.ca</a>.</p>
-			<p class="slide-only">I like coffee <span role="image" aria-label="coffee">☕</span>, old-timey baseball <span role="image" aria-label="baseball">⚾</span>, horror movies <span role="image" aria-label="ghost">👻</span> and accessible websites <span role="image" aria-label="computer">💻</span>.</p>
+			<p class="slide-only">I like coffee <span role="img" aria-label="coffee">☕</span>, old-timey baseball <span role="img" aria-label="baseball">⚾</span>, horror movies <span role="img" aria-label="ghost">👻</span> and accessible websites <span role="img" aria-label="computer">💻</span>.</p>
 		</div>
 	</div>
 </section>

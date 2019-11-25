@@ -3,29 +3,7 @@ title: "Week 9 - State of DB; Final Review"
 date: 2019-10-29T08:47:11+01:00
 publishdate: 2019-11-02T08:47:11+01:00
 featured_image: 2019.png
-summary: "This week we'll cover the state of databases in 2019."
-today:
-  -
-    title: Databases in 2019
-    id: 2019
-  - 
-    title: Acid Compliance
-    id: acid
-  -
-    title: PostreSQL
-    id: postgres
-  -
-    title: MongoDB
-    id: mongo
-  -
-    title: Redis
-    id: redis
-  -
-    title: Discussion
-    id: discussion
-  -
-    title: Assignment
-    id: lab
+summary: "This week we'll cover the state of databases in 2019, and review the top requested subjects."
 ---
 <section class="slide-only">
   <div class="grid-x">
@@ -66,12 +44,29 @@ today:
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <p>In 2019, MySQL is the DBMS used by most developers<sup><a target="_blank" href="https://insights.stackoverflow.com/survey/2019#technology-_-databases">2</a></sup>.</p>
-      <img src="/images/use.png" alt="Stackoverflow developer survey">
+      <img style="max-height:50vh;" src="/images/use.png" alt="Stackoverflow developer survey" />
+          </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p>In 2019, the #1 most frequently discussed database management system is Oracle<sup><a target="_blank" href="https://db-engines.com/en/ranking">1</a></sup>.</p>
-      <img src="/images/discussion.png" alt="Rankings from db-engines.com">
+      <img src="/images/discussion.png" alt="Rankings from db-engines.com" />
+          </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p>Postgres gained the most market share since last year<sup><a target="_blank" href="https://insights.stackoverflow.com/survey/2018#technology-_-databases">3</a></sup>, and is now the #2 most-used DBMS overall.</p>
+          </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p><em><strong>Note:</strong> I strongly encourage you to check out the entire <a target="_blank" href="https://insights.stackoverflow.com/survey/2019">Stack Overflow Developer survey</a>. It will give you a lot of insight into the community you're joining, including things like demographics, job turnover, gender equality, salary, etc.</em></p>
-      
     </div>
   </div>
 </section>
@@ -87,15 +82,16 @@ today:
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <p>For example, if you think your data structures will change while you're working on a project, and you're not sure <em>how</em> they will change, a document-based NoSQL db might be a good choice.</p>
-      <p>If your primary concern is high-speed caching of data, a key-value store db like Redis might be the best choice.</p>
-      <p>If you're dealing with huge chunks of inconsistently structured data, you might need a column-store db like Cassandra.</p>
-      <p>If you're dealing more with relationships than data, you might want a graph-based db like Neo4J.</p>
+      <p>If your primary concern is high-speed caching of data, a key-value store db like <a href="https://redis.io/topics/introduction" target="_blank">Redis</a> might be the best choice.</p>
+      <p>If you're dealing with huge chunks of inconsistently structured data, you might need a wide column store db like <a href="http://cassandra.apache.org/" target="_blank">Cassandra</a>.</p>
+      <p>If you're dealing more with relationships than data, you might want a graph-based db like <a href="https://neo4j.com/developer/graph-db-vs-rdbms/" target="_blank">Neo4J</a>.</p>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
+      <p>Of the developers in the the developer survey, 54% said they used MySQL, while 25% used the most popular NoSQL database - MongoDB.</p>
       <p>You're most likely to encounter MongoDB when working with React. A popular development stack is </p>
       <ul>
         <li>React (the application framework)</li>
@@ -121,7 +117,7 @@ today:
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <h2 class="h2"><em>NoSQL Databases</em></h2>
-      <h3 class="h3">MongoDB</h2>
+      <h3 class="h3">MongoDB</h3>
       <p>Let's look at how data is stored in Mongo...</p>
     </div>
   </div>
@@ -144,7 +140,6 @@ today:
         "FP"
     ]
 }
-
 {
     "_id" : ObjectId("51df07b094c6acd67e492f41"),
     "name" : {
@@ -196,7 +191,7 @@ today:
         }
     ]
 }</code></pre>
-      <p>Look familiar? It's not SQL, it's JSON (well, technically it's BSON - binary JSON).</p>
+      <p>Look familiar? It's JSON (well, technically it's BSON - binary JSON)!</p>
     </div>
   </div>
 </section>
@@ -291,10 +286,10 @@ today:
 <section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1"><h2 class="h2">Reviewing Routines</h2>
+      <p>Routines are things you can create and save in the database to make life easier.</p>
       <p>There are two kinds of routine: procedures and functions.</p>
       <p>Procedures <em>do a job for you</em>.</p>
       <p>Functions <em>get a value for you</em>.</p>
-      <p>Routines are things you can create and save in the database to make things easier.</p>
     </div>
   </div>
 </section>
@@ -303,13 +298,11 @@ today:
     <div class="cell large-10 large-offset-1">
       <p>This procedure does <em>nothing</em>.</p>
       <pre class="slide-only"><code class="language-sql">DELIMITER $$
-
 CREATE PROCEDURE i_do_nothing()
 BEGIN
   -- nothing happens
 END$$</code></pre>
       <textarea data-code-mirror="sql" data-code-mirror-height="190" cols="50" class="post-only">DELIMITER $$
-
 CREATE PROCEDURE i_do_nothing()
 BEGIN
   -- nothing happens
@@ -326,16 +319,14 @@ END$$</textarea>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-10 large-offset-1"><p>This <em>can</em> something (when we call it).</p>
+    <div class="cell large-10 large-offset-1"><p>This <em>can</em> do something (when we call it).</p>
       <pre class="slide-only"><code class="language-sql">DELIMITER $$
-
 CREATE PROCEDURE i_do_something()
 BEGIN
   INSERT INTO authors (author_id, first_name, last_name) 
     VALUES (NULL, 'Christopher', 'Pike');
 END$$</code></pre>
-    <textarea data-code-mirror="sql" data-code-mirror-height="220" cols="50" class="post-only">DELIMITER $$
-
+    <textarea data-code-mirror="sql" data-code-mirror-height="190" cols="50" class="post-only">DELIMITER $$
 CREATE PROCEDURE i_do_something()
 BEGIN
   INSERT INTO authors (author_id, first_name, last_name) 
@@ -357,13 +348,16 @@ END$$</textarea></div>
 <section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1"><pre class="slide-only"><code class="language-sql">DELIMITER $$
-
 CREATE PROCEDURE i_do_something_useful(
   IN p_first_name VARCHAR(50),
   IN p_last_name  VARCHAR(50)
 )
 BEGIN
-  INSERT INTO authors (author_id, first_name, last_name) 
+  INSERT INTO authors (
+    author_id, 
+    first_name, 
+    last_name
+  ) 
     VALUES (NULL, p_first_name, p_last_name);
 END$$</code></pre>
     <textarea data-code-mirror="sql" data-code-mirror-height="280" cols="50" class="post-only">DELIMITER $$
@@ -379,12 +373,13 @@ END$$</textarea></div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-10 large-offset-1">Now we've made something useful - because <code>CALL i_do_something_useful('J.K.', 'Rowling');</code> is simpler and safer than writing out a whole insert statement.</div>
+    <div class="cell large-10 large-offset-1">Now we've made something useful - because <pre class="slide-only"><code class="language-sql">CALL i_do_something_useful('J.K.', 'Rowling');</code></pre>
+    <textarea data-code-mirror="sql" data-code-mirror-height="40" cols="50" class="post-only">CALL i_do_something_useful('J.K.', 'Rowling');</textarea> is simpler and safer than writing out a whole insert statement.</div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-10 large-offset-1">In <code>i_do_something_useful()</code> we had a variable that got its value from an input parameter - the value you supply in the paranthese when you <code>CALL</code> it.</div>
+    <div class="cell large-10 large-offset-1">In <code>i_do_something_useful()</code> we had a variable that got its value from an input parameter - the value you supply in the parentheses when you <code>CALL</code> it.</div>
   </div>
 </section>
 <section>
@@ -400,9 +395,7 @@ BEGIN
     WHERE UPPER(last_name) = 'TOLKIEN'
     ORDER BY author_id
     LIMIT 1;
-  
   DELETE FROM authors WHERE author_id = p_tolkien;
-  
 END$$</code></pre>
       <textarea data-code-mirror="sql" data-code-mirror-height="340" cols="50" class="post-only">DELIMITER $$
 CREATE PROCEDURE too_many_tolkiens()
@@ -421,44 +414,84 @@ END$$</textarea>
 <section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1"><h2 class="h2">Functions</h2>
-      <pre class="slide-only"><code class="language-sql">DELIMITER $$
-
+      <pre class="slide-only"><code class="language-sql">-- Define the useless function
+DELIMITER $$
 CREATE FUNCTION i_return_nothing()
 RETURNS INT
 BEGIN
   RETURN 0;
 END$$
-
+-- Use the useless function
 SELECT i_return_nothing();</code></pre>
-      <textarea data-code-mirror="sql" data-code-mirror-height="280" cols="50" class="post-only">DELIMITER $$
-
+      <textarea data-code-mirror="sql" data-code-mirror-height="280" cols="50" class="post-only">-- Define the useless function
+DELIMITER $$
 CREATE FUNCTION i_return_nothing()
 RETURNS INT
 BEGIN
   RETURN 0;
 END$$
-
+-- Use the useless function
 SELECT i_return_nothing();</textarea>
       </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
-    <div class="cell large-10 large-offset-1"></div>
+    <div class="cell large-10 large-offset-1"><pre class="slide-only"><code class="language-sql">-- Define the stupid function
+DELIMITER $$
+CREATE FUNCTION what_is_two_plus_two()
+RETURNS INT
+BEGIN
+  RETURN 2 + 2;
+END$$
+-- Call the stupid function
+SELECT what_is_two_plus_two()</code></pre>
+    <textarea data-code-mirror="sql" data-code-mirror-height="280" cols="50" class="post-only">-- Define the stupid function
+DELIMITER $$
+CREATE FUNCTION what_is_two_plus_two()
+RETURNS INT
+BEGIN
+  RETURN 2 + 2;
+END$$
+-- Call the stupid function
+SELECT what_is_two_plus_two()</textarea></div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1"><pre class="slide-only"><code class="language-sql">-- Define the smart function
+DELIMITER $$
+CREATE FUNCTION what_is_anything_plus_two(
+  some_user_input INT
+)
+RETURNS INT
+BEGIN
+  RETURN some_user_input + 2;
+END$$
+-- Use the smart function
+SELECT what_is_anything_plus_two(17)</code></pre>
+    <textarea data-code-mirror="sql" data-code-mirror-height="290" cols="50" class="post-only">-- Define the smart function
+DELIMITER $$
+CREATE FUNCTION what_is_anything_plus_two(some_user_input INT)
+RETURNS INT
+BEGIN
+  RETURN some_user_input + 2;
+END$$
+-- Use the smart function
+SELECT what_is_anything_plus_two(17)</textarea></div>
   </div>
 </section>
 <section id="joins">
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <h2 class="h2">JOINS!<br><span role="image" aria-label="backhand index pointing right">👉</span><span role="image" aria-label="backhand index pointing left">👈</span></h2>
+      <h2 class="h2">JOINS!<br><span role="img" aria-label="backhand index pointing right">👉</span><span role="img" aria-label="backhand index pointing left">👈</span></h2>
     </div>
   </div>
 </section>
 <section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <p>A join is when you merge data from two (or more) different tables to create your results table.</p>  
-      <p>Remember that results tables are <strong>not</strong> the same as database tables. Using a join, we create a new results table that includes columns from each of the joined tables.</p>
+      <p>A join is when you merge data from two (or more) different tables to create your results table.</p>
       <p>We match rows from each of the tables by selecting one column from each to match up.</p>
       <pre class="slide-only"><code class="language-sql">SELECT [columns] 
 FROM [table] 
@@ -477,7 +510,7 @@ FROM [table]
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <p>Usually, joins are what we call an 'inner join'. Inner join is the default. You don't even have to write <code class="language-sql">INNER JOIN</code>, you can just write <code class="language-sql">JOIN</code>.</p>
-      <p>The different types of joins refer to what data to include from which table.</p>
+      <p>The type of join determines what data to include from the tables being joined.</p>
     </div>
   </div>
 </section>
@@ -535,7 +568,7 @@ JOIN vendors
 <section id="tableAliases">
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <p>Let's run that code again, with a slight modification to produce an error! <span role="image" aria-label="fire">🔥</span><span role="image" aria-label="Person gesturing no">🙅</span><span role="image" aria-label="fire">🔥</span></p> 
+      <p>Let's run that code again, with a slight modification to produce an error! <span role="img" aria-label="fire">🔥</span><span role="img" aria-label="Person gesturing no">🙅</span><span role="img" aria-label="fire">🔥</span></p> 
       <pre class="slide-only"><code class="language-sql">SELECT invoice_due_date AS "Due on", 
   vendor_name AS "Due from", 
   payment_date AS "Paid on",
@@ -576,15 +609,19 @@ ON i.vendor_id = v.vendor_id</textarea>
       <pre class="slide-only"><code class="language-sql">SELECT invoice_due_date AS "Due on", 
   vendor_name AS "Due from", 
   payment_date AS "Paid on" 
-FROM invoices /* left side */ 
-RIGHT JOIN vendors /* right side */ 
+-- left side
+FROM invoices 
+-- right side
+RIGHT JOIN vendors
 ON invoices.vendor_id = vendors.vendor_id
 ORDER BY "Due on" DESC</code></pre>
-      <textarea data-code-mirror="sql" data-code-mirror-height="220" cols="50" class="post-only">SELECT invoice_due_date AS "Due on", 
+      <textarea data-code-mirror="sql" data-code-mirror-height="280" cols="50" class="post-only">SELECT invoice_due_date AS "Due on", 
   vendor_name AS "Due from", 
   payment_date AS "Paid on" 
-FROM invoices /* left side */ 
-RIGHT JOIN vendors /* right side */ 
+-- left side
+FROM invoices 
+-- right side
+RIGHT JOIN vendors
 ON invoices.vendor_id = vendors.vendor_id
 ORDER BY "Due on" DESC</textarea>
     </div>
@@ -620,18 +657,6 @@ ON d.department_number = e.department_number</textarea>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <p><img class="diagram" src="/images/basic-joins.png" alt="Four diagrams illustrating four types of JOIN"></p>  
-    </div>
-  </div>
-</section>
-<section id="crossJoin">
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <h2 class="h2">Cross joins - don't let them throw you off.</h2>
-      <p>There's another type of join, but don't get it confused with inner or outer joins. The cross join (or 'Cartesian join') <em>doesn't</em> merge rows - it multiplies them.</p>
-      <pre><code class="language-sql">SELECT department_name, first_name
-FROM departments, employees</code></pre>  
-      <p>For every row in the first table, it returns a copy appended with every row in the second table.</p>
-      <p><strong>This is not used often.</strong></p>
     </div>
   </div>
 </section>
@@ -715,10 +740,10 @@ ON assignments.class = students.class</textarea>
         <tbody>
           <tr>
             <td>Birinder</td>
-            <td>Paper</td>
+            <td>Lab</td>
           </tr>
           <tr>
-            <td>Amandeep</td>
+            <td>Ryan</td>
             <td>Exam</td>
           </tr>
         </tbody>
@@ -738,15 +763,15 @@ ON assignments.class = students.class</code></pre>
         <tbody>
           <tr>
             <td>Birinder</td>
-            <td>Paper</td>
-          </tr>
-          <tr>
-            <td>Amandeep</td>
-            <td>Exam</td>
+            <td>Lab</td>
           </tr>
           <tr>
             <td><code>(null)</code></td>
             <td>Lab</td>
+          </tr>
+          <tr>
+            <td>Ryan</td>
+            <td>Exam</td>
           </tr>
         </tbody>
       </table>
@@ -765,15 +790,15 @@ ON assignments.class = students.class</code></pre>
         <tbody>
           <tr>
             <td>Birinder</td>
-            <td>Paper</td>
+            <td>Lab</td>
           </tr>
           <tr>
             <td>Amandeep</td>
-            <td>Exam</td>
+            <td><code>(null)</code></td>
           </tr>
           <tr>
             <td>Ryan</td>
-            <td><code>(null)</code></td>
+            <td>Exam</td>
           </tr>
         </tbody>
       </table>
@@ -786,6 +811,12 @@ ON assignments.class = students.class</code></pre>
       <h3>Mimicing a Full (outer) join</h3>
       <p>Unlike most other SQL-driven RDBMS', MySQL does not feature a <code>FULL JOIN</code>. However, we can mimic it with the <code>UNION</code> clause, which combines queries (while omitting duplicate rows).</p>
       <p>If we create a <code>UNION</code> between a right join and a left join, we get an identical result to a full join.</p>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <pre><code class="language-sql">SELECT student, assignment FROM assignments
 LEFT JOIN students
   ON assignments.class = students.class
@@ -797,42 +828,20 @@ RIGHT JOIN students
         <tbody>
           <tr>
             <td>Birinder</td>
+            <td>Lab</td>
+          </tr>
+          <tr>
+            <td><code>(null)</code></td>
             <td>Paper</td>
           </tr>
           <tr>
             <td>Amandeep</td>
-            <td>Exam</td>
-          </tr>
-          <tr>
             <td><code>(null)</code></td>
-            <td>Lab</td>
           </tr>
           <tr>
             <td>Ryan</td>
-            <td><code>(null)</code></td>
+            <td>Exam</td>
           </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <h3>Cross join</h3>
-      <pre><code class="language-sql">SELECT student, assignment
-FROM assignments, students</code></pre>
-      <table>
-        <tbody>
-          <tr><td>Birinder</td><td>Lab</td></tr>
-          <tr><td>Birinder</td><td>Paper</td></tr>
-          <tr><td>Birinder</td><td>Exam</td></tr>
-          <tr><td>Amandeep</td><td>Lab</td></tr>
-          <tr><td>Amandeep</td><td>Paper</td></tr>
-          <tr><td>Amandeep</td><td>Exam</td></tr>
-          <tr><td>Ryan</td><td>Lab</td></tr>
-          <tr><td>Ryan</td><td>Paper</td></tr>
-          <tr><td>Ryan</td><td>Exam</td></tr>
         </tbody>
       </table>
     </div>
@@ -852,7 +861,15 @@ FROM assignments, students</code></pre>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
       <h2 class="h2">Joining multiple tables</h2>
-      <pre><code class="language-sql">SELECT 
+            <p>Tables can effectively be 'chained' together using joins.</p>
+      <p class="callout alert">This can come in particularly handy when using an intermediary table to break up a many-to-many relationship into two one-to-many relationships.</p>
+</div>
+</div>
+</section>
+<section>
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
+<pre><code class="language-sql">SELECT 
     vendor_name, 
     invoice_number, 
     invoice_date, 
@@ -867,134 +884,6 @@ FROM vendors v
         ON li.account_number = gl.account_number
 WHERE (invoice_total - payment_total - credit_total) > 0
 ORDER BY vendor_name, line_item_amount DESC</code></pre>
-</div>
-</div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <p>Tables can effectively be 'chained' together using joins.</p>
-      <p class="callout alert">This can come in particularly handy when using an intermediary table to break up a many-to-many relationship into two one-to-many relationships.</p>
     </div>
   </div>
 </section>
-<section id="selfJoin">
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <h2 class="h2">Joining a single table (to itself)</h2>
-      <pre><code class="language-sql">SELECT DISTINCT v1.vendor_name, v1.vendor_city
-FROM vendors v1 JOIN vendors v2
-    ON (v1.vendor_city = v2.vendor_city) AND
-    (v1.vendor_id <> v2.vendor_id)
-ORDER BY v1.vendor_city</code></pre>
-      <p>Okay, this is a bit weird, but let's think it through. This query joins two tables (one just happens to be a duplicate of the other). We're used to joining things on a key, like an id, that is unique for at least one of the tables, but in this case we're joining on the city. So this query produces a list of all rows from one table that have the same city as the rows in the other table (<code>v1.vendor_city = v2.vendor_city</code>).</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <p>Then, on top of that, we say we're only going to join the rows <em>if</em> the id in the first table <em>doesn't</em> match the id in the second table. So we're asking the question, "<strong>where are the rows with the same city but different vendors?</strong>" Or, another way to put that is, "<strong>what cities have multiple vendors?</strong>" Using <code>DISTINCT</code> (otherwise we would find a row in each of the two columns that met the conditions), what we end up with is a list of vendors that share a city.</p> 
-      <div class="callout primary">Don't worry - self joins are very rare!</div>
-    </div>
-  </div>
-</section>
-<section id="syntaxVariations">
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <h2 class="h2">Syntax variations</h2>
-      <p>The syntax we've gone over today is chosen to make it clear what we're doing, but, as usual with SQL, there are other ways to write things. Shorter or implicit syntax is risky with joins, as it's easy to write something you don't mean. Still, you'll need to recognize it if you come across it.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <h3>Inner join - implicit syntax</h3>
-      <p>The implicit syntax for an inner join puts both tables in the <code>FROM</code> conditions, and uses <code>WHERE</code> in place of <code>ON</code></p>
-      <pre><code class="language-sql">SELECT invoice_number, vendor_name
-FROM vendors v, invoices i
-WHERE v.vendor_id = i.vendor_id</code></pre>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <h3><code>USING</code></h3>
-      <p>Using <code>USING</code> isn't necessarily bad practice - it's quite concise. But it doesn't have the flexibility of the <code>ON</code> clause, hence why we didn't cover it today. It is a shorthand for <code class="language-sql">ON table1.id = table2.id</code>.</p>
-      <pre><code class="language-sql">SELECT invoice_number, vendor_name
-FROM invoices JOIN vendors
-USING (vendor_id)</code></pre>
-</div>
-</div>
-</section>
-<!-- <section class="slide-only">
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <h2 class="h2">Another discussion</h2>
-    </div>
-  </div>
-</section> -->
-
-<!-- <section>
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <p>You run a bakery.</p>
-      <p>Your bakery has three locations in the west end of Toronto.</p>
-      <p>Your bakery has 2 types of employee - bakers and cashiers.</p>
-      <p>Your bakery initially produces 6 types of pasteries, and 4 types of bread. You also serve coffee. You might add more items later on.</p>
-      <p>Working with your data, you might need to...</p>
-
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <ul>
-        <li>create a schedule for your employees, keeping in mind that 
-          <ul>
-            <li>no employee can work more than 44 hours/week</li>
-            <li>no employee can work less than 25 hours/week</li>
-            <li>shifts are a minimum of 4 hours, and a maximum of 8</li>
-            <li>employees can be scheduled to work at different locations</li>
-            <li>cashiers cannot bake, and bakers cannot do cashier duties</li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <ul>
-        <li>create a menu, factoring in that 
-          <ul>
-            <li>each week the price of a different item is reduced by 20%</li>
-            <li>each week the price of two items are reduced by 10%</li>
-          </ul>
-        </li>
-        <li>evaluate the cost of items including materials and labour, and try to find efficiencies; each type of food or beverage should list the total cost of ingredients; the food should list the baking time, and the bakers' prep time, along with the required baking temperature and the required oven space</li>
-        <li>track transactions at the bakery</li>
-      </ul>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="grid-x">
-    <div class="cell large-10 large-offset-1">
-      <p>How do you design your database tables?</p>
-      <p>Will you be able to...</p>
-      <ul>
-        <li>write a stored procedure to add a new type of bread?</li>
-        <li>write a function to return the menu?</li>
-        <li>validate the data so that you can create a new schedule?</li>
-        <li>create a baking schedule (keeping in mind that there is limited oven space, varied by location, and that foods with the same baking temperature can share an oven)?</li>
-        <li>calculate the cost per unit of different foods (factoring in the labour involved)?</li>
-      </ul>
-      <p>Also, try thinking about what other metrics could you track/calculate to help the business?</p>
-    </div>
-  </div>
-</section> -->
