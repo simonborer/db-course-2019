@@ -7,13 +7,13 @@ summary: "This week YOU'LL be sharing your experiences writing some SQL code."
 ---
 <section>
   <div class="grid-x">
-    <div class="cell large-10 large-offset-1">Happy Monday!</div>
+    <div class="cell large-10 large-offset-1"><h2 class="h2">Happy Monday!</h2></div>
   </div>
 </section>
 
 <section>
   <div class="grid-x">
-    <div class="cell large-10 large-offset-1">Please initial the sheet before giving your presentation. And good luck!</div>
+    <div class="cell large-10 large-offset-1"><p>Please initial the sheet before giving your presentation. And good luck!</p></div>
   </div>
 </section>
 
@@ -35,10 +35,17 @@ summary: "This week YOU'LL be sharing your experiences writing some SQL code."
 <section>
   <div class="grid-x">
     <div class="cell large-10 large-offset-1">
-      <p>Here's some exercises you can do as a way of working through your notes to review for the final.</p>
+      <h2 class="h2">Here's some exercises you can do as a way of working through your notes to review for the final.</h2>
+    </div>
+  </div>
+</section>
+<section id="exercises">
+  <div class="grid-x">
+    <div class="cell large-10 large-offset-1">
       <p>Imagine you are working on the database for a zoo.</p>
-      <img src="/images/zoo.jpg" alt="Giraffes and zebras.">
-      <ol>
+      <img style="max-height: 40vh;" src="/images/zoo.jpg" alt="Giraffes and zebras.">
+      <p class="slide-only">See the rest of the exercises <a href="/posts/the-10th-week/#exercises">in the notes</a>.</p>
+      <ol class="post-only">
         <li>There is a table of animals, and table of animal foods. Since foods can be eaten by different animals, and most animals can each eat different types of food, what is the relationship between these tables called?</li>
         <li>To make life easier, we'd want to have a table that can go between the food table and the animal table. This table could be called "diet", as it represents all the types of food that can be eaten by a given animal, and all the animals who might eat a given food. What do we call this <em>kind</em> of table?</li>
         <li>What kind of relationship does the "diet" table have with the animals table?</li>
